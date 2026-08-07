@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" href="assets/brand/logo-32.png" />
+  <link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#0e2240" />
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
   <title>Suite 360 — zouti pou karyè ou nan epòk IA a</title>
   <meta name="description" content="Suite 360 (pa Atmart) : Interview360 prepare w pou entèvyou travay la (gratis · Pro 9,99 $) ; Career360 se coach karyè pèsonèl ou (14,99 $/mwa · 7 jou esè gratis). An kreyòl, français, English, español — ak vwa ou." />
@@ -48,7 +50,7 @@ d.lang=l||"ht";})();
 
 <header>
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
-    <a href="index.html" class="logo">Suite<span>360</span><small>pa Atmart</small></a>
+    <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small>pa Atmart</small></a>
     <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">
       <a href="entevyou.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Interview360</a>
       <a href="karye.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Career360</a>
@@ -257,5 +259,6 @@ d.lang=l||"ht";})();
   });
 })();
 </script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>
 </body>
 </html>

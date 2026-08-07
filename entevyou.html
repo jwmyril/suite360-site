@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" href="assets/brand/logo-32.png" />
+  <link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#0e2240" />
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
   <title>Interview360 — vin pare pou entèvyou travay ou | Suite 360</title>
   <meta name="description" content="Interview360 (gratis) : 6 kesyon, 2 minit — konnen fòs ou, feblès ou ak 3 aks ou anvan entèvyou travay la. Vèsyon Pro : kesyon yo pral poze OU + repons ak prèv OU. An kreyòl, français, English, español." />
@@ -112,7 +114,7 @@ d.lang=l||"ht";})();
 
 <header>
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
-    <a href="index.html" class="logo">Suite<span>360</span><small>pa Atmart</small></a>
+    <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small>pa Atmart</small></a>
     <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">
       <a href="entevyou.html" style="color:#2ec4b6;text-decoration:none;font-size:0.9rem;font-weight:600">Interview360</a>
       <a href="karye.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Career360</a>
@@ -1217,5 +1219,6 @@ document.documentElement.lang=sel.value;});})();
   });
 })();
 </script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>
 </body>
 </html>

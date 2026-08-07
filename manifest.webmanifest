@@ -1,0 +1,14 @@
+{
+  "name": "Suite 360 — pa Atmart",
+  "short_name": "Suite360",
+  "description": "Interview360 ak Career360 — zouti pou karyè ou nan epòk IA a, an 4 lang.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a1a2f",
+  "theme_color": "#0e2240",
+  "icons": [
+    { "src": "assets/brand/icon-360-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/brand/icon-360-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

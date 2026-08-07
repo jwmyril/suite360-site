@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" href="assets/brand/logo-32.png" />
+  <link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
   <title>Career360 — votre coach de carrière à l'ère de l'IA | Suite 360</title>
   <meta name="description" content="Career360 : le coach de carrière par abonnement de la Suite 360 — il vous accompagne dans votre nouveau poste, votre recherche d'emploi et votre progression, en kreyòl, français, anglais ou espagnol. Dossier anonyme par code, effaçable à tout moment." />
@@ -65,7 +66,7 @@ if(l!=="fr"){d.className+=" i18n-wait";setTimeout(function(){d.classList.remove(
 
 <header>
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
-    <a href="index.html" class="logo">Suite<span>360</span><small>pa Atmart</small></a>
+    <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small>pa Atmart</small></a>
     <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">
       <a href="entevyou.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Interview360</a>
       <a href="karye.html" style="color:#2ec4b6;text-decoration:none;font-size:0.9rem;font-weight:600">Career360</a>
@@ -575,5 +576,6 @@ document.documentElement.lang=sel.value;});})();
   });
 })();
 </script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>
 </body>
 </html>
