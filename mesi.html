@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#0e2240" />
+  <title>Mèsi ! Men kòd ou — Suite 360</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css?v=1" />
+<script>/* lang otomatik */
+(function(){var S={fr:1,ht:1,en:1,es:1},d=document.documentElement,s=null;
+try{s=localStorage.getItem("atmart_lang")}catch(e){}
+var l=s&&S[s]?s:null;
+if(!l){var n=navigator.languages||[navigator.language||""];
+for(var i=0;i<n.length;i++){var c=String(n[i]).toLowerCase().split("-")[0];
+if(c==="ht"||c==="hat"){l="ht";break}if(S[c]){l=c;break}}}
+d.lang=l||"ht";})();
+</script>
+  <style>
+    .ms-wrap{max-width:640px;margin:0 auto;text-align:center;padding:1rem 0 3rem}
+    .ms-card{background:rgba(255,255,255,0.04);border:1px solid rgba(46,196,182,0.45);border-radius:16px;padding:2rem 1.6rem}
+    .ms-big{font-size:2.6rem;margin:0 0 0.4rem}
+    .ms-card h1{font-family:"Space Grotesk",sans-serif;font-size:1.5rem;color:#fff;margin:0 0 0.5rem}
+    .ms-sub{color:#9db2c7;font-size:0.95rem;line-height:1.6;margin:0 0 1.4rem}
+    .ms-code{font-family:"Space Grotesk",monospace;font-size:1.7rem;letter-spacing:0.08em;color:#2ec4b6;background:#0e2240;border:2px dashed rgba(46,196,182,0.6);border-radius:12px;padding:0.9rem 1rem;margin:0 0 0.8rem;word-break:break-all;user-select:all}
+    .ms-note{color:#f4a261;font-size:0.88rem;margin:0 0 1.2rem}
+    .ms-row{display:flex;gap:0.6rem;justify-content:center;flex-wrap:wrap}
+    .ms-spin{display:inline-block;width:1.4em;height:1.4em;border:3px solid rgba(255,255,255,0.25);border-top-color:#2ec4b6;border-radius:50%;animation:msspin 0.8s linear infinite;vertical-align:middle}
+    @keyframes msspin{to{transform:rotate(360deg)}}
+    .ms-help{color:#9db2c7;font-size:0.85rem;margin-top:1.4rem;line-height:1.6}
+    .ms-help a{color:#2ec4b6}
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
+    <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small>pa Atmart</small></a>
+    <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">
+      <a href="entevyou.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Interview360</a>
+      <a href="karye.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Career360</a>
+      <select id="s360-lang" aria-label="Lang" style="background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">
+        <option value="ht">Kreyòl</option><option value="fr">Français</option><option value="en">English</option><option value="es">Español</option>
+      </select>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" style="padding-bottom:1rem">
+  <div class="container">
+    <div class="ms-wrap">
+      <div class="ms-card">
+        <p class="ms-big" id="ms-icon">⏳</p>
+        <h1 id="ms-title">N ap prepare kòd ou…</h1>
+        <p class="ms-sub" id="ms-sub">Peman ou pase — tann yon ti moman, kòd ou ap parèt isit la (mwens pase yon minit an jeneral).</p>
+        <div id="ms-waitbox"><span class="ms-spin"></span></div>
+        <div id="ms-codebox" style="display:none">
+          <p class="ms-code" id="ms-code"></p>
+          <p class="ms-note" id="ms-note">📸 Pran yon foto oswa kopye kòd la — se li ki kle ou.</p>
+          <div class="ms-row">
+            <button type="button" class="btn btn-primary" id="ms-copy">📋 Kopye kòd la</button>
+            <a class="btn btn-outline" id="ms-go" href="entevyou.html">Ale sèvi ak li →</a>
+          </div>
+        </div>
+        <p class="ms-help" id="ms-help">Yon pwoblèm ? Ekri <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a> ak resi Stripe ou a — n ap voye kòd la pou ou.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var EP = "https://atmart-chat.atmartllc.workers.dev/stripe-code";
+  var L = {
+    ht: {
+      wait: "N ap prepare kòd ou…",
+      waitSub: "Peman ou pase — tann yon ti moman, kòd ou ap parèt isit la (mwens pase yon minit an jeneral).",
+      done: "Mèsi ! Men kòd ou 🎉",
+      doneSub: { kit: "Interview360 Pro Kit — 5 jenerasyon (kit + CV). Kole kòd la nan bwat « Kòd Interview360 Pro » sou paj Interview360 lan.", pro90: "Interview360 Pro 90 jou — san limit (jiska 8 pa jou), li bon jiska {exp}. Kole kòd la nan bwat « Kòd Interview360 Pro » sou paj Interview360 lan.", career: "Career360 Solo — coach ou pare ! Kole kòd la nan bwat « Kòd Career360 ou » sou paj Career360 lan. Abònman ou ap renouvle otomatikman." },
+      note: "📸 Pran yon foto oswa kopye kòd la — se li ki kle ou. Nou pa mande kont, se kòd la ki kont ou.",
+      copy: "📋 Kopye kòd la", copied: "Kopye ! ✅", go: "Ale sèvi ak li →",
+      slow: "Sa pran plis tan pase nòmal…",
+      slowSub: "Peman ou anrejistre bò kote Stripe. Rete sou paj la ankò yon ti moman, oswa ekri sales@atmart.ltd ak resi ou a — n ap voye kòd la san pwoblèm.",
+      help: 'Yon pwoblèm ? Ekri <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a> ak resi Stripe ou a — n ap voye kòd la pou ou.',
+      noSid: "Paj sa a louvri apre yon peman. Si ou fèk peye, tounen sou lyen Stripe la voye w la a.",
+    },
+    fr: {
+      wait: "Préparation de votre code…",
+      waitSub: "Paiement reçu — un instant, votre code apparaît ici (moins d'une minute en général).",
+      done: "Merci ! Voici votre code 🎉",
+      doneSub: { kit: "Interview360 Pro Kit — 5 générations (kit + CV). Collez le code dans le champ « Code Interview360 Pro » de la page Interview360.", pro90: "Interview360 Pro 90 jours — illimité (jusqu'à 8/jour), valable jusqu'au {exp}. Collez le code dans le champ « Code Interview360 Pro » de la page Interview360.", career: "Career360 Solo — votre coach est prêt ! Collez le code dans le champ « Votre code Career360 » de la page Career360. Votre abonnement se renouvelle automatiquement." },
+      note: "📸 Prenez une photo ou copiez le code — c'est votre clé. Pas de compte : le code EST votre compte.",
+      copy: "📋 Copier le code", copied: "Copié ! ✅", go: "L'utiliser maintenant →",
+      slow: "C'est plus long que d'habitude…",
+      slowSub: "Votre paiement est bien enregistré chez Stripe. Restez encore un instant sur la page, ou écrivez à sales@atmart.ltd avec votre reçu — nous vous enverrons le code.",
+      help: 'Un souci ? Écrivez à <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a> avec votre reçu Stripe — nous vous enverrons le code.',
+      noSid: "Cette page s'ouvre après un paiement. Si vous venez de payer, revenez par le lien où Stripe vous a envoyé.",
+    },
+    en: {
+      wait: "Preparing your code…",
+      waitSub: "Payment received — one moment, your code will appear here (usually under a minute).",
+      done: "Thank you! Here is your code 🎉",
+      doneSub: { kit: "Interview360 Pro Kit — 5 generations (kit + résumé). Paste the code into the “Interview360 Pro code” field on the Interview360 page.", pro90: "Interview360 Pro 90 days — unlimited (up to 8/day), valid until {exp}. Paste the code into the “Interview360 Pro code” field on the Interview360 page.", career: "Career360 Solo — your coach is ready! Paste the code into the “Your Career360 code” field on the Career360 page. Your subscription renews automatically." },
+      note: "📸 Take a photo or copy the code — it is your key. No account needed: the code IS your account.",
+      copy: "📋 Copy the code", copied: "Copied! ✅", go: "Use it now →",
+      slow: "Taking longer than usual…",
+      slowSub: "Your payment is registered with Stripe. Stay on this page a little longer, or write to sales@atmart.ltd with your receipt — we will send your code.",
+      help: 'A problem? Write to <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a> with your Stripe receipt — we will send you the code.',
+      noSid: "This page opens after a payment. If you just paid, come back through the link Stripe sent you to.",
+    },
+    es: {
+      wait: "Preparando tu código…",
+      waitSub: "Pago recibido — un momento, tu código aparecerá aquí (menos de un minuto normalmente).",
+      done: "¡Gracias! Aquí está tu código 🎉",
+      doneSub: { kit: "Interview360 Pro Kit — 5 generaciones (kit + CV). Pega el código en el campo «Código Interview360 Pro» de la página Interview360.", pro90: "Interview360 Pro 90 días — ilimitado (hasta 8/día), válido hasta {exp}. Pega el código en el campo «Código Interview360 Pro» de la página Interview360.", career: "Career360 Solo — ¡tu coach está listo! Pega el código en el campo «Tu código Career360» de la página Career360. Tu suscripción se renueva automáticamente." },
+      note: "📸 Toma una foto o copia el código — es tu llave. Sin cuenta: el código ES tu cuenta.",
+      copy: "📋 Copiar el código", copied: "¡Copiado! ✅", go: "Usarlo ahora →",
+      slow: "Está tardando más de lo normal…",
+      slowSub: "Tu pago está registrado en Stripe. Quédate un momento más en la página, o escribe a sales@atmart.ltd con tu recibo — te enviaremos el código.",
+      help: '¿Un problema? Escribe a <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a> con tu recibo de Stripe — te enviaremos el código.',
+      noSid: "Esta página se abre después de un pago. Si acabas de pagar, vuelve por el enlace al que Stripe te envió.",
+    },
+  };
+  function lang() { var l = document.documentElement.lang || "ht"; return L[l] ? l : "ht"; }
+  function T() { return L[lang()]; }
+
+  var sel = document.getElementById("s360-lang");
+  sel.value = document.documentElement.lang || "ht";
+  sel.addEventListener("change", function () {
+    try { localStorage.setItem("atmart_lang", sel.value); } catch (e) {}
+    document.documentElement.lang = sel.value;
+  });
+
+  var state = "wait", rec = null;
+  function paint() {
+    var t = T();
+    document.getElementById("ms-help").innerHTML = t.help;
+    document.getElementById("ms-copy").textContent = t.copy;
+    document.getElementById("ms-go").textContent = t.go;
+    if (state === "done" && rec) {
+      document.getElementById("ms-icon").textContent = "🎉";
+      document.getElementById("ms-title").textContent = t.done;
+      document.getElementById("ms-sub").textContent = (t.doneSub[rec.type] || "").replace("{exp}", rec.exp || "");
+      document.getElementById("ms-note").textContent = t.note;
+      document.getElementById("ms-code").textContent = rec.code;
+      document.getElementById("ms-go").href = rec.type === "career" ? "karye.html" : "entevyou.html";
+      document.getElementById("ms-waitbox").style.display = "none";
+      document.getElementById("ms-codebox").style.display = "";
+    } else if (state === "slow") {
+      document.getElementById("ms-icon").textContent = "🕐";
+      document.getElementById("ms-title").textContent = t.slow;
+      document.getElementById("ms-sub").textContent = t.slowSub;
+    } else if (state === "nosid") {
+      document.getElementById("ms-icon").textContent = "ℹ️";
+      document.getElementById("ms-title").textContent = "";
+      document.getElementById("ms-sub").textContent = t.noSid;
+      document.getElementById("ms-waitbox").style.display = "none";
+    } else {
+      document.getElementById("ms-icon").textContent = "⏳";
+      document.getElementById("ms-title").textContent = t.wait;
+      document.getElementById("ms-sub").textContent = t.waitSub;
+    }
+  }
+  new MutationObserver(paint).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+
+  document.getElementById("ms-copy").addEventListener("click", function () {
+    if (!rec) return;
+    navigator.clipboard.writeText(rec.code).then(function () {
+      document.getElementById("ms-copy").textContent = T().copied;
+      setTimeout(paint, 1600);
+    });
+  });
+
+  var sid = new URLSearchParams(location.search).get("sid") || "";
+  if (!/^cs_[A-Za-z0-9_]+$/.test(sid)) { state = "nosid"; paint(); return; }
+  paint();
+
+  var tries = 0;
+  function poll() {
+    tries++;
+    fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sid: sid }) })
+      .then(function (r) { return r.json(); })
+      .then(function (b) {
+        if (b && b.code) { rec = b; state = "done"; paint(); return; }
+        if (tries === 20) { state = "slow"; paint(); } // ~50 s : message de patience
+        if (tries < 60) setTimeout(poll, 2500);        // on continue jusqu'à ~2 min 30
+      })
+      .catch(function () { if (tries < 60) setTimeout(poll, 4000); });
+  }
+  poll();
+})();
+</script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>
+</body>
+</html>
