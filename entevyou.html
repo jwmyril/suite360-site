@@ -94,6 +94,12 @@ d.lang=l||"ht";})();
     .cv-out h4{font-size:0.95rem;color:#111;margin:0.7rem 0 0.25rem}
     .cv-out p,.cv-out li{font-size:0.9rem;line-height:1.55;color:#222}
     .cv-out ul{padding-left:1.15rem;margin:0.2rem 0 0.5rem}
+    /* ---- eksplikasyon « kisa yon SWOT ye » ---- */
+    .sw-what{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:0.9rem 1.1rem;margin:0 0 1.3rem}
+    .sw-what summary{cursor:pointer;color:#fff;font-weight:600;font-size:0.95rem}
+    .sw-what p{color:#9db2c7;font-size:0.9rem;line-height:1.65;margin:0.7rem 0 0}
+    .sw-what strong{color:#d7e3f0}
+    @media print{.sw-what{display:none!important}}
     @media print{
       body.print-cv #sw-out,body.print-cv #sw-out *{visibility:hidden}
       body.print-cv .cv-out,body.print-cv .cv-out *{visibility:visible}
@@ -131,6 +137,11 @@ d.lang=l||"ht";})();
 <!-- APP -->
 <section style="padding-top:0.5rem">
   <div class="container">
+    <details class="sw-what" id="sw-what">
+      <summary id="sw-what-t">🧭 Kisa yon « SWOT » ye ?</summary>
+      <p id="sw-what-p1">SWOT se yon foto klè de pwofil ou, an 4 pati : <strong>💪 Fòs</strong> (sa ou fè byen — ak prèv), <strong>⚠️ Feblès</strong> (sa ki pi difisil pou ou, pou w travay sou li), <strong>🚪 Opòtinite</strong> (pòt ki louvri pou ou nan mache travay la), <strong>⛈ Menas</strong> (sa k ka bare wout ou, tankou tach IA ka fè pi vit). Se menm metòd gwo antrepriz yo sèvi pou analize tèt yo — isit la, nou aplike l sou karyè PA OU.</p>
+      <p id="sw-what-p2">Anvan yon entèvyou, sa ede w konnen sa pou w mete devan, ki kesyon k ap vini, ak ki plan ou genyen. <strong>🎙 Epi mòd pratik ak vwa a GRATIS pou tout moun.</strong></p>
+    </details>
     <div class="sw-app">
 
       <form class="sw-form" id="sw-form">
@@ -247,7 +258,7 @@ d.lang=l||"ht";})();
         </div>
         <div id="sw-placeholder" class="sw-placeholder">
           <div class="big">🧭</div>
-          <p>Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style="color:#2ec4b6">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap ba w feedback.</span></p>
+          <p>Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style="color:#2ec4b6">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap ba w feedback. GRATIS pou tout moun.</span></p>
         </div>
         <article id="sw-out"></article>
         <div class="sw-cta" id="sw-cta" style="display:none">
@@ -300,7 +311,7 @@ document.documentElement.lang=sel.value;});})();
       jd: "8. Kole deskripsyon pòs la (si ou genyen l)", jdS: "Pou n ka devine kesyon entèvyou yo pi byen", jdP: "Kole tèks anons travay la isit la (opsyonèl)…",
       pc: "⭐ Kòd Interview360 Pro (si ou achte l)", pcS: "Ak yon kòd, w ap jwenn TOUT kit la : 8-12 kesyon AK repons yo, deck, plan 90 jou + CV pa konpetans · Kòd PRO90 : san limit pandan 90 jou (jiska 8 pa jou)", pcB: "Ou poko gen kòd ? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Kit 9,99 $ · 90 jou 19,99 $</a>", proGen: "N ap prepare kit Pro ou a… (60–90 segonn — li long, li vo li)", proInvalid: "Kòd sa a pa bon oswa li fini. Verifye l, oswa achte yon kòd sou atmart.ltd.",
       go: "🧭 Fè SWOT360 mwen",
-      phTxt: "Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style=\"color:#2ec4b6\">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap ba w feedback.</span>",
+      phTxt: "Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style=\"color:#2ec4b6\">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap ba w feedback. GRATIS pou tout moun.</span>",
       share: "💬 Pataje sou WhatsApp", print: "🖨 Enprime / PDF", copy: "📋 Kopye",
       cta1: '📚 <strong>Pwochen etap ou :</strong> li leson gratis la — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.html">Management &amp; carrière à l\'ère de l\'IA</a> — pou w aprofondi chak aks.',
       cta2: '🚀 <strong>Interview360 Pro</strong> — <s>29 $</s> <strong>9,99 $</strong> (yon sèl fwa) : kesyon yo pral poze OU ak repons ki chita sou prèv OU, rapò PDF, deck « Prezante tèt ou », plan 90 jou + CV pa konpetans. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Kòmande Pro a</a>',
@@ -340,6 +351,9 @@ document.documentElement.lang=sel.value;});})();
       proExpired: "Kòd Pro 90 jou ou a fini. Achte yon lòt kòd pou kontinye.",
       cvOld: "Ou deja gen yon CV ? (opsyonèl)", cvOldS: "Kole l isit la — n ap sèvi ak enfòmasyon li yo epi n ap amelyore fòm lan. Reponn kesyon yo kanmenm : se yo ki mare CV a ak anons lan.", cvOldP: "Kole tout tèks ansyen CV ou a isit la…",
       cvOldUp: "📎 Oswa voye foto / PDF ansyen CV a", cvOldOk: "CV ou a li ! Verifye tèks la anvan ou kontinye.",
+      whatT: "🧭 Kisa yon « SWOT » ye ?",
+      whatP1: "SWOT se yon foto klè de pwofil ou, an 4 pati : <strong>💪 Fòs</strong> (sa ou fè byen — ak prèv), <strong>⚠️ Feblès</strong> (sa ki pi difisil pou ou, pou w travay sou li), <strong>🚪 Opòtinite</strong> (pòt ki louvri pou ou nan mache travay la), <strong>⛈ Menas</strong> (sa k ka bare wout ou, tankou tach IA ka fè pi vit). Se menm metòd gwo antrepriz yo sèvi pou analize tèt yo — isit la, nou aplike l sou karyè PA OU.",
+      whatP2: "Anvan yon entèvyou, sa ede w konnen sa pou w mete devan, ki kesyon k ap vini, ak ki plan ou genyen. <strong>🎙 Epi mòd pratik ak vwa a GRATIS pou tout moun.</strong>",
       proDaily: "Ou fè 8 jenerasyon jodi a — kòd ou a ap disponib ankò demen. 🙂",
       jdUp: "📎 Oswa voye yon foto / PDF anons lan",
       jdReading: "N ap li anons lan…",
@@ -360,7 +374,7 @@ document.documentElement.lang=sel.value;});})();
       jd: "8. Collez la description du poste (si vous l'avez)", jdS: "Pour deviner au mieux les questions de votre entretien", jdP: "Collez le texte de l'annonce ici (optionnel)…",
       pc: "⭐ Code Interview360 Pro (si vous l'avez acheté)", pcS: "Avec un code : le kit COMPLET — 8-12 questions AVEC les réponses, deck, plan 90 jours + CV par compétences · Code PRO90 : illimité pendant 90 jours (jusqu'à 8/jour)", pcB: "Pas encore de code ? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Kit 9,99 $ · 90 jours 19,99 $</a>", proGen: "Préparation de votre kit Pro… (60–90 secondes — il est long, il le vaut)", proInvalid: "Ce code est invalide ou épuisé. Vérifiez-le, ou achetez un code sur atmart.ltd.",
       go: "🧭 Faire mon SWOT360",
-      phTxt: "Votre résultat SWOT360 apparaîtra ici.<br />Répondez aux 6 questions puis cliquez « Faire mon SWOT360 ».<br /><span style=\"color:#2ec4b6\">🎙 Nouveau : ensuite, entraînez-vous aux questions d'entretien à voix haute — le coach vous fait un retour.</span>",
+      phTxt: "Votre résultat SWOT360 apparaîtra ici.<br />Répondez aux 6 questions puis cliquez « Faire mon SWOT360 ».<br /><span style=\"color:#2ec4b6\">🎙 Nouveau : ensuite, entraînez-vous aux questions d'entretien à voix haute — le coach vous fait un retour. GRATUIT pour tous.</span>",
       share: "💬 Partager sur WhatsApp", print: "🖨 Imprimer / PDF", copy: "📋 Copier",
       cta1: '📚 <strong>Votre prochaine étape :</strong> lisez la leçon gratuite — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.html">Management &amp; carrière à l\'ère de l\'IA</a> — pour approfondir chaque axe.',
       cta2: '🚀 <strong>Interview360 Pro</strong> — <s>29 $</s> <strong>9,99 $</strong> (paiement unique) : les questions que le recruteur va VOUS poser, avec des réponses bâties sur VOS preuves, rapport PDF, deck « Prezante tèt ou », plan 90 jours + CV par compétences. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Commander Pro</a>',
@@ -400,6 +414,9 @@ document.documentElement.lang=sel.value;});})();
       proExpired: "Votre code Pro 90 jours est arrivé à expiration. Achetez un nouveau code pour continuer.",
       cvOld: "Vous avez déjà un CV ? (facultatif)", cvOldS: "Collez-le ici — nous réutilisons ses informations et améliorons la forme. Répondez quand même aux questions : ce sont elles qui relient le CV à l'annonce.", cvOldP: "Collez tout le texte de votre ancien CV ici…",
       cvOldUp: "📎 Ou joignez une photo / un PDF de l'ancien CV", cvOldOk: "CV lu ! Vérifiez le texte avant de continuer.",
+      whatT: "🧭 C'est quoi, un « SWOT » ?",
+      whatP1: "Le SWOT est une photo claire de votre profil, en 4 parties : <strong>💪 Forces</strong> (ce que vous faites bien — avec des preuves), <strong>⚠️ Faiblesses</strong> (ce qui vous est difficile, pour y travailler), <strong>🚪 Opportunités</strong> (les portes ouvertes pour vous sur le marché du travail), <strong>⛈ Menaces</strong> (ce qui peut vous barrer la route, comme les tâches que l'IA fait plus vite). C'est la méthode que les grandes entreprises utilisent pour s'analyser — ici, appliquée à VOTRE carrière.",
+      whatP2: "Avant un entretien, il vous dit quoi mettre en avant, quelles questions arrivent, et quel est votre plan. <strong>🎙 Et le mode d'entraînement à voix haute est GRATUIT pour tous.</strong>",
       proDaily: "8 générations aujourd’hui — votre code sera de nouveau disponible demain. 🙂",
       jdUp: "📎 Ou joignez une photo / un PDF de l'annonce",
       jdReading: "Lecture de l'annonce…",
@@ -420,7 +437,7 @@ document.documentElement.lang=sel.value;});})();
       jd: "8. Paste the job description (if you have it)", jdS: "So we can best predict your interview questions", jdP: "Paste the job posting text here (optional)…",
       pc: "⭐ Interview360 Pro code (if you bought one)", pcS: "With a code: the FULL kit — 8-12 questions WITH answers, deck, 90-day plan + competency résumé · PRO90 code: unlimited for 90 days (up to 8/day)", pcB: "No code yet? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Kit $9.99 · 90 days $19.99</a>", proGen: "Preparing your Pro kit… (60–90 seconds — it is long, it is worth it)", proInvalid: "This code is invalid or used up. Check it, or get a code on atmart.ltd.",
       go: "🧭 Get my SWOT360",
-      phTxt: "Your SWOT360 result will appear here.<br />Answer the 6 questions and click “Get my SWOT360”.<br /><span style=\"color:#2ec4b6\">🎙 New: then practice your interview questions out loud — the coach gives you feedback.</span>",
+      phTxt: "Your SWOT360 result will appear here.<br />Answer the 6 questions and click “Get my SWOT360”.<br /><span style=\"color:#2ec4b6\">🎙 New: then practice your interview questions out loud — the coach gives you feedback. FREE for everyone.</span>",
       share: "💬 Share on WhatsApp", print: "🖨 Print / PDF", copy: "📋 Copy",
       cta1: '📚 <strong>Your next step:</strong> read the free lesson — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.en.html">Management &amp; career in the AI era</a> — to go deeper on each axis.',
       cta2: '🚀 <strong>Interview360 Pro</strong> — <s>$29</s> <strong>$9.99</strong> (one-time): the questions they will ask YOU with answers built on YOUR proof, PDF report, «Present yourself» deck, 90-day plan + competency résumé. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Get Pro</a>',
@@ -460,6 +477,9 @@ document.documentElement.lang=sel.value;});})();
       proExpired: "Your Pro 90-day code has expired. Get a new code to continue.",
       cvOld: "Already have a résumé? (optional)", cvOldS: "Paste it here — we reuse its facts and improve the format. Still answer the questions: they are what ties the résumé to the job posting.", cvOldP: "Paste the full text of your current résumé here…",
       cvOldUp: "📎 Or attach a photo / PDF of your current résumé", cvOldOk: "Résumé read! Check the text before you continue.",
+      whatT: "🧭 What is a “SWOT”?",
+      whatP1: "A SWOT is a clear snapshot of your profile, in 4 parts: <strong>💪 Strengths</strong> (what you do well — with proof), <strong>⚠️ Weaknesses</strong> (what is hardest for you, so you can work on it), <strong>🚪 Opportunities</strong> (the doors open to you in the job market), <strong>⛈ Threats</strong> (what could block your path, like tasks AI does faster). It is the same method big companies use to analyze themselves — here, applied to YOUR career.",
+      whatP2: "Before an interview, it tells you what to highlight, which questions are coming, and what your plan is. <strong>🎙 And the out-loud practice mode is FREE for everyone.</strong>",
       proDaily: "8 generations today — your code will be available again tomorrow. 🙂",
       jdUp: "📎 Or attach a photo / PDF of the job posting",
       jdReading: "Reading the job posting…",
@@ -480,7 +500,7 @@ document.documentElement.lang=sel.value;});})();
       jd: "8. Pega la descripción del puesto (si la tienes)", jdS: "Para predecir mejor las preguntas de tu entrevista", jdP: "Pega el texto del anuncio aquí (opcional)…",
       pc: "⭐ Código Interview360 Pro (si lo compraste)", pcS: "Con un código: el kit COMPLETO — 8-12 preguntas CON respuestas, deck, plan de 90 días + CV por competencias · Código PRO90: ilimitado por 90 días (hasta 8/día)", pcB: "¿Sin código aún? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Kit $9.99 · 90 días $19.99</a>", proGen: "Preparando tu kit Pro… (60–90 segundos — es largo, lo vale)", proInvalid: "Este código es inválido o agotado. Verifícalo, o compra un código en atmart.ltd.",
       go: "🧭 Hacer mi SWOT360",
-      phTxt: "Tu resultado SWOT360 aparecerá aquí.<br />Responde las 6 preguntas y haz clic en «Hacer mi SWOT360».<br /><span style=\"color:#2ec4b6\">🎙 Nuevo: luego practica las preguntas de entrevista en voz alta — el coach te da su retroalimentación.</span>",
+      phTxt: "Tu resultado SWOT360 aparecerá aquí.<br />Responde las 6 preguntas y haz clic en «Hacer mi SWOT360».<br /><span style=\"color:#2ec4b6\">🎙 Nuevo: luego practica las preguntas de entrevista en voz alta — el coach te da su retroalimentación. GRATIS para todos.</span>",
       share: "💬 Compartir en WhatsApp", print: "🖨 Imprimir / PDF", copy: "📋 Copiar",
       cta1: '📚 <strong>Tu próximo paso:</strong> lee la lección gratuita — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.en.html">Management &amp; career in the AI era</a> — para profundizar cada eje.',
       cta2: '🚀 <strong>Interview360 Pro</strong> — <s>$29</s> <strong>$9.99</strong> (pago único): las preguntas que te harán A TI con respuestas basadas en TUS pruebas, informe PDF, deck «Preséntate», plan de 90 días + CV por competencias. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Obtener Pro</a>',
@@ -520,6 +540,9 @@ document.documentElement.lang=sel.value;});})();
       proExpired: "Tu código Pro de 90 días expiró. Compra un nuevo código para continuar.",
       cvOld: "¿Ya tienes un CV? (opcional)", cvOldS: "Pégalo aquí — reutilizamos sus datos y mejoramos el formato. Responde igualmente las preguntas: son las que conectan el CV con el anuncio.", cvOldP: "Pega aquí todo el texto de tu CV actual…",
       cvOldUp: "📎 O adjunta una foto / PDF de tu CV actual", cvOldOk: "¡CV leído! Revisa el texto antes de continuar.",
+      whatT: "🧭 ¿Qué es un «SWOT» (FODA)?",
+      whatP1: "El SWOT (FODA) es una foto clara de tu perfil, en 4 partes: <strong>💪 Fortalezas</strong> (lo que haces bien — con pruebas), <strong>⚠️ Debilidades</strong> (lo que te cuesta, para trabajarlo), <strong>🚪 Oportunidades</strong> (las puertas abiertas para ti en el mercado laboral), <strong>⛈ Amenazas</strong> (lo que puede cerrarte el camino, como tareas que la IA hace más rápido). Es el mismo método que usan las grandes empresas para analizarse — aquí, aplicado a TU carrera.",
+      whatP2: "Antes de una entrevista, te dice qué destacar, qué preguntas vienen, y cuál es tu plan. <strong>🎙 Y el modo de práctica en voz alta es GRATIS para todos.</strong>",
       proDaily: "8 generaciones hoy — tu código estará disponible otra vez mañana. 🙂",
       jdUp: "📎 O adjunta una foto / PDF del anuncio",
       jdReading: "Leyendo el anuncio…",
@@ -568,6 +591,10 @@ document.documentElement.lang=sel.value;});})();
     document.getElementById("sw-print").textContent = T.print;
     document.getElementById("sw-copy").textContent = T.copy;
     cta.innerHTML = "<p>" + T.cta1 + "</p><p style=\"margin-top:0.4rem\">" + T.cta2 + "</p>";
+    var wt = document.getElementById("sw-what-t"), w1 = document.getElementById("sw-what-p1"), w2 = document.getElementById("sw-what-p2");
+    if (wt) wt.textContent = T.whatT;
+    if (w1) w1.innerHTML = T.whatP1;
+    if (w2) w2.innerHTML = T.whatP2;
     var jb = document.getElementById("sw-jdbtn");
     if (jb && T.jdUp) jb.textContent = T.jdUp;
     vwSyncLang(T);
