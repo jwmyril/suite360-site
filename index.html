@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/brand/logo-32.png" />
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+  <title>Suite 360 — zouti pou karyè ou nan epòk IA a</title>
+  <meta name="description" content="Suite 360 (pa Atmart) : Interview360 prepare w pou entèvyou travay la (gratis · Pro 9,99 $) ; Career360 se coach karyè pèsonèl ou (14,99 $/mwa · 7 jou esè gratis). An kreyòl, français, English, español — ak vwa ou." />
+  <meta property="og:title" content="Suite 360 — zouti pou karyè ou" />
+  <meta property="og:description" content="Interview360 : prepare entèvyou a, gratis. Career360 : coach karyè ou, 7 jou esè gratis. An 4 lang, ak vwa ou." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css?v=1" />
+<script>/* lang otomatik */
+(function(){var S={fr:1,ht:1,en:1,es:1},d=document.documentElement,s=null;
+try{s=localStorage.getItem("atmart_lang")}catch(e){}
+var l=s&&S[s]?s:null;
+if(!l){var n=navigator.languages||[navigator.language||""];
+for(var i=0;i<n.length;i++){var c=String(n[i]).toLowerCase().split("-")[0];
+if(c==="ht"||c==="hat"){l="ht";break}if(S[c]){l=c;break}}}
+d.lang=l||"ht";})();
+</script>
+  <style>
+    .p360-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem;max-width:900px;margin:0 auto}
+    .p360{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:16px;padding:1.6rem;display:flex;flex-direction:column}
+    .p360.hot{border-color:rgba(46,196,182,0.55)}
+    .p360 .tag{font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;color:#2ec4b6;font-weight:600;margin:0 0 0.3rem}
+    .p360 h3{font-family:"Space Grotesk",sans-serif;font-size:1.5rem;color:#fff;margin:0 0 0.5rem}
+    .p360 .desc{color:#9db2c7;font-size:0.93rem;line-height:1.6;margin:0 0 1rem}
+    .p360 .price{font-family:"Space Grotesk",sans-serif;font-size:1.6rem;color:#fff;margin:0.2rem 0 0.1rem}
+    .p360 .price small{font-size:0.85rem;color:#9db2c7;font-weight:400}
+    .p360 ul{list-style:none;padding:0;margin:0.6rem 0 1.2rem}
+    .p360 li{font-size:0.9rem;color:#d7e3f0;line-height:1.55;padding-left:1.4em;position:relative;margin-bottom:0.45rem}
+    .p360 li::before{content:"✓";position:absolute;left:0;color:#2ec4b6;font-weight:700}
+    .p360 .cta2{font-size:0.85rem;margin-top:0.6rem}
+    .p360 .cta2 a{color:#2ec4b6}
+    .p360 .split{border-top:1px dashed rgba(46,196,182,0.4);margin:0.4rem 0 0.8rem;padding-top:0.8rem}
+    .p360 .spacer{flex:1}
+    .s360-pay{text-align:center;color:#9db2c7;font-size:0.85rem;margin-top:1.6rem}
+    .s360-pay a{color:#2ec4b6}
+    .s360-badges{display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
+    .s360-badge{background:rgba(46,196,182,0.12);border:1px solid rgba(46,196,182,0.35);color:#d7e3f0;border-radius:99px;padding:0.35rem 0.9rem;font-size:0.82rem}
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
+    <a href="index.html" class="logo">Suite<span>360</span><small>pa Atmart</small></a>
+    <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">
+      <a href="entevyou.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Interview360</a>
+      <a href="karye.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Career360</a>
+      <select id="s360-lang" aria-label="Lang" style="background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">
+        <option value="ht">Kreyòl</option><option value="fr">Français</option><option value="en">English</option><option value="es">Español</option>
+      </select>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="text-align:center">
+  <div class="container">
+    <p class="kreyol" id="s-kicker">Suite 360 — pa Atmart</p>
+    <h1 id="s-title">Zouti <em>360</em> pou karyè ou</h1>
+    <p class="lead" style="max-width:680px;margin-inline:auto" id="s-lead">De zouti entelijan, an 4 lang, pou ede w jwenn travay epi grandi nan epòk IA a. San kreye kont, san bay imèl — ou kòmanse, epi se sa.</p>
+    <div class="s360-badges">
+      <span class="s360-badge" id="s-b1">🗣 Kreyòl · Français · English · Español</span>
+      <span class="s360-badge" id="s-b2">🎙 Ou ka reponn ak vwa ou</span>
+      <span class="s360-badge" id="s-b3">🔒 Okenn kont, okenn imèl</span>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section id="plans" style="padding-top:0.5rem">
+  <div class="container">
+    <div class="p360-grid">
+
+      <div class="p360">
+        <p class="tag" id="e-tag">Prepare entèvyou a</p>
+        <h3>Interview<em style="color:#2ec4b6">360</em></h3>
+        <p class="desc" id="e-desc">Yon dyagnostik SWOT pèsonèl, 3 kesyon rekritè a ka poze w — epi yon mòd pratik kote ou reponn ak vwa ou e koach la ba w feedback.</p>
+        <p class="price" id="e-free">Gratis</p>
+        <ul>
+          <li id="e-g1">6 kesyon, 2 minit — SWOT ou fas ak IA</li>
+          <li id="e-g2">3 kesyon entèvyou ki fèt pou OU</li>
+          <li id="e-g3">🎙 Pratik ak vwa ou + feedback koach la</li>
+        </ul>
+        <div class="split">
+          <p class="price">9,99 $ <small id="e-once">· Pro — yon sèl peman</small></p>
+          <ul>
+            <li id="e-p1">8-12 kesyon AK repons ki bati sou prèv PA OU</li>
+            <li id="e-p2">Deck « Prezante tèt ou » + plan 90 jou</li>
+            <li id="e-p3">5 jenerasyon pou chak kòd</li>
+          </ul>
+        </div>
+        <div class="spacer"></div>
+        <a href="entevyou.html" class="btn btn-primary" id="e-cta">🧭 Kòmanse gratis</a>
+        <p class="cta2"><a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)" id="e-buy">Achte Pro — 9,99 $</a></p>
+      </div>
+
+      <div class="p360 hot">
+        <p class="tag" id="k-tag">Grandi nan karyè ou</p>
+        <h3>Career<em style="color:#2ec4b6">360</em></h3>
+        <p class="desc" id="k-desc">Yon coach karyè ki sonje w, semèn apre semèn — nouvo djòb, rechèch travay, pwogrè. Ou ka pale ak li ak vwa ou, li ka li repons li yo fò.</p>
+        <p class="price">14,99 $ <small id="k-mo">/ mwa · 🎁 7 jou esè gratis</small></p>
+        <ul>
+          <li id="k-l1">Yon seyans chak semèn — coach la sonje tout pakou ou</li>
+          <li id="k-l2">🎙 Reponn ak vwa ou ; coach la li repons li yo awotvwa</li>
+          <li id="k-l3">3 pakou : nouvo djòb (90 jou) · rechèch travay · grandi nan pòs ou</li>
+          <li id="k-l4">🔒 Dosye anonim : kòd ou se kont ou, ou ka efase l nenpòt lè</li>
+        </ul>
+        <div class="spacer"></div>
+        <a href="karye.html" class="btn btn-primary" id="k-cta">🎁 Eseye gratis pandan 7 jou</a>
+        <p class="cta2"><a href="mailto:sales@atmart.ltd?subject=Career360%20Solo%20(14.99%20USD%2Fmwa)" id="k-buy">Pran Solo — 14,99 $ pa mwa</a></p>
+      </div>
+
+    </div>
+    <p class="s360-pay" id="s-pay">Peman : MonCash, Zelle oswa vireman — ekri <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a>. Ou resevwa yon kòd, san kreye kont.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var L = {
+    ht: {
+      kicker: "Suite 360 — pa Atmart",
+      title: 'Zouti <em>360</em> pou karyè ou',
+      lead: "De zouti entelijan, an 4 lang, pou ede w jwenn travay epi grandi nan epòk IA a. San kreye kont, san bay imèl — ou kòmanse, epi se sa.",
+      b1: "🗣 Kreyòl · Français · English · Español", b2: "🎙 Ou ka reponn ak vwa ou", b3: "🔒 Okenn kont, okenn imèl",
+      eTag: "Prepare entèvyou a",
+      eDesc: "Yon dyagnostik SWOT pèsonèl, 3 kesyon rekritè a ka poze w — epi yon mòd pratik kote ou reponn ak vwa ou e koach la ba w feedback.",
+      eFree: "Gratis",
+      eG1: "6 kesyon, 2 minit — SWOT ou fas ak IA", eG2: "3 kesyon entèvyou ki fèt pou OU", eG3: "🎙 Pratik ak vwa ou + feedback koach la",
+      eOnce: "· Pro — yon sèl peman",
+      eP1: "8-12 kesyon AK repons ki bati sou prèv PA OU", eP2: "Deck « Prezante tèt ou » + plan 90 jou", eP3: "5 jenerasyon pou chak kòd",
+      eCta: "🧭 Kòmanse gratis", eBuy: "Achte Pro — 9,99 $",
+      kTag: "Grandi nan karyè ou",
+      kDesc: "Yon coach karyè ki sonje w, semèn apre semèn — nouvo djòb, rechèch travay, pwogrè. Ou ka pale ak li ak vwa ou, li ka li repons li yo fò.",
+      kMo: "/ mwa · 🎁 7 jou esè gratis",
+      kL1: "Yon seyans chak semèn — coach la sonje tout pakou ou", kL2: "🎙 Reponn ak vwa ou ; coach la li repons li yo awotvwa",
+      kL3: "3 pakou : nouvo djòb (90 jou) · rechèch travay · grandi nan pòs ou", kL4: "🔒 Dosye anonim : kòd ou se kont ou, ou ka efase l nenpòt lè",
+      kCta: "🎁 Eseye gratis pandan 7 jou", kBuy: "Pran Solo — 14,99 $ pa mwa",
+      pay: 'Peman : MonCash, Zelle oswa vireman — ekri <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a>. Ou resevwa yon kòd, san kreye kont.',
+    },
+    fr: {
+      kicker: "Suite 360 — par Atmart",
+      title: 'Les outils <em>360</em> pour votre carrière',
+      lead: "Deux outils intelligents, en 4 langues, pour trouver un emploi et grandir à l'ère de l'IA. Sans compte, sans e-mail — vous commencez, c'est tout.",
+      b1: "🗣 Kreyòl · Français · English · Español", b2: "🎙 Vous pouvez répondre à voix haute", b3: "🔒 Aucun compte, aucun e-mail",
+      eTag: "Préparer l'entretien",
+      eDesc: "Un diagnostic SWOT personnel, 3 questions qu'un recruteur va vous poser — et un mode entraînement où vous répondez à voix haute avec le feedback du coach.",
+      eFree: "Gratuit",
+      eG1: "6 questions, 2 minutes — votre SWOT face à l'IA", eG2: "3 questions d'entretien faites pour VOUS", eG3: "🎙 Entraînement à voix haute + feedback du coach",
+      eOnce: "· Pro — paiement unique",
+      eP1: "8-12 questions AVEC réponses bâties sur VOS preuves", eP2: "Deck « Présentez-vous » + plan 90 jours", eP3: "5 générations par code",
+      eCta: "🧭 Commencer gratuitement", eBuy: "Acheter Pro — 9,99 $",
+      kTag: "Grandir dans votre carrière",
+      kDesc: "Un coach de carrière qui se souvient de vous, semaine après semaine — nouveau poste, recherche d'emploi, progression. Parlez-lui à voix haute, il peut lire ses réponses.",
+      kMo: "/ mois · 🎁 7 jours d'essai gratuit",
+      kL1: "Une séance par semaine — le coach se souvient de tout votre parcours", kL2: "🎙 Répondez à voix haute ; le coach lit ses réponses",
+      kL3: "3 parcours : nouveau poste (90 jours) · recherche d'emploi · grandir dans son poste", kL4: "🔒 Dossier anonyme : votre code est votre compte, effaçable à tout moment",
+      kCta: "🎁 Essayer gratuitement 7 jours", kBuy: "Prendre Solo — 14,99 $/mois",
+      pay: 'Paiement : MonCash, Zelle ou virement — écrivez à <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a>. Vous recevez un code, sans créer de compte.',
+    },
+    en: {
+      kicker: "360 Suite — by Atmart",
+      title: 'The <em>360</em> tools for your career',
+      lead: "Two smart tools, in 4 languages, to land a job and grow in the AI era. No account, no email — you just start.",
+      b1: "🗣 Kreyòl · Français · English · Español", b2: "🎙 You can answer out loud", b3: "🔒 No account, no email",
+      eTag: "Prepare the interview",
+      eDesc: "A personal SWOT diagnostic, 3 questions a recruiter is likely to ask you — and a practice mode where you answer out loud and the coach gives feedback.",
+      eFree: "Free",
+      eG1: "6 questions, 2 minutes — your SWOT facing AI", eG2: "3 interview questions made for YOU", eG3: "🎙 Out-loud practice + coach feedback",
+      eOnce: "· Pro — one-time payment",
+      eP1: "8-12 questions WITH answers built on YOUR proof", eP2: "«Present yourself» deck + 90-day plan", eP3: "5 generations per code",
+      eCta: "🧭 Start free", eBuy: "Get Pro — $9.99",
+      kTag: "Grow your career",
+      kDesc: "A career coach that remembers you, week after week — new job, job search, growth. Talk to it out loud; it can read its replies to you.",
+      kMo: "/ month · 🎁 7-day free trial",
+      kL1: "One session a week — the coach remembers your whole journey", kL2: "🎙 Answer out loud; the coach reads its replies",
+      kL3: "3 tracks: new job (90 days) · job search · growing in your role", kL4: "🔒 Anonymous file: your code is your account, erasable anytime",
+      kCta: "🎁 Try free for 7 days", kBuy: "Get Solo — $14.99/month",
+      pay: 'Payment: MonCash, Zelle or transfer — write to <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a>. You receive a code, no account needed.',
+    },
+    es: {
+      kicker: "Suite 360 — por Atmart",
+      title: 'Las herramientas <em>360</em> para tu carrera',
+      lead: "Dos herramientas inteligentes, en 4 idiomas, para conseguir empleo y crecer en la era de la IA. Sin cuenta, sin correo — simplemente empiezas.",
+      b1: "🗣 Kreyòl · Français · English · Español", b2: "🎙 Puedes responder en voz alta", b3: "🔒 Sin cuenta, sin correo",
+      eTag: "Preparar la entrevista",
+      eDesc: "Un diagnóstico FODA personal, 3 preguntas que un reclutador te hará — y un modo de práctica donde respondes en voz alta y el coach te da su feedback.",
+      eFree: "Gratis",
+      eG1: "6 preguntas, 2 minutos — tu FODA frente a la IA", eG2: "3 preguntas de entrevista hechas para TI", eG3: "🎙 Práctica en voz alta + feedback del coach",
+      eOnce: "· Pro — pago único",
+      eP1: "8-12 preguntas CON respuestas basadas en TUS pruebas", eP2: "Deck «Preséntate» + plan de 90 días", eP3: "5 generaciones por código",
+      eCta: "🧭 Empezar gratis", eBuy: "Comprar Pro — $9.99",
+      kTag: "Crecer en tu carrera",
+      kDesc: "Un coach de carrera que te recuerda, semana tras semana — nuevo puesto, búsqueda de empleo, progreso. Háblale en voz alta; puede leerte sus respuestas.",
+      kMo: "/ mes · 🎁 7 días de prueba gratis",
+      kL1: "Una sesión por semana — el coach recuerda todo tu recorrido", kL2: "🎙 Responde en voz alta; el coach lee sus respuestas",
+      kL3: "3 rutas: nuevo puesto (90 días) · búsqueda de empleo · crecer en tu puesto", kL4: "🔒 Expediente anónimo: tu código es tu cuenta, borrable cuando quieras",
+      kCta: "🎁 Probar gratis por 7 días", kBuy: "Tomar Solo — $14.99/mes",
+      pay: 'Pago: MonCash, Zelle o transferencia — escribe a <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a>. Recibes un código, sin crear cuenta.',
+    },
+  };
+  var MAP = {
+    "s-kicker": ["kicker", 0], "s-title": ["title", 1], "s-lead": ["lead", 0],
+    "s-b1": ["b1", 0], "s-b2": ["b2", 0], "s-b3": ["b3", 0],
+    "e-tag": ["eTag", 0], "e-desc": ["eDesc", 0], "e-free": ["eFree", 0],
+    "e-g1": ["eG1", 0], "e-g2": ["eG2", 0], "e-g3": ["eG3", 0],
+    "e-once": ["eOnce", 0], "e-p1": ["eP1", 0], "e-p2": ["eP2", 0], "e-p3": ["eP3", 0],
+    "e-cta": ["eCta", 0], "e-buy": ["eBuy", 0],
+    "k-tag": ["kTag", 0], "k-desc": ["kDesc", 0], "k-mo": ["kMo", 0],
+    "k-l1": ["kL1", 0], "k-l2": ["kL2", 0], "k-l3": ["kL3", 0], "k-l4": ["kL4", 0],
+    "k-cta": ["kCta", 0], "k-buy": ["kBuy", 0],
+    "s-pay": ["pay", 1],
+  };
+  var applied = "";
+  function lang() {
+    var l = document.documentElement.lang || "ht";
+    return L[l] ? l : "ht";
+  }
+  function apply() {
+    var lg = lang();
+    if (lg === applied) return;
+    applied = lg;
+    var t = L[lg];
+    for (var id in MAP) {
+      var el = document.getElementById(id);
+      if (!el) continue;
+      if (MAP[id][1]) el.innerHTML = t[MAP[id][0]];
+      else el.textContent = t[MAP[id][0]];
+    }
+  }
+  apply();
+  new MutationObserver(apply).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+
+  var sel = document.getElementById("s360-lang");
+  sel.value = document.documentElement.lang || "ht";
+  sel.addEventListener("change", function () {
+    try { localStorage.setItem("atmart_lang", sel.value); } catch (e) {}
+    document.documentElement.lang = sel.value;
+  });
+})();
+</script>
+</body>
+</html>

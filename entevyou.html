@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/brand/logo-32.png" />
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+  <title>Interview360 — vin pare pou entèvyou travay ou | Suite 360</title>
+  <meta name="description" content="Interview360 (gratis) : 6 kesyon, 2 minit — konnen fòs ou, feblès ou ak 3 aks ou anvan entèvyou travay la. Vèsyon Pro : kesyon yo pral poze OU + repons ak prèv OU. An kreyòl, français, English, español." />
+  <meta property="og:title" content="Interview360 — vin pare pou entèvyou travay ou" />
+  <meta property="og:description" content="6 kesyon, 2 minit — konnen fòs ou anvan entèvyou a. Gratis, an 4 lang. Pro : kesyon yo pral poze OU + repons ak prèv OU." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css?v=1" />
+<script>/* lang otomatik */
+(function(){var S={fr:1,ht:1,en:1,es:1},d=document.documentElement,s=null;
+try{s=localStorage.getItem("atmart_lang")}catch(e){}
+var l=s&&S[s]?s:null;
+if(!l){var n=navigator.languages||[navigator.language||""];
+for(var i=0;i<n.length;i++){var c=String(n[i]).toLowerCase().split("-")[0];
+if(c==="ht"||c==="hat"){l="ht";break}if(S[c]){l=c;break}}}
+d.lang=l||"ht";})();
+</script>
+  <style>
+    .sw-app{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:1.4rem;align-items:start}
+    @media (max-width:900px){.sw-app{grid-template-columns:1fr}}
+    .sw-form{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:14px;padding:1.3rem}
+    .sw-form label{display:block;font-weight:600;font-size:0.88rem;margin:0.9rem 0 0.15rem}
+    .sw-form label:first-of-type{margin-top:0}
+    .sw-form label small{display:block;font-weight:400;color:#9db2c7;font-size:0.78rem}
+    .sw-form input,.sw-form select,.sw-form textarea{width:100%;background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.55rem 0.7rem;font:inherit;font-size:0.92rem;margin-top:0.25rem}
+    .sw-form textarea{min-height:64px;resize:vertical}
+    .sw-result{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:14px;padding:1.5rem;min-height:380px}
+    .sw-placeholder{color:#9db2c7;text-align:center;padding:3rem 1rem}
+    .sw-placeholder .big{font-size:2.4rem;margin-bottom:0.5rem}
+    .sw-status{color:#f4a261;font-size:0.9rem;margin-top:0.7rem;min-height:1.2em}
+    .sw-toolbar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;padding-bottom:0.9rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+    .sw-toolbar a,.sw-toolbar button{background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.4rem 0.8rem;font:inherit;font-size:0.85rem;cursor:pointer;text-decoration:none;display:inline-block}
+    .sw-toolbar a:hover,.sw-toolbar button:hover{border-color:#2ec4b6}
+    .sw-toolbar .wa{background:#128c4a;border-color:#128c4a;font-weight:600}
+    #sw-out h2{font-family:"Space Grotesk",sans-serif;font-size:1.45rem;margin:0 0 0.8rem;color:#fff}
+    #sw-out h3{font-family:"Space Grotesk",sans-serif;font-size:1.05rem;margin:1.2rem 0 0.4rem;color:#2ec4b6}
+    #sw-out p,#sw-out li{font-size:0.95rem;line-height:1.65;color:#d7e3f0}
+    #sw-out ul{padding-left:1.2rem;margin:0.3rem 0 0.7rem}
+    #sw-out li{margin-bottom:0.35rem}
+    .sw-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-left:5px solid #2ec4b6;border-radius:12px;padding:1rem 1.2rem;margin-bottom:0.9rem}
+    .sw-card h3{margin-top:0!important}
+    .sw-card.c-title{background:linear-gradient(135deg,rgba(46,196,182,0.15),rgba(255,255,255,0.03));border-left-color:#2ec4b6;text-align:center}
+    .sw-card.c-title h2{margin:0}
+    .sw-card.c-fos{border-left-color:#2ec4b6}
+    .sw-card.c-febles{border-left-color:#f4a261}
+    .sw-card.c-opo{border-left-color:#6a9fd8}
+    .sw-card.c-menas{border-left-color:#e63946}
+    .sw-card.c-aks{border-left-color:#2ec4b6;background:rgba(46,196,182,0.08)}
+    .sw-card.c-pa{border-left-color:#f4a261}
+    .sw-card.c-kesyon{border-left-color:#6a9fd8;background:rgba(106,159,216,0.07)}
+    .sw-card.c-lock{border:1px dashed rgba(46,196,182,0.6);border-left:5px dashed #2ec4b6;background:rgba(46,196,182,0.05)}
+    @media print{.sw-card{border-color:#999!important;background:#fff!important;page-break-inside:avoid}}
+    .sw-cta{margin-top:1.4rem;padding:1rem;border:1px dashed rgba(46,196,182,0.5);border-radius:10px}
+    .sw-cta a{color:#2ec4b6;font-weight:600}
+    .sw-spin{display:inline-block;width:1em;height:1em;border:2px solid rgba(255,255,255,0.3);border-top-color:#2ec4b6;border-radius:50%;animation:swspin 0.8s linear infinite;vertical-align:-0.15em;margin-right:0.4em}
+    @keyframes swspin{to{transform:rotate(360deg)}}
+    @media print{body *{visibility:hidden}#sw-out,#sw-out *{visibility:visible}#sw-out{position:absolute;inset:0;padding:1cm;background:#fff}#sw-out h2,#sw-out h3,#sw-out p,#sw-out li{color:#000!important}}
+    /* ---- mòd pratik vokal (entretien à voix haute) ---- */
+    .vw-panel{background:rgba(46,196,182,0.06);border:1px solid rgba(46,196,182,0.4);border-radius:14px;padding:1.1rem 1.2rem;margin-bottom:1rem}
+    .vw-prog{color:#9db2c7;font-size:0.82rem;margin:0 0 0.3rem}
+    .vw-q{font-family:"Space Grotesk",sans-serif;font-size:1.1rem;color:#fff;margin:0 0 0.7rem;line-height:1.5}
+    .vw-note{color:#f4a261;font-size:0.82rem;margin:0 0 0.6rem}
+    .vw-row{display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;margin-bottom:0.6rem}
+    .vw-btn{background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.45rem 0.9rem;font:inherit;font-size:0.88rem;cursor:pointer}
+    .vw-btn:hover{border-color:#2ec4b6}
+    .vw-btn.mic{background:#2ec4b6;color:#06283d;font-weight:700;border-color:#2ec4b6}
+    .vw-btn.mic.rec{background:#e63946;color:#fff;border-color:#e63946;animation:vwpulse 1.1s ease-in-out infinite}
+    @keyframes vwpulse{0%,100%{box-shadow:0 0 0 0 rgba(230,57,70,0.5)}50%{box-shadow:0 0 0 10px rgba(230,57,70,0)}}
+    .vw-btn.send{background:#128c4a;border-color:#128c4a;color:#fff;font-weight:600}
+    .vw-btn:disabled{opacity:0.6;cursor:wait}
+    .vw-panel textarea{width:100%;background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.55rem 0.7rem;font:inherit;font-size:0.92rem;min-height:76px;resize:vertical}
+    .vw-hint{color:#9db2c7;font-size:0.78rem;margin:0.25rem 0 0.6rem}
+    .vw-fb{background:rgba(255,255,255,0.05);border-left:4px solid #2ec4b6;border-radius:10px;padding:0.8rem 1rem;margin-top:0.7rem;display:none}
+    .vw-fb p{margin:0.3rem 0;font-size:0.93rem;line-height:1.6;color:#d7e3f0}
+    @media print{.vw-panel{display:none!important}}
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
+    <a href="index.html" class="logo">Suite<span>360</span><small>pa Atmart</small></a>
+    <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">
+      <a href="entevyou.html" style="color:#2ec4b6;text-decoration:none;font-size:0.9rem;font-weight:600">Interview360</a>
+      <a href="karye.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Career360</a>
+      <select id="s360-lang" aria-label="Lang" style="background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">
+        <option value="ht">Kreyòl</option><option value="fr">Français</option><option value="en">English</option><option value="es">Español</option>
+      </select>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding-bottom:1rem">
+  <div class="container">
+    <p class="kreyol" data-i18n="sw.kicker">Un entretien en vue ? Soyez prêt — 6 questions, 2 minutes.</p>
+    <h1>Interview<em>360</em></h1>
+    <p class="lead" data-i18n-html="sw.lead">Avant l'entretien : connaissez vos forces, vos faiblesses, vos opportunités et vos menaces. Et vos 3 axes : 🤖 ce que vous <strong>déléguez</strong> à l'IA, 🔍 ce que vous <strong>supervisez</strong>, 🌱 ce que vous <strong>renforcez</strong> — parce que c'est ce qui vous rend humain.</p>
+    <p style="color:#eaf2fb;font-size:0.95rem;margin-top:0.5rem" data-i18n="sw.interview">💼 Idéal aussi pour préparer un entretien d'embauche : arrivez avec vos forces, vos preuves et votre plan.</p>
+    <p style="color:#9db2c7;font-size:0.88rem" data-i18n="sw.note">Gratuit · 5 SWOT par jour · Aucune réponse n'est enregistrée — le résultat n'appartient qu'à vous.</p>
+  </div>
+</section>
+
+<!-- APP -->
+<section style="padding-top:0.5rem">
+  <div class="container">
+    <div class="sw-app">
+
+      <form class="sw-form" id="sw-form">
+        <label for="sw-work" id="L-work">1. Ki travay w ap fè kounye a ?<small>oswa : etidyan, san travay…</small></label>
+        <input type="text" id="sw-work" maxlength="140" required placeholder="Ex. : enfimyè, chofè, pwofesè, komèsant, kontab…" />
+
+        <label for="sw-tasks" id="L-tasks">2. Ki 3 bagay ou fè pi souvan nan travay la ?</label>
+        <textarea id="sw-tasks" maxlength="400" required placeholder="Ex. : m pran swen pasyan, m ranpli fòm rapò, m reponn fanmi yo…"></textarea>
+
+        <label for="sw-strength" id="L-strength">3. Nan kisa ou pi fò ?</label>
+        <input type="text" id="sw-strength" maxlength="250" placeholder="Ex. : moun fè m konfyans fasil ; m pa janm lage yon travay…" />
+
+        <label for="sw-weakness" id="L-weakness">4. Kisa ki pi difisil pou ou ?</label>
+        <input type="text" id="sw-weakness" maxlength="250" placeholder="Ex. : anglè, òdinatè, pale an piblik, òganize tan mwen…" />
+
+        <label for="sw-aiuse" id="L-aiuse">5. Èske w konn itilize IA (ChatGPT, elatriye) ?</label>
+        <select id="sw-aiuse">
+          <option value="none">Non, mwen poko janm sèvi ak li</option>
+          <option value="some">Yon ti kras, tanzantan</option>
+          <option value="often">Wi, mwen sèvi ak li souvan</option>
+        </select>
+
+        <label for="sw-goal" id="L-goal">6. Ki objektif ou pou 1–3 lane k ap vini yo ?</label>
+        <input type="text" id="sw-goal" maxlength="250" placeholder="Ex. : jwenn yon pi bon travay, monte biznis mwen, aprann yon metye…" />
+
+        <label for="sw-age" id="L-age">7. Ki tranch laj ou ? (si ou vle)</label>
+        <select id="sw-age">
+          <option value="">Mwen pito pa di</option>
+          <option value="16-24">16–24</option>
+          <option value="25-34">25–34</option>
+          <option value="35-44">35–44</option>
+          <option value="45-54">45–54</option>
+          <option value="55+">55+</option>
+        </select>
+
+        <label for="sw-jobdesc" id="L-jobdesc">8. Kole deskripsyon pòs la (si ou genyen l)<small>Pou n ka devine kesyon entèvyou yo pi byen</small></label>
+        <textarea id="sw-jobdesc" maxlength="3500" style="min-height:80px" placeholder="Kole tèks anons travay la isit la (opsyonèl)…"></textarea>
+
+        <div style="margin-top:1rem;padding-top:0.9rem;border-top:1px dashed rgba(46,196,182,0.5)">
+          <label for="sw-procode" id="L-procode">⭐ Kòd Interview360 Pro (si ou achte l)<small>Ak yon kòd, w ap jwenn TOUT kit la : 8-12 kesyon AK repons yo, deck, plan 90 jou</small></label>
+          <input type="text" id="sw-procode" maxlength="24" autocomplete="off" placeholder="ENT-XXXX-XXXX" />
+          <p id="L-probuy" style="color:#9db2c7;font-size:0.8rem;margin-top:0.35rem">Ou poko gen kòd ? <a href="https://atmart.ltd/#entevyou360" style="color:#2ec4b6">Achte Pro a — 9,99 $</a></p>
+        </div>
+
+        <div style="margin-top:1.1rem">
+          <button type="submit" class="btn btn-primary" id="sw-go">🧭 Fè SWOT360 mwen</button>
+        </div>
+        <p class="sw-status" id="sw-status" aria-live="polite"></p>
+      </form>
+
+      <div class="sw-result">
+        <div class="sw-toolbar" id="sw-toolbar" style="display:none">
+          <a class="wa" id="sw-share" target="_blank" rel="noopener">💬 Pataje sou WhatsApp</a>
+          <button id="sw-vwa" style="border-color:rgba(46,196,182,0.8);font-weight:600">🎙 Pratike ak vwa ou</button>
+          <button id="sw-cardbtn">🖼 Telechaje kat SWOT ou</button>
+          <button id="sw-print">🖨 Enprime / PDF</button>
+          <button id="sw-copy">📋 Kopye</button>
+        </div>
+        <div class="vw-panel" id="vw-panel" style="display:none">
+          <p class="vw-prog" id="vw-prog"></p>
+          <p class="vw-q" id="vw-q"></p>
+          <p class="vw-note" id="vw-note" style="display:none"></p>
+          <div class="vw-row">
+            <button type="button" class="vw-btn mic" id="vw-mic">🎙 Peze pou reponn</button>
+            <button type="button" class="vw-btn" id="vw-listen">🔊 Tande kesyon an ankò</button>
+            <button type="button" class="vw-btn" id="vw-close">✖ Fèmen</button>
+          </div>
+          <textarea id="vw-ans"></textarea>
+          <p class="vw-hint" id="vw-hint">Ou ka korije tèks la anvan ou voye l.</p>
+          <div class="vw-row">
+            <button type="button" class="vw-btn send" id="vw-send">📨 Voye repons mwen an</button>
+            <button type="button" class="vw-btn" id="vw-next" style="display:none">➜ Lòt kesyon an</button>
+          </div>
+          <p class="sw-status" id="vw-status" aria-live="polite"></p>
+          <div class="vw-fb" id="vw-fb" aria-live="polite"></div>
+        </div>
+        <div id="sw-placeholder" class="sw-placeholder">
+          <div class="big">🧭</div>
+          <p>Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style="color:#2ec4b6">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap ba w feedback.</span></p>
+        </div>
+        <article id="sw-out"></article>
+        <div class="sw-cta" id="sw-cta" style="display:none">
+          <p>📚 <strong>Pwochen etap ou :</strong> li leson gratis la — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.html">Management &amp; carrière à l'ère de l'IA</a> — pou w aprofondi chak aks.</p>
+          <p style="margin-top:0.4rem">🚀 <strong>SWOT360 Deep</strong> (rapò konplè : klasman tout tach ou yo + plan 90 jou) ap vini. Enskri : <a href="mailto:sales@atmart.ltd?subject=SWOT360%20Deep%20-%20liste%20d'attente">sales@atmart.ltd</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){var sel=document.getElementById("s360-lang");if(!sel)return;
+sel.value=document.documentElement.lang||"ht";
+sel.addEventListener("change",function(){
+try{localStorage.setItem("atmart_lang",sel.value)}catch(e){}
+document.documentElement.lang=sel.value;});})();
+</script>
+<script>
+(function () {
+  var ENDPOINT = "https://atmart-chat.atmartllc.workers.dev/swot360";
+  var form = document.getElementById("sw-form");
+  var out = document.getElementById("sw-out");
+  var ph = document.getElementById("sw-placeholder");
+  var bar = document.getElementById("sw-toolbar");
+  var cta = document.getElementById("sw-cta");
+  var status = document.getElementById("sw-status");
+  var go = document.getElementById("sw-go");
+  var lastMd = "";
+
+  // ---- interface complète en 4 langues ----
+  var L = {
+    ht: {
+      lang: "🌍 Chwazi lang ou",
+      work: "1. Ki travay w ap fè kounye a ?", workS: "oswa : etidyan, san travay…", workP: "Ex. : enfimyè, chofè, pwofesè, komèsant, kontab…",
+      tasks: "2. Ki 3 bagay ou fè pi souvan nan travay la ?", tasksP: "Ex. : m pran swen pasyan, m ranpli fòm rapò, m reponn fanmi yo…",
+      strength: "3. Nan kisa ou pi fò ?", strengthP: "Ex. : moun fè m konfyans fasil ; m pa janm lage yon travay…",
+      weakness: "4. Kisa ki pi difisil pou ou ?", weaknessP: "Ex. : anglè, òdinatè, pale an piblik, òganize tan mwen…",
+      aiuse: "5. Èske w konn itilize IA (ChatGPT, elatriye) ?",
+      ai0: "Non, mwen poko janm sèvi ak li", ai1: "Yon ti kras, tanzantan", ai2: "Wi, mwen sèvi ak li souvan",
+      goal: "6. Ki objektif ou pou 1–3 lane k ap vini yo ?", goalP: "Ex. : jwenn yon pi bon travay, monte biznis mwen, aprann yon metye…",
+      age: "7. Ki tranch laj ou ? (si ou vle)", age0: "Mwen pito pa di",
+      jd: "8. Kole deskripsyon pòs la (si ou genyen l)", jdS: "Pou n ka devine kesyon entèvyou yo pi byen", jdP: "Kole tèks anons travay la isit la (opsyonèl)…",
+      pc: "⭐ Kòd Interview360 Pro (si ou achte l)", pcS: "Ak yon kòd, w ap jwenn TOUT kit la : 8-12 kesyon AK repons yo, deck, plan 90 jou", pcB: "Ou poko gen kòd ? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Achte Pro a — 9,99 $</a>", proGen: "N ap prepare kit Pro ou a… (60–90 segonn — li long, li vo li)", proInvalid: "Kòd sa a pa bon oswa li fini. Verifye l, oswa achte yon kòd sou atmart.ltd.",
+      go: "🧭 Fè SWOT360 mwen",
+      phTxt: "Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style=\"color:#2ec4b6\">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap ba w feedback.</span>",
+      share: "💬 Pataje sou WhatsApp", print: "🖨 Enprime / PDF", copy: "📋 Kopye",
+      cta1: '📚 <strong>Pwochen etap ou :</strong> li leson gratis la — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.html">Management &amp; carrière à l\'ère de l\'IA</a> — pou w aprofondi chak aks.',
+      cta2: '🚀 <strong>Interview360 Pro</strong> — <s>29 $</s> <strong>9,99 $</strong> (yon sèl fwa) : kesyon yo pral poze OU ak repons ki chita sou prèv OU, rapò PDF, deck « Prezante tèt ou », plan 90 jou. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Kòmande Pro a</a>',
+      waTxt: "Mwen fèk fè Interview360 mwen sou Lojik360 — 6 kesyon, 2 minit, gratis. Fè pa w la tou: https://360.atmart.ltd/entevyou.html\n(Je viens de faire mon SWOT360 — 6 questions, 2 minutes, gratuit, en 4 langues. Faites le vôtre avec le même lien.)",
+      card: "🖼 Telechaje kat SWOT ou", cardCta: "Fè pa w la tou:",
+      gen: "N ap prepare SWOT360 ou a… (15–30 segonn)", done: "Men rezilta ou ! Li l, enprime l, pataje l.",
+      err: "Gen yon erè. Eseye ankò nan yon moman.", limit: "Ou fè 3 SWOT jodi a — tounen demen ! 🙂",
+      offline: "Nou pa jwenn sèvè a. Verifye koneksyon ou.", copied: "Kopye ! ✅",
+      vwaBtn: "🎙 Pratike ak vwa ou", vwaProg: "Kesyon {i} sou {n}",
+      vwaListen: "🔊 Tande kesyon an ankò", vwaMic: "🎙 Peze pou reponn", vwaStop: "⏹ Mwen fini pale",
+      vwaRecing: "N ap koute w… pale lib, epi peze « ⏹ Mwen fini pale » lè ou fini.",
+      vwaTrans: "N ap ekri sa ou di a…", vwaHint: "Ou ka korije tèks la anvan ou voye l.",
+      vwaSend: "📨 Voye repons mwen an", vwaThink: "Koach la ap gade repons ou a…",
+      vwaNext: "➜ Lòt kesyon an", vwaFinish: "✅ Mwen fini pratike",
+      vwaDone: "🎉 Ou pratike tout kesyon yo ! Refè egzèsis la jouk repons yo soti fasil.",
+      vwaClose: "✖ Fèmen",
+      vwaMicErr: "Nou pa ka jwenn mikwo a. Tcheke si navigatè a gen pèmisyon pou sèvi ak li.",
+      vwaSttErr: "Nou pa t rive ekri sa ou di a. Eseye ankò : pale pi fò, pi dousman.",
+      vwaEmpty: "Anrejistre yon repons anvan, oswa ekri l nan bwat la.",
+      vwaNoQ: "Fè SWOT360 ou a anvan — kesyon pratik yo ap soti nan rezilta a.",
+      vwaLimit: "Ou sèvi ak tout vwa ou pou jodi a — tounen demen ! 🙂",
+      vwaNote: "ℹ️ Vwa AI a poko pale kreyòl. Li kesyon an awotvwa, epi reponn ak vwa PA OU — n ap konprann ou.",
+    },
+    fr: {
+      lang: "🌍 Choisissez votre langue",
+      work: "1. Quel est votre travail actuel ?", workS: "ou : étudiant, sans emploi…", workP: "Ex. : infirmière, chauffeur, enseignant, commerçante, comptable…",
+      tasks: "2. Les 3 tâches que vous faites le plus souvent ?", tasksP: "Ex. : je soigne les patients, je remplis les rapports, je réponds aux familles…",
+      strength: "3. Votre plus grande force ?", strengthP: "Ex. : on me fait facilement confiance ; je ne lâche jamais un dossier…",
+      weakness: "4. Votre plus grande difficulté ?", weaknessP: "Ex. : l'anglais, l'ordinateur, parler en public, organiser mon temps…",
+      aiuse: "5. Utilisez-vous déjà l'IA (ChatGPT, etc.) ?",
+      ai0: "Non, jamais encore", ai1: "Un peu, de temps en temps", ai2: "Oui, régulièrement",
+      goal: "6. Votre objectif pour les 1–3 prochaines années ?", goalP: "Ex. : un meilleur emploi, monter mon business, apprendre un métier…",
+      age: "7. Votre tranche d'âge ? (facultatif)", age0: "Je préfère ne pas dire",
+      jd: "8. Collez la description du poste (si vous l'avez)", jdS: "Pour deviner au mieux les questions de votre entretien", jdP: "Collez le texte de l'annonce ici (optionnel)…",
+      pc: "⭐ Code Interview360 Pro (si vous l'avez acheté)", pcS: "Avec un code : le kit COMPLET — 8-12 questions AVEC les réponses, deck, plan 90 jours", pcB: "Pas encore de code ? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Acheter Pro — 9,99 $</a>", proGen: "Préparation de votre kit Pro… (60–90 secondes — il est long, il le vaut)", proInvalid: "Ce code est invalide ou épuisé. Vérifiez-le, ou achetez un code sur atmart.ltd.",
+      go: "🧭 Faire mon SWOT360",
+      phTxt: "Votre résultat SWOT360 apparaîtra ici.<br />Répondez aux 6 questions puis cliquez « Faire mon SWOT360 ».<br /><span style=\"color:#2ec4b6\">🎙 Nouveau : ensuite, entraînez-vous aux questions d'entretien à voix haute — le coach vous fait un retour.</span>",
+      share: "💬 Partager sur WhatsApp", print: "🖨 Imprimer / PDF", copy: "📋 Copier",
+      cta1: '📚 <strong>Votre prochaine étape :</strong> lisez la leçon gratuite — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.html">Management &amp; carrière à l\'ère de l\'IA</a> — pour approfondir chaque axe.',
+      cta2: '🚀 <strong>Interview360 Pro</strong> — <s>29 $</s> <strong>9,99 $</strong> (paiement unique) : les questions que le recruteur va VOUS poser, avec des réponses bâties sur VOS preuves, rapport PDF, deck « Prezante tèt ou », plan 90 jours. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Commander Pro</a>',
+      waTxt: "Je viens de faire mon Interview360 sur Lojik360 — 6 questions, 2 minutes, gratuit. Faites le vôtre : https://360.atmart.ltd/entevyou.html",
+      card: "🖼 Télécharger ma carte SWOT", cardCta: "Faites le vôtre :",
+      gen: "Préparation de votre SWOT360… (15–30 secondes)", done: "Voici votre résultat ! Lisez, imprimez, partagez.",
+      err: "Une erreur est survenue. Réessayez dans un instant.", limit: "3 SWOT aujourd'hui — revenez demain ! 🙂",
+      offline: "Serveur injoignable. Vérifiez votre connexion.", copied: "Copié ! ✅",
+      vwaBtn: "🎙 M'entraîner à voix haute", vwaProg: "Question {i} sur {n}",
+      vwaListen: "🔊 Réécouter la question", vwaMic: "🎙 Appuyer pour répondre", vwaStop: "⏹ J'ai fini de parler",
+      vwaRecing: "On vous écoute… parlez librement, puis appuyez sur « ⏹ J'ai fini de parler ».",
+      vwaTrans: "Transcription de votre réponse…", vwaHint: "Vous pouvez corriger le texte avant de l'envoyer.",
+      vwaSend: "📨 Envoyer ma réponse", vwaThink: "Le coach lit votre réponse…",
+      vwaNext: "➜ Question suivante", vwaFinish: "✅ Terminer l'entraînement",
+      vwaDone: "🎉 Toutes les questions pratiquées ! Recommencez jusqu'à ce que vos réponses viennent naturellement.",
+      vwaClose: "✖ Fermer",
+      vwaMicErr: "Micro inaccessible. Vérifiez que le navigateur a la permission de l'utiliser.",
+      vwaSttErr: "Transcription impossible. Réessayez : parlez plus fort, plus lentement.",
+      vwaEmpty: "Enregistrez d'abord une réponse, ou écrivez-la dans la zone de texte.",
+      vwaNoQ: "Faites d'abord votre SWOT360 — les questions d'entraînement en sortent.",
+      vwaLimit: "Quota vocal du jour atteint — revenez demain ! 🙂",
+      vwaNote: "",
+    },
+    en: {
+      lang: "🌍 Choose your language",
+      work: "1. What is your current work?", workS: "or: student, between jobs…", workP: "E.g.: nurse, driver, teacher, vendor, accountant…",
+      tasks: "2. The 3 tasks you do most often?", tasksP: "E.g.: I care for patients, fill daily reports, answer families…",
+      strength: "3. Your greatest strength?", strengthP: "E.g.: people trust me easily; I never drop a task…",
+      weakness: "4. Your biggest difficulty?", weaknessP: "E.g.: English, computers, public speaking, managing my time…",
+      aiuse: "5. Do you already use AI (ChatGPT, etc.)?",
+      ai0: "No, never yet", ai1: "A little, now and then", ai2: "Yes, regularly",
+      goal: "6. Your goal for the next 1–3 years?", goalP: "E.g.: a better job, start my business, learn a trade…",
+      age: "7. Your age range? (optional)", age0: "Prefer not to say",
+      jd: "8. Paste the job description (if you have it)", jdS: "So we can best predict your interview questions", jdP: "Paste the job posting text here (optional)…",
+      pc: "⭐ Interview360 Pro code (if you bought one)", pcS: "With a code: the FULL kit — 8-12 questions WITH answers, deck, 90-day plan", pcB: "No code yet? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Get Pro — $9.99</a>", proGen: "Preparing your Pro kit… (60–90 seconds — it is long, it is worth it)", proInvalid: "This code is invalid or used up. Check it, or get a code on atmart.ltd.",
+      go: "🧭 Get my SWOT360",
+      phTxt: "Your SWOT360 result will appear here.<br />Answer the 6 questions and click “Get my SWOT360”.<br /><span style=\"color:#2ec4b6\">🎙 New: then practice your interview questions out loud — the coach gives you feedback.</span>",
+      share: "💬 Share on WhatsApp", print: "🖨 Print / PDF", copy: "📋 Copy",
+      cta1: '📚 <strong>Your next step:</strong> read the free lesson — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.en.html">Management &amp; career in the AI era</a> — to go deeper on each axis.',
+      cta2: '🚀 <strong>Interview360 Pro</strong> — <s>$29</s> <strong>$9.99</strong> (one-time): the questions they will ask YOU with answers built on YOUR proof, PDF report, «Present yourself» deck, 90-day plan. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Get Pro</a>',
+      waTxt: "I just did my Interview360 on Lojik360 — 6 questions, 2 minutes, free. Do yours: https://360.atmart.ltd/entevyou.html",
+      card: "🖼 Download my SWOT card", cardCta: "Do yours too:",
+      gen: "Preparing your SWOT360… (15–30 seconds)", done: "Here is your result! Read it, print it, share it.",
+      err: "Something went wrong. Try again in a moment.", limit: "3 SWOTs today — come back tomorrow! 🙂",
+      offline: "Can't reach the server. Check your connection.", copied: "Copied! ✅",
+      vwaBtn: "🎙 Practice out loud", vwaProg: "Question {i} of {n}",
+      vwaListen: "🔊 Hear the question again", vwaMic: "🎙 Press to answer", vwaStop: "⏹ I'm done talking",
+      vwaRecing: "We're listening… speak freely, then press “⏹ I'm done talking”.",
+      vwaTrans: "Transcribing your answer…", vwaHint: "You can fix the text before sending it.",
+      vwaSend: "📨 Send my answer", vwaThink: "The coach is reading your answer…",
+      vwaNext: "➜ Next question", vwaFinish: "✅ Finish practice",
+      vwaDone: "🎉 You practiced every question! Repeat until your answers come out naturally.",
+      vwaClose: "✖ Close",
+      vwaMicErr: "Can't access the microphone. Check the browser permission.",
+      vwaSttErr: "Couldn't transcribe. Try again: speak louder and slower.",
+      vwaEmpty: "Record an answer first, or type it in the box.",
+      vwaNoQ: "Get your SWOT360 first — the practice questions come from it.",
+      vwaLimit: "Today's voice quota is used up — come back tomorrow! 🙂",
+      vwaNote: "",
+    },
+    es: {
+      lang: "🌍 Elige tu idioma",
+      work: "1. ¿Cuál es tu trabajo actual?", workS: "o: estudiante, sin empleo…", workP: "Ej.: enfermera, chofer, maestro, comerciante, contador…",
+      tasks: "2. ¿Las 3 tareas que haces más a menudo?", tasksP: "Ej.: cuido pacientes, lleno informes, respondo a las familias…",
+      strength: "3. ¿Tu mayor fortaleza?", strengthP: "Ej.: la gente confía en mí; nunca abandono una tarea…",
+      weakness: "4. ¿Tu mayor dificultad?", weaknessP: "Ej.: el inglés, la computadora, hablar en público, organizar mi tiempo…",
+      aiuse: "5. ¿Ya usas IA (ChatGPT, etc.)?",
+      ai0: "No, nunca todavía", ai1: "Un poco, de vez en cuando", ai2: "Sí, regularmente",
+      goal: "6. ¿Tu objetivo para los próximos 1–3 años?", goalP: "Ej.: un mejor empleo, montar mi negocio, aprender un oficio…",
+      age: "7. ¿Tu rango de edad? (opcional)", age0: "Prefiero no decir",
+      jd: "8. Pega la descripción del puesto (si la tienes)", jdS: "Para predecir mejor las preguntas de tu entrevista", jdP: "Pega el texto del anuncio aquí (opcional)…",
+      pc: "⭐ Código Interview360 Pro (si lo compraste)", pcS: "Con un código: el kit COMPLETO — 8-12 preguntas CON respuestas, deck, plan de 90 días", pcB: "¿Sin código aún? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Compra Pro — $9.99</a>", proGen: "Preparando tu kit Pro… (60–90 segundos — es largo, lo vale)", proInvalid: "Este código es inválido o agotado. Verifícalo, o compra un código en atmart.ltd.",
+      go: "🧭 Hacer mi SWOT360",
+      phTxt: "Tu resultado SWOT360 aparecerá aquí.<br />Responde las 6 preguntas y haz clic en «Hacer mi SWOT360».<br /><span style=\"color:#2ec4b6\">🎙 Nuevo: luego practica las preguntas de entrevista en voz alta — el coach te da su retroalimentación.</span>",
+      share: "💬 Compartir en WhatsApp", print: "🖨 Imprimir / PDF", copy: "📋 Copiar",
+      cta1: '📚 <strong>Tu próximo paso:</strong> lee la lección gratuita — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.en.html">Management &amp; career in the AI era</a> — para profundizar cada eje.',
+      cta2: '🚀 <strong>Interview360 Pro</strong> — <s>$29</s> <strong>$9.99</strong> (pago único): las preguntas que te harán A TI con respuestas basadas en TUS pruebas, informe PDF, deck «Preséntate», plan de 90 días. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Obtener Pro</a>',
+      waTxt: "Acabo de hacer mi Interview360 en Lojik360 — 6 preguntas, 2 minutos, gratis. Haz el tuyo: https://360.atmart.ltd/entevyou.html",
+      card: "🖼 Descargar mi tarjeta SWOT", cardCta: "Haz el tuyo:",
+      gen: "Preparando tu SWOT360… (15–30 segundos)", done: "¡Aquí está tu resultado! Léelo, imprímelo, compártelo.",
+      err: "Ocurrió un error. Inténtalo de nuevo en un momento.", limit: "3 SWOT hoy — ¡vuelve mañana! 🙂",
+      offline: "No se puede contactar el servidor. Verifica tu conexión.", copied: "¡Copiado! ✅",
+      vwaBtn: "🎙 Practicar en voz alta", vwaProg: "Pregunta {i} de {n}",
+      vwaListen: "🔊 Escuchar la pregunta otra vez", vwaMic: "🎙 Pulsa para responder", vwaStop: "⏹ Terminé de hablar",
+      vwaRecing: "Te escuchamos… habla libremente y pulsa «⏹ Terminé de hablar» al terminar.",
+      vwaTrans: "Transcribiendo tu respuesta…", vwaHint: "Puedes corregir el texto antes de enviarlo.",
+      vwaSend: "📨 Enviar mi respuesta", vwaThink: "El coach está leyendo tu respuesta…",
+      vwaNext: "➜ Siguiente pregunta", vwaFinish: "✅ Terminar la práctica",
+      vwaDone: "🎉 ¡Practicaste todas las preguntas! Repite hasta que tus respuestas salgan con naturalidad.",
+      vwaClose: "✖ Cerrar",
+      vwaMicErr: "No se puede acceder al micrófono. Verifica el permiso del navegador.",
+      vwaSttErr: "No se pudo transcribir. Inténtalo de nuevo: habla más fuerte y despacio.",
+      vwaEmpty: "Graba primero una respuesta, o escríbela en el cuadro.",
+      vwaNoQ: "Haz primero tu SWOT360 — las preguntas de práctica salen de él.",
+      vwaLimit: "Cuota de voz de hoy agotada — ¡vuelve mañana! 🙂",
+      vwaNote: "",
+    },
+  };
+  var MSG = L.ht;
+
+  function setLabel(id, main, small) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = main + (small ? "<small>" + small + "</small>" : "");
+  }
+  var appliedLang = null;
+  function applyLang(code) {
+    if (code === appliedLang) return; // garde-fou : ne jamais ré-appliquer la même langue
+    appliedLang = code;
+    var T = L[code] || L.ht;
+    MSG = T;
+    setLabel("L-work", T.work, T.workS);
+    setLabel("L-tasks", T.tasks);
+    setLabel("L-strength", T.strength);
+    setLabel("L-weakness", T.weakness);
+    setLabel("L-aiuse", T.aiuse);
+    setLabel("L-goal", T.goal);
+    setLabel("L-age", T.age);
+    var ageSel = document.getElementById("sw-age");
+    if (ageSel) ageSel.options[0].text = T.age0;
+    setLabel("L-jobdesc", T.jd, T.jdS);
+    document.getElementById("sw-jobdesc").placeholder = T.jdP;
+    setLabel("L-procode", T.pc, T.pcS);
+    document.getElementById("L-probuy").innerHTML = T.pcB;
+    document.getElementById("sw-work").placeholder = T.workP;
+    document.getElementById("sw-tasks").placeholder = T.tasksP;
+    document.getElementById("sw-strength").placeholder = T.strengthP;
+    document.getElementById("sw-weakness").placeholder = T.weaknessP;
+    document.getElementById("sw-goal").placeholder = T.goalP;
+    var ai = document.getElementById("sw-aiuse");
+    ai.options[0].text = T.ai0; ai.options[1].text = T.ai1; ai.options[2].text = T.ai2;
+    document.getElementById("sw-go").textContent = T.go;
+    document.querySelector("#sw-placeholder p").innerHTML = T.phTxt;
+    document.getElementById("sw-share").textContent = T.share;
+    document.getElementById("sw-cardbtn").textContent = T.card;
+    document.getElementById("sw-print").textContent = T.print;
+    document.getElementById("sw-copy").textContent = T.copy;
+    cta.innerHTML = "<p>" + T.cta1 + "</p><p style=\"margin-top:0.4rem\">" + T.cta2 + "</p>";
+    vwSyncLang(T);
+  }
+  function siteLang() {
+    var l = (localStorage.getItem("atmart_lang") || document.documentElement.lang || "fr").slice(0, 2);
+    return L[l] ? l : "fr";
+  }
+  new MutationObserver(function () { applyLang(siteLang()); })
+    .observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+  applyLang(siteLang());
+
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function inline(s){return s.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>").replace(/(^|[^*])\*([^*\n]+)\*/g,"$1<em>$2</em>");}
+  function render(md){
+    var lines=md.split(/\r?\n/),html=[],inUl=false;
+    for(var i=0;i<lines.length;i++){
+      var l=esc(lines[i].trim()),m;
+      if(!l){if(inUl){html.push("</ul>");inUl=false;}continue;}
+      if((m=l.match(/^##\s+(.*)/))){if(inUl){html.push("</ul>");inUl=false;}html.push("<h3>"+inline(m[1])+"</h3>");}
+      else if((m=l.match(/^#\s+(.*)/))){if(inUl){html.push("</ul>");inUl=false;}html.push("<h2>"+inline(m[1])+"</h2>");}
+      else if((m=l.match(/^[-•]\s+(.*)/))){if(!inUl){html.push("<ul>");inUl=true;}html.push("<li>"+inline(m[1])+"</li>");}
+      else{if(inUl){html.push("</ul>");inUl=false;}html.push("<p>"+inline(l)+"</p>");}
+    }
+    if(inUl)html.push("</ul>");
+    return html.join("\n");
+  }
+
+  // ---- rendu en cartes colorees (une carte par section) ----
+  var CARD_CLASSES = ["c-title", "c-fos", "c-febles", "c-opo", "c-menas", "c-aks", "c-pa", "c-kesyon", "c-lock"];
+  function renderCards(md) {
+    var parts = md.split(/\r?\n(?=## )/);
+    var html = "";
+    for (var i = 0; i < parts.length; i++) {
+      var cls = CARD_CLASSES[i] || "";
+      html += '<div class="sw-card ' + cls + '">' + render(parts[i]) + "</div>";
+    }
+    return html;
+  }
+
+  // ---- carte-image partageable (1080x1080, generee dans le navigateur) ----
+  function stripMd(t) { return t.replace(/\*\*/g, "").replace(/(^|[^*])\*([^*]+)\*/g, "$1$2").trim(); }
+  function parseForCard(md) {
+    var parts = md.split(/\r?\n(?=## )/);
+    var tm = parts[0].match(/^#\s+(.*)/m);
+    var title = (tm ? tm[1] : "SWOT360").replace(/^SWOT360\s*[—-]\s*/, "");
+    function sect(i) {
+      var lines = (parts[i] || "").split(/\r?\n/);
+      var head = stripMd((lines[0] || "").replace(/^##\s+/, ""));
+      var bullets = [];
+      for (var j = 1; j < lines.length && bullets.length < 2; j++) {
+        var m = lines[j].match(/^[-•]\s+(.*)/);
+        if (m) bullets.push(stripMd(m[1]));
+      }
+      return { head: head, bullets: bullets };
+    }
+    var axes = [];
+    (parts[5] || "").split(/\r?\n/).forEach(function (l) {
+      var m = l.match(/^[-•]\s+(.*)/);
+      if (m && axes.length < 3) axes.push(stripMd(m[1]));
+    });
+    return { title: stripMd(title), q: [sect(1), sect(2), sect(3), sect(4)], axes: axes };
+  }
+  function wrapLines(ctx, text, maxW, maxLines) {
+    var words = text.split(" "), lines = [], cur = "";
+    for (var i = 0; i < words.length; i++) {
+      var t = cur ? cur + " " + words[i] : words[i];
+      if (ctx.measureText(t).width > maxW && cur) {
+        lines.push(cur); cur = words[i];
+        if (lines.length === maxLines) { lines[maxLines - 1] = lines[maxLines - 1].replace(/\s*\S*$/, "…"); return lines; }
+      } else cur = t;
+    }
+    if (cur && lines.length < maxLines) lines.push(cur);
+    return lines;
+  }
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+  function buildShareCard(md) {
+    var d = parseForCard(md);
+    var cv = document.createElement("canvas"); cv.width = 1080; cv.height = 1080;
+    var ctx = cv.getContext("2d");
+    ctx.fillStyle = "#0a1a2f"; ctx.fillRect(0, 0, 1080, 1080);
+    ctx.fillStyle = "#2ec4b6"; ctx.font = "bold 58px Arial"; ctx.fillText("Interview360", 48, 84);
+    ctx.fillStyle = "#9db2c7"; ctx.font = "26px Arial"; ctx.textAlign = "right";
+    ctx.fillText("Lojik360 · pa Atmart", 1032, 80); ctx.textAlign = "left";
+    ctx.fillStyle = "#ffffff"; ctx.font = "bold 40px Arial";
+    var tl = wrapLines(ctx, d.title, 984, 1); ctx.fillText(tl[0] || "", 48, 150);
+    var colors = ["#2ec4b6", "#f4a261", "#6a9fd8", "#e63946"];
+    var pos = [[48, 190], [564, 190], [48, 530], [564, 530]];
+    for (var i = 0; i < 4; i++) {
+      var x = pos[i][0], y = pos[i][1];
+      ctx.fillStyle = "rgba(255,255,255,0.06)"; roundRect(ctx, x, y, 468, 316, 18); ctx.fill();
+      ctx.strokeStyle = colors[i]; ctx.lineWidth = 3; roundRect(ctx, x, y, 468, 316, 18); ctx.stroke();
+      ctx.fillStyle = colors[i]; ctx.font = "bold 30px Arial";
+      ctx.fillText(wrapLines(ctx, d.q[i].head, 420, 1)[0] || "", x + 22, y + 46);
+      ctx.fillStyle = "#eaf2fb"; ctx.font = "25px Arial";
+      var yy = y + 92;
+      for (var b = 0; b < d.q[i].bullets.length; b++) {
+        var ls = wrapLines(ctx, "• " + d.q[i].bullets[b], 420, 2);
+        for (var k = 0; k < ls.length; k++) { ctx.fillText(ls[k], x + 22, yy); yy += 34; }
+        yy += 10;
+      }
+    }
+    ctx.fillStyle = "rgba(46,196,182,0.10)"; roundRect(ctx, 48, 876, 984, 130, 18); ctx.fill();
+    ctx.fillStyle = "#eaf2fb"; ctx.font = "24px Arial";
+    var ay = 912;
+    for (var a = 0; a < d.axes.length; a++) {
+      ctx.fillText(wrapLines(ctx, d.axes[a], 936, 1)[0] || "", 72, ay); ay += 38;
+    }
+    ctx.fillStyle = "#f4a261"; ctx.font = "bold 27px Arial"; ctx.textAlign = "center";
+    ctx.fillText(MSG.cardCta + " 360.atmart.ltd/entevyou.html", 540, 1052);
+    ctx.textAlign = "left";
+    return cv;
+  }
+  document.getElementById("sw-cardbtn").addEventListener("click", function () {
+    if (!lastMd) return;
+    var cv = buildShareCard(lastMd);
+    cv.toBlob(function (blob) {
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "entevyou360-kat.png";
+      a.click();
+      URL.revokeObjectURL(a.href);
+      status.textContent = MSG.done;
+    }, "image/png");
+  });
+
+  // ---- Mòd pratik vokal : TTS (Web Speech) + mikwo (Web Speech STT oswa Whisper /vwa) ----
+  var VWA_EP = "https://atmart-chat.atmartllc.workers.dev/vwa";
+  var SRCls = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var SPEECH_LANG = { fr: "fr-FR", en: "en-US", es: "es-ES" };
+  var vwQs = [], vwIdx = 0, vwOn = false, vwRecOn = false, vwBusy = false, vwLast = false;
+  var vwSR = null, vwMedia = null, vwChunks = [], vwTimer = null;
+  var vwPanel = document.getElementById("vw-panel");
+  var vwProg = document.getElementById("vw-prog");
+  var vwQEl = document.getElementById("vw-q");
+  var vwNote = document.getElementById("vw-note");
+  var vwListenB = document.getElementById("vw-listen");
+  var vwMicB = document.getElementById("vw-mic");
+  var vwCloseB = document.getElementById("vw-close");
+  var vwAns = document.getElementById("vw-ans");
+  var vwSendB = document.getElementById("vw-send");
+  var vwNextB = document.getElementById("vw-next");
+  var vwStatusEl = document.getElementById("vw-status");
+  var vwFb = document.getElementById("vw-fb");
+
+  function canTTS() { return siteLang() !== "ht" && "speechSynthesis" in window; }
+  function vwStatus(html) { document.getElementById("vw-status").innerHTML = html || ""; }
+  function vwSyncLang(T) {
+    // Appelée aussi par applyLang AVANT l'init du module : tout passe par getElementById.
+    var $ = function (id) { return document.getElementById(id); };
+    if ($("sw-vwa")) $("sw-vwa").textContent = T.vwaBtn;
+    if (!$("vw-panel")) return;
+    $("vw-listen").textContent = T.vwaListen;
+    $("vw-mic").textContent = vwRecOn ? T.vwaStop : T.vwaMic;
+    $("vw-close").textContent = T.vwaClose;
+    $("vw-hint").textContent = T.vwaHint;
+    $("vw-send").textContent = T.vwaSend;
+    $("vw-next").textContent = vwLast ? T.vwaFinish : T.vwaNext;
+    if (vwOn) {
+      $("vw-prog").textContent = T.vwaProg.replace("{i}", vwIdx + 1).replace("{n}", vwQs.length);
+      $("vw-note").textContent = T.vwaNote || "";
+      $("vw-note").style.display = T.vwaNote ? "" : "none";
+      $("vw-listen").style.display = canTTS() ? "" : "none";
+    }
+  }
+  function vwStripSpoken(t) {
+    return stripMd(t).replace(/[✅🔧💬🎤🔊🎙⏹➜✖📨🎉]/g, "").replace(/\s+/g, " ").trim();
+  }
+  function vwSpeak(txt) {
+    if (!canTTS() || !txt) return;
+    try {
+      speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(vwStripSpoken(txt));
+      var lg = SPEECH_LANG[siteLang()] || "fr-FR";
+      u.lang = lg; u.rate = 0.95;
+      var vs = speechSynthesis.getVoices() || [];
+      for (var i = 0; i < vs.length; i++) {
+        if ((vs[i].lang || "").replace("_", "-").slice(0, 2) === lg.slice(0, 2)) { u.voice = vs[i]; break; }
+      }
+      speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+  if ("speechSynthesis" in window) {
+    try { speechSynthesis.onvoiceschanged = function () {}; speechSynthesis.getVoices(); } catch (e) {}
+  }
+
+  // Les kesyon pratik yo soti nan seksyon « 🎤 » rezilta a (gratis : 3 · Pro : 8-12).
+  function extractQuestions(md) {
+    var parts = md.split(/\r?\n(?=## )/), sect = null;
+    for (var i = 0; i < parts.length; i++) {
+      if (/^##\s*🎤/.test(parts[i].trim())) { sect = parts[i]; break; }
+    }
+    if (!sect) return [];
+    var qs = [];
+    sect.split(/\r?\n/).forEach(function (l) {
+      var m = l.trim().match(/^\d+[\.\)]\s+(.*)/);
+      if (m && m[1].indexOf("**R") !== 0 && m[1].indexOf("R:") !== 0) qs.push(stripMd(m[1]));
+    });
+    return qs;
+  }
+
+  function vwShow() {
+    vwLast = vwIdx >= vwQs.length - 1;
+    vwAns.value = "";
+    vwFb.style.display = "none"; vwFb.innerHTML = "";
+    vwNextB.style.display = "none";
+    vwStatus("");
+    vwQEl.textContent = vwQs[vwIdx];
+    vwSyncLang(MSG);
+    vwSpeak(vwQs[vwIdx]);
+  }
+  function vwEndRecUi() {
+    vwRecOn = false;
+    vwMicB.classList.remove("rec");
+    vwMicB.textContent = MSG.vwaMic;
+    if (vwStatusEl.textContent === MSG.vwaRecing) vwStatus("");
+  }
+  function vwStopRec(silent) {
+    if (vwSR) { try { vwSR.stop(); } catch (e) {} vwSR = null; }
+    if (vwTimer) { clearTimeout(vwTimer); vwTimer = null; }
+    if (vwMedia && vwMedia.state !== "inactive") {
+      if (silent) {
+        var m = vwMedia;
+        m.onstop = function () { try { m.stream.getTracks().forEach(function (t) { t.stop(); }); } catch (e) {} };
+      }
+      try { vwMedia.stop(); } catch (e) {}
+    }
+    vwMedia = null;
+    vwEndRecUi();
+  }
+  function vwStopAll() {
+    if ("speechSynthesis" in window) { try { speechSynthesis.cancel(); } catch (e) {} }
+    if (vwRecOn) vwStopRec(true);
+  }
+  function vwReset() {
+    vwStopAll();
+    vwOn = false;
+    vwPanel.style.display = "none";
+  }
+
+  document.getElementById("sw-vwa").addEventListener("click", function () {
+    if (!lastMd) { status.textContent = MSG.vwaNoQ; return; }
+    vwQs = extractQuestions(lastMd);
+    if (!vwQs.length) { status.textContent = MSG.vwaNoQ; return; }
+    vwOn = true; vwIdx = 0;
+    vwPanel.style.display = "";
+    vwShow();
+    vwPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  vwCloseB.addEventListener("click", vwReset);
+  vwListenB.addEventListener("click", function () { vwSpeak(vwQs[vwIdx] || ""); });
+
+  vwMicB.addEventListener("click", function () {
+    if (vwRecOn) { vwStopRec(false); return; }
+    if ("speechSynthesis" in window) { try { speechSynthesis.cancel(); } catch (e) {} }
+    vwRecOn = true;
+    vwMicB.classList.add("rec");
+    vwMicB.textContent = MSG.vwaStop;
+    vwStatus(MSG.vwaRecing);
+    // Web Speech STT pou fr/en/es ; kreyòl (ak navigatè san Web Speech) → Whisper sou /vwa.
+    if (siteLang() !== "ht" && SRCls) vwStartSR(); else vwStartMedia();
+  });
+
+  function vwStartSR() {
+    try {
+      vwSR = new SRCls();
+      vwSR.lang = SPEECH_LANG[siteLang()] || "fr-FR";
+      vwSR.continuous = true;
+      vwSR.interimResults = true;
+      var base = vwAns.value ? vwAns.value.trim() + " " : "", fin = "";
+      vwSR.onresult = function (ev) {
+        var interim = "";
+        for (var i = ev.resultIndex; i < ev.results.length; i++) {
+          if (ev.results[i].isFinal) fin += ev.results[i][0].transcript + " ";
+          else interim += ev.results[i][0].transcript;
+        }
+        vwAns.value = (base + fin + interim).trim();
+      };
+      vwSR.onerror = function (ev) {
+        var denied = ev && (ev.error === "not-allowed" || ev.error === "service-not-allowed");
+        vwEndRecUi();
+        if (denied) vwStatus(MSG.vwaMicErr);
+      };
+      vwSR.onend = function () { vwEndRecUi(); };
+      vwSR.start();
+    } catch (e) { vwEndRecUi(); vwStatus(MSG.vwaMicErr); }
+  }
+
+  function vwStartMedia() {
+    if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder)) {
+      vwEndRecUi(); vwStatus(MSG.vwaMicErr); return;
+    }
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+      if (!vwRecOn) { stream.getTracks().forEach(function (t) { t.stop(); }); return; }
+      var mime = "";
+      if (MediaRecorder.isTypeSupported) {
+        if (MediaRecorder.isTypeSupported("audio/webm;codecs=opus")) mime = "audio/webm;codecs=opus";
+        else if (MediaRecorder.isTypeSupported("audio/mp4")) mime = "audio/mp4";
+      }
+      vwChunks = [];
+      var rec = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream);
+      vwMedia = rec;
+      rec.ondataavailable = function (e) { if (e.data && e.data.size) vwChunks.push(e.data); };
+      rec.onstop = function () {
+        stream.getTracks().forEach(function (t) { t.stop(); });
+        var blob = new Blob(vwChunks, { type: (rec.mimeType || "audio/webm").split(";")[0] });
+        if (blob.size > 200) vwTranscribe(blob);
+      };
+      rec.start();
+      vwTimer = setTimeout(function () { if (vwRecOn) vwStopRec(false); }, 90000); // 90 s maks
+    }).catch(function () { vwEndRecUi(); vwStatus(MSG.vwaMicErr); });
+  }
+
+  function vwTranscribe(blob) {
+    vwStatus('<span class="sw-spin"></span>' + MSG.vwaTrans);
+    var fr = new FileReader();
+    fr.onload = function () {
+      var b64 = String(fr.result).split(",")[1] || "";
+      fetch(VWA_EP, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ audio: b64, language: siteLang() }) })
+        .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+        .then(function (res) {
+          if (res.ok && res.body && typeof res.body.text === "string" && res.body.text.trim()) {
+            vwAns.value = (vwAns.value ? vwAns.value.trim() + " " : "") + res.body.text.trim();
+            vwStatus("");
+          } else if (res.body && res.body.error === "rate_limited") {
+            vwStatus(MSG.vwaLimit);
+          } else {
+            vwStatus(MSG.vwaSttErr);
+          }
+        })
+        .catch(function () { vwStatus(MSG.offline); });
+    };
+    fr.readAsDataURL(blob);
+  }
+
+  vwSendB.addEventListener("click", function () {
+    if (vwBusy) return;
+    var ans = vwAns.value.trim();
+    if (ans.length < 8) { vwStatus(MSG.vwaEmpty); return; }
+    vwStopAll();
+    vwBusy = true; vwSendB.disabled = true;
+    vwStatus('<span class="sw-spin"></span>' + MSG.vwaThink);
+    fetch(ENDPOINT, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "pratik", language: siteLang(),
+        question: vwQs[vwIdx], answer: ans,
+        work: document.getElementById("sw-work").value.trim(),
+        goal: document.getElementById("sw-goal").value.trim(),
+        weakness: document.getElementById("sw-weakness").value.trim(),
+        qIndex: vwIdx + 1, total: vwQs.length,
+      }),
+    })
+      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+      .then(function (res) {
+        vwBusy = false; vwSendB.disabled = false;
+        if (res.ok && res.body && res.body.feedback) {
+          vwStatus("");
+          vwFb.innerHTML = res.body.feedback.split(/\r?\n/).filter(function (l) { return l.trim(); })
+            .map(function (l) { return "<p>" + inline(esc(l.trim())) + "</p>"; }).join("");
+          vwFb.style.display = "";
+          vwNextB.style.display = "";
+          vwSyncLang(MSG);
+          vwSpeak(res.body.feedback);
+        } else {
+          vwStatus(res.body && res.body.error === "rate_limited" ? MSG.vwaLimit : MSG.err);
+        }
+      })
+      .catch(function () { vwBusy = false; vwSendB.disabled = false; vwStatus(MSG.offline); });
+  });
+
+  vwNextB.addEventListener("click", function () {
+    vwStopAll();
+    if (vwLast) { vwReset(); status.textContent = MSG.vwaDone; return; }
+    vwIdx++;
+    vwShow();
+  });
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var payload = {
+      work: document.getElementById("sw-work").value.trim(),
+      tasks: document.getElementById("sw-tasks").value.trim(),
+      strength: document.getElementById("sw-strength").value.trim(),
+      weakness: document.getElementById("sw-weakness").value.trim(),
+      aiUse: document.getElementById("sw-aiuse").value,
+      goal: document.getElementById("sw-goal").value.trim(),
+      age: document.getElementById("sw-age").value,
+      jobDesc: document.getElementById("sw-jobdesc").value.trim(),
+      proCode: document.getElementById("sw-procode").value.trim(),
+      language: siteLang(),
+    };
+    go.disabled = true;
+    status.innerHTML = '<span class="sw-spin"></span>' + (payload.proCode ? MSG.proGen : MSG.gen);
+    fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+      .then(function (res) {
+        go.disabled = false;
+        if (res.ok && res.body && res.body.swot) {
+          lastMd = res.body.swot;
+          vwReset();
+          out.innerHTML = renderCards(lastMd);
+          ph.style.display = "none"; bar.style.display = "flex"; cta.style.display = "";
+          status.textContent = MSG.done;
+          document.getElementById("sw-share").href = "https://wa.me/?text=" + encodeURIComponent(MSG.waTxt);
+          out.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          var ec = res.body && res.body.error;
+          status.textContent = ec === "rate_limited" ? MSG.limit : ec === "pro_invalid" ? MSG.proInvalid : MSG.err;
+        }
+      })
+      .catch(function () { go.disabled = false; status.textContent = MSG.offline; });
+  });
+
+  document.getElementById("sw-print").addEventListener("click", function () { window.print(); });
+  document.getElementById("sw-copy").addEventListener("click", function () {
+    navigator.clipboard.writeText(lastMd).then(function () { status.textContent = MSG.copied; });
+  });
+})();
+</script>
+</body>
+</html>
