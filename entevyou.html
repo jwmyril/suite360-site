@@ -213,6 +213,10 @@ d.lang=l||"ht";})();
         <div class="cv-panel" id="cv-panel" style="display:none">
           <h3 id="cv-title">📄 CV pa konpetans ou</h3>
           <p class="cv-intro" id="cv-intro">Yon CV ki montre sa ou konn FÈ ak prèv — fòma rekritè ak sistèm ATS yo li fasil. Nou pa kenbe ANYEN ou ekri isit la. Kòd Kit : chak CV = 1 jenerasyon · kòd 90 jou : jiska 8 pa jou. Ranplase [kwochè yo] anvan ou voye l.</p>
+          <label for="cv-old" id="Lcv-old">Ou deja gen yon CV ? (opsyonèl)</label>
+          <textarea id="cv-old" maxlength="3500" style="min-height:64px" placeholder="Kole tout tèks ansyen CV ou a isit la…"></textarea>
+          <p style="margin:0.35rem 0 0"><button type="button" id="cv-oldbtn" style="background:none;border:1px dashed rgba(106,159,216,0.7);color:#6a9fd8;border-radius:8px;padding:0.35rem 0.7rem;font:inherit;font-size:0.82rem;cursor:pointer">📎 Oswa voye foto / PDF ansyen CV a</button></p>
+          <input type="file" id="cv-oldfile" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,application/pdf,image/png,image/jpeg,image/webp,text/plain" style="display:none" />
           <label for="cv-name" id="Lcv-name">Non konplè ou</label>
           <input type="text" id="cv-name" maxlength="80" autocomplete="off" />
           <label for="cv-contact" id="Lcv-contact">Liy kontak la</label>
@@ -330,10 +334,12 @@ document.documentElement.lang=sel.value;});})();
       cvLang: "Nan ki lang CV a ap soti ?",
       cvGo: "📄 Fè CV mwen an", cvGen: "N ap bati CV ou a… (30-60 segonn)",
       cvDone: "Men CV ou ! Ranplase [kwochè yo], epi enprime l an PDF.",
-      cvNeed: "Mete omwen non ou ak eksperyans ou yo.",
+      cvNeed: "Mete omwen non ou, epi eksperyans ou yo oswa ansyen CV ou a.",
       cvNeedPro: "CV a se yon fonksyon Pro (Kit 9,99 $ oswa 90 jou 19,99 $). Mete kòd Pro ou nan fòm prensipal la — oswa achte yon kòd sou atmart.ltd.",
       cvPrint: "🖨 Enprime / PDF", cvCopy: "📋 Kopye tèks la", cvClose: "✖ Fèmen",
       proExpired: "Kòd Pro 90 jou ou a fini. Achte yon lòt kòd pou kontinye.",
+      cvOld: "Ou deja gen yon CV ? (opsyonèl)", cvOldS: "Kole l isit la — n ap sèvi ak enfòmasyon li yo epi n ap amelyore fòm lan. Reponn kesyon yo kanmenm : se yo ki mare CV a ak anons lan.", cvOldP: "Kole tout tèks ansyen CV ou a isit la…",
+      cvOldUp: "📎 Oswa voye foto / PDF ansyen CV a", cvOldOk: "CV ou a li ! Verifye tèks la anvan ou kontinye.",
       proDaily: "Ou fè 8 jenerasyon jodi a — kòd ou a ap disponib ankò demen. 🙂",
       jdUp: "📎 Oswa voye yon foto / PDF anons lan",
       jdReading: "N ap li anons lan…",
@@ -388,10 +394,12 @@ document.documentElement.lang=sel.value;});})();
       cvLang: "Dans quelle langue le CV doit-il sortir ?",
       cvGo: "📄 Créer mon CV", cvGen: "Construction de votre CV… (30-60 secondes)",
       cvDone: "Voici votre CV ! Remplacez les [crochets], puis imprimez-le en PDF.",
-      cvNeed: "Indiquez au moins votre nom et vos expériences.",
+      cvNeed: "Indiquez au moins votre nom, et vos expériences ou votre ancien CV.",
       cvNeedPro: "Le CV est une fonction Pro (Kit 9,99 $ ou 90 jours 19,99 $). Saisissez votre code Pro dans le formulaire principal — ou achetez un code sur atmart.ltd.",
       cvPrint: "🖨 Imprimer / PDF", cvCopy: "📋 Copier le texte", cvClose: "✖ Fermer",
       proExpired: "Votre code Pro 90 jours est arrivé à expiration. Achetez un nouveau code pour continuer.",
+      cvOld: "Vous avez déjà un CV ? (facultatif)", cvOldS: "Collez-le ici — nous réutilisons ses informations et améliorons la forme. Répondez quand même aux questions : ce sont elles qui relient le CV à l'annonce.", cvOldP: "Collez tout le texte de votre ancien CV ici…",
+      cvOldUp: "📎 Ou joignez une photo / un PDF de l'ancien CV", cvOldOk: "CV lu ! Vérifiez le texte avant de continuer.",
       proDaily: "8 générations aujourd’hui — votre code sera de nouveau disponible demain. 🙂",
       jdUp: "📎 Ou joignez une photo / un PDF de l'annonce",
       jdReading: "Lecture de l'annonce…",
@@ -446,10 +454,12 @@ document.documentElement.lang=sel.value;});})();
       cvLang: "Which language should the résumé be in?",
       cvGo: "📄 Build my résumé", cvGen: "Building your résumé… (30-60 seconds)",
       cvDone: "Here is your résumé! Replace the [brackets], then print it as PDF.",
-      cvNeed: "Enter at least your name and your work experience.",
+      cvNeed: "Enter at least your name, and your work experience or your current résumé.",
       cvNeedPro: "The résumé is a Pro feature (Kit $9.99 or 90 days $19.99). Enter your Pro code in the main form — or get a code on atmart.ltd.",
       cvPrint: "🖨 Print / PDF", cvCopy: "📋 Copy the text", cvClose: "✖ Close",
       proExpired: "Your Pro 90-day code has expired. Get a new code to continue.",
+      cvOld: "Already have a résumé? (optional)", cvOldS: "Paste it here — we reuse its facts and improve the format. Still answer the questions: they are what ties the résumé to the job posting.", cvOldP: "Paste the full text of your current résumé here…",
+      cvOldUp: "📎 Or attach a photo / PDF of your current résumé", cvOldOk: "Résumé read! Check the text before you continue.",
       proDaily: "8 generations today — your code will be available again tomorrow. 🙂",
       jdUp: "📎 Or attach a photo / PDF of the job posting",
       jdReading: "Reading the job posting…",
@@ -504,10 +514,12 @@ document.documentElement.lang=sel.value;});})();
       cvLang: "¿En qué idioma debe salir el CV?",
       cvGo: "📄 Crear mi CV", cvGen: "Construyendo tu CV… (30-60 segundos)",
       cvDone: "¡Aquí está tu CV! Reemplaza los [corchetes] y luego imprímelo en PDF.",
-      cvNeed: "Escribe al menos tu nombre y tus experiencias.",
+      cvNeed: "Escribe al menos tu nombre, y tus experiencias o tu CV actual.",
       cvNeedPro: "El CV es una función Pro (Kit $9.99 o 90 días $19.99). Escribe tu código Pro en el formulario principal — o compra un código en atmart.ltd.",
       cvPrint: "🖨 Imprimir / PDF", cvCopy: "📋 Copiar el texto", cvClose: "✖ Cerrar",
       proExpired: "Tu código Pro de 90 días expiró. Compra un nuevo código para continuar.",
+      cvOld: "¿Ya tienes un CV? (opcional)", cvOldS: "Pégalo aquí — reutilizamos sus datos y mejoramos el formato. Responde igualmente las preguntas: son las que conectan el CV con el anuncio.", cvOldP: "Pega aquí todo el texto de tu CV actual…",
+      cvOldUp: "📎 O adjunta una foto / PDF de tu CV actual", cvOldOk: "¡CV leído! Revisa el texto antes de continuar.",
       proDaily: "8 generaciones hoy — tu código estará disponible otra vez mañana. 🙂",
       jdUp: "📎 O adjunta una foto / PDF del anuncio",
       jdReading: "Leyendo el anuncio…",
@@ -998,6 +1010,9 @@ document.documentElement.lang=sel.value;});})();
     $("sw-cv").textContent = T.cvBtn;
     $("cv-title").textContent = T.cvTitle;
     $("cv-intro").textContent = T.cvIntro;
+    setLabel("Lcv-old", T.cvOld, T.cvOldS);
+    $("cv-old").placeholder = T.cvOldP;
+    $("cv-oldbtn").textContent = T.cvOldUp;
     setLabel("Lcv-name", T.cvName);
     setLabel("Lcv-contact", T.cvContact, T.cvContactS);
     $("cv-contact").placeholder = T.cvContactP;
@@ -1025,11 +1040,53 @@ document.documentElement.lang=sel.value;});})();
     cvPanel.style.display = "none";
   });
 
+  // ancien CV joint (foto / PDF / .txt) → tèks nan bwat cv-old la
+  var cvOldBtn = document.getElementById("cv-oldbtn");
+  var cvOldFile = document.getElementById("cv-oldfile");
+  cvOldBtn.addEventListener("click", function () { cvOldFile.click(); });
+  cvOldFile.addEventListener("change", function () {
+    var f = cvOldFile.files && cvOldFile.files[0];
+    cvOldFile.value = "";
+    if (!f) return;
+    var ta = document.getElementById("cv-old");
+    if (f.type === "text/plain" || /\.txt$/i.test(f.name)) {
+      var tr = new FileReader();
+      tr.onload = function () { ta.value = String(tr.result).slice(0, 3500); cvStatus(MSG.cvOldOk); };
+      tr.readAsText(f);
+      return;
+    }
+    var mt = f.type || (/\.pdf$/i.test(f.name) ? "application/pdf" : /\.(jpe?g)$/i.test(f.name) ? "image/jpeg" : /\.png$/i.test(f.name) ? "image/png" : /\.webp$/i.test(f.name) ? "image/webp" : "");
+    if (!JD_TYPES[mt]) { cvStatus(MSG.jdErr); return; }
+    if (f.size > 4.5 * 1024 * 1024) { cvStatus(MSG.jdBig); return; }
+    cvStatus('<span class="sw-spin"></span>' + MSG.jdReading);
+    var fr = new FileReader();
+    fr.onload = function () {
+      var b64 = String(fr.result).split(",")[1] || "";
+      fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "jd", kind: "cv", file: b64, mediaType: mt }) })
+        .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+        .then(function (res) {
+          if (res.ok && res.body && res.body.text) {
+            ta.value = res.body.text.slice(0, 3500);
+            cvStatus(MSG.cvOldOk);
+          } else if (res.body && res.body.error === "file_too_large") {
+            cvStatus(MSG.jdBig);
+          } else if (res.body && res.body.error === "rate_limited") {
+            cvStatus(MSG.limit);
+          } else {
+            cvStatus(MSG.jdErr);
+          }
+        })
+        .catch(function () { cvStatus(MSG.offline); });
+    };
+    fr.readAsDataURL(f);
+  });
+
   cvGoB.addEventListener("click", function () {
     if (cvBusy) return;
     var name = document.getElementById("cv-name").value.trim();
     var exp = document.getElementById("cv-exp").value.trim();
-    if (name.length < 2 || exp.length < 10) { cvStatus(MSG.cvNeed); return; }
+    var oldCv = document.getElementById("cv-old").value.trim();
+    if (name.length < 2 || (exp.length < 10 && oldCv.length < 40)) { cvStatus(MSG.cvNeed); return; }
     var proCode = document.getElementById("sw-procode").value.trim();
     if (!proCode) { cvStatus(MSG.cvNeedPro); return; }
     cvBusy = true; cvGoB.disabled = true;
@@ -1043,6 +1100,7 @@ document.documentElement.lang=sel.value;});})();
         name: name,
         contact: document.getElementById("cv-contact").value.trim(),
         experiences: exp,
+        oldCv: oldCv,
         education: document.getElementById("cv-edu").value.trim(),
         skills: document.getElementById("cv-skills").value.trim(),
         achievements: document.getElementById("cv-ach").value.trim(),
