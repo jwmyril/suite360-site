@@ -80,6 +80,26 @@ d.lang=l||"ht";})();
     .vw-fb{background:rgba(255,255,255,0.05);border-left:4px solid #2ec4b6;border-radius:10px;padding:0.8rem 1rem;margin-top:0.7rem;display:none}
     .vw-fb p{margin:0.3rem 0;font-size:0.93rem;line-height:1.6;color:#d7e3f0}
     @media print{.vw-panel{display:none!important}}
+    /* ---- CV pa konpetans (Pro) ---- */
+    .cv-panel{background:rgba(106,159,216,0.07);border:1px solid rgba(106,159,216,0.45);border-radius:14px;padding:1.1rem 1.2rem;margin-bottom:1rem}
+    .cv-panel h3{font-family:"Space Grotesk",sans-serif;font-size:1.1rem;color:#fff;margin:0 0 0.2rem}
+    .cv-intro{color:#9db2c7;font-size:0.82rem;margin:0 0 0.8rem;line-height:1.5}
+    .cv-panel label{display:block;font-weight:600;font-size:0.86rem;margin:0.7rem 0 0.15rem}
+    .cv-panel label small{display:block;font-weight:400;color:#9db2c7;font-size:0.76rem}
+    .cv-panel input,.cv-panel select,.cv-panel textarea{width:100%;background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit;font-size:0.9rem;margin-top:0.2rem}
+    .cv-panel textarea{min-height:64px;resize:vertical}
+    .cv-out{background:#fff;color:#111;border-radius:10px;padding:1.6rem 1.8rem;margin-top:1rem;display:none}
+    .cv-out h2{font-family:Georgia,"Times New Roman",serif;font-size:1.5rem;color:#111;margin:0 0 0.2rem}
+    .cv-out h3{font-family:Georgia,"Times New Roman",serif;font-size:1rem;color:#0e2240;border-bottom:2px solid #0e2240;padding-bottom:0.15rem;margin:1.1rem 0 0.5rem;text-transform:uppercase;letter-spacing:0.04em}
+    .cv-out h4{font-size:0.95rem;color:#111;margin:0.7rem 0 0.25rem}
+    .cv-out p,.cv-out li{font-size:0.9rem;line-height:1.55;color:#222}
+    .cv-out ul{padding-left:1.15rem;margin:0.2rem 0 0.5rem}
+    @media print{
+      body.print-cv #sw-out,body.print-cv #sw-out *{visibility:hidden}
+      body.print-cv .cv-out,body.print-cv .cv-out *{visibility:visible}
+      body.print-cv .cv-out{position:absolute;inset:0;padding:1.2cm;border-radius:0;background:#fff}
+      body.print-cv .cv-out h2,body.print-cv .cv-out h3,body.print-cv .cv-out h4,body.print-cv .cv-out p,body.print-cv .cv-out li{color:#000!important}
+    }
   </style>
 </head>
 <body>
@@ -150,7 +170,7 @@ d.lang=l||"ht";})();
         <textarea id="sw-jobdesc" maxlength="3500" style="min-height:80px" placeholder="Kole tèks anons travay la isit la (opsyonèl)…"></textarea>
 
         <div style="margin-top:1rem;padding-top:0.9rem;border-top:1px dashed rgba(46,196,182,0.5)">
-          <label for="sw-procode" id="L-procode">⭐ Kòd Interview360 Pro (si ou achte l)<small>Ak yon kòd, w ap jwenn TOUT kit la : 8-12 kesyon AK repons yo, deck, plan 90 jou</small></label>
+          <label for="sw-procode" id="L-procode">⭐ Kòd Interview360 Pro (si ou achte l)<small>Ak yon kòd, w ap jwenn TOUT kit la : 8-12 kesyon AK repons yo, deck, plan 90 jou + CV pa konpetans</small></label>
           <input type="text" id="sw-procode" maxlength="24" autocomplete="off" placeholder="ENT-XXXX-XXXX" />
           <p id="L-probuy" style="color:#9db2c7;font-size:0.8rem;margin-top:0.35rem">Ou poko gen kòd ? <a href="https://atmart.ltd/#entevyou360" style="color:#2ec4b6">Achte Pro a — 9,99 $</a></p>
         </div>
@@ -165,6 +185,7 @@ d.lang=l||"ht";})();
         <div class="sw-toolbar" id="sw-toolbar" style="display:none">
           <a class="wa" id="sw-share" target="_blank" rel="noopener">💬 Pataje sou WhatsApp</a>
           <button id="sw-vwa" style="border-color:rgba(46,196,182,0.8);font-weight:600">🎙 Pratike ak vwa ou</button>
+          <button id="sw-cv" style="border-color:rgba(106,159,216,0.8);font-weight:600">📄 CV pa konpetans (Pro)</button>
           <button id="sw-cardbtn">🖼 Telechaje kat SWOT ou</button>
           <button id="sw-print">🖨 Enprime / PDF</button>
           <button id="sw-copy">📋 Kopye</button>
@@ -186,6 +207,37 @@ d.lang=l||"ht";})();
           </div>
           <p class="sw-status" id="vw-status" aria-live="polite"></p>
           <div class="vw-fb" id="vw-fb" aria-live="polite"></div>
+        </div>
+        <div class="cv-panel" id="cv-panel" style="display:none">
+          <h3 id="cv-title">📄 CV pa konpetans ou</h3>
+          <p class="cv-intro" id="cv-intro">Yon CV ki montre sa ou konn FÈ ak prèv — fòma rekritè ak sistèm ATS yo li fasil. Nou pa kenbe ANYEN ou ekri isit la. Chak CV = 1 jenerasyon sou kòd Pro ou. Ranplase [kwochè yo] anvan ou voye l.</p>
+          <label for="cv-name" id="Lcv-name">Non konplè ou</label>
+          <input type="text" id="cv-name" maxlength="80" autocomplete="off" />
+          <label for="cv-contact" id="Lcv-contact">Liy kontak la</label>
+          <input type="text" id="cv-contact" maxlength="160" autocomplete="off" placeholder="Boston, MA · (555) 000-0000 · non@imel.com" />
+          <label for="cv-exp" id="Lcv-exp">Eksperyans travay ou yo</label>
+          <textarea id="cv-exp" maxlength="1600" placeholder="Enfimyè — Hopital Sainte-Croix, Leyogàn — 2019-2023"></textarea>
+          <label for="cv-edu" id="Lcv-edu">Etid ak fòmasyon</label>
+          <textarea id="cv-edu" maxlength="500" style="min-height:48px" placeholder="Diplòm enfimyè — Ecole Nationale des Infirmières — 2018"></textarea>
+          <label for="cv-skills" id="Lcv-skills">Lang ak zouti</label>
+          <input type="text" id="cv-skills" maxlength="300" placeholder="Kreyòl (natif) · Franse · Anglè (entèmedyè) · Excel" />
+          <label for="cv-ach" id="Lcv-ach">Reyalizasyon ak chif ou ka pwouve</label>
+          <textarea id="cv-ach" maxlength="700" style="min-height:48px"></textarea>
+          <label for="cv-lang" id="Lcv-lang">Nan ki lang CV a ap soti ?</label>
+          <select id="cv-lang">
+            <option value="en" selected>English</option>
+            <option value="fr">Français</option>
+            <option value="es">Español</option>
+            <option value="ht">Kreyòl</option>
+          </select>
+          <div class="vw-row" style="margin-top:0.9rem">
+            <button type="button" class="vw-btn send" id="cv-go">📄 Fè CV mwen an</button>
+            <button type="button" class="vw-btn" id="cv-print" style="display:none">🖨 Enprime / PDF</button>
+            <button type="button" class="vw-btn" id="cv-copy" style="display:none">📋 Kopye tèks la</button>
+            <button type="button" class="vw-btn" id="cv-close">✖ Fèmen</button>
+          </div>
+          <p class="sw-status" id="cv-status" aria-live="polite"></p>
+          <div class="cv-out" id="cv-out"></div>
         </div>
         <div id="sw-placeholder" class="sw-placeholder">
           <div class="big">🧭</div>
@@ -240,12 +292,12 @@ document.documentElement.lang=sel.value;});})();
       goal: "6. Ki objektif ou pou 1–3 lane k ap vini yo ?", goalP: "Ex. : jwenn yon pi bon travay, monte biznis mwen, aprann yon metye…",
       age: "7. Ki tranch laj ou ? (si ou vle)", age0: "Mwen pito pa di",
       jd: "8. Kole deskripsyon pòs la (si ou genyen l)", jdS: "Pou n ka devine kesyon entèvyou yo pi byen", jdP: "Kole tèks anons travay la isit la (opsyonèl)…",
-      pc: "⭐ Kòd Interview360 Pro (si ou achte l)", pcS: "Ak yon kòd, w ap jwenn TOUT kit la : 8-12 kesyon AK repons yo, deck, plan 90 jou", pcB: "Ou poko gen kòd ? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Achte Pro a — 9,99 $</a>", proGen: "N ap prepare kit Pro ou a… (60–90 segonn — li long, li vo li)", proInvalid: "Kòd sa a pa bon oswa li fini. Verifye l, oswa achte yon kòd sou atmart.ltd.",
+      pc: "⭐ Kòd Interview360 Pro (si ou achte l)", pcS: "Ak yon kòd, w ap jwenn TOUT kit la : 8-12 kesyon AK repons yo, deck, plan 90 jou + CV pa konpetans", pcB: "Ou poko gen kòd ? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Achte Pro a — 9,99 $</a>", proGen: "N ap prepare kit Pro ou a… (60–90 segonn — li long, li vo li)", proInvalid: "Kòd sa a pa bon oswa li fini. Verifye l, oswa achte yon kòd sou atmart.ltd.",
       go: "🧭 Fè SWOT360 mwen",
       phTxt: "Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style=\"color:#2ec4b6\">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap ba w feedback.</span>",
       share: "💬 Pataje sou WhatsApp", print: "🖨 Enprime / PDF", copy: "📋 Kopye",
       cta1: '📚 <strong>Pwochen etap ou :</strong> li leson gratis la — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.html">Management &amp; carrière à l\'ère de l\'IA</a> — pou w aprofondi chak aks.',
-      cta2: '🚀 <strong>Interview360 Pro</strong> — <s>29 $</s> <strong>9,99 $</strong> (yon sèl fwa) : kesyon yo pral poze OU ak repons ki chita sou prèv OU, rapò PDF, deck « Prezante tèt ou », plan 90 jou. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Kòmande Pro a</a>',
+      cta2: '🚀 <strong>Interview360 Pro</strong> — <s>29 $</s> <strong>9,99 $</strong> (yon sèl fwa) : kesyon yo pral poze OU ak repons ki chita sou prèv OU, rapò PDF, deck « Prezante tèt ou », plan 90 jou + CV pa konpetans. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Kòmande Pro a</a>',
       waTxt: "Mwen fèk fè Interview360 mwen sou Lojik360 — 6 kesyon, 2 minit, gratis. Fè pa w la tou: https://360.atmart.ltd/entevyou.html\n(Je viens de faire mon SWOT360 — 6 questions, 2 minutes, gratuit, en 4 langues. Faites le vôtre avec le même lien.)",
       card: "🖼 Telechaje kat SWOT ou", cardCta: "Fè pa w la tou:",
       gen: "N ap prepare SWOT360 ou a… (15–30 segonn)", done: "Men rezilta ou ! Li l, enprime l, pataje l.",
@@ -265,6 +317,20 @@ document.documentElement.lang=sel.value;});})();
       vwaNoQ: "Fè SWOT360 ou a anvan — kesyon pratik yo ap soti nan rezilta a.",
       vwaLimit: "Ou sèvi ak tout vwa ou pou jodi a — tounen demen ! 🙂",
       vwaNote: "ℹ️ Vwa AI a poko pale kreyòl. Li kesyon an awotvwa, epi reponn ak vwa PA OU — n ap konprann ou.",
+      cvBtn: "📄 CV pa konpetans (Pro)", cvTitle: "📄 CV pa konpetans ou",
+      cvIntro: "Yon CV ki montre sa ou konn FÈ ak prèv — fòma rekritè ak sistèm ATS yo li fasil. Nou pa kenbe ANYEN ou ekri isit la. Chak CV = 1 jenerasyon sou kòd Pro ou. Ranplase [kwochè yo] anvan ou voye l.",
+      cvName: "Non konplè ou",
+      cvContact: "Liy kontak la", cvContactS: "Vil · telefòn · imèl — jan ou vle l parèt sou CV a", cvContactP: "Boston, MA · (555) 000-0000 · non@imel.com",
+      cvExp: "Eksperyans travay ou yo", cvExpS: "Yon liy pou chak djòb : Pòs — Antrepriz, Vil — Ane yo", cvExpP: "Enfimyè — Hopital Sainte-Croix, Leyogàn — 2019-2023",
+      cvEdu: "Etid ak fòmasyon", cvEduP: "Diplòm enfimyè — Ecole Nationale des Infirmières — 2018",
+      cvSkills: "Lang ak zouti", cvSkillsP: "Kreyòl (natif) · Franse · Anglè (entèmedyè) · Excel",
+      cvAch: "Reyalizasyon ak chif ou ka pwouve", cvAchS: "Egz. : mwen te fòme 6 nouvo enfimyè ; mwen te jere 30 pasyan pa jou",
+      cvLang: "Nan ki lang CV a ap soti ?",
+      cvGo: "📄 Fè CV mwen an", cvGen: "N ap bati CV ou a… (30-60 segonn)",
+      cvDone: "Men CV ou ! Ranplase [kwochè yo], epi enprime l an PDF.",
+      cvNeed: "Mete omwen non ou ak eksperyans ou yo.",
+      cvNeedPro: "CV a se yon fonksyon Pro (9,99 $). Mete kòd Pro ou nan fòm prensipal la — oswa achte yon kòd sou atmart.ltd.",
+      cvPrint: "🖨 Enprime / PDF", cvCopy: "📋 Kopye tèks la", cvClose: "✖ Fèmen",
     },
     fr: {
       lang: "🌍 Choisissez votre langue",
@@ -277,12 +343,12 @@ document.documentElement.lang=sel.value;});})();
       goal: "6. Votre objectif pour les 1–3 prochaines années ?", goalP: "Ex. : un meilleur emploi, monter mon business, apprendre un métier…",
       age: "7. Votre tranche d'âge ? (facultatif)", age0: "Je préfère ne pas dire",
       jd: "8. Collez la description du poste (si vous l'avez)", jdS: "Pour deviner au mieux les questions de votre entretien", jdP: "Collez le texte de l'annonce ici (optionnel)…",
-      pc: "⭐ Code Interview360 Pro (si vous l'avez acheté)", pcS: "Avec un code : le kit COMPLET — 8-12 questions AVEC les réponses, deck, plan 90 jours", pcB: "Pas encore de code ? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Acheter Pro — 9,99 $</a>", proGen: "Préparation de votre kit Pro… (60–90 secondes — il est long, il le vaut)", proInvalid: "Ce code est invalide ou épuisé. Vérifiez-le, ou achetez un code sur atmart.ltd.",
+      pc: "⭐ Code Interview360 Pro (si vous l'avez acheté)", pcS: "Avec un code : le kit COMPLET — 8-12 questions AVEC les réponses, deck, plan 90 jours + CV par compétences", pcB: "Pas encore de code ? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Acheter Pro — 9,99 $</a>", proGen: "Préparation de votre kit Pro… (60–90 secondes — il est long, il le vaut)", proInvalid: "Ce code est invalide ou épuisé. Vérifiez-le, ou achetez un code sur atmart.ltd.",
       go: "🧭 Faire mon SWOT360",
       phTxt: "Votre résultat SWOT360 apparaîtra ici.<br />Répondez aux 6 questions puis cliquez « Faire mon SWOT360 ».<br /><span style=\"color:#2ec4b6\">🎙 Nouveau : ensuite, entraînez-vous aux questions d'entretien à voix haute — le coach vous fait un retour.</span>",
       share: "💬 Partager sur WhatsApp", print: "🖨 Imprimer / PDF", copy: "📋 Copier",
       cta1: '📚 <strong>Votre prochaine étape :</strong> lisez la leçon gratuite — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.html">Management &amp; carrière à l\'ère de l\'IA</a> — pour approfondir chaque axe.',
-      cta2: '🚀 <strong>Interview360 Pro</strong> — <s>29 $</s> <strong>9,99 $</strong> (paiement unique) : les questions que le recruteur va VOUS poser, avec des réponses bâties sur VOS preuves, rapport PDF, deck « Prezante tèt ou », plan 90 jours. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Commander Pro</a>',
+      cta2: '🚀 <strong>Interview360 Pro</strong> — <s>29 $</s> <strong>9,99 $</strong> (paiement unique) : les questions que le recruteur va VOUS poser, avec des réponses bâties sur VOS preuves, rapport PDF, deck « Prezante tèt ou », plan 90 jours + CV par compétences. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Commander Pro</a>',
       waTxt: "Je viens de faire mon Interview360 sur Lojik360 — 6 questions, 2 minutes, gratuit. Faites le vôtre : https://360.atmart.ltd/entevyou.html",
       card: "🖼 Télécharger ma carte SWOT", cardCta: "Faites le vôtre :",
       gen: "Préparation de votre SWOT360… (15–30 secondes)", done: "Voici votre résultat ! Lisez, imprimez, partagez.",
@@ -302,6 +368,20 @@ document.documentElement.lang=sel.value;});})();
       vwaNoQ: "Faites d'abord votre SWOT360 — les questions d'entraînement en sortent.",
       vwaLimit: "Quota vocal du jour atteint — revenez demain ! 🙂",
       vwaNote: "",
+      cvBtn: "📄 CV par compétences (Pro)", cvTitle: "📄 Votre CV par compétences",
+      cvIntro: "Un CV qui montre ce que vous savez FAIRE, avec des preuves — un format que recruteurs et logiciels ATS lisent facilement. Rien de ce que vous écrivez ici n'est conservé. Chaque CV = 1 génération sur votre code Pro. Remplacez les [crochets] avant d'envoyer.",
+      cvName: "Votre nom complet",
+      cvContact: "Ligne de contact", cvContactS: "Ville · téléphone · e-mail — tels qu'ils apparaîtront sur le CV", cvContactP: "Boston, MA · (555) 000-0000 · nom@mail.com",
+      cvExp: "Vos expériences", cvExpS: "Une ligne par emploi : Poste — Employeur, Ville — Années", cvExpP: "Infirmière — Hôpital Sainte-Croix, Léogâne — 2019-2023",
+      cvEdu: "Études et formations", cvEduP: "Diplôme d'infirmière — École Nationale des Infirmières — 2018",
+      cvSkills: "Langues et outils", cvSkillsP: "Créole (natif) · Français · Anglais (intermédiaire) · Excel",
+      cvAch: "Réalisations et chiffres prouvables", cvAchS: "Ex. : j'ai formé 6 nouvelles infirmières ; je gérais 30 patients par jour",
+      cvLang: "Dans quelle langue le CV doit-il sortir ?",
+      cvGo: "📄 Créer mon CV", cvGen: "Construction de votre CV… (30-60 secondes)",
+      cvDone: "Voici votre CV ! Remplacez les [crochets], puis imprimez-le en PDF.",
+      cvNeed: "Indiquez au moins votre nom et vos expériences.",
+      cvNeedPro: "Le CV est une fonction Pro (9,99 $). Saisissez votre code Pro dans le formulaire principal — ou achetez un code sur atmart.ltd.",
+      cvPrint: "🖨 Imprimer / PDF", cvCopy: "📋 Copier le texte", cvClose: "✖ Fermer",
     },
     en: {
       lang: "🌍 Choose your language",
@@ -314,12 +394,12 @@ document.documentElement.lang=sel.value;});})();
       goal: "6. Your goal for the next 1–3 years?", goalP: "E.g.: a better job, start my business, learn a trade…",
       age: "7. Your age range? (optional)", age0: "Prefer not to say",
       jd: "8. Paste the job description (if you have it)", jdS: "So we can best predict your interview questions", jdP: "Paste the job posting text here (optional)…",
-      pc: "⭐ Interview360 Pro code (if you bought one)", pcS: "With a code: the FULL kit — 8-12 questions WITH answers, deck, 90-day plan", pcB: "No code yet? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Get Pro — $9.99</a>", proGen: "Preparing your Pro kit… (60–90 seconds — it is long, it is worth it)", proInvalid: "This code is invalid or used up. Check it, or get a code on atmart.ltd.",
+      pc: "⭐ Interview360 Pro code (if you bought one)", pcS: "With a code: the FULL kit — 8-12 questions WITH answers, deck, 90-day plan + competency résumé", pcB: "No code yet? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Get Pro — $9.99</a>", proGen: "Preparing your Pro kit… (60–90 seconds — it is long, it is worth it)", proInvalid: "This code is invalid or used up. Check it, or get a code on atmart.ltd.",
       go: "🧭 Get my SWOT360",
       phTxt: "Your SWOT360 result will appear here.<br />Answer the 6 questions and click “Get my SWOT360”.<br /><span style=\"color:#2ec4b6\">🎙 New: then practice your interview questions out loud — the coach gives you feedback.</span>",
       share: "💬 Share on WhatsApp", print: "🖨 Print / PDF", copy: "📋 Copy",
       cta1: '📚 <strong>Your next step:</strong> read the free lesson — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.en.html">Management &amp; career in the AI era</a> — to go deeper on each axis.',
-      cta2: '🚀 <strong>Interview360 Pro</strong> — <s>$29</s> <strong>$9.99</strong> (one-time): the questions they will ask YOU with answers built on YOUR proof, PDF report, «Present yourself» deck, 90-day plan. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Get Pro</a>',
+      cta2: '🚀 <strong>Interview360 Pro</strong> — <s>$29</s> <strong>$9.99</strong> (one-time): the questions they will ask YOU with answers built on YOUR proof, PDF report, «Present yourself» deck, 90-day plan + competency résumé. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Get Pro</a>',
       waTxt: "I just did my Interview360 on Lojik360 — 6 questions, 2 minutes, free. Do yours: https://360.atmart.ltd/entevyou.html",
       card: "🖼 Download my SWOT card", cardCta: "Do yours too:",
       gen: "Preparing your SWOT360… (15–30 seconds)", done: "Here is your result! Read it, print it, share it.",
@@ -339,6 +419,20 @@ document.documentElement.lang=sel.value;});})();
       vwaNoQ: "Get your SWOT360 first — the practice questions come from it.",
       vwaLimit: "Today's voice quota is used up — come back tomorrow! 🙂",
       vwaNote: "",
+      cvBtn: "📄 Competency résumé (Pro)", cvTitle: "📄 Your competency-first résumé",
+      cvIntro: "A résumé that shows what you can DO, with proof — a format recruiters and ATS software read easily. Nothing you type here is stored. Each résumé = 1 generation on your Pro code. Replace the [brackets] before sending.",
+      cvName: "Your full name",
+      cvContact: "Contact line", cvContactS: "City · phone · email — exactly as it should appear on the résumé", cvContactP: "Boston, MA · (555) 000-0000 · name@mail.com",
+      cvExp: "Your work experience", cvExpS: "One line per job: Title — Employer, City — Years", cvExpP: "Nurse — Sainte-Croix Hospital, Léogâne — 2019-2023",
+      cvEdu: "Education & training", cvEduP: "Nursing diploma — École Nationale des Infirmières — 2018",
+      cvSkills: "Languages & tools", cvSkillsP: "Haitian Creole (native) · French · English (intermediate) · Excel",
+      cvAch: "Achievements & numbers you can prove", cvAchS: "E.g.: I trained 6 new nurses; I managed 30 patients a day",
+      cvLang: "Which language should the résumé be in?",
+      cvGo: "📄 Build my résumé", cvGen: "Building your résumé… (30-60 seconds)",
+      cvDone: "Here is your résumé! Replace the [brackets], then print it as PDF.",
+      cvNeed: "Enter at least your name and your work experience.",
+      cvNeedPro: "The résumé is a Pro feature ($9.99). Enter your Pro code in the main form — or get a code on atmart.ltd.",
+      cvPrint: "🖨 Print / PDF", cvCopy: "📋 Copy the text", cvClose: "✖ Close",
     },
     es: {
       lang: "🌍 Elige tu idioma",
@@ -351,12 +445,12 @@ document.documentElement.lang=sel.value;});})();
       goal: "6. ¿Tu objetivo para los próximos 1–3 años?", goalP: "Ej.: un mejor empleo, montar mi negocio, aprender un oficio…",
       age: "7. ¿Tu rango de edad? (opcional)", age0: "Prefiero no decir",
       jd: "8. Pega la descripción del puesto (si la tienes)", jdS: "Para predecir mejor las preguntas de tu entrevista", jdP: "Pega el texto del anuncio aquí (opcional)…",
-      pc: "⭐ Código Interview360 Pro (si lo compraste)", pcS: "Con un código: el kit COMPLETO — 8-12 preguntas CON respuestas, deck, plan de 90 días", pcB: "¿Sin código aún? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Compra Pro — $9.99</a>", proGen: "Preparando tu kit Pro… (60–90 segundos — es largo, lo vale)", proInvalid: "Este código es inválido o agotado. Verifícalo, o compra un código en atmart.ltd.",
+      pc: "⭐ Código Interview360 Pro (si lo compraste)", pcS: "Con un código: el kit COMPLETO — 8-12 preguntas CON respuestas, deck, plan de 90 días + CV por competencias", pcB: "¿Sin código aún? <a href=\"https://atmart.ltd/#entevyou360\" style=\"color:#2ec4b6\">Compra Pro — $9.99</a>", proGen: "Preparando tu kit Pro… (60–90 segundos — es largo, lo vale)", proInvalid: "Este código es inválido o agotado. Verifícalo, o compra un código en atmart.ltd.",
       go: "🧭 Hacer mi SWOT360",
       phTxt: "Tu resultado SWOT360 aparecerá aquí.<br />Responde las 6 preguntas y haz clic en «Hacer mi SWOT360».<br /><span style=\"color:#2ec4b6\">🎙 Nuevo: luego practica las preguntas de entrevista en voz alta — el coach te da su retroalimentación.</span>",
       share: "💬 Compartir en WhatsApp", print: "🖨 Imprimir / PDF", copy: "📋 Copiar",
       cta1: '📚 <strong>Tu próximo paso:</strong> lee la lección gratuita — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.en.html">Management &amp; career in the AI era</a> — para profundizar cada eje.',
-      cta2: '🚀 <strong>Interview360 Pro</strong> — <s>$29</s> <strong>$9.99</strong> (pago único): las preguntas que te harán A TI con respuestas basadas en TUS pruebas, informe PDF, deck «Preséntate», plan de 90 días. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Obtener Pro</a>',
+      cta2: '🚀 <strong>Interview360 Pro</strong> — <s>$29</s> <strong>$9.99</strong> (pago único): las preguntas que te harán A TI con respuestas basadas en TUS pruebas, informe PDF, deck «Preséntate», plan de 90 días + CV por competencias. <a href="mailto:sales@atmart.ltd?subject=Interview360%20Pro%20(9.99%20USD)">Obtener Pro</a>',
       waTxt: "Acabo de hacer mi Interview360 en Lojik360 — 6 preguntas, 2 minutos, gratis. Haz el tuyo: https://360.atmart.ltd/entevyou.html",
       card: "🖼 Descargar mi tarjeta SWOT", cardCta: "Haz el tuyo:",
       gen: "Preparando tu SWOT360… (15–30 segundos)", done: "¡Aquí está tu resultado! Léelo, imprímelo, compártelo.",
@@ -376,6 +470,20 @@ document.documentElement.lang=sel.value;});})();
       vwaNoQ: "Haz primero tu SWOT360 — las preguntas de práctica salen de él.",
       vwaLimit: "Cuota de voz de hoy agotada — ¡vuelve mañana! 🙂",
       vwaNote: "",
+      cvBtn: "📄 CV por competencias (Pro)", cvTitle: "📄 Tu CV por competencias",
+      cvIntro: "Un CV que muestra lo que sabes HACER, con pruebas — un formato que reclutadores y sistemas ATS leen fácilmente. Nada de lo que escribas aquí se guarda. Cada CV = 1 generación de tu código Pro. Reemplaza los [corchetes] antes de enviarlo.",
+      cvName: "Tu nombre completo",
+      cvContact: "Línea de contacto", cvContactS: "Ciudad · teléfono · correo — tal como aparecerá en el CV", cvContactP: "Boston, MA · (555) 000-0000 · nombre@mail.com",
+      cvExp: "Tus experiencias", cvExpS: "Una línea por empleo: Puesto — Empresa, Ciudad — Años", cvExpP: "Enfermera — Hospital Sainte-Croix, Léogâne — 2019-2023",
+      cvEdu: "Estudios y formación", cvEduP: "Diploma de enfermería — École Nationale des Infirmières — 2018",
+      cvSkills: "Idiomas y herramientas", cvSkillsP: "Criollo (nativo) · Francés · Inglés (intermedio) · Excel",
+      cvAch: "Logros y cifras que puedes probar", cvAchS: "Ej.: formé a 6 nuevas enfermeras; atendía 30 pacientes al día",
+      cvLang: "¿En qué idioma debe salir el CV?",
+      cvGo: "📄 Crear mi CV", cvGen: "Construyendo tu CV… (30-60 segundos)",
+      cvDone: "¡Aquí está tu CV! Reemplaza los [corchetes] y luego imprímelo en PDF.",
+      cvNeed: "Escribe al menos tu nombre y tus experiencias.",
+      cvNeedPro: "El CV es una función Pro ($9.99). Escribe tu código Pro en el formulario principal — o compra un código en atmart.ltd.",
+      cvPrint: "🖨 Imprimir / PDF", cvCopy: "📋 Copiar el texto", cvClose: "✖ Cerrar",
     },
   };
   var MSG = L.ht;
@@ -419,6 +527,7 @@ document.documentElement.lang=sel.value;});})();
     document.getElementById("sw-copy").textContent = T.copy;
     cta.innerHTML = "<p>" + T.cta1 + "</p><p style=\"margin-top:0.4rem\">" + T.cta2 + "</p>";
     vwSyncLang(T);
+    cvSyncLang(T);
   }
   function siteLang() {
     var l = (localStorage.getItem("atmart_lang") || document.documentElement.lang || "fr").slice(0, 2);
@@ -435,7 +544,8 @@ document.documentElement.lang=sel.value;});})();
     for(var i=0;i<lines.length;i++){
       var l=esc(lines[i].trim()),m;
       if(!l){if(inUl){html.push("</ul>");inUl=false;}continue;}
-      if((m=l.match(/^##\s+(.*)/))){if(inUl){html.push("</ul>");inUl=false;}html.push("<h3>"+inline(m[1])+"</h3>");}
+      if((m=l.match(/^###\s+(.*)/))){if(inUl){html.push("</ul>");inUl=false;}html.push("<h4>"+inline(m[1])+"</h4>");}
+      else if((m=l.match(/^##\s+(.*)/))){if(inUl){html.push("</ul>");inUl=false;}html.push("<h3>"+inline(m[1])+"</h3>");}
       else if((m=l.match(/^#\s+(.*)/))){if(inUl){html.push("</ul>");inUl=false;}html.push("<h2>"+inline(m[1])+"</h2>");}
       else if((m=l.match(/^[-•]\s+(.*)/))){if(!inUl){html.push("<ul>");inUl=true;}html.push("<li>"+inline(m[1])+"</li>");}
       else{if(inUl){html.push("</ul>");inUl=false;}html.push("<p>"+inline(l)+"</p>");}
@@ -796,6 +906,107 @@ document.documentElement.lang=sel.value;});})();
     if (vwLast) { vwReset(); status.textContent = MSG.vwaDone; return; }
     vwIdx++;
     vwShow();
+  });
+
+  // ---- CV pa konpetans (Pro) : fòm konplemantè + rann dokiman enprimabl ----
+  var cvPanel = document.getElementById("cv-panel");
+  var cvOut = document.getElementById("cv-out");
+  var cvStatusEl = document.getElementById("cv-status");
+  var cvGoB = document.getElementById("cv-go");
+  var cvPrintB = document.getElementById("cv-print");
+  var cvCopyB = document.getElementById("cv-copy");
+  var lastCv = "", cvBusy = false;
+
+  function cvSyncLang(T) {
+    var $ = function (id) { return document.getElementById(id); };
+    if (!$("cv-panel")) return;
+    $("sw-cv").textContent = T.cvBtn;
+    $("cv-title").textContent = T.cvTitle;
+    $("cv-intro").textContent = T.cvIntro;
+    setLabel("Lcv-name", T.cvName);
+    setLabel("Lcv-contact", T.cvContact, T.cvContactS);
+    $("cv-contact").placeholder = T.cvContactP;
+    setLabel("Lcv-exp", T.cvExp, T.cvExpS);
+    $("cv-exp").placeholder = T.cvExpP;
+    setLabel("Lcv-edu", T.cvEdu);
+    $("cv-edu").placeholder = T.cvEduP;
+    setLabel("Lcv-skills", T.cvSkills);
+    $("cv-skills").placeholder = T.cvSkillsP;
+    setLabel("Lcv-ach", T.cvAch, T.cvAchS);
+    setLabel("Lcv-lang", T.cvLang);
+    $("cv-go").textContent = T.cvGo;
+    $("cv-print").textContent = T.cvPrint;
+    $("cv-copy").textContent = T.cvCopy;
+    $("cv-close").textContent = T.cvClose;
+  }
+  function cvStatus(html) { cvStatusEl.innerHTML = html || ""; }
+
+  document.getElementById("sw-cv").addEventListener("click", function () {
+    var open = cvPanel.style.display === "none";
+    cvPanel.style.display = open ? "" : "none";
+    if (open) cvPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  document.getElementById("cv-close").addEventListener("click", function () {
+    cvPanel.style.display = "none";
+  });
+
+  cvGoB.addEventListener("click", function () {
+    if (cvBusy) return;
+    var name = document.getElementById("cv-name").value.trim();
+    var exp = document.getElementById("cv-exp").value.trim();
+    if (name.length < 2 || exp.length < 10) { cvStatus(MSG.cvNeed); return; }
+    var proCode = document.getElementById("sw-procode").value.trim();
+    if (!proCode) { cvStatus(MSG.cvNeedPro); return; }
+    cvBusy = true; cvGoB.disabled = true;
+    cvStatus('<span class="sw-spin"></span>' + MSG.cvGen);
+    fetch(ENDPOINT, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "cv", proCode: proCode,
+        language: siteLang(),
+        cvLang: document.getElementById("cv-lang").value,
+        name: name,
+        contact: document.getElementById("cv-contact").value.trim(),
+        experiences: exp,
+        education: document.getElementById("cv-edu").value.trim(),
+        skills: document.getElementById("cv-skills").value.trim(),
+        achievements: document.getElementById("cv-ach").value.trim(),
+        work: document.getElementById("sw-work").value.trim(),
+        tasks: document.getElementById("sw-tasks").value.trim(),
+        strength: document.getElementById("sw-strength").value.trim(),
+        goal: document.getElementById("sw-goal").value.trim(),
+        jobDesc: document.getElementById("sw-jobdesc").value.trim(),
+      }),
+    })
+      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+      .then(function (res) {
+        cvBusy = false; cvGoB.disabled = false;
+        if (res.ok && res.body && res.body.cv) {
+          lastCv = res.body.cv;
+          cvOut.innerHTML = render(lastCv);
+          cvOut.style.display = "block";
+          cvPrintB.style.display = ""; cvCopyB.style.display = "";
+          cvStatus(MSG.cvDone);
+          cvOut.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          var ec = res.body && res.body.error;
+          cvStatus(ec === "pro_invalid" ? MSG.proInvalid : ec === "rate_limited" ? MSG.limit : MSG.err);
+        }
+      })
+      .catch(function () { cvBusy = false; cvGoB.disabled = false; cvStatus(MSG.offline); });
+  });
+
+  cvPrintB.addEventListener("click", function () {
+    if (!lastCv) return;
+    document.body.classList.add("print-cv");
+    var done = function () { document.body.classList.remove("print-cv"); window.removeEventListener("afterprint", done); };
+    window.addEventListener("afterprint", done);
+    window.print();
+    setTimeout(done, 2000);
+  });
+  cvCopyB.addEventListener("click", function () {
+    if (!lastCv) return;
+    navigator.clipboard.writeText(lastCv).then(function () { cvStatus(MSG.copied); });
   });
 
   form.addEventListener("submit", function (e) {
