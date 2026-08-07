@@ -168,6 +168,8 @@ d.lang=l||"ht";})();
 
         <label for="sw-jobdesc" id="L-jobdesc">8. Kole deskripsyon pòs la (si ou genyen l)<small>Pou n ka devine kesyon entèvyou yo pi byen</small></label>
         <textarea id="sw-jobdesc" maxlength="3500" style="min-height:80px" placeholder="Kole tèks anons travay la isit la (opsyonèl)…"></textarea>
+        <p style="margin:0.4rem 0 0"><button type="button" id="sw-jdbtn" style="background:none;border:1px dashed rgba(46,196,182,0.6);color:#2ec4b6;border-radius:8px;padding:0.35rem 0.7rem;font:inherit;font-size:0.82rem;cursor:pointer">📎 Oswa voye yon foto / PDF anons lan</button></p>
+        <input type="file" id="sw-jdfile" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,application/pdf,image/png,image/jpeg,image/webp,text/plain" style="display:none" />
 
         <div style="margin-top:1rem;padding-top:0.9rem;border-top:1px dashed rgba(46,196,182,0.5)">
           <label for="sw-procode" id="L-procode">⭐ Kòd Interview360 Pro (si ou achte l)<small>Ak yon kòd, w ap jwenn TOUT kit la : 8-12 kesyon AK repons yo, deck, plan 90 jou + CV pa konpetans</small></label>
@@ -331,6 +333,11 @@ document.documentElement.lang=sel.value;});})();
       cvNeed: "Mete omwen non ou ak eksperyans ou yo.",
       cvNeedPro: "CV a se yon fonksyon Pro (9,99 $). Mete kòd Pro ou nan fòm prensipal la — oswa achte yon kòd sou atmart.ltd.",
       cvPrint: "🖨 Enprime / PDF", cvCopy: "📋 Kopye tèks la", cvClose: "✖ Fèmen",
+      jdUp: "📎 Oswa voye yon foto / PDF anons lan",
+      jdReading: "N ap li anons lan…",
+      jdOk: "Anons lan li ! Tèks la nan bwat la — verifye l anvan ou kontinye.",
+      jdErr: "Nou pa t ka li fichye a. Eseye yon foto pi klè, oswa kole tèks la ou menm.",
+      jdBig: "Fichye a twò lou (maks 4 Mo). Pran yon foto pi lejè.",
     },
     fr: {
       lang: "🌍 Choisissez votre langue",
@@ -382,6 +389,11 @@ document.documentElement.lang=sel.value;});})();
       cvNeed: "Indiquez au moins votre nom et vos expériences.",
       cvNeedPro: "Le CV est une fonction Pro (9,99 $). Saisissez votre code Pro dans le formulaire principal — ou achetez un code sur atmart.ltd.",
       cvPrint: "🖨 Imprimer / PDF", cvCopy: "📋 Copier le texte", cvClose: "✖ Fermer",
+      jdUp: "📎 Ou joignez une photo / un PDF de l'annonce",
+      jdReading: "Lecture de l'annonce…",
+      jdOk: "Annonce lue ! Le texte est dans la zone — vérifiez-le avant de continuer.",
+      jdErr: "Impossible de lire le fichier. Essayez une photo plus nette, ou collez le texte vous-même.",
+      jdBig: "Fichier trop lourd (max 4 Mo). Prenez une photo plus légère.",
     },
     en: {
       lang: "🌍 Choose your language",
@@ -433,6 +445,11 @@ document.documentElement.lang=sel.value;});})();
       cvNeed: "Enter at least your name and your work experience.",
       cvNeedPro: "The résumé is a Pro feature ($9.99). Enter your Pro code in the main form — or get a code on atmart.ltd.",
       cvPrint: "🖨 Print / PDF", cvCopy: "📋 Copy the text", cvClose: "✖ Close",
+      jdUp: "📎 Or attach a photo / PDF of the job posting",
+      jdReading: "Reading the job posting…",
+      jdOk: "Job posting read! The text is in the box — check it before you continue.",
+      jdErr: "Couldn't read the file. Try a clearer photo, or paste the text yourself.",
+      jdBig: "File too large (max 4 MB). Take a lighter photo.",
     },
     es: {
       lang: "🌍 Elige tu idioma",
@@ -484,6 +501,11 @@ document.documentElement.lang=sel.value;});})();
       cvNeed: "Escribe al menos tu nombre y tus experiencias.",
       cvNeedPro: "El CV es una función Pro ($9.99). Escribe tu código Pro en el formulario principal — o compra un código en atmart.ltd.",
       cvPrint: "🖨 Imprimir / PDF", cvCopy: "📋 Copiar el texto", cvClose: "✖ Cerrar",
+      jdUp: "📎 O adjunta una foto / PDF del anuncio",
+      jdReading: "Leyendo el anuncio…",
+      jdOk: "¡Anuncio leído! El texto está en el cuadro — revísalo antes de continuar.",
+      jdErr: "No se pudo leer el archivo. Prueba una foto más clara, o pega el texto tú mismo.",
+      jdBig: "Archivo demasiado pesado (máx. 4 MB). Toma una foto más ligera.",
     },
   };
   var MSG = L.ht;
@@ -526,6 +548,8 @@ document.documentElement.lang=sel.value;});})();
     document.getElementById("sw-print").textContent = T.print;
     document.getElementById("sw-copy").textContent = T.copy;
     cta.innerHTML = "<p>" + T.cta1 + "</p><p style=\"margin-top:0.4rem\">" + T.cta2 + "</p>";
+    var jb = document.getElementById("sw-jdbtn");
+    if (jb && T.jdUp) jb.textContent = T.jdUp;
     vwSyncLang(T);
     cvSyncLang(T);
   }
@@ -906,6 +930,49 @@ document.documentElement.lang=sel.value;});})();
     if (vwLast) { vwReset(); status.textContent = MSG.vwaDone; return; }
     vwIdx++;
     vwShow();
+  });
+
+  // ---- anons jointe (foto / PDF) → tèks nan bwat jobDesc la ----
+  var jdBtn = document.getElementById("sw-jdbtn");
+  var jdFile = document.getElementById("sw-jdfile");
+  var JD_TYPES = { "application/pdf": 1, "image/png": 1, "image/jpeg": 1, "image/webp": 1 };
+  jdBtn.addEventListener("click", function () { jdFile.click(); });
+  jdFile.addEventListener("change", function () {
+    var f = jdFile.files && jdFile.files[0];
+    jdFile.value = "";
+    if (!f) return;
+    var jdTa = document.getElementById("sw-jobdesc");
+    if (f.type === "text/plain" || /\.txt$/i.test(f.name)) {
+      var tr = new FileReader();
+      tr.onload = function () { jdTa.value = String(tr.result).slice(0, 3500); status.textContent = MSG.jdOk; };
+      tr.readAsText(f);
+      return;
+    }
+    var mt = f.type || (/\.pdf$/i.test(f.name) ? "application/pdf" : /\.(jpe?g)$/i.test(f.name) ? "image/jpeg" : /\.png$/i.test(f.name) ? "image/png" : /\.webp$/i.test(f.name) ? "image/webp" : "");
+    if (!JD_TYPES[mt]) { status.textContent = MSG.jdErr; return; }
+    if (f.size > 4.5 * 1024 * 1024) { status.textContent = MSG.jdBig; return; }
+    status.innerHTML = '<span class="sw-spin"></span>' + MSG.jdReading;
+    var fr = new FileReader();
+    fr.onload = function () {
+      var b64 = String(fr.result).split(",")[1] || "";
+      fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "jd", file: b64, mediaType: mt }) })
+        .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+        .then(function (res) {
+          if (res.ok && res.body && res.body.text) {
+            jdTa.value = res.body.text.slice(0, 3500);
+            status.textContent = MSG.jdOk;
+            jdTa.scrollIntoView({ behavior: "smooth", block: "center" });
+          } else if (res.body && res.body.error === "file_too_large") {
+            status.textContent = MSG.jdBig;
+          } else if (res.body && res.body.error === "rate_limited") {
+            status.textContent = MSG.limit;
+          } else {
+            status.textContent = MSG.jdErr;
+          }
+        })
+        .catch(function () { status.textContent = MSG.offline; });
+    };
+    fr.readAsDataURL(f);
   });
 
   // ---- CV pa konpetans (Pro) : fòm konplemantè + rann dokiman enprimabl ----
