@@ -6,6 +6,10 @@
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />
   <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="canonical" href="https://360.atmart.ltd/karye.html" />
+  <meta property="og:url" content="https://360.atmart.ltd/karye.html" />
+  <meta property="og:image" content="https://360.atmart.ltd/assets/brand/icon-360-512.png" />
+  <meta name="twitter:card" content="summary" />
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
   <title>Career360 — votre coach de carrière à l'ère de l'IA | Suite 360</title>
   <meta name="description" content="Career360 : le coach de carrière par abonnement de la Suite 360 — il vous accompagne dans votre nouveau poste, votre recherche d'emploi et votre progression, en kreyòl, français, anglais ou espagnol. Dossier anonyme par code, effaçable à tout moment." />
@@ -153,13 +157,13 @@ if(l!=="fr"){d.className+=" i18n-wait";setTimeout(function(){d.classList.remove(
 
 <footer>
   <div class="container">
-    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>
+    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:#9db2c7" id="f-legal">Kondisyon · Konfidansyalite · Ranbousman</a> · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>
   </div>
 </footer>
 
 <script>
-(function(){var BY={ht:"pa Atmart",fr:"par Atmart",en:"by Atmart",es:"por Atmart"};
-function by(){var el=document.getElementById("s360-by");if(el){var l=document.documentElement.lang;el.textContent=BY[l]||BY.ht;}}
+(function(){var BY={ht:"pa Atmart",fr:"par Atmart",en:"by Atmart",es:"por Atmart"},LEG={ht:"Kondisyon · Konfidansyalite · Ranbousman",fr:"Conditions · Confidentialité · Remboursements",en:"Terms · Privacy · Refunds",es:"Términos · Privacidad · Reembolsos"};
+function by(){var l=document.documentElement.lang;var el=document.getElementById("s360-by");if(el){el.textContent=BY[l]||BY.ht;}var fl=document.getElementById("f-legal");if(fl){fl.textContent=LEG[l]||LEG.ht;}}
 var sel=document.getElementById("s360-lang");if(sel){sel.value=document.documentElement.lang||"ht";
 sel.addEventListener("change",function(){try{localStorage.setItem("atmart_lang",sel.value)}catch(e){}
 document.documentElement.lang=sel.value;});}

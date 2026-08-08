@@ -76,7 +76,7 @@ d.lang=l||"ht";})();
 
 <footer>
   <div class="container">
-    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>
+    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:#9db2c7" id="f-legal">Kondisyon · Konfidansyalite · Ranbousman</a> · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>
   </div>
 </footer>
 
@@ -137,9 +137,12 @@ d.lang=l||"ht";})();
   function T() { return L[lang()]; }
 
   var BY = { ht: "pa Atmart", fr: "par Atmart", en: "by Atmart", es: "por Atmart" };
+  var LEG = { ht: "Kondisyon · Konfidansyalite · Ranbousman", fr: "Conditions · Confidentialité · Remboursements", en: "Terms · Privacy · Refunds", es: "Términos · Privacidad · Reembolsos" };
   function byline() {
     var el = document.getElementById("s360-by");
     if (el) el.textContent = BY[lang()] || BY.ht;
+    var fl = document.getElementById("f-legal");
+    if (fl) fl.textContent = LEG[lang()] || LEG.ht;
   }
   var sel = document.getElementById("s360-lang");
   sel.value = document.documentElement.lang || "ht";

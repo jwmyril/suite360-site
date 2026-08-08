@@ -39,12 +39,12 @@ def header(active):
             '      </select>\n    </div>\n  </nav>\n</header>')
 
 FOOTER = ('<footer>\n  <div class="container">\n'
-          '    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · '
+          '    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:#9db2c7" id="f-legal">Kondisyon · Konfidansyalite · Ranbousman</a> · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · '
           '<a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>\n  </div>\n</footer>')
 
 SWITCHER = '''<script>
-(function(){var BY={ht:"pa Atmart",fr:"par Atmart",en:"by Atmart",es:"por Atmart"};
-function by(){var el=document.getElementById("s360-by");if(el){var l=document.documentElement.lang;el.textContent=BY[l]||BY.ht;}}
+(function(){var BY={ht:"pa Atmart",fr:"par Atmart",en:"by Atmart",es:"por Atmart"},LEG={ht:"Kondisyon · Konfidansyalite · Ranbousman",fr:"Conditions · Confidentialité · Remboursements",en:"Terms · Privacy · Refunds",es:"Términos · Privacidad · Reembolsos"};
+function by(){var l=document.documentElement.lang;var el=document.getElementById("s360-by");if(el){el.textContent=BY[l]||BY.ht;}var fl=document.getElementById("f-legal");if(fl){fl.textContent=LEG[l]||LEG.ht;}}
 var sel=document.getElementById("s360-lang");if(sel){sel.value=document.documentElement.lang||"ht";
 sel.addEventListener("change",function(){try{localStorage.setItem("atmart_lang",sel.value)}catch(e){}
 document.documentElement.lang=sel.value;});}
@@ -78,6 +78,10 @@ s = s.replace('<link rel="stylesheet" href="assets/style.css?v=1" />',
 s = s.replace('<link rel="icon" type="image/png" href="assets/brand/logo-32.png" />',
               '<link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />\n'
               '  <link rel="manifest" href="manifest.webmanifest" />\n'
+              '  <link rel="canonical" href="https://360.atmart.ltd/entevyou.html" />\n'
+              '  <meta property="og:url" content="https://360.atmart.ltd/entevyou.html" />\n'
+              '  <meta property="og:image" content="https://360.atmart.ltd/assets/brand/icon-360-512.png" />\n'
+              '  <meta name="twitter:card" content="summary" />\n'
               '  <meta name="theme-color" content="#0e2240" />')
 s = s.replace("</body>", '<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>\n</body>')
 io.open(DST, "w", encoding="utf-8", newline="").write(s)

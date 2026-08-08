@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /mesi.html
+
+Sitemap: https://360.atmart.ltd/sitemap.xml

@@ -6,6 +6,10 @@
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />
   <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="canonical" href="https://360.atmart.ltd/entevyou.html" />
+  <meta property="og:url" content="https://360.atmart.ltd/entevyou.html" />
+  <meta property="og:image" content="https://360.atmart.ltd/assets/brand/icon-360-512.png" />
+  <meta name="twitter:card" content="summary" />
   <meta name="theme-color" content="#0e2240" />
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
   <title>Interview360 — vin pare pou entèvyou travay ou | Suite 360</title>
@@ -96,6 +100,8 @@ d.lang=l||"ht";})();
     .cv-out h4{font-size:0.95rem;color:#111;margin:0.7rem 0 0.25rem}
     .cv-out p,.cv-out li{font-size:0.9rem;line-height:1.55;color:#222}
     .cv-out ul{padding-left:1.15rem;margin:0.2rem 0 0.5rem}
+    .sw-step{color:#2ec4b6;font-size:0.76rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:1.2rem 0 0.1rem;padding-top:0.9rem;border-top:1px dashed rgba(255,255,255,0.12)}
+    .sw-step.first{margin-top:0;padding-top:0;border-top:none}
     /* ---- eksplikasyon « kisa yon SWOT ye » ---- */
     .sw-what{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:0.9rem 1.1rem;margin:0 0 1.3rem}
     .sw-what summary{cursor:pointer;color:#fff;font-weight:600;font-size:0.95rem}
@@ -144,15 +150,21 @@ d.lang=l||"ht";})();
       <p id="sw-what-p1">SWOT se yon foto klè de pwofil ou, an 4 pati : <strong>💪 Fòs</strong> (sa ou fè byen — ak prèv), <strong>⚠️ Feblès</strong> (sa ki pi difisil pou ou, pou w travay sou li), <strong>🚪 Opòtinite</strong> (pòt ki louvri pou ou nan mache travay la), <strong>⛈ Menas</strong> (sa k ka bare wout ou, tankou tach IA ka fè pi vit). Se menm metòd gwo antrepriz yo sèvi pou analize tèt yo — isit la, nou aplike l sou karyè PA OU.</p>
       <p id="sw-what-p2">Anvan yon entèvyou, sa ede w konnen sa pou w mete devan, ki kesyon k ap vini, ak ki plan ou genyen. <strong>🎙 Epi mòd pratik ak vwa a GRATIS pou tout moun.</strong></p>
     </details>
+    <details class="sw-what" id="sw-egz">
+      <summary id="sw-egz-t">👀 Gade yon ti egzanp rezilta (30 segonn)</summary>
+      <div id="sw-egz-b"></div>
+    </details>
     <div class="sw-app">
 
       <form class="sw-form" id="sw-form">
+        <p class="sw-step first" id="st-1">Etap 1 sou 3 — Travay ou</p>
         <label for="sw-work" id="L-work">1. Ki travay w ap fè kounye a ?<small>oswa : etidyan, san travay…</small></label>
         <input type="text" id="sw-work" maxlength="140" required placeholder="Ex. : enfimyè, chofè, pwofesè, komèsant, kontab…" />
 
         <label for="sw-tasks" id="L-tasks">2. Ki 3 bagay ou fè pi souvan nan travay la ?</label>
         <textarea id="sw-tasks" maxlength="400" required placeholder="Ex. : m pran swen pasyan, m ranpli fòm rapò, m reponn fanmi yo…"></textarea>
 
+        <p class="sw-step" id="st-2">Etap 2 sou 3 — Fòs ou ak objektif ou</p>
         <label for="sw-strength" id="L-strength">3. Nan kisa ou pi fò ?</label>
         <input type="text" id="sw-strength" maxlength="250" placeholder="Ex. : moun fè m konfyans fasil ; m pa janm lage yon travay…" />
 
@@ -179,6 +191,7 @@ d.lang=l||"ht";})();
           <option value="55+">55+</option>
         </select>
 
+        <p class="sw-step" id="st-3">Etap 3 sou 3 — Anons lan (opsyonèl men li fè rezilta a pi djanm)</p>
         <label for="sw-jobdesc" id="L-jobdesc">8. Kole deskripsyon pòs la (si ou genyen l)<small>Pou n ka devine kesyon entèvyou yo pi byen</small></label>
         <textarea id="sw-jobdesc" maxlength="3500" style="min-height:80px" placeholder="Kole tèks anons travay la isit la (opsyonèl)…"></textarea>
         <p style="margin:0.4rem 0 0"><button type="button" id="sw-jdbtn" style="background:none;border:1px dashed rgba(46,196,182,0.6);color:#2ec4b6;border-radius:8px;padding:0.35rem 0.7rem;font:inherit;font-size:0.82rem;cursor:pointer">📎 Oswa voye yon foto / PDF anons lan</button></p>
@@ -263,6 +276,14 @@ d.lang=l||"ht";})();
           <p>Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style="color:#2ec4b6">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap ba w feedback. GRATIS pou tout moun.</span></p>
         </div>
         <article id="sw-out"></article>
+        <div class="sw-cta" id="sw-mail" style="display:none">
+          <p id="sw-mail-t" style="margin:0 0 0.5rem">📩 Vle w resevwa konsèy entèvyou yo pa imèl ? (opsyonèl — ou ka retire tèt ou nenpòt lè)</p>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+            <input type="email" id="sw-mail-in" maxlength="120" placeholder="imel@egzanp.com" style="flex:1;min-width:200px;background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" />
+            <button type="button" id="sw-mail-go" class="vw-btn send">📩 Enskri m</button>
+          </div>
+          <p class="sw-status" id="sw-mail-st" aria-live="polite"></p>
+        </div>
         <div class="sw-cta" id="sw-cta" style="display:none">
           <p>📚 <strong>Pwochen etap ou :</strong> li leson gratis la — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.html">Management &amp; carrière à l'ère de l'IA</a> — pou w aprofondi chak aks.</p>
           <p style="margin-top:0.4rem">🚀 <strong>SWOT360 Deep</strong> (rapò konplè : klasman tout tach ou yo + plan 90 jou) ap vini. Enskri : <a href="mailto:sales@atmart.ltd?subject=SWOT360%20Deep%20-%20liste%20d'attente">sales@atmart.ltd</a></p>
@@ -275,13 +296,13 @@ d.lang=l||"ht";})();
 
 <footer>
   <div class="container">
-    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>
+    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:#9db2c7" id="f-legal">Kondisyon · Konfidansyalite · Ranbousman</a> · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>
   </div>
 </footer>
 
 <script>
-(function(){var BY={ht:"pa Atmart",fr:"par Atmart",en:"by Atmart",es:"por Atmart"};
-function by(){var el=document.getElementById("s360-by");if(el){var l=document.documentElement.lang;el.textContent=BY[l]||BY.ht;}}
+(function(){var BY={ht:"pa Atmart",fr:"par Atmart",en:"by Atmart",es:"por Atmart"},LEG={ht:"Kondisyon · Konfidansyalite · Ranbousman",fr:"Conditions · Confidentialité · Remboursements",en:"Terms · Privacy · Refunds",es:"Términos · Privacidad · Reembolsos"};
+function by(){var l=document.documentElement.lang;var el=document.getElementById("s360-by");if(el){el.textContent=BY[l]||BY.ht;}var fl=document.getElementById("f-legal");if(fl){fl.textContent=LEG[l]||LEG.ht;}}
 var sel=document.getElementById("s360-lang");if(sel){sel.value=document.documentElement.lang||"ht";
 sel.addEventListener("change",function(){try{localStorage.setItem("atmart_lang",sel.value)}catch(e){}
 document.documentElement.lang=sel.value;});}
@@ -355,6 +376,10 @@ by();})();
       proExpired: "Kòd Pro 90 jou ou a fini. Achte yon lòt kòd pou kontinye.",
       cvOld: "Ou deja gen yon CV ? (opsyonèl)", cvOldS: "Kole l isit la — n ap sèvi ak enfòmasyon li yo epi n ap amelyore fòm lan. Reponn kesyon yo kanmenm : se yo ki mare CV a ak anons lan.", cvOldP: "Kole tout tèks ansyen CV ou a isit la…",
       cvOldUp: "📎 Oswa voye foto / PDF ansyen CV a", cvOldOk: "CV ou a li ! Verifye tèks la anvan ou kontinye.",
+      st1: "Etap 1 sou 3 — Travay ou", st2: "Etap 2 sou 3 — Fòs ou ak objektif ou", st3: "Etap 3 sou 3 — Anons lan (opsyonèl men li fè rezilta a pi djanm)",
+      egzT: "👀 Gade yon ti egzanp rezilta (30 segonn)",
+      egzB: "<p><strong>Interview360 — Enfimyè ki gen eksperyans</strong></p><p>💪 <strong>Fòs</strong> : moun fè w konfyans fasil · 4 lane eksperyans klinik<br>⚠️ <strong>Feblès</strong> : pale an piblik — ak yon plan pou travay sou li<br>🚪 <strong>Opòtinite</strong> : lopital yo ap chèche pwofil bileng<br>⛈ <strong>Menas</strong> : dosye elektwonik ap ranplase papye — aprann EHR</p><p>🎤 <strong>Egzanp kesyon rekritè a ka poze w</strong> : « Rakonte yon moman kote yon pasyan pa t fè w konfyans okòmansman — kisa ou te fè ? »</p>",
+      mailT: "📩 Vle w resevwa konsèy entèvyou yo pa imèl ? (opsyonèl — ou ka retire tèt ou nenpòt lè)", mailP: "imel@egzanp.com", mailGo: "📩 Enskri m", mailOk: "Ou enskri ! Konsèy yo ap vini tanzantan. 🙌", mailBad: "Tcheke imèl la — li pa sanble bon.",
       heroK: "Ou gen yon entèvyou ? Vin pare — 6 kesyon, 2 minit.", heroI: "💼 Rive nan entèvyou a ak fòs ou, prèv ou ak plan ou — se sa k fè diferans lan.", heroN: "Gratis · 5 SWOT pa jou · Nou pa kenbe okenn repons ou — rezilta a se pou ou sèlman.",
       heroL: "Anvan entèvyou a : konnen fòs ou, feblès ou, opòtinite yo ak menas yo. Epi 3 aks ou : 🤖 sa pou w <strong>delege</strong> bay IA, 🔍 sa pou w <strong>sipèvize</strong>, 🌱 sa pou w <strong>ranfòse</strong> — paske se sa k ap ede w devlope sa IA pa ka ranplase : jijman, kreyativite, renmen moun, rezo, lidèchip, elatriye.",
       whatT: "🧭 Kisa yon « SWOT » ye ?",
@@ -420,6 +445,10 @@ by();})();
       proExpired: "Votre code Pro 90 jours est arrivé à expiration. Achetez un nouveau code pour continuer.",
       cvOld: "Vous avez déjà un CV ? (facultatif)", cvOldS: "Collez-le ici — nous réutilisons ses informations et améliorons la forme. Répondez quand même aux questions : ce sont elles qui relient le CV à l'annonce.", cvOldP: "Collez tout le texte de votre ancien CV ici…",
       cvOldUp: "📎 Ou joignez une photo / un PDF de l'ancien CV", cvOldOk: "CV lu ! Vérifiez le texte avant de continuer.",
+      st1: "Étape 1 sur 3 — Votre travail", st2: "Étape 2 sur 3 — Vos forces et votre objectif", st3: "Étape 3 sur 3 — L'annonce (facultatif mais puissant)",
+      egzT: "👀 Voir un petit exemple de résultat (30 secondes)",
+      egzB: "<p><strong>Interview360 — Infirmière expérimentée</strong></p><p>💪 <strong>Forces</strong> : on vous fait facilement confiance · 4 ans d'expérience clinique<br>⚠️ <strong>Faiblesses</strong> : parler en public — avec un plan pour y travailler<br>🚪 <strong>Opportunités</strong> : les hôpitaux cherchent des profils bilingues<br>⛈ <strong>Menaces</strong> : le dossier électronique remplace le papier — apprendre l'EHR</p><p>🎤 <strong>Exemple de question de recruteur</strong> : « Racontez un moment où un patient ne vous faisait pas confiance au départ — qu'avez-vous fait ? »</p>",
+      mailT: "📩 Recevoir des conseils d'entretien par e-mail ? (facultatif — désinscription à tout moment)", mailP: "email@exemple.com", mailGo: "📩 M'inscrire", mailOk: "Inscrit ! Les conseils arrivent bientôt. 🙌", mailBad: "Vérifiez l'e-mail — il ne semble pas valide.",
       heroK: "Un entretien en vue ? Soyez prêt — 6 questions, 2 minutes.", heroI: "💼 Idéal aussi pour préparer un entretien d'embauche : arrivez avec vos forces, vos preuves et votre plan.", heroN: "Gratuit · 5 SWOT par jour · Aucune réponse n'est enregistrée — le résultat n'appartient qu'à vous.",
       heroL: "Avant l'entretien : connaissez vos forces, vos faiblesses, vos opportunités et vos menaces. Et vos 3 axes : 🤖 ce que vous <strong>déléguez</strong> à l'IA, 🔍 ce que vous <strong>supervisez</strong>, 🌱 ce que vous <strong>renforcez</strong> — parce que c'est ce qui vous rend humain.",
       whatT: "🧭 C'est quoi, un « SWOT » ?",
@@ -485,6 +514,10 @@ by();})();
       proExpired: "Your Pro 90-day code has expired. Get a new code to continue.",
       cvOld: "Already have a résumé? (optional)", cvOldS: "Paste it here — we reuse its facts and improve the format. Still answer the questions: they are what ties the résumé to the job posting.", cvOldP: "Paste the full text of your current résumé here…",
       cvOldUp: "📎 Or attach a photo / PDF of your current résumé", cvOldOk: "Résumé read! Check the text before you continue.",
+      st1: "Step 1 of 3 — Your work", st2: "Step 2 of 3 — Your strengths and goal", st3: "Step 3 of 3 — The job posting (optional but powerful)",
+      egzT: "👀 See a quick sample result (30 seconds)",
+      egzB: "<p><strong>Interview360 — Experienced nurse</strong></p><p>💪 <strong>Strengths</strong>: people trust you quickly · 4 years of clinical experience<br>⚠️ <strong>Weaknesses</strong>: public speaking — with a plan to work on it<br>🚪 <strong>Opportunities</strong>: hospitals are looking for bilingual profiles<br>⛈ <strong>Threats</strong>: electronic records replacing paper — learn EHR</p><p>🎤 <strong>Sample recruiter question</strong>: “Tell me about a time a patient didn't trust you at first — what did you do?”</p>",
+      mailT: "📩 Get interview tips by email? (optional — unsubscribe anytime)", mailP: "email@example.com", mailGo: "📩 Sign me up", mailOk: "Subscribed! Tips coming soon. 🙌", mailBad: "Check the email — it doesn't look valid.",
       heroK: "Got an interview? Get ready — 6 questions, 2 minutes.", heroI: "💼 Walk into the interview with your strengths, your proof and your plan — that is what makes the difference.", heroN: "Free · 5 SWOTs per day · No answer is stored — the result belongs to you alone.",
       heroL: "Before the interview: know your strengths, weaknesses, opportunities and threats. And your 3 axes: 🤖 what you <strong>delegate</strong> to AI, 🔍 what you <strong>supervise</strong>, 🌱 what you <strong>strengthen</strong> — because that is what will help you grow what AI cannot replace: judgment, creativity, people skills, networks, leadership.",
       whatT: "🧭 What is a “SWOT”?",
@@ -550,6 +583,10 @@ by();})();
       proExpired: "Tu código Pro de 90 días expiró. Compra un nuevo código para continuar.",
       cvOld: "¿Ya tienes un CV? (opcional)", cvOldS: "Pégalo aquí — reutilizamos sus datos y mejoramos el formato. Responde igualmente las preguntas: son las que conectan el CV con el anuncio.", cvOldP: "Pega aquí todo el texto de tu CV actual…",
       cvOldUp: "📎 O adjunta una foto / PDF de tu CV actual", cvOldOk: "¡CV leído! Revisa el texto antes de continuar.",
+      st1: "Paso 1 de 3 — Tu trabajo", st2: "Paso 2 de 3 — Tus fortalezas y tu objetivo", st3: "Paso 3 de 3 — El anuncio (opcional pero potente)",
+      egzT: "👀 Ver un pequeño ejemplo de resultado (30 segundos)",
+      egzB: "<p><strong>Interview360 — Enfermera con experiencia</strong></p><p>💪 <strong>Fortalezas</strong>: la gente confía rápido en ti · 4 años de experiencia clínica<br>⚠️ <strong>Debilidades</strong>: hablar en público — con un plan para trabajarlo<br>🚪 <strong>Oportunidades</strong>: los hospitales buscan perfiles bilingües<br>⛈ <strong>Amenazas</strong>: el expediente electrónico reemplaza el papel — aprender EHR</p><p>🎤 <strong>Ejemplo de pregunta del reclutador</strong>: «Cuéntame de una vez en que un paciente no confiaba en ti al principio — ¿qué hiciste?»</p>",
+      mailT: "📩 ¿Recibir consejos de entrevista por correo? (opcional — baja cuando quieras)", mailP: "correo@ejemplo.com", mailGo: "📩 Inscribirme", mailOk: "¡Inscrito! Los consejos llegan pronto. 🙌", mailBad: "Revisa el correo — no parece válido.",
       heroK: "¿Tienes una entrevista? Prepárate — 6 preguntas, 2 minutos.", heroI: "💼 Llega a la entrevista con tus fortalezas, tus pruebas y tu plan — eso marca la diferencia.", heroN: "Gratis · 5 SWOT al día · No guardamos ninguna respuesta — el resultado es solo tuyo.",
       heroL: "Antes de la entrevista: conoce tus fortalezas, debilidades, oportunidades y amenazas. Y tus 3 ejes: 🤖 lo que <strong>delegas</strong> a la IA, 🔍 lo que <strong>supervisas</strong>, 🌱 lo que <strong>refuerzas</strong> — porque eso te ayudará a desarrollar lo que la IA no puede reemplazar: juicio, creatividad, don de gentes, redes, liderazgo.",
       whatT: "🧭 ¿Qué es un «SWOT» (FODA)?",
@@ -607,6 +644,15 @@ by();})();
     var hl = document.getElementById("sw-hero-l"); if (hl) hl.innerHTML = T.heroL;
     var hi = document.getElementById("sw-hero-i"); if (hi) hi.textContent = T.heroI;
     var hn = document.getElementById("sw-hero-n"); if (hn) hn.textContent = T.heroN;
+    ["st-1","st-2","st-3"].forEach(function (sid, i) {
+      var el = document.getElementById(sid);
+      if (el) el.textContent = T["st" + (i + 1)];
+    });
+    var eg = document.getElementById("sw-egz-t"); if (eg) eg.textContent = T.egzT;
+    var eb = document.getElementById("sw-egz-b"); if (eb) eb.innerHTML = T.egzB;
+    var mt = document.getElementById("sw-mail-t"); if (mt) mt.textContent = T.mailT;
+    var mi = document.getElementById("sw-mail-in"); if (mi) mi.placeholder = T.mailP;
+    var mg = document.getElementById("sw-mail-go"); if (mg) mg.textContent = T.mailGo;
     var wt = document.getElementById("sw-what-t"), w1 = document.getElementById("sw-what-p1"), w2 = document.getElementById("sw-what-p2");
     if (wt) wt.textContent = T.whatT;
     if (w1) w1.innerHTML = T.whatP1;
@@ -1213,6 +1259,7 @@ by();})();
           vwReset();
           out.innerHTML = renderCards(lastMd);
           ph.style.display = "none"; bar.style.display = "flex"; cta.style.display = "";
+          document.getElementById("sw-mail").style.display = "";
           status.textContent = MSG.done;
           document.getElementById("sw-share").href = "https://wa.me/?text=" + encodeURIComponent(MSG.waTxt);
           out.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1225,6 +1272,24 @@ by();})();
         }
       })
       .catch(function () { go.disabled = false; status.textContent = MSG.offline; });
+  });
+
+  // inscription e-mail facultative (liste /subscribe existante)
+  document.getElementById("sw-mail-go").addEventListener("click", function () {
+    var em = document.getElementById("sw-mail-in").value.trim();
+    var st = document.getElementById("sw-mail-st");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { st.textContent = MSG.mailBad; return; }
+    st.innerHTML = '<span class="sw-spin"></span>';
+    fetch("https://atmart-chat.atmartllc.workers.dev/subscribe", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: em, lang: siteLang(), source: "swot360" }),
+    })
+      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+      .then(function (res) {
+        st.textContent = res.ok ? MSG.mailOk : (res.body && res.body.error === "invalid_email" ? MSG.mailBad : MSG.err);
+        if (res.ok) document.getElementById("sw-mail-in").value = "";
+      })
+      .catch(function () { st.textContent = MSG.offline; });
   });
 
   document.getElementById("sw-print").addEventListener("click", function () { window.print(); });
