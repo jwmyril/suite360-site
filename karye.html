@@ -66,7 +66,7 @@ if(l!=="fr"){d.className+=" i18n-wait";setTimeout(function(){d.classList.remove(
 
 <header>
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
-    <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small>pa Atmart</small></a>
+    <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small id="s360-by">pa Atmart</small></a>
     <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">
       <a href="entevyou.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Interview360</a>
       <a href="karye.html" style="color:#2ec4b6;text-decoration:none;font-size:0.9rem;font-weight:600">Career360</a>
@@ -158,11 +158,13 @@ if(l!=="fr"){d.className+=" i18n-wait";setTimeout(function(){d.classList.remove(
 </footer>
 
 <script>
-(function(){var sel=document.getElementById("s360-lang");if(!sel)return;
-sel.value=document.documentElement.lang||"ht";
-sel.addEventListener("change",function(){
-try{localStorage.setItem("atmart_lang",sel.value)}catch(e){}
-document.documentElement.lang=sel.value;});})();
+(function(){var BY={ht:"pa Atmart",fr:"par Atmart",en:"by Atmart",es:"por Atmart"};
+function by(){var el=document.getElementById("s360-by");if(el){var l=document.documentElement.lang;el.textContent=BY[l]||BY.ht;}}
+var sel=document.getElementById("s360-lang");if(sel){sel.value=document.documentElement.lang||"ht";
+sel.addEventListener("change",function(){try{localStorage.setItem("atmart_lang",sel.value)}catch(e){}
+document.documentElement.lang=sel.value;});}
+new MutationObserver(by).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
+by();})();
 </script>
 <script>
 (function () {

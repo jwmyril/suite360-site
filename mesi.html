@@ -41,7 +41,7 @@ d.lang=l||"ht";})();
 
 <header>
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
-    <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small>pa Atmart</small></a>
+    <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small id="s360-by">pa Atmart</small></a>
     <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">
       <a href="entevyou.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Interview360</a>
       <a href="karye.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Career360</a>
@@ -136,12 +136,19 @@ d.lang=l||"ht";})();
   function lang() { var l = document.documentElement.lang || "ht"; return L[l] ? l : "ht"; }
   function T() { return L[lang()]; }
 
+  var BY = { ht: "pa Atmart", fr: "par Atmart", en: "by Atmart", es: "por Atmart" };
+  function byline() {
+    var el = document.getElementById("s360-by");
+    if (el) el.textContent = BY[lang()] || BY.ht;
+  }
   var sel = document.getElementById("s360-lang");
   sel.value = document.documentElement.lang || "ht";
   sel.addEventListener("change", function () {
     try { localStorage.setItem("atmart_lang", sel.value); } catch (e) {}
     document.documentElement.lang = sel.value;
   });
+  new MutationObserver(byline).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+  byline();
 
   var state = "wait", rec = null;
   function paint() {

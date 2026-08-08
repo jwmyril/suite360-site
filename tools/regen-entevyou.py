@@ -30,7 +30,7 @@ def header(active):
             return 'style="color:#2ec4b6;text-decoration:none;font-size:0.9rem;font-weight:600"'
         return 'style="color:#eaf2fb;text-decoration:none;font-size:0.9rem"'
     return ('<header>\n  <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">\n'
-            '    <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small>pa Atmart</small></a>\n'
+            '    <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small id="s360-by">pa Atmart</small></a>\n'
             '    <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">\n'
             '      <a href="entevyou.html" ' + cls("entevyou") + '>Interview360</a>\n'
             '      <a href="karye.html" ' + cls("karye") + '>Career360</a>\n'
@@ -42,11 +42,15 @@ FOOTER = ('<footer>\n  <div class="container">\n'
           '    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · '
           '<a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>\n  </div>\n</footer>')
 
-SWITCHER = ('<script>\n(function(){var sel=document.getElementById("s360-lang");if(!sel)return;\n'
-            'sel.value=document.documentElement.lang||"ht";\n'
-            'sel.addEventListener("change",function(){\n'
-            'try{localStorage.setItem("atmart_lang",sel.value)}catch(e){}\n'
-            'document.documentElement.lang=sel.value;});})();\n</script>')
+SWITCHER = '''<script>
+(function(){var BY={ht:"pa Atmart",fr:"par Atmart",en:"by Atmart",es:"por Atmart"};
+function by(){var el=document.getElementById("s360-by");if(el){var l=document.documentElement.lang;el.textContent=BY[l]||BY.ht;}}
+var sel=document.getElementById("s360-lang");if(sel){sel.value=document.documentElement.lang||"ht";
+sel.addEventListener("change",function(){try{localStorage.setItem("atmart_lang",sel.value)}catch(e){}
+document.documentElement.lang=sel.value;});}
+new MutationObserver(by).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
+by();})();
+</script>'''
 
 def cut(s, start, end, repl):
     i = s.index(start); j = s.index(end, i) + len(end)
