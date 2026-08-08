@@ -32,7 +32,7 @@ def header(active):
     return ('<header>\n  <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">\n'
             '    <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small id="s360-by">pa Atmart</small></a>\n'
             '    <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">\n'
-            '      <a href="entevyou.html" ' + cls("entevyou") + '>Interview360</a>\n'
+            '      <a href="entevyou.html" ' + cls("entevyou") + '>Entèvyou360</a>\n'
             '      <a href="karye.html" ' + cls("karye") + '>Career360</a>\n'
             '      <select id="s360-lang" aria-label="Lang" style="background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">\n'
             '        <option value="ht">Kreyòl</option><option value="fr">Français</option><option value="en">English</option><option value="es">Español</option>\n'
@@ -57,8 +57,8 @@ def cut(s, start, end, repl):
     return s[:i] + repl + s[j:]
 
 s = io.open(SRC, encoding="utf-8").read()
-s = s.replace("<title>Interview360 — vin pare pou entèvyou travay ou | Lojik360</title>",
-              "<title>Interview360 — vin pare pou entèvyou travay ou | Suite 360</title>")
+s = s.replace("<title>Entèvyou360 — vin pare pou entèvyou travay ou | Lojik360</title>",
+              "<title>Entèvyou360 — vin pare pou entèvyou travay ou | Suite 360</title>")
 s = cut(s, "<header>", "</header>", header("entevyou"))
 s = cut(s, "<footer>", "</footer>", FOOTER)
 s = s.replace('<script src="assets/script.js"></script>\n<script src="assets/i18n.js"></script>', SWITCHER)
