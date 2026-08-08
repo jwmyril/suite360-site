@@ -21,6 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style.css?v=1" />
+  <script src="assets/atm360.js?v=2"></script>
 <script>/* lang otomatik */
 (function(){var S={fr:1,ht:1,en:1,es:1},d=document.documentElement,s=null;
 try{s=localStorage.getItem("atmart_lang")}catch(e){}
@@ -65,8 +66,8 @@ d.lang=l||"ht";})();
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
     <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small id="s360-by">pa Atmart</small></a>
     <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">
-      <a href="entevyou.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Entèvyou360</a>
-      <a href="karye.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Career360</a>
+      <a href="candidats.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem" id="nav-cand">Candidats</a>
+      <a href="organisations.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem" id="nav-org">Organisations</a>
       <select id="s360-lang" aria-label="Lang" style="background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">
         <option value="ht">Kreyòl</option><option value="fr">Français</option><option value="en">English</option><option value="es">Español</option>
       </select>
@@ -89,6 +90,27 @@ d.lang=l||"ht";})();
 </section>
 
 
+
+
+<!-- DEUX PORTES -->
+<section id="portes" style="padding-top:0.2rem;padding-bottom:0.6rem">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;max-width:840px;margin:0 auto">
+      <a href="candidats.html" style="text-decoration:none;background:rgba(46,196,182,0.09);border:1px solid rgba(46,196,182,0.5);border-radius:16px;padding:1.3rem 1.4rem;display:block">
+        <div style="font-size:1.7rem;margin-bottom:0.4rem">🙋</div>
+        <div id="dr-1t" style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;color:#fff;font-weight:700;margin-bottom:0.3rem">Je cherche un emploi</div>
+        <div id="dr-1d" style="color:#9db2c7;font-size:0.9rem;line-height:1.55">Préparez votre entretien et obtenez votre CV — gratuitement pour commencer.</div>
+        <div id="dr-1c" style="color:#2ec4b6;font-size:0.9rem;font-weight:600;margin-top:0.7rem">Commencer →</div>
+      </a>
+      <a href="organisations.html" style="text-decoration:none;background:rgba(106,159,216,0.09);border:1px solid rgba(106,159,216,0.5);border-radius:16px;padding:1.3rem 1.4rem;display:block">
+        <div style="font-size:1.7rem;margin-bottom:0.4rem">🏛</div>
+        <div id="dr-2t" style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;color:#fff;font-weight:700;margin-bottom:0.3rem">J'accompagne des chercheurs d'emploi</div>
+        <div id="dr-2d" style="color:#9db2c7;font-size:0.9rem;line-height:1.55">Organismes d'emploi, associations, collèges : pilote de 4 semaines pour 50 participants.</div>
+        <div id="dr-2c" style="color:#6a9fd8;font-size:0.9rem;font-weight:600;margin-top:0.7rem">Voir l'offre organisations →</div>
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- DEMO VIDEO -->
 <section id="demo" style="padding-top:0">
@@ -119,6 +141,7 @@ d.lang=l||"ht";})();
           <p style="margin:0;color:#d7e3f0;font-size:0.95rem">« Trained 6 new nurses on patient care protocols. »<br />« Manage daily care for 12 residents per shift, tracking vital signs. »</p>
         </div>
       </div>
+      <p style="margin:0.9rem 0 0"><a href="egzanp.html" id="pv-more" style="color:#2ec4b6;font-weight:600;font-size:0.92rem">Voir le rapport complet et le CV entier →</a></p>
       <p style="margin:0.8rem 0 0;color:#9db2c7;font-size:0.82rem" id="pv-note">Ekstrè ki soti nan yon CV zouti a te reyèlman jenere sou yon pwofil demonstrasyon (enfimyè → CNA Boston). Se pa yon kliyan — premye temwayaj reyèl yo ap vini ak lansman an.</p>
     </div>
   </div>
@@ -154,7 +177,7 @@ d.lang=l||"ht";})();
         </div>
         <div class="spacer"></div>
         <a href="entevyou.html" class="btn btn-primary" id="e-cta">🧭 Kòmanse gratis</a>
-        <p class="cta2"><a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00" id="e-buy">Achte Pro Kit — 9,99 $</a> · <a href="https://buy.stripe.com/28E8wP0Tf9Pn5B761JaEE01" id="e-buy90">Pro 90 jou — 19,99 $</a></p>
+        <p class="cta2"><a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00" id="e-buy" data-ev="buy_click_kit">Achte Pro Kit — 9,99 $</a> · <a href="https://buy.stripe.com/28E8wP0Tf9Pn5B761JaEE01" id="e-buy90" data-ev="buy_click_90">Pro 90 jou — 19,99 $</a></p>
       </div>
 
       <div class="p360 hot">
@@ -170,7 +193,7 @@ d.lang=l||"ht";})();
         </ul>
         <div class="spacer"></div>
         <a href="karye.html" class="btn btn-primary" id="k-cta">🎁 Eseye gratis pandan 7 jou</a>
-        <p class="cta2"><a href="https://buy.stripe.com/eVqbJ11Xj3qZaVr2PxaEE02" id="k-buy">Pran Solo — 14,99 $ pa mwa</a></p>
+        <p class="cta2"><a href="https://buy.stripe.com/eVqbJ11Xj3qZaVr2PxaEE02" id="k-buy" data-ev="buy_click_career">Pran Solo — 14,99 $ pa mwa</a></p>
       </div>
 
     </div>
@@ -188,7 +211,7 @@ d.lang=l||"ht";})();
 (function () {
   var L = {
     ht: {
-      kicker: "Suite 360 — pa Atmart", byline: "pa Atmart", vidT: "🎥 Gade kijan sa mache — 75 segonn", vidNote: "Videyo a an kreyòl — vèsyon FR / EN / ES ap vini.", pvTag: "👀 Anvan / Apre — sa zouti a fè ak yon vye fraz CV", pvBT: "ANVAN — ansyen CV a", pvAT: "APRE — Entèvyou360", pvNote: "Ekstrè ki soti nan yon CV zouti a te reyèlman jenere sou yon pwofil demonstrasyon (enfimyè → CNA Boston). Se pa yon kliyan — premye temwayaj reyèl yo ap vini ak lansman an.", legal: "Kondisyon · Konfidansyalite · Ranbousman",
+      kicker: "Suite 360 — pa Atmart", byline: "pa Atmart", navCand: "Kandida", navOrg: "Òganizasyon", d1t: "M ap chèche travay", d1d: "Prepare entèvyou w epi jwenn CV ou — gratis pou kòmanse.", d1c: "Kòmanse →", d2t: "M ap ede moun jwenn travay", d2d: "Òganizasyon, asosyasyon, kolèj : yon pilòt 4 semèn pou 50 patisipan.", d2c: "Gade òf òganizasyon an →", pvMore: "Gade rapò konplè a ak tout CV a →", vidT: "🎥 Gade kijan sa mache — 75 segonn", vidNote: "Videyo a an kreyòl — vèsyon FR / EN / ES ap vini.", pvTag: "👀 Anvan / Apre — sa zouti a fè ak yon vye fraz CV", pvBT: "ANVAN — ansyen CV a", pvAT: "APRE — Entèvyou360", pvNote: "Ekstrè ki soti nan yon CV zouti a te reyèlman jenere sou yon pwofil demonstrasyon (enfimyè → CNA Boston). Se pa yon kliyan — premye temwayaj reyèl yo ap vini ak lansman an.", legal: "Kondisyon · Konfidansyalite · Ranbousman",
       title: "Prepare pwochen entèvyou w — soti ak yon CV ki matche ak anons lan",
       lead: "An mwens pase 15 minit, an kreyòl, franse, anglè oswa panyòl. San kreye kont, san bay imèl — ou kòmanse, epi se sa.",
       b1: "🗣 Kreyòl · Français · English · Español", b2: "🎙 Ou ka reponn ak vwa ou", b3: "🔒 Okenn kont, okenn imèl",
@@ -208,7 +231,7 @@ d.lang=l||"ht";})();
       pay: 'Peman : 💳 kat bankè dirèk sou lyen yo — oswa MonCash, Zelle, vireman : ekri <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a>. Kòd ou parèt sou ekran an kou peman an fini — san kreye kont.',
     },
     fr: {
-      kicker: "Suite 360 — par Atmart", byline: "par Atmart", vidT: "🎥 Voyez comment ça marche — 75 secondes", vidNote: "Vidéo en créole haïtien — versions FR / EN / ES à venir.", pvTag: "👀 Avant / Après — ce que l'outil fait d'une phrase creuse", pvBT: "AVANT — l'ancien CV", pvAT: "APRÈS — Entèvyou360", pvNote: "Extraits d'un CV réellement généré par l'outil sur un profil de démonstration (infirmière → CNA à Boston). Ce n'est pas un client — les premiers témoignages réels arriveront avec le lancement.", legal: "Conditions · Confidentialité · Remboursements",
+      kicker: "Suite 360 — par Atmart", byline: "par Atmart", navCand: "Candidats", navOrg: "Organisations", d1t: "Je cherche un emploi", d1d: "Préparez votre entretien et obtenez votre CV — gratuitement pour commencer.", d1c: "Commencer →", d2t: "J'accompagne des chercheurs d'emploi", d2d: "Organismes d'emploi, associations, collèges : pilote de 4 semaines pour 50 participants.", d2c: "Voir l'offre organisations →", pvMore: "Voir le rapport complet et le CV entier →", vidT: "🎥 Voyez comment ça marche — 75 secondes", vidNote: "Vidéo en créole haïtien — versions FR / EN / ES à venir.", pvTag: "👀 Avant / Après — ce que l'outil fait d'une phrase creuse", pvBT: "AVANT — l'ancien CV", pvAT: "APRÈS — Entèvyou360", pvNote: "Extraits d'un CV réellement généré par l'outil sur un profil de démonstration (infirmière → CNA à Boston). Ce n'est pas un client — les premiers témoignages réels arriveront avec le lancement.", legal: "Conditions · Confidentialité · Remboursements",
       title: "Préparez votre prochain entretien — et repartez avec un CV adapté à l'offre",
       lead: "En moins de 15 minutes, en créole, français, anglais ou espagnol. Sans compte, sans e-mail — vous commencez, c'est tout.",
       b1: "🗣 Kreyòl · Français · English · Español", b2: "🎙 Vous pouvez répondre à voix haute", b3: "🔒 Aucun compte, aucun e-mail",
@@ -228,7 +251,7 @@ d.lang=l||"ht";})();
       pay: 'Paiement : 💳 carte bancaire directement via les liens — ou MonCash, Zelle, virement : écrivez à <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a>. Votre code s\'affiche à l\'écran dès la fin du paiement — sans créer de compte.',
     },
     en: {
-      kicker: "360 Suite — by Atmart", byline: "by Atmart", vidT: "🎥 See how it works — 75 seconds", vidNote: "Video in Haitian Creole — FR / EN / ES versions coming.", pvTag: "👀 Before / After — what the tool does with an empty phrase", pvBT: "BEFORE — the old résumé", pvAT: "AFTER — Entèvyou360", pvNote: "Excerpts from a résumé actually generated by the tool on a demo profile (nurse → CNA in Boston). Not a client — the first real testimonials arrive with the launch.", legal: "Terms · Privacy · Refunds",
+      kicker: "360 Suite — by Atmart", byline: "by Atmart", navCand: "Job seekers", navOrg: "Organizations", d1t: "I'm looking for a job", d1d: "Prepare your interview and get your résumé — free to start.", d1c: "Start →", d2t: "I support job seekers", d2d: "Workforce agencies, associations, colleges: a 4-week pilot for 50 participants.", d2c: "See the organizations offer →", pvMore: "See the full report and the whole résumé →", vidT: "🎥 See how it works — 75 seconds", vidNote: "Video in Haitian Creole — FR / EN / ES versions coming.", pvTag: "👀 Before / After — what the tool does with an empty phrase", pvBT: "BEFORE — the old résumé", pvAT: "AFTER — Entèvyou360", pvNote: "Excerpts from a résumé actually generated by the tool on a demo profile (nurse → CNA in Boston). Not a client — the first real testimonials arrive with the launch.", legal: "Terms · Privacy · Refunds",
       title: "Prepare your next interview — and leave with a résumé matched to the job posting",
       lead: "In under 15 minutes, in Haitian Creole, French, English or Spanish. No account, no email — you just start.",
       b1: "🗣 Kreyòl · Français · English · Español", b2: "🎙 You can answer out loud", b3: "🔒 No account, no email",
@@ -248,7 +271,7 @@ d.lang=l||"ht";})();
       pay: 'Payment: 💳 card directly through the links — or MonCash, Zelle, transfer: write to <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a>. Your code appears on screen as soon as payment completes — no account needed.',
     },
     es: {
-      kicker: "Suite 360 — por Atmart", byline: "por Atmart", vidT: "🎥 Mira cómo funciona — 75 segundos", vidNote: "Vídeo en criollo haitiano — versiones FR / EN / ES próximamente.", pvTag: "👀 Antes / Después — lo que la herramienta hace con una frase vacía", pvBT: "ANTES — el CV antiguo", pvAT: "DESPUÉS — Entèvyou360", pvNote: "Extractos de un CV realmente generado por la herramienta con un perfil de demostración (enfermera → CNA en Boston). No es un cliente — los primeros testimonios reales llegan con el lanzamiento.", legal: "Términos · Privacidad · Reembolsos",
+      kicker: "Suite 360 — por Atmart", byline: "por Atmart", navCand: "Candidatos", navOrg: "Organizaciones", d1t: "Busco empleo", d1d: "Prepara tu entrevista y obtén tu CV — gratis para empezar.", d1c: "Empezar →", d2t: "Acompaño a personas que buscan empleo", d2d: "Agencias de empleo, asociaciones, colegios: piloto de 4 semanas para 50 participantes.", d2c: "Ver la oferta para organizaciones →", pvMore: "Ver el informe completo y el CV entero →", vidT: "🎥 Mira cómo funciona — 75 segundos", vidNote: "Vídeo en criollo haitiano — versiones FR / EN / ES próximamente.", pvTag: "👀 Antes / Después — lo que la herramienta hace con una frase vacía", pvBT: "ANTES — el CV antiguo", pvAT: "DESPUÉS — Entèvyou360", pvNote: "Extractos de un CV realmente generado por la herramienta con un perfil de demostración (enfermera → CNA en Boston). No es un cliente — los primeros testimonios reales llegan con el lanzamiento.", legal: "Términos · Privacidad · Reembolsos",
       title: "Prepara tu próxima entrevista — y sal con un CV adaptado al anuncio",
       lead: "En menos de 15 minutos, en criollo, francés, inglés o español. Sin cuenta, sin correo — simplemente empiezas.",
       b1: "🗣 Kreyòl · Français · English · Español", b2: "🎙 Puedes responder en voz alta", b3: "🔒 Sin cuenta, sin correo",
@@ -269,7 +292,7 @@ d.lang=l||"ht";})();
     },
   };
   var MAP = {
-    "s-kicker": ["kicker", 0], "s360-by": ["byline", 0], "f-legal": ["legal", 0], "vid-t": ["vidT", 0], "vid-note": ["vidNote", 0], "pv-tag": ["pvTag", 0], "pv-b-t": ["pvBT", 0], "pv-a-t": ["pvAT", 0], "pv-note": ["pvNote", 0], "s-title": ["title", 1], "s-lead": ["lead", 0],
+    "s-kicker": ["kicker", 0], "s360-by": ["byline", 0], "f-legal": ["legal", 0], "nav-cand": ["navCand", 0], "nav-org": ["navOrg", 0], "dr-1t": ["d1t", 0], "dr-1d": ["d1d", 0], "dr-1c": ["d1c", 0], "dr-2t": ["d2t", 0], "dr-2d": ["d2d", 0], "dr-2c": ["d2c", 0], "pv-more": ["pvMore", 0], "vid-t": ["vidT", 0], "vid-note": ["vidNote", 0], "pv-tag": ["pvTag", 0], "pv-b-t": ["pvBT", 0], "pv-a-t": ["pvAT", 0], "pv-note": ["pvNote", 0], "s-title": ["title", 1], "s-lead": ["lead", 0],
     "s-b1": ["b1", 0], "s-b2": ["b2", 0], "s-b3": ["b3", 0],
     "e-tag": ["eTag", 0], "e-desc": ["eDesc", 0], "e-free": ["eFree", 0],
     "e-g1": ["eG1", 0], "e-g2": ["eG2", 0], "e-g3": ["eG3", 0],
@@ -306,6 +329,16 @@ d.lang=l||"ht";})();
     try { localStorage.setItem("atmart_lang", sel.value); } catch (e) {}
     document.documentElement.lang = sel.value;
   });
+  // mesure (compteurs anonymes)
+  if (window.ATM) {
+    ATM.track("view_home");
+    var v = document.getElementById("vid");
+    if (v) v.addEventListener("play", function () { ATM.track("video_play"); }, { once: true });
+    var evs = document.querySelectorAll("[data-ev]");
+    for (var i = 0; i < evs.length; i++) {
+      evs[i].addEventListener("click", function () { ATM.track(this.getAttribute("data-ev")); });
+    }
+  }
 })();
 </script>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>

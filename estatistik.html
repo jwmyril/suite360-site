@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />
+  <title>Tableau de bord — Suite 360 (privé)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css?v=1" />
+  <style>
+    .st-wrap{max-width:900px;margin:0 auto;padding:1rem 0 3rem}
+    .st-wrap h1{font-family:"Space Grotesk",sans-serif;font-size:1.5rem;color:#fff;margin:0 0 0.3rem}
+    .st-sub{color:#9db2c7;font-size:0.86rem;margin:0 0 1.4rem}
+    .st-bar{display:flex;gap:0.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1.4rem}
+    .st-bar input,.st-bar select{background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.5rem 0.7rem;font:inherit;font-size:0.9rem}
+    .st-bar input{flex:1;min-width:220px}
+    .st-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0.8rem;margin-bottom:1.4rem}
+    .st-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1rem}
+    .st-card .n{font-family:"Space Grotesk",sans-serif;font-size:1.8rem;color:#2ec4b6;line-height:1}
+    .st-card .l{color:#9db2c7;font-size:0.8rem;margin-top:0.3rem}
+    table{width:100%;border-collapse:collapse;font-size:0.88rem}
+    th,td{text-align:left;padding:0.5rem 0.6rem;border-bottom:1px solid rgba(255,255,255,0.08);color:#d7e3f0}
+    th{color:#9db2c7;font-weight:600;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.04em}
+    td.n{text-align:right;font-family:"Space Grotesk",sans-serif}
+    h2{font-family:"Space Grotesk",sans-serif;color:#fff;font-size:1.1rem;margin:2rem 0 0.5rem}
+    .st-msg{color:#f4a261;font-size:0.9rem;min-height:1.2em}
+    .st-org{background:rgba(106,159,216,0.08);border:1px solid rgba(106,159,216,0.4);border-radius:10px;padding:0.8rem 1rem;margin-bottom:0.6rem;font-size:0.88rem;color:#d7e3f0;line-height:1.6}
+    .st-org b{color:#fff}
+  </style>
+</head>
+<body>
+<section class="hero" style="padding-bottom:0">
+  <div class="container">
+    <div class="st-wrap">
+      <h1>Tableau de bord Suite 360</h1>
+      <p class="st-sub">Compteurs anonymes — aucune donnée personnelle, aucun cookie. Page privée (non indexée).</p>
+      <div class="st-bar">
+        <input type="password" id="tok" placeholder="Jeton d'accès (STATS_TOKEN)" autocomplete="off" />
+        <select id="days"><option value="7">7 jours</option><option value="30" selected>30 jours</option><option value="90">90 jours</option></select>
+        <button class="btn btn-primary" id="go">Afficher</button>
+      </div>
+      <p class="st-msg" id="msg"></p>
+      <div id="out" style="display:none">
+        <div class="st-kpi" id="kpi"></div>
+        <h2>Entonnoir</h2>
+        <table id="funnel"></table>
+        <h2>Tous les événements</h2>
+        <table id="all"></table>
+        <h2>Langues</h2>
+        <table id="langs"></table>
+        <h2>Demandes d'organisations</h2>
+        <div id="orgs"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  var EP = "https://atmart-chat.atmartllc.workers.dev/stats";
+  var LBL = {
+    view_home: "Accueil vu", view_kandida: "Page candidats", view_org: "Page organisations",
+    view_entevyou: "App Entèvyou360", view_karye: "App Career360",
+    video_play: "Vidéo lancée", sample_open: "Exemple consulté",
+    swot_start: "SWOT commencé", swot_done: "SWOT généré",
+    voice_start: "Micro utilisé", voice_feedback: "Feedback vocal reçu",
+    jd_upload: "Annonce jointe", cv_done: "CV généré", mail_signup: "Inscription e-mail",
+    buy_click_kit: "Clic achat Kit", buy_click_90: "Clic achat 90 jours", buy_click_career: "Clic achat Career360",
+    trial_created: "Essai Career360 créé", org_demo_request: "Demande organisation", code_delivered: "VENTE (code livré)",
+  };
+  var msg = document.getElementById("msg");
+  function esc(t){var d=document.createElement("div");d.textContent=t==null?"":String(t);return d.innerHTML;}
+
+  document.getElementById("go").addEventListener("click", function () {
+    var tok = document.getElementById("tok").value.trim();
+    if (!tok) { msg.textContent = "Collez le jeton d'accès."; return; }
+    msg.textContent = "Chargement…";
+    try { sessionStorage.setItem("st_tok", tok); } catch (e) {}
+    fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token: tok, days: parseInt(document.getElementById("days").value, 10) }) })
+      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+      .then(function (res) {
+        if (!res.ok) { msg.textContent = res.body && res.body.error === "forbidden" ? "Jeton refusé." : "Erreur."; return; }
+        render(res.body); msg.textContent = "";
+      })
+      .catch(function () { msg.textContent = "Serveur injoignable."; });
+  });
+
+  function render(d) {
+    var t = d.totals, P = function (k) { return t[k + "_period"] || 0; };
+    document.getElementById("out").style.display = "";
+    var kpis = [
+      ["Ventes (période)", P("code_delivered")], ["SWOT générés", P("swot_done")],
+      ["Essais Career360", P("trial_created")], ["Demandes organisations", P("org_demo_request")],
+      ["CV générés", P("cv_done")], ["Sessions vocales", P("voice_start")],
+    ];
+    document.getElementById("kpi").innerHTML = kpis.map(function (k) {
+      return '<div class="st-card"><div class="n">' + k[1] + '</div><div class="l">' + esc(k[0]) + '</div></div>';
+    }).join("");
+
+    var f = [["Accueil vu", P("view_home")], ["Page candidats", P("view_kandida")],
+             ["SWOT généré", P("swot_done")], ["Clic achat", P("buy_click_kit") + P("buy_click_90")],
+             ["Vente", P("code_delivered")]];
+    document.getElementById("funnel").innerHTML =
+      "<tr><th>Étape</th><th style='text-align:right'>Période</th><th style='text-align:right'>% de l'étape précédente</th></tr>" +
+      f.map(function (row, i) {
+        var prev = i ? f[i - 1][1] : 0;
+        var pct = i && prev ? Math.round((row[1] / prev) * 1000) / 10 + " %" : "—";
+        return "<tr><td>" + esc(row[0]) + "</td><td class='n'>" + row[1] + "</td><td class='n'>" + pct + "</td></tr>";
+      }).join("");
+
+    document.getElementById("all").innerHTML =
+      "<tr><th>Événement</th><th style='text-align:right'>Période</th><th style='text-align:right'>Depuis le début</th></tr>" +
+      Object.keys(LBL).map(function (k) {
+        return "<tr><td>" + esc(LBL[k]) + "</td><td class='n'>" + (t[k + "_period"] || 0) + "</td><td class='n'>" + (t[k] || 0) + "</td></tr>";
+      }).join("");
+
+    document.getElementById("langs").innerHTML =
+      "<tr><th>Langue</th><th style='text-align:right'>Événements</th></tr>" +
+      ["ht", "fr", "en", "es"].map(function (l) {
+        return "<tr><td>" + l + "</td><td class='n'>" + ((d.byLang && d.byLang[l]) || 0) + "</td></tr>";
+      }).join("");
+
+    var orgs = d.orgRequests || [];
+    document.getElementById("orgs").innerHTML = orgs.length
+      ? orgs.map(function (o) {
+          return '<div class="st-org"><b>' + esc(o.org) + "</b> — " + esc(o.city || "") + " · " + esc(o.size || "") +
+            "<br />" + esc(o.person || "") + " · <a href='mailto:" + esc(o.email) + "' style='color:#2ec4b6'>" + esc(o.email) + "</a> · " + esc(o.phone || "") +
+            (o.message ? "<br /><em>" + esc(o.message) + "</em>" : "") +
+            "<br /><span style='color:#9db2c7;font-size:0.8rem'>" + esc(o.ts) + " · " + esc(o.lang) + "</span></div>";
+        }).join("")
+      : "<p style='color:#9db2c7;font-size:0.88rem'>Aucune demande pour l'instant.</p>";
+  }
+
+  try { var k = sessionStorage.getItem("st_tok"); if (k) { document.getElementById("tok").value = k; document.getElementById("go").click(); } } catch (e) {}
+})();
+</script>
+</body>
+</html>
