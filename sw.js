@@ -2,7 +2,7 @@
 // Stratégie : RÉSEAU D'ABORD pour les pages HTML (jamais de page figée — leçon
 // de l'Explorateur), cache d'abord pour les assets. L'API atmart-chat est
 // cross-origin : jamais interceptée.
-const CACHE = "suite360-v1";
+const CACHE = "suite360-v2";
 const CORE = [
   "/",
   "/index.html",
@@ -28,6 +28,9 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
   if (e.request.method !== "GET" || url.origin !== location.origin) return;
+  // Médias : laisser passer au réseau. Chrome les demande par Range (206) et
+  // cache.put() sur une réponse partielle lève une TypeError.
+  if (/\.(mp4|webm|mp3|m4a|mov)$/i.test(url.pathname)) return;
   const isPage = url.pathname === "/" || url.pathname.endsWith(".html");
   if (isPage) {
     // réseau d'abord : toujours la version fraîche ; cache seulement hors-ligne
