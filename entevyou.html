@@ -215,6 +215,7 @@ d.lang=l||"ht";})();
           <button id="sw-vwa" style="border-color:rgba(46,196,182,0.8);font-weight:600">🎙 Pratike ak vwa ou</button>
           <button id="sw-cv" style="border-color:rgba(106,159,216,0.8);font-weight:600">📄 CV pa konpetans (Pro)</button>
           <button id="sw-cardbtn">🖼 Telechaje kat SWOT ou</button>
+          <button id="sw-dl">📥 Telechaje (.doc)</button>
           <button id="sw-print">🖨 Enprime / PDF</button>
           <button id="sw-copy">📋 Kopye</button>
         </div>
@@ -232,6 +233,7 @@ d.lang=l||"ht";})();
           <div class="vw-row">
             <button type="button" class="vw-btn send" id="vw-send">📨 Voye repons mwen an</button>
             <button type="button" class="vw-btn" id="vw-next" style="display:none">➜ Lòt kesyon an</button>
+            <button type="button" class="vw-btn" id="vw-dl" style="display:none">📥 Telechaje seyans lan</button>
           </div>
           <p class="sw-status" id="vw-status" aria-live="polite"></p>
           <div class="vw-fb" id="vw-fb" aria-live="polite"></div>
@@ -264,6 +266,7 @@ d.lang=l||"ht";})();
           </select>
           <div class="vw-row" style="margin-top:0.9rem">
             <button type="button" class="vw-btn send" id="cv-go">📄 Fè CV mwen an</button>
+            <button type="button" class="vw-btn send" id="cv-dl" style="display:none">📥 Telechaje CV a (.doc)</button>
             <button type="button" class="vw-btn" id="cv-print" style="display:none">🖨 Enprime / PDF</button>
             <button type="button" class="vw-btn" id="cv-copy" style="display:none">📋 Kopye tèks la</button>
             <button type="button" class="vw-btn" id="cv-close">✖ Fèmen</button>
@@ -373,6 +376,7 @@ by();})();
       cvNeed: "Mete omwen non ou, epi eksperyans ou yo oswa ansyen CV ou a.",
       cvNeedPro: "CV a se yon fonksyon Pro (Kit 9,99 $ oswa 90 jou 19,99 $). Mete kòd Pro ou nan fòm prensipal la — oswa achte yon kòd sou atmart.ltd.",
       cvPrint: "🖨 Enprime / PDF", cvCopy: "📋 Kopye tèks la", cvClose: "✖ Fèmen",
+      dlRap: "📥 Telechaje (.doc)", dlCv: "📥 Telechaje CV a (.doc)", dlSes: "📥 Telechaje seyans lan", dlOk: "Telechaje ! Louvri l ak Word oswa Google Docs.", sesTitle: "Seyans pratik entèvyou — Entèvyou360", sesQ: "Kesyon", sesA: "Repons mwen", sesF: "Sa koach la di", sesFoot: "Pratike repons sa yo awotvwa jouk yo soti fasil. Entèvyou360 · 360.atmart.ltd", rapFoot: "Rapò sa a se pou ou sèlman. Nou pa kenbe l. Entèvyou360 · 360.atmart.ltd", fnRap: "rapo-entevyou360", fnCv: "cv", fnSes: "seyans-pratik",
       proExpired: "Kòd Pro 90 jou ou a fini. Achte yon lòt kòd pou kontinye.",
       cvOld: "Ou deja gen yon CV ? (opsyonèl)", cvOldS: "Kole l isit la — n ap sèvi ak enfòmasyon li yo epi n ap amelyore fòm lan. Reponn kesyon yo kanmenm : se yo ki mare CV a ak anons lan.", cvOldP: "Kole tout tèks ansyen CV ou a isit la…",
       cvOldUp: "📎 Oswa voye foto / PDF ansyen CV a", cvOldOk: "CV ou a li ! Verifye tèks la anvan ou kontinye.",
@@ -442,6 +446,7 @@ by();})();
       cvNeed: "Indiquez au moins votre nom, et vos expériences ou votre ancien CV.",
       cvNeedPro: "Le CV est une fonction Pro (Kit 9,99 $ ou 90 jours 19,99 $). Saisissez votre code Pro dans le formulaire principal — ou achetez un code sur atmart.ltd.",
       cvPrint: "🖨 Imprimer / PDF", cvCopy: "📋 Copier le texte", cvClose: "✖ Fermer",
+      dlRap: "📥 Télécharger (.doc)", dlCv: "📥 Télécharger le CV (.doc)", dlSes: "📥 Télécharger ma séance", dlOk: "Téléchargé ! Ouvrez-le avec Word ou Google Docs.", sesTitle: "Séance d'entraînement à l'entretien — Entèvyou360", sesQ: "Question", sesA: "Ma réponse", sesF: "Ce que dit le coach", sesFoot: "Répétez ces réponses à voix haute jusqu'à ce qu'elles viennent naturellement. Entèvyou360 · 360.atmart.ltd", rapFoot: "Ce rapport n'appartient qu'à vous. Nous n'en gardons rien. Entèvyou360 · 360.atmart.ltd", fnRap: "rapport-entevyou360", fnCv: "cv", fnSes: "seance-entrainement",
       proExpired: "Votre code Pro 90 jours est arrivé à expiration. Achetez un nouveau code pour continuer.",
       cvOld: "Vous avez déjà un CV ? (facultatif)", cvOldS: "Collez-le ici — nous réutilisons ses informations et améliorons la forme. Répondez quand même aux questions : ce sont elles qui relient le CV à l'annonce.", cvOldP: "Collez tout le texte de votre ancien CV ici…",
       cvOldUp: "📎 Ou joignez une photo / un PDF de l'ancien CV", cvOldOk: "CV lu ! Vérifiez le texte avant de continuer.",
@@ -511,6 +516,7 @@ by();})();
       cvNeed: "Enter at least your name, and your work experience or your current résumé.",
       cvNeedPro: "The résumé is a Pro feature (Kit $9.99 or 90 days $19.99). Enter your Pro code in the main form — or get a code on atmart.ltd.",
       cvPrint: "🖨 Print / PDF", cvCopy: "📋 Copy the text", cvClose: "✖ Close",
+      dlRap: "📥 Download (.doc)", dlCv: "📥 Download the résumé (.doc)", dlSes: "📥 Download my session", dlOk: "Downloaded! Open it with Word or Google Docs.", sesTitle: "Interview practice session — Entèvyou360", sesQ: "Question", sesA: "My answer", sesF: "What the coach says", sesFoot: "Say these answers out loud until they come naturally. Entèvyou360 · 360.atmart.ltd", rapFoot: "This report belongs to you alone. We keep nothing. Entèvyou360 · 360.atmart.ltd", fnRap: "entevyou360-report", fnCv: "resume", fnSes: "practice-session",
       proExpired: "Your Pro 90-day code has expired. Get a new code to continue.",
       cvOld: "Already have a résumé? (optional)", cvOldS: "Paste it here — we reuse its facts and improve the format. Still answer the questions: they are what ties the résumé to the job posting.", cvOldP: "Paste the full text of your current résumé here…",
       cvOldUp: "📎 Or attach a photo / PDF of your current résumé", cvOldOk: "Résumé read! Check the text before you continue.",
@@ -580,6 +586,7 @@ by();})();
       cvNeed: "Escribe al menos tu nombre, y tus experiencias o tu CV actual.",
       cvNeedPro: "El CV es una función Pro (Kit $9.99 o 90 días $19.99). Escribe tu código Pro en el formulario principal — o compra un código en atmart.ltd.",
       cvPrint: "🖨 Imprimir / PDF", cvCopy: "📋 Copiar el texto", cvClose: "✖ Cerrar",
+      dlRap: "📥 Descargar (.doc)", dlCv: "📥 Descargar el CV (.doc)", dlSes: "📥 Descargar mi sesión", dlOk: "¡Descargado! Ábrelo con Word o Google Docs.", sesTitle: "Sesión de práctica de entrevista — Entèvyou360", sesQ: "Pregunta", sesA: "Mi respuesta", sesF: "Lo que dice el coach", sesFoot: "Repite estas respuestas en voz alta hasta que salgan con naturalidad. Entèvyou360 · 360.atmart.ltd", rapFoot: "Este informe es solo tuyo. No guardamos nada. Entèvyou360 · 360.atmart.ltd", fnRap: "informe-entevyou360", fnCv: "cv", fnSes: "sesion-practica",
       proExpired: "Tu código Pro de 90 días expiró. Compra un nuevo código para continuar.",
       cvOld: "¿Ya tienes un CV? (opcional)", cvOldS: "Pégalo aquí — reutilizamos sus datos y mejoramos el formato. Responde igualmente las preguntas: son las que conectan el CV con el anuncio.", cvOldP: "Pega aquí todo el texto de tu CV actual…",
       cvOldUp: "📎 O adjunta una foto / PDF de tu CV actual", cvOldOk: "¡CV leído! Revisa el texto antes de continuar.",
@@ -639,6 +646,7 @@ by();})();
     document.getElementById("sw-cardbtn").textContent = T.card;
     document.getElementById("sw-print").textContent = T.print;
     document.getElementById("sw-copy").textContent = T.copy;
+    document.getElementById("sw-dl").textContent = T.dlRap;
     cta.innerHTML = "<p>" + T.cta1 + "</p><p style=\"margin-top:0.4rem\">" + T.cta2 + "</p>";
     var hk = document.getElementById("sw-hero-k"); if (hk) hk.textContent = T.heroK;
     var hl = document.getElementById("sw-hero-l"); if (hl) hl.innerHTML = T.heroL;
@@ -794,6 +802,7 @@ by();})();
   var SRCls = window.SpeechRecognition || window.webkitSpeechRecognition;
   var SPEECH_LANG = { fr: "fr-FR", en: "en-US", es: "es-ES" };
   var vwQs = [], vwIdx = 0, vwOn = false, vwRecOn = false, vwBusy = false, vwLast = false;
+  var vwLog = []; // {q, a, fb} — gardé en mémoire de la page uniquement, jamais envoyé
   var vwSR = null, vwMedia = null, vwChunks = [], vwTimer = null;
   var vwPanel = document.getElementById("vw-panel");
   var vwProg = document.getElementById("vw-prog");
@@ -821,6 +830,7 @@ by();})();
     $("vw-hint").textContent = T.vwaHint;
     $("vw-send").textContent = T.vwaSend;
     $("vw-next").textContent = vwLast ? T.vwaFinish : T.vwaNext;
+    $("vw-dl").textContent = T.dlSes;
     if (vwOn) {
       $("vw-prog").textContent = T.vwaProg.replace("{i}", vwIdx + 1).replace("{n}", vwQs.length);
       $("vw-note").textContent = T.vwaNote || "";
@@ -901,6 +911,8 @@ by();})();
     vwStopAll();
     vwOn = false;
     vwPanel.style.display = "none";
+    vwLog = [];
+    document.getElementById("vw-dl").style.display = "none";
   }
 
   document.getElementById("sw-vwa").addEventListener("click", function () {
@@ -1025,6 +1037,8 @@ by();})();
             .map(function (l) { return "<p>" + inline(esc(l.trim())) + "</p>"; }).join("");
           vwFb.style.display = "";
           vwNextB.style.display = "";
+          vwLog.push({ q: vwQs[vwIdx], a: ans, fb: res.body.feedback });
+          document.getElementById("vw-dl").style.display = "";
           vwSyncLang(MSG);
           vwSpeak(res.body.feedback);
         } else {
@@ -1032,6 +1046,21 @@ by();})();
         }
       })
       .catch(function () { vwBusy = false; vwSendB.disabled = false; vwStatus(MSG.offline); });
+  });
+
+  document.getElementById("vw-dl").addEventListener("click", function () {
+    if (!vwLog.length) return;
+    var corps = "<h1>" + esc(MSG.sesTitle) + "</h1>";
+    for (var i = 0; i < vwLog.length; i++) {
+      corps += '<p class="q">' + esc(MSG.sesQ) + " " + (i + 1) + ". " + esc(vwLog[i].q) + "</p>"
+        + '<p class="lbl">' + esc(MSG.sesA) + "</p><p>" + esc(vwLog[i].a) + "</p>"
+        + '<p class="lbl">' + esc(MSG.sesF) + "</p>"
+        + vwLog[i].fb.split(/\r?\n/).filter(function (l) { return l.trim(); })
+            .map(function (l) { return "<p>" + inline(esc(l.trim())) + "</p>"; }).join("");
+    }
+    corps += '<p class="foot">' + esc(MSG.sesFoot) + "</p>";
+    dlDoc(MSG.fnSes + "-" + dlDate(), MSG.sesTitle, corps);
+    vwStatus(MSG.dlOk);
   });
 
   vwNextB.addEventListener("click", function () {
@@ -1115,6 +1144,7 @@ by();})();
     setLabel("Lcv-lang", T.cvLang);
     $("cv-go").textContent = T.cvGo;
     $("cv-print").textContent = T.cvPrint;
+    $("cv-dl").textContent = T.dlCv;
     $("cv-copy").textContent = T.cvCopy;
     $("cv-close").textContent = T.cvClose;
   }
@@ -1208,6 +1238,7 @@ by();})();
           cvOut.innerHTML = render(lastCv);
           cvOut.style.display = "block";
           cvPrintB.style.display = ""; cvCopyB.style.display = "";
+          document.getElementById("cv-dl").style.display = "";
           cvStatus(MSG.cvDone);
           cvOut.scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
@@ -1229,6 +1260,13 @@ by();})();
     window.print();
     setTimeout(done, 2000);
   });
+  document.getElementById("cv-dl").addEventListener("click", function () {
+    if (!lastCv) return;
+    dlDoc((document.getElementById("cv-name").value.trim().replace(/[^\w\- ]/g, "").replace(/\s+/g, "-") || MSG.fnCv) + "-" + MSG.fnCv,
+      document.getElementById("cv-name").value.trim() || "CV", render(lastCv));
+    cvStatus(MSG.dlOk);
+  });
+
   cvCopyB.addEventListener("click", function () {
     if (!lastCv) return;
     navigator.clipboard.writeText(lastCv).then(function () { cvStatus(MSG.copied); });
@@ -1290,6 +1328,39 @@ by();})();
         if (res.ok) document.getElementById("sw-mail-in").value = "";
       })
       .catch(function () { st.textContent = MSG.offline; });
+  });
+
+
+  // ---- telechargement : fichier .doc (HTML compatible Word / Google Docs) ----
+  // Tout se passe dans le navigateur : rien ne transite par nos serveurs.
+  function dlDoc(nom, titre, corps) {
+    var css = "body{font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#111;line-height:1.5}"
+      + "h1{font-size:18pt;margin:0 0 4pt}h2{font-size:13pt;color:#0e2240;margin:14pt 0 4pt}"
+      + "h3{font-size:11.5pt;margin:10pt 0 3pt}li{margin-bottom:4pt}"
+      + ".q{font-weight:bold;color:#0e2240;margin:14pt 0 2pt}.lbl{color:#666;font-size:9.5pt;margin:8pt 0 1pt}"
+      + ".foot{color:#666;font-size:9pt;margin-top:18pt;border-top:1px solid #ccc;padding-top:6pt}";
+    var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">'
+      + '<head><meta charset="utf-8" /><title>' + esc(titre) + "</title><style>" + css + "</style></head><body>"
+      + corps + "</body></html>";
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob(["\ufeff" + html], { type: "application/msword" }));
+    a.download = nom + ".doc";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+  }
+  function dlDate() {
+    var d = new Date();
+    return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+  }
+
+  // rapport gratuit
+  document.getElementById("sw-dl").addEventListener("click", function () {
+    if (!lastMd) return;
+    dlDoc(MSG.fnRap + "-" + dlDate(), "Entèvyou360",
+      render(lastMd) + '<p class="foot">' + esc(MSG.rapFoot) + "</p>");
+    status.textContent = MSG.dlOk;
   });
 
   document.getElementById("sw-print").addEventListener("click", function () { window.print(); });

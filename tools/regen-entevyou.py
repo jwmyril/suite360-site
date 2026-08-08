@@ -83,6 +83,10 @@ s = s.replace('<link rel="icon" type="image/png" href="assets/brand/logo-32.png"
               '  <meta property="og:image" content="https://360.atmart.ltd/assets/brand/icon-360-512.png" />\n'
               '  <meta name="twitter:card" content="summary" />\n'
               '  <meta name="theme-color" content="#0e2240" />')
-s = s.replace("</body>", '<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>\n</body>')
+# Injecter le service worker sur le DERNIER </body> uniquement : le JavaScript
+# de la page contient lui-même la chaîne "</body>" (générateur de fichier .doc),
+# et un replace() global casserait ce script.
+_i = s.rfind("</body>")
+s = s[:_i] + '<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>\n' + s[_i:]
 io.open(DST, "w", encoding="utf-8", newline="").write(s)
 print("entevyou.html régénéré —", len(s), "caractères")
