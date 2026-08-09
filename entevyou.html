@@ -223,6 +223,20 @@ d.lang=l||"ht";})();
           <p class="vw-prog" id="vw-prog"></p>
           <p class="vw-q" id="vw-q"></p>
           <p class="vw-note" id="vw-note" style="display:none"></p>
+          <p style="margin:0 0 0.5rem"><label for="vw-coach" id="Lvw-coach" style="font-size:0.84rem;color:#9db2c7;display:block;margin-bottom:0.25rem">Ki kalite koach ou vle ?</label>
+          <select id="vw-coach" style="width:100%;background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.45rem 0.6rem;font:inherit;font-size:0.88rem">
+            <option value="chalere">Bienveillant · encourageant</option>
+            <option value="egzijan">Exigeant · comme un vrai recruteur</option>
+            <option value="dirèk">Direct · va droit au but</option>
+            <option value="pedagog">Pédagogue · explique chaque conseil</option>
+          </select></p>
+          <p style="margin:0 0 0.6rem"><label for="vw-voix" id="Lvw-voix" style="font-size:0.84rem;color:#9db2c7;display:block;margin-bottom:0.25rem">Voix du coach</label>
+          <select id="vw-voix" style="width:100%;background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.45rem 0.6rem;font:inherit;font-size:0.88rem">
+            <option value="auto">Automatique</option>
+            <option value="f">Voix de femme</option>
+            <option value="h">Voix d'homme</option>
+          </select>
+          <span id="vw-voixnote" style="display:block;color:#9db2c7;font-size:0.76rem;margin-top:0.25rem"></span></p>
           <div class="vw-row">
             <button type="button" class="vw-btn mic" id="vw-mic">🎙 Peze pou reponn</button>
             <button type="button" class="vw-btn" id="vw-listen">🔊 Tande kesyon an ankò</button>
@@ -244,7 +258,8 @@ d.lang=l||"ht";})();
           <label for="cv-old" id="Lcv-old">Ou deja gen yon CV ? (opsyonèl)</label>
           <textarea id="cv-old" maxlength="3500" style="min-height:64px" placeholder="Kole tout tèks ansyen CV ou a isit la…"></textarea>
           <p style="margin:0.35rem 0 0"><button type="button" id="cv-oldbtn" style="background:none;border:1px dashed rgba(106,159,216,0.7);color:#6a9fd8;border-radius:8px;padding:0.35rem 0.7rem;font:inherit;font-size:0.82rem;cursor:pointer">📎 Oswa voye foto / PDF ansyen CV a</button></p>
-          <input type="file" id="cv-oldfile" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,application/pdf,image/png,image/jpeg,image/webp,text/plain" style="display:none" />
+          <p id="cv-oldnote" style="display:none;color:#2ec4b6;font-size:0.83rem;margin:0.5rem 0 0;line-height:1.5"></p>
+          <input type="file" id="cv-oldfile" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/png,image/jpeg,image/webp,text/plain" style="display:none" />
           <label for="cv-name" id="Lcv-name">Non konplè ou</label>
           <input type="text" id="cv-name" maxlength="80" autocomplete="off" />
           <label for="cv-contact" id="Lcv-contact">Liy kontak la</label>
@@ -323,6 +338,7 @@ by();})();
   var status = document.getElementById("sw-status");
   var go = document.getElementById("sw-go");
   var lastMd = "";
+  var dernierEtaitPro = false;
 
   // ---- interface complète en 4 langues ----
   var L = {
@@ -376,7 +392,8 @@ by();})();
       cvNeed: "Mete omwen non ou, epi eksperyans ou yo oswa ansyen CV ou a.",
       cvNeedPro: "CV a se yon fonksyon Pro (Kit 9,99 $ oswa 90 jou 19,99 $). Mete kòd Pro ou nan fòm prensipal la — oswa achte yon kòd sou atmart.ltd.",
       cvPrint: "🖨 Enprime / PDF", cvCopy: "📋 Kopye tèks la", cvClose: "✖ Fèmen",
-      dlRap: "📥 Telechaje (.doc)", dlCv: "📥 Telechaje CV a (.doc)", dlSes: "📥 Telechaje seyans lan", dlOk: "Telechaje ! Louvri l ak Word oswa Google Docs.", sesTitle: "Seyans pratik entèvyou — Entèvyou360", sesQ: "Kesyon", sesA: "Repons mwen", sesF: "Sa koach la di", sesFoot: "Pratike repons sa yo awotvwa jouk yo soti fasil. Entèvyou360 · 360.atmart.ltd", rapFoot: "Rapò sa a se pou ou sèlman. Nou pa kenbe l. Entèvyou360 · 360.atmart.ltd", fnRap: "rapo-entevyou360", fnCv: "cv", fnSes: "seyans-pratik",
+      dlRap: "📥 Telechaje (.doc)", dlCv: "📥 Telechaje CV a (.doc)", dlSes: "📥 Telechaje seyans lan",
+      coachLbl: "Ki kalite koach ou vle ?", voixLbl: "Vwa koach la", v0: "Otomatik", vf: "Yon vwa fanm", vh: "Yon vwa gason", voixOk: "", voixNon: "Aparèy sa a pa gen vwa sa a — n ap pran sa ki disponib la.", c1: "Ankourajan · li ba w kouraj", c2: "Egzijan · tankou yon vre rekritè", c3: "Dirèk · li ale nan gren an", c4: "Pedagòg · li esplike chak konsèy", cvOldOnly: "✅ CV ou a chaje. Nou pran eksperyans, etid ak lang yo ladan l — pa bezwen retape yo.", ctaKarye: "🌱 <strong>Pou w ale pi lwen :</strong> Career360 se yon coach karyè chak semèn ki sonje pakou ou — <strong>14,99 $/mwa</strong>, 7 jou gratis pou eseye. <a href=\"https://360.atmart.ltd/karye.html\" style=\"color:#2ec4b6\">Gade Career360</a>", codeSaved: "Kòd ou anrejistre nan navigatè sa a — ou p ap bezwen retape l.", dlOk: "Telechaje ! Louvri l ak Word oswa Google Docs.", sesTitle: "Seyans pratik entèvyou — Entèvyou360", sesQ: "Kesyon", sesA: "Repons mwen", sesF: "Sa koach la di", sesFoot: "Pratike repons sa yo awotvwa jouk yo soti fasil. Entèvyou360 · 360.atmart.ltd", rapFoot: "Rapò sa a se pou ou sèlman. Nou pa kenbe l. Entèvyou360 · 360.atmart.ltd", fnRap: "rapo-entevyou360", fnCv: "cv", fnSes: "seyans-pratik",
       proExpired: "Kòd Pro 90 jou ou a fini. Achte yon lòt kòd pou kontinye.",
       cvOld: "Ou deja gen yon CV ? (opsyonèl)", cvOldS: "Kole l isit la — n ap sèvi ak enfòmasyon li yo epi n ap amelyore fòm lan. Reponn kesyon yo kanmenm : se yo ki mare CV a ak anons lan.", cvOldP: "Kole tout tèks ansyen CV ou a isit la…",
       cvOldUp: "📎 Oswa voye foto / PDF ansyen CV a", cvOldOk: "CV ou a li ! Verifye tèks la anvan ou kontinye.",
@@ -446,7 +463,8 @@ by();})();
       cvNeed: "Indiquez au moins votre nom, et vos expériences ou votre ancien CV.",
       cvNeedPro: "Le CV est une fonction Pro (Kit 9,99 $ ou 90 jours 19,99 $). Saisissez votre code Pro dans le formulaire principal — ou achetez un code sur atmart.ltd.",
       cvPrint: "🖨 Imprimer / PDF", cvCopy: "📋 Copier le texte", cvClose: "✖ Fermer",
-      dlRap: "📥 Télécharger (.doc)", dlCv: "📥 Télécharger le CV (.doc)", dlSes: "📥 Télécharger ma séance", dlOk: "Téléchargé ! Ouvrez-le avec Word ou Google Docs.", sesTitle: "Séance d'entraînement à l'entretien — Entèvyou360", sesQ: "Question", sesA: "Ma réponse", sesF: "Ce que dit le coach", sesFoot: "Répétez ces réponses à voix haute jusqu'à ce qu'elles viennent naturellement. Entèvyou360 · 360.atmart.ltd", rapFoot: "Ce rapport n'appartient qu'à vous. Nous n'en gardons rien. Entèvyou360 · 360.atmart.ltd", fnRap: "rapport-entevyou360", fnCv: "cv", fnSes: "seance-entrainement",
+      dlRap: "📥 Télécharger (.doc)", dlCv: "📥 Télécharger le CV (.doc)", dlSes: "📥 Télécharger ma séance",
+      coachLbl: "Quel type de coach voulez-vous ?", voixLbl: "Voix du coach", v0: "Automatique", vf: "Voix de femme", vh: "Voix d'homme", voixOk: "", voixNon: "Cet appareil n'a pas cette voix — nous prenons celle qui est disponible.", c1: "Bienveillant · encourageant", c2: "Exigeant · comme un vrai recruteur", c3: "Direct · va droit au but", c4: "Pédagogue · explique chaque conseil", cvOldOnly: "✅ Votre CV est chargé. Expériences, études et langues en sont extraites — inutile de les retaper.", ctaKarye: "🌱 <strong>Pour aller plus loin :</strong> Career360, un coach de carrière chaque semaine qui se souvient de votre parcours — <strong>14,99 $/mois</strong>, 7 jours d'essai gratuit. <a href=\"https://360.atmart.ltd/karye.html\" style=\"color:#2ec4b6\">Découvrir Career360</a>", codeSaved: "Votre code est mémorisé dans ce navigateur — vous n'aurez pas à le retaper.", dlOk: "Téléchargé ! Ouvrez-le avec Word ou Google Docs.", sesTitle: "Séance d'entraînement à l'entretien — Entèvyou360", sesQ: "Question", sesA: "Ma réponse", sesF: "Ce que dit le coach", sesFoot: "Répétez ces réponses à voix haute jusqu'à ce qu'elles viennent naturellement. Entèvyou360 · 360.atmart.ltd", rapFoot: "Ce rapport n'appartient qu'à vous. Nous n'en gardons rien. Entèvyou360 · 360.atmart.ltd", fnRap: "rapport-entevyou360", fnCv: "cv", fnSes: "seance-entrainement",
       proExpired: "Votre code Pro 90 jours est arrivé à expiration. Achetez un nouveau code pour continuer.",
       cvOld: "Vous avez déjà un CV ? (facultatif)", cvOldS: "Collez-le ici — nous réutilisons ses informations et améliorons la forme. Répondez quand même aux questions : ce sont elles qui relient le CV à l'annonce.", cvOldP: "Collez tout le texte de votre ancien CV ici…",
       cvOldUp: "📎 Ou joignez une photo / un PDF de l'ancien CV", cvOldOk: "CV lu ! Vérifiez le texte avant de continuer.",
@@ -516,7 +534,8 @@ by();})();
       cvNeed: "Enter at least your name, and your work experience or your current résumé.",
       cvNeedPro: "The résumé is a Pro feature (Kit $9.99 or 90 days $19.99). Enter your Pro code in the main form — or get a code on atmart.ltd.",
       cvPrint: "🖨 Print / PDF", cvCopy: "📋 Copy the text", cvClose: "✖ Close",
-      dlRap: "📥 Download (.doc)", dlCv: "📥 Download the résumé (.doc)", dlSes: "📥 Download my session", dlOk: "Downloaded! Open it with Word or Google Docs.", sesTitle: "Interview practice session — Entèvyou360", sesQ: "Question", sesA: "My answer", sesF: "What the coach says", sesFoot: "Say these answers out loud until they come naturally. Entèvyou360 · 360.atmart.ltd", rapFoot: "This report belongs to you alone. We keep nothing. Entèvyou360 · 360.atmart.ltd", fnRap: "entevyou360-report", fnCv: "resume", fnSes: "practice-session",
+      dlRap: "📥 Download (.doc)", dlCv: "📥 Download the résumé (.doc)", dlSes: "📥 Download my session",
+      coachLbl: "What kind of coach do you want?", voixLbl: "Coach voice", v0: "Automatic", vf: "A woman's voice", vh: "A man's voice", voixOk: "", voixNon: "This device does not have that voice — we use whichever is available.", c1: "Encouraging · supportive", c2: "Demanding · like a real recruiter", c3: "Direct · straight to the point", c4: "Teaching · explains every tip", cvOldOnly: "✅ Your résumé is loaded. Experience, education and languages are taken from it — no need to retype them.", ctaKarye: "🌱 <strong>To go further:</strong> Career360, a career coach every week who remembers your journey — <strong>$14.99/month</strong>, 7-day free trial. <a href=\"https://360.atmart.ltd/karye.html\" style=\"color:#2ec4b6\">See Career360</a>", codeSaved: "Your code is saved in this browser — you will not have to retype it.", dlOk: "Downloaded! Open it with Word or Google Docs.", sesTitle: "Interview practice session — Entèvyou360", sesQ: "Question", sesA: "My answer", sesF: "What the coach says", sesFoot: "Say these answers out loud until they come naturally. Entèvyou360 · 360.atmart.ltd", rapFoot: "This report belongs to you alone. We keep nothing. Entèvyou360 · 360.atmart.ltd", fnRap: "entevyou360-report", fnCv: "resume", fnSes: "practice-session",
       proExpired: "Your Pro 90-day code has expired. Get a new code to continue.",
       cvOld: "Already have a résumé? (optional)", cvOldS: "Paste it here — we reuse its facts and improve the format. Still answer the questions: they are what ties the résumé to the job posting.", cvOldP: "Paste the full text of your current résumé here…",
       cvOldUp: "📎 Or attach a photo / PDF of your current résumé", cvOldOk: "Résumé read! Check the text before you continue.",
@@ -586,7 +605,8 @@ by();})();
       cvNeed: "Escribe al menos tu nombre, y tus experiencias o tu CV actual.",
       cvNeedPro: "El CV es una función Pro (Kit $9.99 o 90 días $19.99). Escribe tu código Pro en el formulario principal — o compra un código en atmart.ltd.",
       cvPrint: "🖨 Imprimir / PDF", cvCopy: "📋 Copiar el texto", cvClose: "✖ Cerrar",
-      dlRap: "📥 Descargar (.doc)", dlCv: "📥 Descargar el CV (.doc)", dlSes: "📥 Descargar mi sesión", dlOk: "¡Descargado! Ábrelo con Word o Google Docs.", sesTitle: "Sesión de práctica de entrevista — Entèvyou360", sesQ: "Pregunta", sesA: "Mi respuesta", sesF: "Lo que dice el coach", sesFoot: "Repite estas respuestas en voz alta hasta que salgan con naturalidad. Entèvyou360 · 360.atmart.ltd", rapFoot: "Este informe es solo tuyo. No guardamos nada. Entèvyou360 · 360.atmart.ltd", fnRap: "informe-entevyou360", fnCv: "cv", fnSes: "sesion-practica",
+      dlRap: "📥 Descargar (.doc)", dlCv: "📥 Descargar el CV (.doc)", dlSes: "📥 Descargar mi sesión",
+      coachLbl: "¿Qué tipo de coach quieres?", voixLbl: "Voz del coach", v0: "Automática", vf: "Voz de mujer", vh: "Voz de hombre", voixOk: "", voixNon: "Este dispositivo no tiene esa voz — usamos la que esté disponible.", c1: "Alentador · te da ánimo", c2: "Exigente · como un reclutador real", c3: "Directo · va al grano", c4: "Pedagógico · explica cada consejo", cvOldOnly: "✅ Tu CV está cargado. Experiencias, estudios e idiomas se extraen de él — no hace falta reescribirlos.", ctaKarye: "🌱 <strong>Para ir más lejos:</strong> Career360, un coach de carrera cada semana que recuerda tu trayectoria — <strong>$14.99/mes</strong>, 7 días de prueba gratis. <a href=\"https://360.atmart.ltd/karye.html\" style=\"color:#2ec4b6\">Ver Career360</a>", codeSaved: "Tu código queda guardado en este navegador — no tendrás que reescribirlo.", dlOk: "¡Descargado! Ábrelo con Word o Google Docs.", sesTitle: "Sesión de práctica de entrevista — Entèvyou360", sesQ: "Pregunta", sesA: "Mi respuesta", sesF: "Lo que dice el coach", sesFoot: "Repite estas respuestas en voz alta hasta que salgan con naturalidad. Entèvyou360 · 360.atmart.ltd", rapFoot: "Este informe es solo tuyo. No guardamos nada. Entèvyou360 · 360.atmart.ltd", fnRap: "informe-entevyou360", fnCv: "cv", fnSes: "sesion-practica",
       proExpired: "Tu código Pro de 90 días expiró. Compra un nuevo código para continuar.",
       cvOld: "¿Ya tienes un CV? (opcional)", cvOldS: "Pégalo aquí — reutilizamos sus datos y mejoramos el formato. Responde igualmente las preguntas: son las que conectan el CV con el anuncio.", cvOldP: "Pega aquí todo el texto de tu CV actual…",
       cvOldUp: "📎 O adjunta una foto / PDF de tu CV actual", cvOldOk: "¡CV leído! Revisa el texto antes de continuar.",
@@ -614,6 +634,15 @@ by();})();
     if (!el) return;
     el.innerHTML = main + (small ? "<small>" + small + "</small>" : "");
   }
+  // Bloc de fin : on n'invite jamais quelqu'un a racheter ce qu'il vient
+  // d'acheter. A refaire apres CHAQUE generation, pas seulement au changement
+  // de langue — sinon l'acheteur revoit l'offre qu'il vient de payer.
+  function majCta() {
+    if (!cta) return;
+    cta.innerHTML = "<p>" + MSG.ctaKarye + "</p>"
+      + (dernierEtaitPro ? "" : "<p style=\"margin-top:0.5rem\">" + MSG.cta2 + "</p>");
+  }
+
   var appliedLang = null;
   function applyLang(code) {
     if (code === appliedLang) return; // garde-fou : ne jamais ré-appliquer la même langue
@@ -647,7 +676,7 @@ by();})();
     document.getElementById("sw-print").textContent = T.print;
     document.getElementById("sw-copy").textContent = T.copy;
     document.getElementById("sw-dl").textContent = T.dlRap;
-    cta.innerHTML = "<p>" + T.cta1 + "</p><p style=\"margin-top:0.4rem\">" + T.cta2 + "</p>";
+    majCta();
     var hk = document.getElementById("sw-hero-k"); if (hk) hk.textContent = T.heroK;
     var hl = document.getElementById("sw-hero-l"); if (hl) hl.innerHTML = T.heroL;
     var hi = document.getElementById("sw-hero-i"); if (hi) hi.textContent = T.heroI;
@@ -665,6 +694,14 @@ by();})();
     if (wt) wt.textContent = T.whatT;
     if (w1) w1.innerHTML = T.whatP1;
     if (w2) w2.innerHTML = T.whatP2;
+    var cl = document.getElementById("Lvw-coach");
+    if (cl) cl.textContent = T.coachLbl;
+    var cs = document.getElementById("vw-coach");
+    if (cs) { cs.options[0].text = T.c1; cs.options[1].text = T.c2; cs.options[2].text = T.c3; cs.options[3].text = T.c4; }
+    var vl = document.getElementById("Lvw-voix");
+    if (vl) vl.textContent = T.voixLbl;
+    var vs = document.getElementById("vw-voix");
+    if (vs) { vs.options[0].text = T.v0; vs.options[1].text = T.vf; vs.options[2].text = T.vh; }
     var jb = document.getElementById("sw-jdbtn");
     if (jb && T.jdUp) jb.textContent = T.jdUp;
     vwSyncLang(T);
@@ -676,6 +713,23 @@ by();})();
   }
   new MutationObserver(function () { applyLang(siteLang()); })
     .observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+  // Le code arrive par l'URL (retour de paiement) ou du navigateur : le
+  // candidat ne doit jamais avoir a le retaper, ni risquer de le perdre.
+  (function () {
+    var pc = document.getElementById("sw-procode");
+    var url = "";
+    try { url = new URLSearchParams(location.search).get("code") || ""; } catch (e) {}
+    var mem = "";
+    try { mem = localStorage.getItem("entevyou_pro") || ""; } catch (e) {}
+    var code = (url || mem).trim().toUpperCase();
+    if (/^(ENT|PRO90)-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(code)) {
+      pc.value = code;
+      if (url) { try { localStorage.setItem("entevyou_pro", code); } catch (e) {} }
+      var note = document.getElementById("L-probuy");
+      if (note) note.setAttribute("data-code-memo", "1");
+    }
+  })();
+
   applyLang(siteLang());
 
   function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
@@ -848,10 +902,20 @@ by();})();
       var u = new SpeechSynthesisUtterance(vwStripSpoken(txt));
       var lg = SPEECH_LANG[siteLang()] || "fr-FR";
       u.lang = lg; u.rate = 0.95;
-      var vs = speechSynthesis.getVoices() || [];
-      for (var i = 0; i < vs.length; i++) {
-        if ((vs[i].lang || "").replace("_", "-").slice(0, 2) === lg.slice(0, 2)) { u.voice = vs[i]; break; }
-      }
+      var vs = (speechSynthesis.getVoices() || []).filter(function (v) {
+        return (v.lang || "").replace("_", "-").slice(0, 2) === lg.slice(0, 2);
+      });
+      // Les navigateurs n'exposent pas le genre : on s'appuie sur les noms des
+      // voix installees les plus repandues, et on le dit quand ca ne marche pas.
+      var FEM = /(zira|hortense|denise|julie|amelie|amélie|female|femme|elvira|monica|mónica|paulina|sabina|helena|susan|samantha|karen|serena|tessa|fiona|google fran|google espa|google us english|google uk english female)/i;
+      var MAS = /(david|mark|paul|thomas|claude|male|homme|jorge|pablo|diego|daniel|alex|fred|guy|ryan|google uk english male)/i;
+      var pref = document.getElementById("vw-voix") ? document.getElementById("vw-voix").value : "auto";
+      var choisie = null;
+      if (pref === "f") choisie = vs.filter(function (v) { return FEM.test(v.name); })[0];
+      if (pref === "h") choisie = vs.filter(function (v) { return MAS.test(v.name); })[0];
+      var note = document.getElementById("vw-voixnote");
+      if (note) note.textContent = (pref !== "auto" && !choisie && vs.length) ? MSG.voixNon : "";
+      u.voice = choisie || vs[0] || null;
       speechSynthesis.speak(u);
     } catch (e) {}
   }
@@ -1026,6 +1090,7 @@ by();})();
         goal: document.getElementById("sw-goal").value.trim(),
         weakness: document.getElementById("sw-weakness").value.trim(),
         qIndex: vwIdx + 1, total: vwQs.length,
+        coach: document.getElementById("vw-coach").value,
       }),
     })
       .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
@@ -1142,6 +1207,7 @@ by();})();
     $("cv-skills").placeholder = T.cvSkillsP;
     setLabel("Lcv-ach", T.cvAch, T.cvAchS);
     setLabel("Lcv-lang", T.cvLang);
+    if (document.getElementById("cv-oldnote")) cvSyncChamps();
     $("cv-go").textContent = T.cvGo;
     $("cv-print").textContent = T.cvPrint;
     $("cv-dl").textContent = T.dlCv;
@@ -1149,6 +1215,19 @@ by();})();
     $("cv-close").textContent = T.cvClose;
   }
   function cvStatus(html) { cvStatusEl.innerHTML = html || ""; }
+
+  // Un CV joint contient deja les experiences, les etudes et les langues :
+  // les redemander serait faire retaper ce qu'on vient de lire.
+  function cvSyncChamps() {
+    var plein = document.getElementById("cv-old").value.trim().length > 40;
+    ["exp", "edu", "skills"].forEach(function (k) {
+      var lab = document.getElementById("Lcv-" + k), ch = document.getElementById("cv-" + k);
+      if (lab) lab.style.display = plein ? "none" : "";
+      if (ch) ch.style.display = plein ? "none" : "";
+    });
+    var n = document.getElementById("cv-oldnote");
+    if (n) { n.textContent = plein ? MSG.cvOldOnly : ""; n.style.display = plein ? "" : "none"; }
+  }
 
   document.getElementById("sw-cv").addEventListener("click", function () {
     var open = cvPanel.style.display === "none";
@@ -1159,10 +1238,53 @@ by();})();
     cvPanel.style.display = "none";
   });
 
-  // ancien CV joint (foto / PDF / .txt) → tèks nan bwat cv-old la
+
+  // ---- lire un .docx sans bibliotheque : le fichier est un zip, on en sort
+  // word/document.xml via DecompressionStream, puis on retire les balises.
+  function lireDocx(file) {
+    return file.arrayBuffer().then(function (ab) {
+      var buf = new Uint8Array(ab), dv = new DataView(ab), td = new TextDecoder();
+      // fin du repertoire central : on remonte depuis la fin
+      var eocd = -1;
+      for (var i = buf.length - 22; i >= 0 && i > buf.length - 65558; i--) {
+        if (dv.getUint32(i, true) === 0x06054b50) { eocd = i; break; }
+      }
+      if (eocd < 0) throw new Error("zip illisible");
+      var n = dv.getUint16(eocd + 10, true), off = dv.getUint32(eocd + 16, true), p = off, cible = null;
+      for (var k = 0; k < n && p < buf.length; k++) {
+        if (dv.getUint32(p, true) !== 0x02014b50) break;
+        var comp = dv.getUint16(p + 10, true), csize = dv.getUint32(p + 20, true);
+        var nlen = dv.getUint16(p + 28, true), elen = dv.getUint16(p + 30, true), clen = dv.getUint16(p + 32, true);
+        var lho = dv.getUint32(p + 42, true);
+        var nom = td.decode(buf.subarray(p + 46, p + 46 + nlen));
+        if (nom === "word/document.xml") { cible = { comp: comp, csize: csize, lho: lho }; break; }
+        p += 46 + nlen + elen + clen;
+      }
+      if (!cible) throw new Error("document.xml absent");
+      var ln = dv.getUint16(cible.lho + 26, true), le = dv.getUint16(cible.lho + 28, true);
+      var deb = cible.lho + 30 + ln + le;
+      var data = buf.subarray(deb, deb + cible.csize);
+      if (cible.comp === 0) return td.decode(data);
+      if (typeof DecompressionStream === "undefined") throw new Error("navigateur trop ancien");
+      var flux = new Blob([data]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+      return new Response(flux).text();
+    }).then(function (xml) {
+      return xml
+        .replace(/<\/w:p>/g, "\n")
+        .replace(/<w:tab[^>]*\/>/g, "  ")
+        .replace(/<[^>]+>/g, "")
+        .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"').replace(/&apos;/g, "'")
+        .replace(/\n{3,}/g, "\n\n")
+        .trim();
+    });
+  }
+
+  // ancien CV joint (Word / foto / PDF / .txt) → tèks nan bwat cv-old la
   var cvOldBtn = document.getElementById("cv-oldbtn");
   var cvOldFile = document.getElementById("cv-oldfile");
   cvOldBtn.addEventListener("click", function () { cvOldFile.click(); });
+  document.getElementById("cv-old").addEventListener("input", cvSyncChamps);
   cvOldFile.addEventListener("change", function () {
     var f = cvOldFile.files && cvOldFile.files[0];
     cvOldFile.value = "";
@@ -1170,8 +1292,34 @@ by();})();
     var ta = document.getElementById("cv-old");
     if (f.type === "text/plain" || /\.txt$/i.test(f.name)) {
       var tr = new FileReader();
-      tr.onload = function () { ta.value = String(tr.result).slice(0, 3500); cvStatus(MSG.cvOldOk); };
+      tr.onload = function () { ta.value = String(tr.result).slice(0, 3500); cvStatus(MSG.cvOldOk); cvSyncChamps(); };
       tr.readAsText(f);
+      return;
+    }
+    if (/\.docx$/i.test(f.name)) {
+      cvStatus('<span class="sw-spin"></span>' + MSG.jdReading);
+      lireDocx(f)
+        .then(function (txt) {
+          if (!txt) throw new Error("vide");
+          ta.value = txt.slice(0, 3500); cvStatus(MSG.cvOldOk); cvSyncChamps();
+        })
+        .catch(function () { cvStatus(MSG.jdErr); });
+      return;
+    }
+    if (/\.doc$/i.test(f.name)) {
+      // les .doc que nous produisons sont du HTML : lisibles tels quels
+      var dr = new FileReader();
+      dr.onload = function () {
+        var t = String(dr.result);
+        if (/<html|<body/i.test(t)) {
+          var d = document.createElement("div");
+          d.innerHTML = t.replace(/<style[\s\S]*?<\/style>/gi, "");
+          t = (d.textContent || "").replace(/\n{3,}/g, "\n\n").trim();
+        }
+        if (t && t.length > 30) { ta.value = t.slice(0, 3500); cvStatus(MSG.cvOldOk); cvSyncChamps(); }
+        else cvStatus(MSG.jdErr);
+      };
+      dr.readAsText(f);
       return;
     }
     var mt = f.type || (/\.pdf$/i.test(f.name) ? "application/pdf" : /\.(jpe?g)$/i.test(f.name) ? "image/jpeg" : /\.png$/i.test(f.name) ? "image/png" : /\.webp$/i.test(f.name) ? "image/webp" : "");
@@ -1294,6 +1442,9 @@ by();})();
         go.disabled = false;
         if (res.ok && res.body && res.body.swot) {
           lastMd = res.body.swot;
+          dernierEtaitPro = !!res.body.pro;
+          majCta();
+          if (payload.proCode) { try { localStorage.setItem("entevyou_pro", payload.proCode); } catch (e) {} }
           vwReset();
           out.innerHTML = renderCards(lastMd);
           ph.style.display = "none"; bar.style.display = "flex"; cta.style.display = "";

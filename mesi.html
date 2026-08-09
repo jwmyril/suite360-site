@@ -160,12 +160,17 @@ d.lang=l||"ht";})();
     document.getElementById("ms-copy").textContent = t.copy;
     document.getElementById("ms-go").textContent = t.go;
     if (state === "done" && rec) {
+      // Le code ne doit pas pouvoir se perdre : on le garde dans le navigateur
+      // et le bouton l'emporte dans l'application, deja rempli.
+      try {
+        localStorage.setItem(rec.type === "career" ? "karye360_code" : "entevyou_pro", rec.code);
+      } catch (e) {}
       document.getElementById("ms-icon").textContent = "🎉";
       document.getElementById("ms-title").textContent = t.done;
       document.getElementById("ms-sub").textContent = (t.doneSub[rec.type] || "").replace("{exp}", rec.exp || "");
       document.getElementById("ms-note").textContent = t.note;
       document.getElementById("ms-code").textContent = rec.code;
-      document.getElementById("ms-go").href = rec.type === "career" ? "karye.html" : "entevyou.html";
+      document.getElementById("ms-go").href = (rec.type === "career" ? "karye.html" : "entevyou.html") + "?code=" + encodeURIComponent(rec.code);
       document.getElementById("ms-waitbox").style.display = "none";
       document.getElementById("ms-codebox").style.display = "";
     } else if (state === "slow") {
