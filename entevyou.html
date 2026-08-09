@@ -200,7 +200,8 @@ d.lang=l||"ht";})();
         <div style="margin-top:1rem;padding-top:0.9rem;border-top:1px dashed rgba(46,196,182,0.5)">
           <label for="sw-procode" id="L-procode">⭐ Kòd Entèvyou360 Pro (si ou achte l)<small>Ak yon kòd, w ap jwenn TOUT kit la : 8-12 kesyon AK repons yo, deck, plan 90 jou + CV pa konpetans · Kòd PRO90 : san limit pandan 90 jou (jiska 8 pa jou)</small></label>
           <input type="text" id="sw-procode" maxlength="24" autocomplete="off" placeholder="ENT-XXXX-XXXX / PRO90-XXXX-XXXX" />
-          <p id="L-probuy" style="color:#9db2c7;font-size:0.8rem;margin-top:0.35rem">Ou poko gen kòd ? <a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00" style="color:#2ec4b6">💳 Kit 9,99 $</a> · <a href="https://buy.stripe.com/28E8wP0Tf9Pn5B761JaEE01" style="color:#2ec4b6">💳 90 jou 19,99 $</a></p>
+          <p id="sw-solde" style="display:none;color:#2ec4b6;font-size:0.83rem;margin:0.35rem 0 0"></p>
+        <p id="L-probuy" style="color:#9db2c7;font-size:0.8rem;margin-top:0.35rem">Ou poko gen kòd ? <a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00" style="color:#2ec4b6">💳 Kit 9,99 $</a> · <a href="https://buy.stripe.com/28E8wP0Tf9Pn5B761JaEE01" style="color:#2ec4b6">💳 90 jou 19,99 $</a></p>
         </div>
 
         <div style="margin-top:1.1rem">
@@ -395,7 +396,8 @@ by();})();
       cvNeedPro: "CV a se yon fonksyon Pro (Kit 9,99 $ oswa 90 jou 19,99 $). Mete kòd Pro ou nan fòm prensipal la — oswa achte yon kòd sou atmart.ltd.",
       cvPrint: "🖨 Enprime / PDF", cvCopy: "📋 Kopye tèks la", cvClose: "✖ Fèmen",
       dlRap: "📥 Telechaje (.doc)", dlCv: "📥 Telechaje CV a (.doc)", dlSes: "📥 Telechaje seyans lan",
-      coachLbl: "Ki kalite koach ou vle ?", voixLbl: "Vwa koach la", v0: "Otomatik", vf: "Yon vwa fanm", vh: "Yon vwa gason", voixOk: "", voixNon: "Aparèy sa a pa gen vwa sa a — n ap pran sa ki disponib la.", c1: "Ankourajan · li ba w kouraj", c2: "Egzijan · tankou yon vre rekritè", c3: "Dirèk · li ale nan gren an", c4: "Pedagòg · li esplike chak konsèy", cvOldOnly: "✅ CV ou a chaje. Nou pran eksperyans, etid ak lang yo ladan l — pa bezwen retape yo.", ctaKarye: "🌱 <strong>Pou w ale pi lwen :</strong> Career360 se yon coach karyè chak semèn ki sonje pakou ou — <strong>14,99 $/mwa</strong>, 7 jou gratis pou eseye. <a href=\"https://360.atmart.ltd/karye.html\" style=\"color:#2ec4b6\">Gade Career360</a>", codeSaved: "Kòd ou anrejistre nan navigatè sa a — ou p ap bezwen retape l.", dlOk: "Telechaje ! Louvri l ak Word oswa Google Docs.", sesTitle: "Seyans pratik entèvyou — Entèvyou360", sesQ: "Kesyon", sesA: "Repons mwen", sesF: "Sa koach la di", sesFoot: "Pratike repons sa yo awotvwa jouk yo soti fasil. Entèvyou360 · 360.atmart.ltd", rapFoot: "Rapò sa a se pou ou sèlman. Nou pa kenbe l. Entèvyou360 · 360.atmart.ltd", fnRap: "rapo-entevyou360", fnCv: "cv", fnSes: "seyans-pratik",
+      coachLbl: "Ki kalite koach ou vle ?",
+      soldeKit: "Kòd Pro aktif — {n} jenerasyon ki rete. Chak rapò oswa CV pran youn.", soldeVide: "Kòd Pro ou a fini (0 jenerasyon). Achte yon lòt pou kontinye.", solde90: "Kòd Pro 90 jou aktif — {n} jenerasyon ki rete jodi a, bon jiska {exp}.", soldeExp: "Kòd Pro 90 jou ou a fini depi {exp}.", sansCode: "Jenerasyon sa a ap gratis (san kòd Pro).", voixLbl: "Vwa koach la", v0: "Otomatik", vf: "Yon vwa fanm", vh: "Yon vwa gason", voixOk: "", voixNon: "Aparèy sa a pa gen vwa sa a — n ap pran sa ki disponib la.", c1: "Ankourajan · li ba w kouraj", c2: "Egzijan · tankou yon vre rekritè", c3: "Dirèk · li ale nan gren an", c4: "Pedagòg · li esplike chak konsèy", cvOldOnly: "✅ CV ou a chaje. Nou pran eksperyans, etid ak lang yo ladan l — pa bezwen retape yo.", ctaKarye: "🌱 <strong>Pou w ale pi lwen :</strong> Career360 se yon coach karyè chak semèn ki sonje pakou ou — <strong>14,99 $/mwa</strong>, 7 jou gratis pou eseye. <a href=\"https://360.atmart.ltd/karye.html\" style=\"color:#2ec4b6\">Gade Career360</a>", codeSaved: "Kòd ou anrejistre nan navigatè sa a — ou p ap bezwen retape l.", dlOk: "Telechaje ! Louvri l ak Word oswa Google Docs.", sesTitle: "Seyans pratik entèvyou — Entèvyou360", sesQ: "Kesyon", sesA: "Repons mwen", sesF: "Sa koach la di", sesFoot: "Pratike repons sa yo awotvwa jouk yo soti fasil. Entèvyou360 · 360.atmart.ltd", rapFoot: "Rapò sa a se pou ou sèlman. Nou pa kenbe l. Entèvyou360 · 360.atmart.ltd", fnRap: "rapo-entevyou360", fnCv: "cv", fnSes: "seyans-pratik",
       proExpired: "Kòd Pro 90 jou ou a fini. Achte yon lòt kòd pou kontinye.",
       cvOld: "Ou deja gen yon CV ? (opsyonèl)", cvOldS: "Kole l isit la — n ap sèvi ak enfòmasyon li yo epi n ap amelyore fòm lan. Reponn kesyon yo kanmenm : se yo ki mare CV a ak anons lan.", cvOldP: "Kole tout tèks ansyen CV ou a isit la…",
       cvOldUp: "📎 Oswa voye foto / PDF ansyen CV a", cvOldOk: "CV ou a li ! Verifye tèks la anvan ou kontinye.",
@@ -467,7 +469,8 @@ by();})();
       cvNeedPro: "Le CV est une fonction Pro (Kit 9,99 $ ou 90 jours 19,99 $). Saisissez votre code Pro dans le formulaire principal — ou achetez un code sur atmart.ltd.",
       cvPrint: "🖨 Imprimer / PDF", cvCopy: "📋 Copier le texte", cvClose: "✖ Fermer",
       dlRap: "📥 Télécharger (.doc)", dlCv: "📥 Télécharger le CV (.doc)", dlSes: "📥 Télécharger ma séance",
-      coachLbl: "Quel type de coach voulez-vous ?", voixLbl: "Voix du coach", v0: "Automatique", vf: "Voix de femme", vh: "Voix d'homme", voixOk: "", voixNon: "Cet appareil n'a pas cette voix — nous prenons celle qui est disponible.", c1: "Bienveillant · encourageant", c2: "Exigeant · comme un vrai recruteur", c3: "Direct · va droit au but", c4: "Pédagogue · explique chaque conseil", cvOldOnly: "✅ Votre CV est chargé. Expériences, études et langues en sont extraites — inutile de les retaper.", ctaKarye: "🌱 <strong>Pour aller plus loin :</strong> Career360, un coach de carrière chaque semaine qui se souvient de votre parcours — <strong>14,99 $/mois</strong>, 7 jours d'essai gratuit. <a href=\"https://360.atmart.ltd/karye.html\" style=\"color:#2ec4b6\">Découvrir Career360</a>", codeSaved: "Votre code est mémorisé dans ce navigateur — vous n'aurez pas à le retaper.", dlOk: "Téléchargé ! Ouvrez-le avec Word ou Google Docs.", sesTitle: "Séance d'entraînement à l'entretien — Entèvyou360", sesQ: "Question", sesA: "Ma réponse", sesF: "Ce que dit le coach", sesFoot: "Répétez ces réponses à voix haute jusqu'à ce qu'elles viennent naturellement. Entèvyou360 · 360.atmart.ltd", rapFoot: "Ce rapport n'appartient qu'à vous. Nous n'en gardons rien. Entèvyou360 · 360.atmart.ltd", fnRap: "rapport-entevyou360", fnCv: "cv", fnSes: "seance-entrainement",
+      coachLbl: "Quel type de coach voulez-vous ?",
+      soldeKit: "Code Pro actif — {n} génération(s) restante(s). Chaque rapport ou CV en consomme une.", soldeVide: "Votre code Pro est épuisé (0 génération). Achetez-en un autre pour continuer.", solde90: "Code Pro 90 jours actif — {n} génération(s) restante(s) aujourd'hui, valable jusqu'au {exp}.", soldeExp: "Votre code Pro 90 jours a expiré le {exp}.", sansCode: "Cette génération sera gratuite (sans code Pro).", voixLbl: "Voix du coach", v0: "Automatique", vf: "Voix de femme", vh: "Voix d'homme", voixOk: "", voixNon: "Cet appareil n'a pas cette voix — nous prenons celle qui est disponible.", c1: "Bienveillant · encourageant", c2: "Exigeant · comme un vrai recruteur", c3: "Direct · va droit au but", c4: "Pédagogue · explique chaque conseil", cvOldOnly: "✅ Votre CV est chargé. Expériences, études et langues en sont extraites — inutile de les retaper.", ctaKarye: "🌱 <strong>Pour aller plus loin :</strong> Career360, un coach de carrière chaque semaine qui se souvient de votre parcours — <strong>14,99 $/mois</strong>, 7 jours d'essai gratuit. <a href=\"https://360.atmart.ltd/karye.html\" style=\"color:#2ec4b6\">Découvrir Career360</a>", codeSaved: "Votre code est mémorisé dans ce navigateur — vous n'aurez pas à le retaper.", dlOk: "Téléchargé ! Ouvrez-le avec Word ou Google Docs.", sesTitle: "Séance d'entraînement à l'entretien — Entèvyou360", sesQ: "Question", sesA: "Ma réponse", sesF: "Ce que dit le coach", sesFoot: "Répétez ces réponses à voix haute jusqu'à ce qu'elles viennent naturellement. Entèvyou360 · 360.atmart.ltd", rapFoot: "Ce rapport n'appartient qu'à vous. Nous n'en gardons rien. Entèvyou360 · 360.atmart.ltd", fnRap: "rapport-entevyou360", fnCv: "cv", fnSes: "seance-entrainement",
       proExpired: "Votre code Pro 90 jours est arrivé à expiration. Achetez un nouveau code pour continuer.",
       cvOld: "Vous avez déjà un CV ? (facultatif)", cvOldS: "Collez-le ici — nous réutilisons ses informations et améliorons la forme. Répondez quand même aux questions : ce sont elles qui relient le CV à l'annonce.", cvOldP: "Collez tout le texte de votre ancien CV ici…",
       cvOldUp: "📎 Ou joignez une photo / un PDF de l'ancien CV", cvOldOk: "CV lu ! Vérifiez le texte avant de continuer.",
@@ -539,7 +542,8 @@ by();})();
       cvNeedPro: "The résumé is a Pro feature (Kit $9.99 or 90 days $19.99). Enter your Pro code in the main form — or get a code on atmart.ltd.",
       cvPrint: "🖨 Print / PDF", cvCopy: "📋 Copy the text", cvClose: "✖ Close",
       dlRap: "📥 Download (.doc)", dlCv: "📥 Download the résumé (.doc)", dlSes: "📥 Download my session",
-      coachLbl: "What kind of coach do you want?", voixLbl: "Coach voice", v0: "Automatic", vf: "A woman's voice", vh: "A man's voice", voixOk: "", voixNon: "This device does not have that voice — we use whichever is available.", c1: "Encouraging · supportive", c2: "Demanding · like a real recruiter", c3: "Direct · straight to the point", c4: "Teaching · explains every tip", cvOldOnly: "✅ Your résumé is loaded. Experience, education and languages are taken from it — no need to retype them.", ctaKarye: "🌱 <strong>To go further:</strong> Career360, a career coach every week who remembers your journey — <strong>$14.99/month</strong>, 7-day free trial. <a href=\"https://360.atmart.ltd/karye.html\" style=\"color:#2ec4b6\">See Career360</a>", codeSaved: "Your code is saved in this browser — you will not have to retype it.", dlOk: "Downloaded! Open it with Word or Google Docs.", sesTitle: "Interview practice session — Entèvyou360", sesQ: "Question", sesA: "My answer", sesF: "What the coach says", sesFoot: "Say these answers out loud until they come naturally. Entèvyou360 · 360.atmart.ltd", rapFoot: "This report belongs to you alone. We keep nothing. Entèvyou360 · 360.atmart.ltd", fnRap: "entevyou360-report", fnCv: "resume", fnSes: "practice-session",
+      coachLbl: "What kind of coach do you want?",
+      soldeKit: "Pro code active — {n} generation(s) left. Each report or résumé uses one.", soldeVide: "Your Pro code is used up (0 generations). Get another one to continue.", solde90: "Pro 90-day code active — {n} generation(s) left today, valid until {exp}.", soldeExp: "Your Pro 90-day code expired on {exp}.", sansCode: "This generation will be free (no Pro code).", voixLbl: "Coach voice", v0: "Automatic", vf: "A woman's voice", vh: "A man's voice", voixOk: "", voixNon: "This device does not have that voice — we use whichever is available.", c1: "Encouraging · supportive", c2: "Demanding · like a real recruiter", c3: "Direct · straight to the point", c4: "Teaching · explains every tip", cvOldOnly: "✅ Your résumé is loaded. Experience, education and languages are taken from it — no need to retype them.", ctaKarye: "🌱 <strong>To go further:</strong> Career360, a career coach every week who remembers your journey — <strong>$14.99/month</strong>, 7-day free trial. <a href=\"https://360.atmart.ltd/karye.html\" style=\"color:#2ec4b6\">See Career360</a>", codeSaved: "Your code is saved in this browser — you will not have to retype it.", dlOk: "Downloaded! Open it with Word or Google Docs.", sesTitle: "Interview practice session — Entèvyou360", sesQ: "Question", sesA: "My answer", sesF: "What the coach says", sesFoot: "Say these answers out loud until they come naturally. Entèvyou360 · 360.atmart.ltd", rapFoot: "This report belongs to you alone. We keep nothing. Entèvyou360 · 360.atmart.ltd", fnRap: "entevyou360-report", fnCv: "resume", fnSes: "practice-session",
       proExpired: "Your Pro 90-day code has expired. Get a new code to continue.",
       cvOld: "Already have a résumé? (optional)", cvOldS: "Paste it here — we reuse its facts and improve the format. Still answer the questions: they are what ties the résumé to the job posting.", cvOldP: "Paste the full text of your current résumé here…",
       cvOldUp: "📎 Or attach a photo / PDF of your current résumé", cvOldOk: "Résumé read! Check the text before you continue.",
@@ -611,7 +615,8 @@ by();})();
       cvNeedPro: "El CV es una función Pro (Kit $9.99 o 90 días $19.99). Escribe tu código Pro en el formulario principal — o compra un código en atmart.ltd.",
       cvPrint: "🖨 Imprimir / PDF", cvCopy: "📋 Copiar el texto", cvClose: "✖ Cerrar",
       dlRap: "📥 Descargar (.doc)", dlCv: "📥 Descargar el CV (.doc)", dlSes: "📥 Descargar mi sesión",
-      coachLbl: "¿Qué tipo de coach quieres?", voixLbl: "Voz del coach", v0: "Automática", vf: "Voz de mujer", vh: "Voz de hombre", voixOk: "", voixNon: "Este dispositivo no tiene esa voz — usamos la que esté disponible.", c1: "Alentador · te da ánimo", c2: "Exigente · como un reclutador real", c3: "Directo · va al grano", c4: "Pedagógico · explica cada consejo", cvOldOnly: "✅ Tu CV está cargado. Experiencias, estudios e idiomas se extraen de él — no hace falta reescribirlos.", ctaKarye: "🌱 <strong>Para ir más lejos:</strong> Career360, un coach de carrera cada semana que recuerda tu trayectoria — <strong>$14.99/mes</strong>, 7 días de prueba gratis. <a href=\"https://360.atmart.ltd/karye.html\" style=\"color:#2ec4b6\">Ver Career360</a>", codeSaved: "Tu código queda guardado en este navegador — no tendrás que reescribirlo.", dlOk: "¡Descargado! Ábrelo con Word o Google Docs.", sesTitle: "Sesión de práctica de entrevista — Entèvyou360", sesQ: "Pregunta", sesA: "Mi respuesta", sesF: "Lo que dice el coach", sesFoot: "Repite estas respuestas en voz alta hasta que salgan con naturalidad. Entèvyou360 · 360.atmart.ltd", rapFoot: "Este informe es solo tuyo. No guardamos nada. Entèvyou360 · 360.atmart.ltd", fnRap: "informe-entevyou360", fnCv: "cv", fnSes: "sesion-practica",
+      coachLbl: "¿Qué tipo de coach quieres?",
+      soldeKit: "Código Pro activo — quedan {n} generación(es). Cada informe o CV usa una.", soldeVide: "Tu código Pro está agotado (0 generaciones). Compra otro para continuar.", solde90: "Código Pro 90 días activo — quedan {n} generación(es) hoy, válido hasta {exp}.", soldeExp: "Tu código Pro de 90 días expiró el {exp}.", sansCode: "Esta generación será gratuita (sin código Pro).", voixLbl: "Voz del coach", v0: "Automática", vf: "Voz de mujer", vh: "Voz de hombre", voixOk: "", voixNon: "Este dispositivo no tiene esa voz — usamos la que esté disponible.", c1: "Alentador · te da ánimo", c2: "Exigente · como un reclutador real", c3: "Directo · va al grano", c4: "Pedagógico · explica cada consejo", cvOldOnly: "✅ Tu CV está cargado. Experiencias, estudios e idiomas se extraen de él — no hace falta reescribirlos.", ctaKarye: "🌱 <strong>Para ir más lejos:</strong> Career360, un coach de carrera cada semana que recuerda tu trayectoria — <strong>$14.99/mes</strong>, 7 días de prueba gratis. <a href=\"https://360.atmart.ltd/karye.html\" style=\"color:#2ec4b6\">Ver Career360</a>", codeSaved: "Tu código queda guardado en este navegador — no tendrás que reescribirlo.", dlOk: "¡Descargado! Ábrelo con Word o Google Docs.", sesTitle: "Sesión de práctica de entrevista — Entèvyou360", sesQ: "Pregunta", sesA: "Mi respuesta", sesF: "Lo que dice el coach", sesFoot: "Repite estas respuestas en voz alta hasta que salgan con naturalidad. Entèvyou360 · 360.atmart.ltd", rapFoot: "Este informe es solo tuyo. No guardamos nada. Entèvyou360 · 360.atmart.ltd", fnRap: "informe-entevyou360", fnCv: "cv", fnSes: "sesion-practica",
       proExpired: "Tu código Pro de 90 días expiró. Compra un nuevo código para continuar.",
       cvOld: "¿Ya tienes un CV? (opcional)", cvOldS: "Pégalo aquí — reutilizamos sus datos y mejoramos el formato. Responde igualmente las preguntas: son las que conectan el CV con el anuncio.", cvOldP: "Pega aquí todo el texto de tu CV actual…",
       cvOldUp: "📎 O adjunta una foto / PDF de tu CV actual", cvOldOk: "¡CV leído! Revisa el texto antes de continuar.",
@@ -737,7 +742,43 @@ by();})();
     }
   })();
 
+  // Le code se remplit tout seul : la personne doit donc voir NOIR SUR BLANC
+  // ce qu'il lui reste, sinon une generation part sans qu'elle s'en apercoive.
+  var soldeEnCours = false;
+  function majSolde() {
+    var el = document.getElementById("sw-solde");
+    var c = document.getElementById("sw-procode").value.trim().toUpperCase();
+    if (!el) return;
+    if (!/^(ENT|PRO90)-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(c)) {
+      el.textContent = MSG.sansCode; el.style.display = ""; el.style.color = "#9db2c7";
+      return;
+    }
+    if (soldeEnCours) return;
+    soldeEnCours = true;
+    fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "solde", proCode: c }) })
+      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+      .then(function (res) {
+        soldeEnCours = false;
+        var b = res.body || {};
+        if (!res.ok) { el.textContent = MSG.proInvalid; el.style.color = "#f4a261"; el.style.display = ""; return; }
+        if (b.type === "pro90") {
+          el.textContent = b.expire ? MSG.soldeExp.replace("{exp}", b.exp || "")
+            : MSG.solde90.replace("{n}", b.restantJour).replace("{exp}", b.exp || "");
+          el.style.color = b.expire ? "#e63946" : "#2ec4b6";
+        } else {
+          el.textContent = b.restant > 0 ? MSG.soldeKit.replace("{n}", b.restant) : MSG.soldeVide;
+          el.style.color = b.restant > 0 ? "#2ec4b6" : "#e63946";
+        }
+        el.style.display = "";
+      })
+      .catch(function () { soldeEnCours = false; });
+  }
+  document.getElementById("sw-procode").addEventListener("change", majSolde);
+  document.getElementById("sw-procode").addEventListener("blur", majSolde);
+
   applyLang(siteLang());
+  majSolde();
 
   function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   function inline(s){return s.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>").replace(/(^|[^*])\*([^*\n]+)\*/g,"$1<em>$2</em>");}
@@ -1446,6 +1487,7 @@ by();})();
           cvPrintB.style.display = ""; cvCopyB.style.display = "";
           document.getElementById("cv-dl").style.display = "";
           cvStatus(MSG.cvDone);
+          majSolde();
           cvOut.scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
           var ec = res.body && res.body.error;
@@ -1502,6 +1544,7 @@ by();})();
           lastMd = res.body.swot;
           dernierEtaitPro = !!res.body.pro;
           majCta();
+          if (payload.proCode) majSolde();
           if (payload.proCode) { try { localStorage.setItem("entevyou_pro", payload.proCode); } catch (e) {} }
           vwReset();
           out.innerHTML = renderCards(lastMd);
