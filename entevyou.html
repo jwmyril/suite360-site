@@ -223,6 +223,7 @@ d.lang=l||"ht";})();
           <p class="vw-prog" id="vw-prog"></p>
           <p class="vw-q" id="vw-q"></p>
           <p class="vw-note" id="vw-note" style="display:none"></p>
+          <p id="vw-qnote" style="color:#9db2c7;font-size:0.8rem;line-height:1.55;margin:0 0 0.8rem"></p>
           <p style="margin:0 0 0.5rem"><label for="vw-coach" id="Lvw-coach" style="font-size:0.84rem;color:#9db2c7;display:block;margin-bottom:0.25rem">Ki kalite koach ou vle ?</label>
           <select id="vw-coach" style="width:100%;background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.45rem 0.6rem;font:inherit;font-size:0.88rem">
             <option value="chalere">Bienveillant · encourageant</option>
@@ -375,6 +376,7 @@ by();})();
       vwaMicErr: "Nou pa ka jwenn mikwo a. Tcheke si navigatè a gen pèmisyon pou sèvi ak li.",
       vwaSttErr: "Nou pa t rive ekri sa ou di a. Eseye ankò : pale pi fò, pi dousman.",
       vwaEmpty: "Anrejistre yon repons anvan, oswa ekri l nan bwat la.",
+      qLoad: "Rekritè a ap prepare kesyon l…", qNote: "Kesyon yo vini youn apre lòt, san yo pa anonse — menm jan ak yon vrè entèvyou. Yo chanje chak seyans. 3 kesyon egzanp nan rapò ou a se pou ba w ton an.", qErr: "Nou pa t rive jwenn yon kesyon. Eseye ankò nan yon moman.",
       vwaNoQ: "Fè SWOT360 ou a anvan — kesyon pratik yo ap soti nan rezilta a.",
       vwaLimit: "Ou sèvi ak tout vwa ou pou jodi a — tounen demen ! 🙂",
       vwaNote: "ℹ️ Vwa AI a poko pale kreyòl. Li kesyon an awotvwa, epi reponn ak vwa PA OU — n ap konprann ou.",
@@ -446,6 +448,7 @@ by();})();
       vwaMicErr: "Micro inaccessible. Vérifiez que le navigateur a la permission de l'utiliser.",
       vwaSttErr: "Transcription impossible. Réessayez : parlez plus fort, plus lentement.",
       vwaEmpty: "Enregistrez d'abord une réponse, ou écrivez-la dans la zone de texte.",
+      qLoad: "Le recruteur prépare sa question…", qNote: "Les questions arrivent une par une, sans être annoncées — comme dans un vrai entretien. Elles changent à chaque séance. Les 3 exemples de votre rapport sont là pour vous donner le ton.", qErr: "Nous n'avons pas pu obtenir de question. Réessayez dans un instant.",
       vwaNoQ: "Faites d'abord votre SWOT360 — les questions d'entraînement en sortent.",
       vwaLimit: "Quota vocal du jour atteint — revenez demain ! 🙂",
       vwaNote: "",
@@ -517,6 +520,7 @@ by();})();
       vwaMicErr: "Can't access the microphone. Check the browser permission.",
       vwaSttErr: "Couldn't transcribe. Try again: speak louder and slower.",
       vwaEmpty: "Record an answer first, or type it in the box.",
+      qLoad: "The recruiter is preparing the question…", qNote: "Questions come one at a time, unannounced — like a real interview. They change every session. The 3 examples in your report are there to set the tone.", qErr: "We could not get a question. Try again in a moment.",
       vwaNoQ: "Get your SWOT360 first — the practice questions come from it.",
       vwaLimit: "Today's voice quota is used up — come back tomorrow! 🙂",
       vwaNote: "",
@@ -588,6 +592,7 @@ by();})();
       vwaMicErr: "No se puede acceder al micrófono. Verifica el permiso del navegador.",
       vwaSttErr: "No se pudo transcribir. Inténtalo de nuevo: habla más fuerte y despacio.",
       vwaEmpty: "Graba primero una respuesta, o escríbela en el cuadro.",
+      qLoad: "El reclutador prepara su pregunta…", qNote: "Las preguntas llegan una por una, sin anunciarse — como en una entrevista real. Cambian en cada sesión. Los 3 ejemplos de tu informe están para darte el tono.", qErr: "No pudimos obtener una pregunta. Inténtalo de nuevo en un momento.",
       vwaNoQ: "Haz primero tu SWOT360 — las preguntas de práctica salen de él.",
       vwaLimit: "Cuota de voz de hoy agotada — ¡vuelve mañana! 🙂",
       vwaNote: "",
@@ -708,7 +713,9 @@ by();})();
     cvSyncLang(T);
   }
   function siteLang() {
-    var l = (localStorage.getItem("atmart_lang") || document.documentElement.lang || "fr").slice(0, 2);
+    // La langue AFFICHÉE fait foi, pas celle mémorisée : si les deux divergent,
+    // le contenu généré doit suivre ce que la personne a sous les yeux.
+    var l = (document.documentElement.lang || localStorage.getItem("atmart_lang") || "fr").slice(0, 2);
     return L[l] ? l : "fr";
   }
   new MutationObserver(function () { applyLang(siteLang()); })
@@ -857,6 +864,7 @@ by();})();
   var SPEECH_LANG = { fr: "fr-FR", en: "en-US", es: "es-ES" };
   var vwQs = [], vwIdx = 0, vwOn = false, vwRecOn = false, vwBusy = false, vwLast = false;
   var vwLog = []; // {q, a, fb} — gardé en mémoire de la page uniquement, jamais envoyé
+  var vwTotal = 3, vwChargement = false;
   var vwSR = null, vwMedia = null, vwChunks = [], vwTimer = null;
   var vwPanel = document.getElementById("vw-panel");
   var vwProg = document.getElementById("vw-prog");
@@ -886,9 +894,10 @@ by();})();
     $("vw-next").textContent = vwLast ? T.vwaFinish : T.vwaNext;
     $("vw-dl").textContent = T.dlSes;
     if (vwOn) {
-      $("vw-prog").textContent = T.vwaProg.replace("{i}", vwIdx + 1).replace("{n}", vwQs.length);
+      $("vw-prog").textContent = T.vwaProg.replace("{i}", vwIdx + 1).replace("{n}", vwTotal);
       $("vw-note").textContent = T.vwaNote || "";
       $("vw-note").style.display = T.vwaNote ? "" : "none";
+      $("vw-qnote").textContent = T.qNote;
       $("vw-listen").style.display = canTTS() ? "" : "none";
     }
   }
@@ -939,7 +948,7 @@ by();})();
   }
 
   function vwShow() {
-    vwLast = vwIdx >= vwQs.length - 1;
+    vwLast = vwIdx >= vwTotal - 1;
     vwAns.value = "";
     vwFb.style.display = "none"; vwFb.innerHTML = "";
     vwNextB.style.display = "none";
@@ -981,13 +990,62 @@ by();})();
 
   document.getElementById("sw-vwa").addEventListener("click", function () {
     if (!lastMd) { status.textContent = MSG.vwaNoQ; return; }
-    vwQs = extractQuestions(lastMd);
-    if (!vwQs.length) { status.textContent = MSG.vwaNoQ; return; }
-    vwOn = true; vwIdx = 0;
+    // Les questions ne sont plus tirées du rapport : les avoir lues, c'est
+    // déjà les avoir préparées. On les demande une par une, au moment de
+    // répondre — et elles changent d'une séance à l'autre.
+    vwOn = true; vwIdx = 0; vwQs = []; vwLog = [];
+    vwTotal = document.getElementById("sw-procode").value.trim() ? 8 : 3;
+    document.getElementById("vw-dl").style.display = "none";
     vwPanel.style.display = "";
-    vwShow();
     vwPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    vwProchaineQuestion();
   });
+
+  // Va chercher la question suivante. En cas d'echec, on retombe sur les
+  // questions du rapport plutot que de laisser le candidat devant un mur.
+  function vwProchaineQuestion() {
+    if (vwChargement) return;
+    vwChargement = true;
+    vwQEl.textContent = MSG.qLoad;
+    vwProg.textContent = MSG.vwaProg.replace("{i}", vwIdx + 1).replace("{n}", vwTotal);
+    vwAns.value = "";
+    vwFb.style.display = "none"; vwFb.innerHTML = "";
+    vwNextB.style.display = "none";
+    vwStatus('<span class="sw-spin"></span>');
+    fetch(ENDPOINT, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "kesyon", language: siteLang(), deja: vwQs,
+        work: document.getElementById("sw-work").value.trim(),
+        tasks: document.getElementById("sw-tasks").value.trim(),
+        strength: document.getElementById("sw-strength").value.trim(),
+        weakness: document.getElementById("sw-weakness").value.trim(),
+        goal: document.getElementById("sw-goal").value.trim(),
+        jobDesc: document.getElementById("sw-jobdesc").value.trim(),
+      }),
+    })
+      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+      .then(function (res) {
+        vwChargement = false;
+        if (res.ok && res.body && res.body.question) {
+          vwQs.push(res.body.question);
+          vwShow();
+          return;
+        }
+        vwSecours(res.body && res.body.error === "rate_limited");
+      })
+      .catch(function () { vwChargement = false; vwSecours(false); });
+  }
+
+  function vwSecours(limite) {
+    var reserve = extractQuestions(lastMd);
+    if (reserve[vwIdx]) {
+      vwQs.push(reserve[vwIdx]);
+      vwShow();
+    } else {
+      vwStatus(limite ? MSG.vwaLimit : MSG.qErr);
+    }
+  }
   vwCloseB.addEventListener("click", vwReset);
   vwListenB.addEventListener("click", function () { vwSpeak(vwQs[vwIdx] || ""); });
 
@@ -1132,7 +1190,7 @@ by();})();
     vwStopAll();
     if (vwLast) { vwReset(); status.textContent = MSG.vwaDone; return; }
     vwIdx++;
-    vwShow();
+    vwProchaineQuestion();
   });
 
   // ---- anons jointe (foto / PDF) → tèks nan bwat jobDesc la ----
