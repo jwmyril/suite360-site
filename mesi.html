@@ -230,7 +230,7 @@ d.lang=l||"ht";})();
   var tries = 0;
   function poll() {
     tries++;
-    fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sid: sid }) })
+    fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sid: sid, lang: lang() }) })
       .then(function (r) { return r.json(); })
       .then(function (b) {
         if (b && b.code) { rec = b; state = "done"; paint(); return; }
