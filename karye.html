@@ -42,6 +42,7 @@ if(l!=="fr"){d.className+=" i18n-wait";setTimeout(function(){d.classList.remove(
     .ky-m.user{align-self:flex-end;background:#12406b;color:#eaf2fb;border-bottom-right-radius:4px}
     .ky-m.coach{align-self:flex-start;background:rgba(46,196,182,0.12);border:1px solid rgba(46,196,182,0.35);color:#d7e3f0;border-bottom-left-radius:4px}
     .ky-m.coach strong{color:#fff}
+    .ky-m.rezime{align-self:stretch;max-width:100%;background:rgba(244,162,97,0.1);border:1px solid rgba(244,162,97,0.5)}
     .ky-inputrow{display:flex;gap:0.6rem;margin-top:0.9rem}
     .ky-inputrow textarea{flex:1;min-height:52px;max-height:140px;resize:vertical}
     .ky-inputrow button{white-space:nowrap}
@@ -152,6 +153,7 @@ if(l!=="fr"){d.className+=" i18n-wait";setTimeout(function(){d.classList.remove(
         <div class="ky-tools">
           <button type="button" id="ky-tts">🔊 Voix du coach : activée</button>
           <span id="ky-privacy">🔒 Dossier anonyme lié à votre code — effaçable à tout moment.</span>
+          <button type="button" id="ky-sum" style="display:none;color:#2ec4b6">🧭 Résumer la séance</button>
           <button type="button" id="ky-dl" style="display:none;color:#2ec4b6">📥 Télécharger mes séances</button>
           <button type="button" id="ky-erase">Effacer mon dossier</button>
         </div>
@@ -208,7 +210,7 @@ by();})();
       sttErr: "Transcription impossible. Réessayez : parlez plus fort, plus lentement.",
       vwaLimit: "Quota vocal du jour atteint — revenez demain ! 🙂",
       ttsOn: "🔊 Voix du coach : activée", ttsOff: "🔇 Voix du coach : coupée",
-      dlSes: "📥 Télécharger mes séances", dlOk: "Téléchargé ! Ouvrez-le avec Word ou Google Docs.", roTitle: "Votre abonnement est terminé — tout votre travail reste là", roBody: "Vous pouvez relire et télécharger toutes vos séances. Pour reprendre avec le coach, renouvelez l'abonnement.", roRenew: "Renouveler l'abonnement", docTitle: "Mes séances Career360", docYou: "Moi", docCoach: "Le coach", docFoot: "Vos séances avec Career360. Gardez ce document — il est à vous. 360.atmart.ltd",
+      dlSes: "📥 Télécharger mes séances", sumBtn: "🧭 Résumer la séance", sumWait: "Rédaction du résumé…", sumNone: "Échangez d'abord avec le coach — le résumé a besoin d'une conversation.", sumTitle: "🧭 Résumé de la séance", dlOk: "Téléchargé ! Ouvrez-le avec Word ou Google Docs.", roTitle: "Votre abonnement est terminé — tout votre travail reste là", roBody: "Vous pouvez relire et télécharger toutes vos séances. Pour reprendre avec le coach, renouvelez l'abonnement.", roRenew: "Renouveler l'abonnement", docTitle: "Mes séances Career360", docYou: "Moi", docCoach: "Le coach", docFoot: "Vos séances avec Career360. Gardez ce document — il est à vous. 360.atmart.ltd",
       trial: "🎁 Pas de code ? Essayez gratuitement pendant 7 jours",
       trialOk: "Votre code d'essai : {code} — valable jusqu'au {exp}. Il est déjà rempli : cliquez « Commencer avec mon coach ».",
       trialUsed: "L'essai gratuit a déjà été utilisé ici. Choisissez un plan pour continuer — 14,99 $/mois.",bg1:"🗣 4 langues",bg2:"🧠 Il se souvient de vous",bg3:"📅 Une séance par semaine",bg4:"🔒 Dossier anonyme",f1t:"Vos 90 premiers jours",f1d:"Nouveau poste : observer, livrer une première victoire, ouvrir le dialogue avec votre superviseur.",f2t:"Trouver le prochain emploi",f2d:"Cibler les postes, bâtir vos preuves, activer votre réseau humain — et préparer chaque entretien.",f3t:"Grandir dans votre poste",f3d:"Déléguer à l'IA, superviser, renforcer l'humain — et rendre vos résultats visibles.",fh:"Commencer",fs:"Votre code est votre compte : aucun nom, aucun e-mail. Trois questions et votre coach vous connaît."
@@ -238,7 +240,7 @@ by();})();
       sttErr: "Nou pa t rive ekri sa ou di a. Eseye ankò : pale pi fò, pi dousman.",
       vwaLimit: "Ou sèvi ak tout vwa ou pou jodi a — tounen demen ! 🙂",
       ttsOn: "🔊 Vwa koach la : limen", ttsOff: "🔇 Vwa koach la : etenn",
-      dlSes: "📥 Telechaje seyans yo", dlOk: "Telechaje ! Louvri l ak Word oswa Google Docs.", roTitle: "Abònman ou fini — men tout travay ou rete la", roBody: "Ou ka li ak telechaje tout seyans ou yo. Pou kontinye ak coach la, renouvle abònman an.", roRenew: "Renouvle abònman an", docTitle: "Seyans Career360 mwen yo", docYou: "Mwen", docCoach: "Coach la", docFoot: "Seyans ou yo ak Career360. Kenbe dokiman sa a — li pou ou. 360.atmart.ltd",
+      dlSes: "📥 Telechaje seyans yo", sumBtn: "🧭 Fè rezime seyans lan", sumWait: "N ap fè rezime a…", sumNone: "Fè yon ti pale ak coach la anvan — rezime a bezwen yon konvèsasyon.", sumTitle: "🧭 Rezime seyans lan", dlOk: "Telechaje ! Louvri l ak Word oswa Google Docs.", roTitle: "Abònman ou fini — men tout travay ou rete la", roBody: "Ou ka li ak telechaje tout seyans ou yo. Pou kontinye ak coach la, renouvle abònman an.", roRenew: "Renouvle abònman an", docTitle: "Seyans Career360 mwen yo", docYou: "Mwen", docCoach: "Coach la", docFoot: "Seyans ou yo ak Career360. Kenbe dokiman sa a — li pou ou. 360.atmart.ltd",
       trial: "🎁 Pa gen kòd ? Eseye l gratis pandan 7 jou",
       trialOk: "Men kòd esè ou : {code} — li bon jiska {exp}. Nou deja ranpli l pou ou : klike « Kòmanse ak coach mwen ».",
       trialUsed: "Esè gratis la deja sèvi isit la. Pran yon plan pou kontinye — 14,99 $ pa mwa.",bg1:"🗣 4 lang",bg2:"🧠 Li sonje w",bg3:"📅 Yon seyans chak semèn",bg4:"🔒 Dosye anonim",f1t:"90 premye jou ou yo",f1d:"Nouvo djòb : obsève, bay yon premye viktwa, louvri dyalòg ak sipèvizè w.",f2t:"Jwenn pwochen djòb la",f2d:"Vize bon pòs yo, bati prèv ou yo, aktive rezo moun ou — epi prepare chak entèvyou.",f3t:"Grandi nan pòs ou",f3d:"Delege bay IA, sipèvize, ranfòse sa ki imen — epi fè rezilta ou yo parèt.",fh:"Kòmanse",fs:"Kòd ou se kont ou : okenn non, okenn imèl. Twa kesyon epi coach la konnen w."
@@ -268,7 +270,7 @@ by();})();
       sttErr: "Couldn't transcribe. Try again: speak louder and slower.",
       vwaLimit: "Today's voice quota is used up — come back tomorrow! 🙂",
       ttsOn: "🔊 Coach voice: on", ttsOff: "🔇 Coach voice: off",
-      dlSes: "📥 Download my sessions", dlOk: "Downloaded! Open it with Word or Google Docs.", roTitle: "Your subscription has ended — all your work is still here", roBody: "You can read and download all your sessions. To continue with the coach, renew your subscription.", roRenew: "Renew the subscription", docTitle: "My Career360 sessions", docYou: "Me", docCoach: "The coach", docFoot: "Your sessions with Career360. Keep this document — it is yours. 360.atmart.ltd",
+      dlSes: "📥 Download my sessions", sumBtn: "🧭 Summarize the session", sumWait: "Writing the recap…", sumNone: "Talk with the coach first — the recap needs a conversation.", sumTitle: "🧭 Session recap", dlOk: "Downloaded! Open it with Word or Google Docs.", roTitle: "Your subscription has ended — all your work is still here", roBody: "You can read and download all your sessions. To continue with the coach, renew your subscription.", roRenew: "Renew the subscription", docTitle: "My Career360 sessions", docYou: "Me", docCoach: "The coach", docFoot: "Your sessions with Career360. Keep this document — it is yours. 360.atmart.ltd",
       trial: "🎁 No code? Try it free for 7 days",
       trialOk: "Your trial code: {code} — valid until {exp}. It's already filled in: click “Start with my coach”.",
       trialUsed: "The free trial was already used here. Pick a plan to continue — $14.99/month.",bg1:"🗣 4 languages",bg2:"🧠 It remembers you",bg3:"📅 One session a week",bg4:"🔒 Anonymous file",f1t:"Your first 90 days",f1d:"New job: observe, deliver an early win, open the conversation with your supervisor.",f2t:"Land the next job",f2d:"Target the roles, build your proof, activate your human network — and prepare every interview.",f3t:"Grow in your role",f3d:"Delegate to AI, supervise it, strengthen what is human — and make your results visible.",fh:"Get started",fs:"Your code is your account: no name, no email. Three questions and your coach knows you."
@@ -298,7 +300,7 @@ by();})();
       sttErr: "No se pudo transcribir. Habla más fuerte y despacio.",
       vwaLimit: "Cuota de voz de hoy agotada — ¡vuelve mañana! 🙂",
       ttsOn: "🔊 Voz del coach: activada", ttsOff: "🔇 Voz del coach: apagada",
-      dlSes: "📥 Descargar mis sesiones", dlOk: "¡Descargado! Ábrelo con Word o Google Docs.", roTitle: "Tu suscripción terminó — todo tu trabajo sigue aquí", roBody: "Puedes releer y descargar todas tus sesiones. Para continuar con el coach, renueva la suscripción.", roRenew: "Renovar la suscripción", docTitle: "Mis sesiones Career360", docYou: "Yo", docCoach: "El coach", docFoot: "Tus sesiones con Career360. Guarda este documento — es tuyo. 360.atmart.ltd",
+      dlSes: "📥 Descargar mis sesiones", sumBtn: "🧭 Resumir la sesión", sumWait: "Redactando el resumen…", sumNone: "Habla primero con el coach — el resumen necesita una conversación.", sumTitle: "🧭 Resumen de la sesión", dlOk: "¡Descargado! Ábrelo con Word o Google Docs.", roTitle: "Tu suscripción terminó — todo tu trabajo sigue aquí", roBody: "Puedes releer y descargar todas tus sesiones. Para continuar con el coach, renueva la suscripción.", roRenew: "Renovar la suscripción", docTitle: "Mis sesiones Career360", docYou: "Yo", docCoach: "El coach", docFoot: "Tus sesiones con Career360. Guarda este documento — es tuyo. 360.atmart.ltd",
       trial: "🎁 ¿Sin código? Pruébalo gratis por 7 días",
       trialOk: "Tu código de prueba: {code} — válido hasta {exp}. Ya está rellenado: haz clic en «Empezar con mi coach».",
       trialUsed: "La prueba gratis ya se usó aquí. Elige un plan para continuar — $14.99/mes.",bg1:"🗣 4 idiomas",bg2:"🧠 Se acuerda de ti",bg3:"📅 Una sesión por semana",bg4:"🔒 Expediente anónimo",f1t:"Tus primeros 90 días",f1d:"Nuevo puesto: observar, lograr una primera victoria, abrir el diálogo con tu supervisor.",f2t:"Conseguir el próximo empleo",f2d:"Apuntar a los puestos, construir tus pruebas, activar tu red humana — y preparar cada entrevista.",f3t:"Crecer en tu puesto",f3d:"Delegar en la IA, supervisarla, reforzar lo humano — y hacer visibles tus resultados.",fh:"Empezar",fs:"Tu código es tu cuenta: sin nombre, sin correo. Tres preguntas y tu coach te conoce."
@@ -334,6 +336,7 @@ by();})();
     setTxt("ky-go", t.go); setTxt("ky-send", t.send);
     setTxt("ky-privacy", t.privacy); setTxt("ky-erase", t.erase);
     setTxt("ky-dl", t.dlSes);
+    setTxt("ky-sum", t.sumBtn);
     setTxt("ky-ro-t", t.roTitle); setTxt("ky-ro-b", t.roBody); setTxt("ky-ro-r", t.roRenew);
     ["bg1","bg2","bg3","bg4","f1t","f1d","f2t","f2d","f3t","f3d","fh","fs"].forEach(function(k){
       setTxt("ky-"+k,t[k]);});
@@ -359,7 +362,10 @@ by();})();
     msgs.appendChild(d);
     msgs.scrollTop = msgs.scrollHeight;
     kyLog.push({ role: role === "user" ? "user" : "coach", text: text });
-    if (kyLog.length) document.getElementById("ky-dl").style.display = "";
+    if (kyLog.length) {
+      document.getElementById("ky-dl").style.display = "";
+      if (kyLog.length >= 2) document.getElementById("ky-sum").style.display = "";
+    }
     return d;
   }
   function errMsg(code) {
@@ -435,6 +441,26 @@ by();})();
       })
       .catch(function () { st1.textContent = t.err; });
   }
+  document.getElementById("ky-sum").addEventListener("click", function () {
+    if (busy) return;
+    var t = T();
+    if (kyLog.length < 2) { st2.textContent = t.sumNone; return; }
+    busy = true;
+    st2.innerHTML = '<span class="ky-spin"></span>' + t.sumWait;
+    post({ action: "rezime" })
+      .then(function (res) {
+        busy = false;
+        st2.textContent = "";
+        if (!res.ok) {
+          st2.textContent = res.body && res.body.error === "koach_no_session" ? t.sumNone : errMsg(res.body && res.body.error);
+          return;
+        }
+        var d = addMsg("coach", t.sumTitle + "\n\n" + res.body.rezime);
+        d.classList.add("rezime");
+      })
+      .catch(function () { busy = false; st2.textContent = t.err; });
+  });
+
   document.getElementById("ky-dl").addEventListener("click", function () {
     if (!kyLog.length) return;
     var t = T();
@@ -660,6 +686,7 @@ by();})();
         msgs.innerHTML = "";
         kyLog = [];
         document.getElementById("ky-dl").style.display = "none";
+        document.getElementById("ky-sum").style.display = "none";
         document.getElementById("ky-ro").style.display = "none";
         document.getElementById("ky-inputrow").style.display = "flex";
         document.getElementById("ky-chatbox").style.display = "none";
