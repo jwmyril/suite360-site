@@ -201,6 +201,10 @@ d.lang=l||"ht";})();
           <label for="sw-procode" id="L-procode">⭐ Kòd Entèvyou360 Pro (si ou achte l)<small>Ak yon kòd, w ap jwenn TOUT kit la : 8-12 kesyon AK repons yo, deck, plan 90 jou + CV pa konpetans · Kòd PRO90 : san limit pandan 90 jou (jiska 8 pa jou)</small></label>
           <input type="text" id="sw-procode" maxlength="24" autocomplete="off" placeholder="ENT-XXXX-XXXX / PRO90-XXXX-XXXX" />
           <p id="sw-solde" style="display:none;color:#2ec4b6;font-size:0.83rem;margin:0.35rem 0 0"></p>
+          <p id="sw-memo" style="display:none;color:#9db2c7;font-size:0.8rem;margin:0.35rem 0 0;line-height:1.5">
+            <span id="sw-memo-t"></span>
+            <button type="button" id="sw-forget" style="background:none;border:none;color:#7fb2d9;text-decoration:underline;cursor:pointer;padding:0;font:inherit"></button>
+          </p>
         <p id="L-probuy" style="color:#9db2c7;font-size:0.8rem;margin-top:0.35rem">Ou poko gen kòd ? <a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00" style="color:#2ec4b6">💳 Kit 9,99 $</a> · <a href="https://buy.stripe.com/28E8wP0Tf9Pn5B761JaEE01" style="color:#2ec4b6">💳 90 jou 19,99 $</a></p>
         </div>
 
@@ -390,7 +394,7 @@ by();})();
       vwaMicErr: "Nou pa ka jwenn mikwo a. Tcheke si navigatè a gen pèmisyon pou sèvi ak li.",
       vwaSttErr: "Nou pa t rive ekri sa ou di a. Eseye ankò : pale pi fò, pi dousman.",
       vwaEmpty: "Anrejistre yon repons anvan, oswa ekri l nan bwat la.",
-      qLoad: "Rekritè a ap prepare kesyon l…", askBtn: "🙋 Poze kesyon PA W", askClose: "✕ Fèmen", askHint: "Yon antrevi se yon konvèsasyon. Moun ki pa poze anyen sanble li pa enterese. Poze kesyon ou vle poze rekritè a — l ap reponn ou, epi kòch la ap di ou sa kesyon an montre sou ou ak ki lè pou poze l.", askPh: "Egzanp : Kijan yon bon premye twa mwa ta sanble nan pòs sa a ?", askSend: "📨 Voye kesyon an", askEmpty: "Ekri kesyon ou an anvan.", askWait: "Rekritè a ap reflechi…", sesMq: "Kesyon ou poze panèl la :", audioNote: "🔒 Anrejistreman sa a rete sou aparèy ou — li disparèt lè ou fèmen paj la. Koute tèt ou : se konsa ou tande kote ou ezite.", audioDl: "📥 Kenbe odyo a", qNote: "Kesyon yo vini youn apre lòt, san yo pa anonse — menm jan ak yon vrè entèvyou. Yo chanje chak seyans. 3 kesyon egzanp nan rapò ou a se pou ba w ton an.", qErr: "Nou pa t rive jwenn yon kesyon. Eseye ankò nan yon moman.",
+      qLoad: "Rekritè a ap prepare kesyon l…", memoOn: "🔑 Kòd sa a anrejistre sou aparèy sa a — ou p ap bezwen retape l.", memoF: "Bliye l", memoGone: "Kòd la efase sou aparèy sa a.", askBtn: "🙋 Poze kesyon PA W", askClose: "✕ Fèmen", askHint: "Yon antrevi se yon konvèsasyon. Moun ki pa poze anyen sanble li pa enterese. Poze kesyon ou vle poze rekritè a — l ap reponn ou, epi kòch la ap di ou sa kesyon an montre sou ou ak ki lè pou poze l.", askPh: "Egzanp : Kijan yon bon premye twa mwa ta sanble nan pòs sa a ?", askSend: "📨 Voye kesyon an", askEmpty: "Ekri kesyon ou an anvan.", askWait: "Rekritè a ap reflechi…", sesMq: "Kesyon ou poze panèl la :", audioNote: "🔒 Anrejistreman sa a rete sou aparèy ou — li disparèt lè ou fèmen paj la. Koute tèt ou : se konsa ou tande kote ou ezite.", audioDl: "📥 Kenbe odyo a", qNote: "Kesyon yo vini youn apre lòt, san yo pa anonse — menm jan ak yon vrè entèvyou. Yo chanje chak seyans. 3 kesyon egzanp nan rapò ou a se pou ba w ton an.", qErr: "Nou pa t rive jwenn yon kesyon. Eseye ankò nan yon moman.",
       vwaNoQ: "Fè SWOT360 ou a anvan — kesyon pratik yo ap soti nan rezilta a.",
       vwaLimit: "Ou sèvi ak tout vwa ou pou jodi a — tounen demen ! 🙂",
       vwaNote: "ℹ️ Vwa AI a poko pale kreyòl. Li kesyon an awotvwa, epi reponn ak vwa PA OU — n ap konprann ou.",
@@ -463,7 +467,7 @@ by();})();
       vwaMicErr: "Micro inaccessible. Vérifiez que le navigateur a la permission de l'utiliser.",
       vwaSttErr: "Transcription impossible. Réessayez : parlez plus fort, plus lentement.",
       vwaEmpty: "Enregistrez d'abord une réponse, ou écrivez-la dans la zone de texte.",
-      qLoad: "Le recruteur prépare sa question…", askBtn: "🙋 Poser MA question", askClose: "✕ Fermer", askHint: "Un entretien est une conversation. Celui qui ne demande rien paraît désintéressé. Posez la question que vous voulez poser au recruteur — il vous répond, puis le coach vous dit ce que cette question révèle de vous et à quel moment la poser.", askPh: "Exemple : à quoi ressemblent trois premiers mois réussis à ce poste ?", askSend: "📨 Envoyer ma question", askEmpty: "Écrivez votre question d'abord.", askWait: "Le recruteur réfléchit…", sesMq: "Votre question au panel :", audioNote: "🔒 Cet enregistrement reste sur votre appareil — il disparaît quand vous fermez la page. Écoutez-vous : c'est là qu'on entend ses hésitations.", audioDl: "📥 Garder l'audio", qNote: "Les questions arrivent une par une, sans être annoncées — comme dans un vrai entretien. Elles changent à chaque séance. Les 3 exemples de votre rapport sont là pour vous donner le ton.", qErr: "Nous n'avons pas pu obtenir de question. Réessayez dans un instant.",
+      qLoad: "Le recruteur prépare sa question…", memoOn: "🔑 Ce code est enregistré sur cet appareil — vous n'aurez plus à le retaper.", memoF: "L'oublier", memoGone: "Code effacé de cet appareil.", askBtn: "🙋 Poser MA question", askClose: "✕ Fermer", askHint: "Un entretien est une conversation. Celui qui ne demande rien paraît désintéressé. Posez la question que vous voulez poser au recruteur — il vous répond, puis le coach vous dit ce que cette question révèle de vous et à quel moment la poser.", askPh: "Exemple : à quoi ressemblent trois premiers mois réussis à ce poste ?", askSend: "📨 Envoyer ma question", askEmpty: "Écrivez votre question d'abord.", askWait: "Le recruteur réfléchit…", sesMq: "Votre question au panel :", audioNote: "🔒 Cet enregistrement reste sur votre appareil — il disparaît quand vous fermez la page. Écoutez-vous : c'est là qu'on entend ses hésitations.", audioDl: "📥 Garder l'audio", qNote: "Les questions arrivent une par une, sans être annoncées — comme dans un vrai entretien. Elles changent à chaque séance. Les 3 exemples de votre rapport sont là pour vous donner le ton.", qErr: "Nous n'avons pas pu obtenir de question. Réessayez dans un instant.",
       vwaNoQ: "Faites d'abord votre SWOT360 — les questions d'entraînement en sortent.",
       vwaLimit: "Quota vocal du jour atteint — revenez demain ! 🙂",
       vwaNote: "",
@@ -536,7 +540,7 @@ by();})();
       vwaMicErr: "Can't access the microphone. Check the browser permission.",
       vwaSttErr: "Couldn't transcribe. Try again: speak louder and slower.",
       vwaEmpty: "Record an answer first, or type it in the box.",
-      qLoad: "The recruiter is preparing the question…", askBtn: "🙋 Ask MY question", askClose: "✕ Close", askHint: "An interview is a conversation. Someone who asks nothing looks uninterested. Ask the recruiter what you actually want to know — they answer, then the coach tells you what your question reveals about you and when to ask it.", askPh: "Example: what does a successful first three months look like in this role?", askSend: "📨 Send my question", askEmpty: "Write your question first.", askWait: "The recruiter is thinking…", sesMq: "Your question to the panel:", audioNote: "🔒 This recording stays on your device — it disappears when you close the page. Listen to yourself: that is where you hear your hesitations.", audioDl: "📥 Keep the audio", qNote: "Questions come one at a time, unannounced — like a real interview. They change every session. The 3 examples in your report are there to set the tone.", qErr: "We could not get a question. Try again in a moment.",
+      qLoad: "The recruiter is preparing the question…", memoOn: "🔑 This code is saved on this device — you will not have to type it again.", memoF: "Forget it", memoGone: "Code erased from this device.", askBtn: "🙋 Ask MY question", askClose: "✕ Close", askHint: "An interview is a conversation. Someone who asks nothing looks uninterested. Ask the recruiter what you actually want to know — they answer, then the coach tells you what your question reveals about you and when to ask it.", askPh: "Example: what does a successful first three months look like in this role?", askSend: "📨 Send my question", askEmpty: "Write your question first.", askWait: "The recruiter is thinking…", sesMq: "Your question to the panel:", audioNote: "🔒 This recording stays on your device — it disappears when you close the page. Listen to yourself: that is where you hear your hesitations.", audioDl: "📥 Keep the audio", qNote: "Questions come one at a time, unannounced — like a real interview. They change every session. The 3 examples in your report are there to set the tone.", qErr: "We could not get a question. Try again in a moment.",
       vwaNoQ: "Get your SWOT360 first — the practice questions come from it.",
       vwaLimit: "Today's voice quota is used up — come back tomorrow! 🙂",
       vwaNote: "",
@@ -609,7 +613,7 @@ by();})();
       vwaMicErr: "No se puede acceder al micrófono. Verifica el permiso del navegador.",
       vwaSttErr: "No se pudo transcribir. Inténtalo de nuevo: habla más fuerte y despacio.",
       vwaEmpty: "Graba primero una respuesta, o escríbela en el cuadro.",
-      qLoad: "El reclutador prepara su pregunta…", askBtn: "🙋 Hacer MI pregunta", askClose: "✕ Cerrar", askHint: "Una entrevista es una conversación. Quien no pregunta nada parece desinteresado. Haz la pregunta que de verdad quieres hacer — el reclutador responde y luego el coach te dice qué revela tu pregunta y cuándo conviene hacerla.", askPh: "Ejemplo: ¿cómo serían unos primeros tres meses logrados en este puesto?", askSend: "📨 Enviar mi pregunta", askEmpty: "Escribe tu pregunta primero.", askWait: "El reclutador está pensando…", sesMq: "Tu pregunta al panel:", audioNote: "🔒 Esta grabación se queda en tu dispositivo — desaparece al cerrar la página. Escúchate: ahí es donde se oyen las dudas.", audioDl: "📥 Guardar el audio", qNote: "Las preguntas llegan una por una, sin anunciarse — como en una entrevista real. Cambian en cada sesión. Los 3 ejemplos de tu informe están para darte el tono.", qErr: "No pudimos obtener una pregunta. Inténtalo de nuevo en un momento.",
+      qLoad: "El reclutador prepara su pregunta…", memoOn: "🔑 Este código está guardado en este dispositivo — no tendrás que volver a escribirlo.", memoF: "Olvidarlo", memoGone: "Código borrado de este dispositivo.", askBtn: "🙋 Hacer MI pregunta", askClose: "✕ Cerrar", askHint: "Una entrevista es una conversación. Quien no pregunta nada parece desinteresado. Haz la pregunta que de verdad quieres hacer — el reclutador responde y luego el coach te dice qué revela tu pregunta y cuándo conviene hacerla.", askPh: "Ejemplo: ¿cómo serían unos primeros tres meses logrados en este puesto?", askSend: "📨 Enviar mi pregunta", askEmpty: "Escribe tu pregunta primero.", askWait: "El reclutador está pensando…", sesMq: "Tu pregunta al panel:", audioNote: "🔒 Esta grabación se queda en tu dispositivo — desaparece al cerrar la página. Escúchate: ahí es donde se oyen las dudas.", audioDl: "📥 Guardar el audio", qNote: "Las preguntas llegan una por una, sin anunciarse — como en una entrevista real. Cambian en cada sesión. Los 3 ejemplos de tu informe están para darte el tono.", qErr: "No pudimos obtener una pregunta. Inténtalo de nuevo en un momento.",
       vwaNoQ: "Haz primero tu SWOT360 — las preguntas de práctica salen de él.",
       vwaLimit: "Cuota de voz de hoy agotada — ¡vuelve mañana! 🙂",
       vwaNote: "",
@@ -725,6 +729,8 @@ by();})();
     if (vl) vl.textContent = T.voixLbl;
     var vs = document.getElementById("vw-voix");
     if (vs) { vs.options[0].text = T.v0; vs.options[1].text = T.vf; vs.options[2].text = T.vh; }
+    var mf = document.getElementById("sw-forget");
+    if (mf) { document.getElementById("sw-memo-t").textContent = T.memoOn + " "; mf.textContent = T.memoF; }
     var jb = document.getElementById("sw-jdbtn");
     if (jb && T.jdUp) jb.textContent = T.jdUp;
     vwSyncLang(T);
@@ -787,8 +793,29 @@ by();})();
       })
       .catch(function () { soldeEnCours = false; });
   }
-  document.getElementById("sw-procode").addEventListener("change", majSolde);
-  document.getElementById("sw-procode").addEventListener("blur", majSolde);
+  // Un code tape a la main doit survivre a la fermeture de l'onglet : sans ca,
+  // la personne le recherche dans ses e-mails a chaque visite.
+  function majMemo() {
+    var m = "";
+    try { m = localStorage.getItem("entevyou_pro") || ""; } catch (e) {}
+    document.getElementById("sw-memo").style.display = m ? "" : "none";
+  }
+  function memoriser() {
+    var c = document.getElementById("sw-procode").value.trim().toUpperCase();
+    if (/^(ENT|PRO90)-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(c)) {
+      try { localStorage.setItem("entevyou_pro", c); } catch (e) {}
+      majMemo();
+    }
+  }
+  document.getElementById("sw-forget").addEventListener("click", function () {
+    try { localStorage.removeItem("entevyou_pro"); } catch (e) {}
+    document.getElementById("sw-procode").value = "";
+    majMemo(); majSolde();
+    status.textContent = MSG.memoGone;
+  });
+  majMemo();
+  document.getElementById("sw-procode").addEventListener("change", function () { memoriser(); majSolde(); });
+  document.getElementById("sw-procode").addEventListener("blur", function () { memoriser(); majSolde(); });
 
   applyLang(siteLang());
   majSolde();

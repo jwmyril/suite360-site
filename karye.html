@@ -121,6 +121,10 @@ if(l!=="fr"){d.className+=" i18n-wait";setTimeout(function(){d.classList.remove(
         <p class="ky-formsub" id="ky-fs">Votre code est votre compte : aucun nom, aucun e-mail. Trois questions et votre coach vous connaît.</p>
         <label for="ky-code" id="L-code">🔑 Votre code Career360<small>Le code reçu à l'achat (KOACH-XXXX-XXXX). Pas encore de code ? <a href="index.html#plans" style="color:#2ec4b6">Voir les plans</a></small></label>
         <input type="text" id="ky-code" maxlength="24" autocomplete="off" placeholder="KOACH-XXXX-XXXX" />
+        <p id="ky-memo" style="display:none;color:#9db2c7;font-size:0.8rem;margin:0.35rem 0 0;line-height:1.5">
+          <span id="ky-memo-t"></span>
+          <button type="button" id="ky-forget" style="background:none;border:none;color:#7fb2d9;text-decoration:underline;cursor:pointer;padding:0;font:inherit"></button>
+        </p>
         <p style="font-size:0.83rem;margin-top:0.45rem"><button type="button" id="ky-trial" style="background:none;border:none;color:#2ec4b6;font:inherit;cursor:pointer;text-decoration:underline;padding:0">🎁 Pas de code ? Essayez gratuitement pendant 7 jours</button></p>
         <label for="ky-role" id="L-role">1. Votre métier / travail actuel</label>
         <input type="text" id="ky-role" maxlength="140" placeholder="Ex. : aide-soignante, chauffeur, comptable…" />
@@ -198,6 +202,7 @@ by();})();
       privacy: "🔒 Dossier anonyme lié à votre code — effaçable à tout moment.", erase: "Effacer mon dossier",
       eraseAsk: "Effacer tout votre dossier (profil + conversations) ? Votre abonnement reste actif, mais le coach ne se souviendra plus de rien.",
       erased: "Dossier effacé. Remplissez le profil pour recommencer.",
+      memoOn: "🔑 Ce code est enregistré sur cet appareil — vous n'aurez plus à le retaper.", memoF: "L'oublier", memoGone: "Code effacé de cet appareil.",
       hello: "Bonjou ! 👋 Je suis votre coach Career360. J'ai bien noté votre profil — dites-moi : comment s'est passée votre semaine au travail ?",
       helloBack: "Content de vous revoir 👋 On reprend où on s'était arrêtés — racontez-moi votre semaine.",
       thinking: "Votre coach réfléchit…", needRole: "Indiquez au moins votre code et votre métier.",
@@ -228,6 +233,7 @@ by();})();
       privacy: "🔒 Dosye anonim ki mare ak kòd ou — ou ka efase l nenpòt lè.", erase: "Efase dosye m",
       eraseAsk: "Efase tout dosye ou (pwofil + konvèsasyon) ? Abònman ou rete aktif, men coach la p ap sonje anyen ankò.",
       erased: "Dosye a efase. Ranpli pwofil la pou rekòmanse.",
+      memoOn: "🔑 Kòd sa a anrejistre sou aparèy sa a — ou p ap bezwen retape l.", memoF: "Bliye l", memoGone: "Kòd la efase sou aparèy sa a.",
       hello: "Bonjou ! 👋 Mwen se coach Career360 ou. Mwen byen note pwofil ou — di m : kijan semèn travay ou pase ?",
       helloBack: "Kontan wè w ankò 👋 N ap repran kote nou te rete a — rakonte m semèn ou.",
       thinking: "Coach ou a ap reflechi…", needRole: "Mete omwen kòd ou ak metye ou.",
@@ -258,6 +264,7 @@ by();})();
       privacy: "🔒 Anonymous file tied to your code — erasable anytime.", erase: "Erase my file",
       eraseAsk: "Erase your whole file (profile + conversations)? Your subscription stays active, but the coach will remember nothing.",
       erased: "File erased. Fill the profile to start again.",
+      memoOn: "🔑 This code is saved on this device — you will not have to type it again.", memoF: "Forget it", memoGone: "Code erased from this device.",
       hello: "Hello! 👋 I'm your Career360 coach. I've noted your profile — tell me: how did your week at work go?",
       helloBack: "Good to see you again 👋 Let's pick up where we left off — tell me about your week.",
       thinking: "Your coach is thinking…", needRole: "Enter at least your code and your job.",
@@ -288,6 +295,7 @@ by();})();
       privacy: "🔒 Expediente anónimo ligado a tu código — borrable cuando quieras.", erase: "Borrar mi expediente",
       eraseAsk: "¿Borrar todo tu expediente (perfil + conversaciones)? Tu suscripción sigue activa, pero el coach no recordará nada.",
       erased: "Expediente borrado. Completa el perfil para empezar de nuevo.",
+      memoOn: "🔑 Este código está guardado en este dispositivo — no tendrás que volver a escribirlo.", memoF: "Olvidarlo", memoGone: "Código borrado de este dispositivo.",
       hello: "¡Hola! 👋 Soy tu coach Career360. Tomé nota de tu perfil — cuéntame: ¿cómo fue tu semana de trabajo?",
       helloBack: "Qué bueno verte de nuevo 👋 Retomamos donde quedamos — cuéntame tu semana.",
       thinking: "Tu coach está pensando…", needRole: "Escribe al menos tu código y tu oficio.",
@@ -336,6 +344,7 @@ by();})();
     setTxt("ky-go", t.go); setTxt("ky-send", t.send);
     setTxt("ky-privacy", t.privacy); setTxt("ky-erase", t.erase);
     setTxt("ky-dl", t.dlSes);
+    kyMemoLang(t);
     setTxt("ky-sum", t.sumBtn);
     setTxt("ky-ro-t", t.roTitle); setTxt("ky-ro-b", t.roBody); setTxt("ky-ro-r", t.roRenew);
     ["bg1","bg2","bg3","bg4","f1t","f1d","f2t","f2d","f3t","f3d","fh","fs"].forEach(function(k){
@@ -354,6 +363,32 @@ by();})();
   var st2 = document.getElementById("ky-status2");
   var busy = false;
   codeEl.value = localStorage.getItem("karye360_code") || "";
+
+  // Le code vit dans le navigateur de la personne, jamais chez nous : elle doit
+  // donc voir qu'il est la, et pouvoir l'effacer sur un poste partage.
+  function kyMajMemo() {
+    var m = "";
+    try { m = localStorage.getItem("karye360_code") || ""; } catch (e) {}
+    document.getElementById("ky-memo").style.display = m ? "" : "none";
+  }
+  function kyMemoLang(t) {
+    document.getElementById("ky-memo-t").textContent = t.memoOn + " ";
+    document.getElementById("ky-forget").textContent = t.memoF;
+  }
+  document.getElementById("ky-forget").addEventListener("click", function () {
+    try { localStorage.removeItem("karye360_code"); } catch (e) {}
+    codeEl.value = "";
+    kyMajMemo();
+    st1.textContent = T().memoGone;
+  });
+  codeEl.addEventListener("blur", function () {
+    var c = codeEl.value.trim().toUpperCase();
+    if (/^KOACH-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(c)) {
+      try { localStorage.setItem("karye360_code", c); } catch (e) {}
+      kyMajMemo();
+    }
+  });
+  kyMajMemo();
 
   function addMsg(role, text) {
     var d = document.createElement("div");
@@ -508,6 +543,7 @@ by();})();
       }
       st1.textContent = "";
       localStorage.setItem("karye360_code", codeEl.value.trim().toUpperCase());
+      kyMajMemo();
       kyShowChat(false);
       // on remet la conversation passée sous les yeux : c'est elle qu'on télécharge
       kyHistory(function () {
