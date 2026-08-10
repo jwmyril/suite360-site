@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0e2240" />
+  <meta name="robots" content="noindex" />
+  <title>Paj la pa la — Suite 360</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css?v=1" />
+<script>/* lang otomatik */
+(function(){var S={fr:1,ht:1,en:1,es:1},d=document.documentElement,s=null;
+try{s=localStorage.getItem("atmart_lang")}catch(e){}
+var l=s&&S[s]?s:null;
+if(!l){var n=navigator.languages||[navigator.language||""];
+for(var i=0;i<n.length;i++){var c=String(n[i]).toLowerCase().split("-")[0];
+if(c==="ht"||c==="hat"){l="ht";break}if(S[c]){l=c;break}}}
+d.lang=l||"ht";})();
+</script>
+  <style>
+    .nf{max-width:620px;margin:0 auto;text-align:center;padding:3rem 0 4rem}
+    .nf-num{font-family:"Space Grotesk",sans-serif;font-size:4rem;color:#2ec4b6;margin:0;line-height:1}
+    .nf h1{font-family:"Space Grotesk",sans-serif;font-size:1.5rem;color:#fff;margin:0.6rem 0 0.8rem}
+    .nf p{color:#9db2c7;line-height:1.7;margin:0 0 1.8rem}
+    .nf-links{display:flex;gap:0.7rem;justify-content:center;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
+    <a href="/" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small id="s360-by">pa Atmart</small></a>
+  </nav>
+</header>
+
+<main>
+  <div class="nf">
+    <p class="nf-num">404</p>
+    <h1 id="nf-t">Paj sa a pa egziste</h1>
+    <p id="nf-p">Petèt adrès la gen yon fot, oswa paj la chanje non. Men kote ou ka ale :</p>
+    <div class="nf-links">
+      <a class="btn btn-primary" href="entevyou.html" id="nf-a">Entèvyou360</a>
+      <a class="btn btn-outline" href="karye.html" id="nf-b">Career360</a>
+      <a class="btn btn-outline" href="/" id="nf-c">Akèy</a>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  var L = {
+    ht: { t: "Paj sa a pa egziste", p: "Petèt adrès la gen yon fot, oswa paj la chanje non. Men kote ou ka ale :", c: "Akèy", by: "pa Atmart" },
+    fr: { t: "Cette page n'existe pas", p: "L'adresse contient peut-être une faute, ou la page a changé de nom. Voici où aller :", c: "Accueil", by: "par Atmart" },
+    en: { t: "This page does not exist", p: "The address may have a typo, or the page was renamed. Here is where to go:", c: "Home", by: "by Atmart" },
+    es: { t: "Esta página no existe", p: "Puede que la dirección tenga un error, o que la página haya cambiado de nombre. Aquí puedes ir:", c: "Inicio", by: "por Atmart" },
+  };
+  var l = document.documentElement.lang;
+  var t = L[l] || L.ht;
+  document.getElementById("nf-t").textContent = t.t;
+  document.getElementById("nf-p").textContent = t.p;
+  document.getElementById("nf-c").textContent = t.c;
+  document.getElementById("s360-by").textContent = t.by;
+  document.title = t.t + " — Suite 360";
+})();
+</script>
+
+</body>
+</html>
