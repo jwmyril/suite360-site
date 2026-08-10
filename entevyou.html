@@ -246,6 +246,10 @@ d.lang=l||"ht";})();
           </div>
           <textarea id="vw-ans"></textarea>
           <p class="vw-hint" id="vw-hint">Ou ka korije tèks la anvan ou voye l.</p>
+          <div id="vw-audio" style="display:none;margin:0 0 0.7rem">
+            <audio id="vw-player" controls style="width:100%"></audio>
+            <p id="vw-audionote" style="color:#9db2c7;font-size:0.78rem;margin:0.3rem 0 0;line-height:1.5"></p>
+          </div>
           <div class="vw-row">
             <button type="button" class="vw-btn send" id="vw-send">📨 Voye repons mwen an</button>
             <button type="button" class="vw-btn" id="vw-next" style="display:none">➜ Lòt kesyon an</button>
@@ -377,7 +381,7 @@ by();})();
       vwaMicErr: "Nou pa ka jwenn mikwo a. Tcheke si navigatè a gen pèmisyon pou sèvi ak li.",
       vwaSttErr: "Nou pa t rive ekri sa ou di a. Eseye ankò : pale pi fò, pi dousman.",
       vwaEmpty: "Anrejistre yon repons anvan, oswa ekri l nan bwat la.",
-      qLoad: "Rekritè a ap prepare kesyon l…", qNote: "Kesyon yo vini youn apre lòt, san yo pa anonse — menm jan ak yon vrè entèvyou. Yo chanje chak seyans. 3 kesyon egzanp nan rapò ou a se pou ba w ton an.", qErr: "Nou pa t rive jwenn yon kesyon. Eseye ankò nan yon moman.",
+      qLoad: "Rekritè a ap prepare kesyon l…", audioNote: "🔒 Anrejistreman sa a rete sou aparèy ou — li disparèt lè ou fèmen paj la. Koute tèt ou : se konsa ou tande kote ou ezite.", audioDl: "📥 Kenbe odyo a", qNote: "Kesyon yo vini youn apre lòt, san yo pa anonse — menm jan ak yon vrè entèvyou. Yo chanje chak seyans. 3 kesyon egzanp nan rapò ou a se pou ba w ton an.", qErr: "Nou pa t rive jwenn yon kesyon. Eseye ankò nan yon moman.",
       vwaNoQ: "Fè SWOT360 ou a anvan — kesyon pratik yo ap soti nan rezilta a.",
       vwaLimit: "Ou sèvi ak tout vwa ou pou jodi a — tounen demen ! 🙂",
       vwaNote: "ℹ️ Vwa AI a poko pale kreyòl. Li kesyon an awotvwa, epi reponn ak vwa PA OU — n ap konprann ou.",
@@ -450,7 +454,7 @@ by();})();
       vwaMicErr: "Micro inaccessible. Vérifiez que le navigateur a la permission de l'utiliser.",
       vwaSttErr: "Transcription impossible. Réessayez : parlez plus fort, plus lentement.",
       vwaEmpty: "Enregistrez d'abord une réponse, ou écrivez-la dans la zone de texte.",
-      qLoad: "Le recruteur prépare sa question…", qNote: "Les questions arrivent une par une, sans être annoncées — comme dans un vrai entretien. Elles changent à chaque séance. Les 3 exemples de votre rapport sont là pour vous donner le ton.", qErr: "Nous n'avons pas pu obtenir de question. Réessayez dans un instant.",
+      qLoad: "Le recruteur prépare sa question…", audioNote: "🔒 Cet enregistrement reste sur votre appareil — il disparaît quand vous fermez la page. Écoutez-vous : c'est là qu'on entend ses hésitations.", audioDl: "📥 Garder l'audio", qNote: "Les questions arrivent une par une, sans être annoncées — comme dans un vrai entretien. Elles changent à chaque séance. Les 3 exemples de votre rapport sont là pour vous donner le ton.", qErr: "Nous n'avons pas pu obtenir de question. Réessayez dans un instant.",
       vwaNoQ: "Faites d'abord votre SWOT360 — les questions d'entraînement en sortent.",
       vwaLimit: "Quota vocal du jour atteint — revenez demain ! 🙂",
       vwaNote: "",
@@ -523,7 +527,7 @@ by();})();
       vwaMicErr: "Can't access the microphone. Check the browser permission.",
       vwaSttErr: "Couldn't transcribe. Try again: speak louder and slower.",
       vwaEmpty: "Record an answer first, or type it in the box.",
-      qLoad: "The recruiter is preparing the question…", qNote: "Questions come one at a time, unannounced — like a real interview. They change every session. The 3 examples in your report are there to set the tone.", qErr: "We could not get a question. Try again in a moment.",
+      qLoad: "The recruiter is preparing the question…", audioNote: "🔒 This recording stays on your device — it disappears when you close the page. Listen to yourself: that is where you hear your hesitations.", audioDl: "📥 Keep the audio", qNote: "Questions come one at a time, unannounced — like a real interview. They change every session. The 3 examples in your report are there to set the tone.", qErr: "We could not get a question. Try again in a moment.",
       vwaNoQ: "Get your SWOT360 first — the practice questions come from it.",
       vwaLimit: "Today's voice quota is used up — come back tomorrow! 🙂",
       vwaNote: "",
@@ -596,7 +600,7 @@ by();})();
       vwaMicErr: "No se puede acceder al micrófono. Verifica el permiso del navegador.",
       vwaSttErr: "No se pudo transcribir. Inténtalo de nuevo: habla más fuerte y despacio.",
       vwaEmpty: "Graba primero una respuesta, o escríbela en el cuadro.",
-      qLoad: "El reclutador prepara su pregunta…", qNote: "Las preguntas llegan una por una, sin anunciarse — como en una entrevista real. Cambian en cada sesión. Los 3 ejemplos de tu informe están para darte el tono.", qErr: "No pudimos obtener una pregunta. Inténtalo de nuevo en un momento.",
+      qLoad: "El reclutador prepara su pregunta…", audioNote: "🔒 Esta grabación se queda en tu dispositivo — desaparece al cerrar la página. Escúchate: ahí es donde se oyen las dudas.", audioDl: "📥 Guardar el audio", qNote: "Las preguntas llegan una por una, sin anunciarse — como en una entrevista real. Cambian en cada sesión. Los 3 ejemplos de tu informe están para darte el tono.", qErr: "No pudimos obtener una pregunta. Inténtalo de nuevo en un momento.",
       vwaNoQ: "Haz primero tu SWOT360 — las preguntas de práctica salen de él.",
       vwaLimit: "Cuota de voz de hoy agotada — ¡vuelve mañana! 🙂",
       vwaNote: "",
@@ -907,6 +911,7 @@ by();})();
   var vwLog = []; // {q, a, fb} — gardé en mémoire de la page uniquement, jamais envoyé
   var vwTotal = 3, vwChargement = false;
   var vwSR = null, vwMedia = null, vwChunks = [], vwTimer = null;
+  var vwAudioUrl = null; // objet URL du dernier enregistrement, libéré à chaque nouveau
   var vwPanel = document.getElementById("vw-panel");
   var vwProg = document.getElementById("vw-prog");
   var vwQEl = document.getElementById("vw-q");
@@ -939,6 +944,7 @@ by();})();
       $("vw-note").textContent = T.vwaNote || "";
       $("vw-note").style.display = T.vwaNote ? "" : "none";
       $("vw-qnote").textContent = T.qNote;
+      $("vw-audionote").textContent = T.audioNote;
       $("vw-listen").style.display = canTTS() ? "" : "none";
     }
   }
@@ -993,11 +999,31 @@ by();})();
     vwAns.value = "";
     vwFb.style.display = "none"; vwFb.innerHTML = "";
     vwNextB.style.display = "none";
+    vwViderAudio();
     vwStatus("");
     vwQEl.textContent = vwQs[vwIdx];
     vwSyncLang(MSG);
     vwSpeak(vwQs[vwIdx]);
   }
+  // L'enregistrement sert d'abord à la personne : s'entendre, c'est entendre
+  // ses hésitations. Il vit dans la page et nulle part ailleurs.
+  function vwPoseAudio(blob) {
+    try {
+      if (vwAudioUrl) URL.revokeObjectURL(vwAudioUrl);
+      vwAudioUrl = URL.createObjectURL(blob);
+      var p = document.getElementById("vw-player");
+      p.src = vwAudioUrl;
+      document.getElementById("vw-audio").style.display = "";
+    } catch (e) {}
+  }
+  function vwViderAudio() {
+    try {
+      if (vwAudioUrl) { URL.revokeObjectURL(vwAudioUrl); vwAudioUrl = null; }
+      document.getElementById("vw-player").removeAttribute("src");
+      document.getElementById("vw-audio").style.display = "none";
+    } catch (e) {}
+  }
+
   function vwEndRecUi() {
     vwRecOn = false;
     vwMicB.classList.remove("rec");
@@ -1025,6 +1051,7 @@ by();})();
     vwStopAll();
     vwOn = false;
     vwPanel.style.display = "none";
+    vwViderAudio();
     vwLog = [];
     document.getElementById("vw-dl").style.display = "none";
   }
@@ -1057,6 +1084,7 @@ by();})();
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         action: "kesyon", language: siteLang(), deja: vwQs,
+        index: vwIdx, total: vwTotal,
         work: document.getElementById("sw-work").value.trim(),
         tasks: document.getElementById("sw-tasks").value.trim(),
         strength: document.getElementById("sw-strength").value.trim(),
@@ -1098,7 +1126,11 @@ by();})();
     vwMicB.textContent = MSG.vwaStop;
     vwStatus(MSG.vwaRecing);
     // Web Speech STT pou fr/en/es ; kreyòl (ak navigatè san Web Speech) → Whisper sou /vwa.
-    if (siteLang() !== "ht" && SRCls) vwStartSR(); else vwStartMedia();
+    vwViderAudio();
+    // Deux chemins pour le texte (navigateur ou Whisper), un seul pour l'audio :
+    // on enregistre toujours en local pour que la personne puisse se réécouter.
+    if (siteLang() !== "ht" && SRCls) { vwStartSR(); vwStartMedia(false); }
+    else vwStartMedia(true);
   });
 
   function vwStartSR() {
@@ -1126,7 +1158,7 @@ by();})();
     } catch (e) { vwEndRecUi(); vwStatus(MSG.vwaMicErr); }
   }
 
-  function vwStartMedia() {
+  function vwStartMedia(envoyer) {
     if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder)) {
       vwEndRecUi(); vwStatus(MSG.vwaMicErr); return;
     }
@@ -1144,7 +1176,10 @@ by();})();
       rec.onstop = function () {
         stream.getTracks().forEach(function (t) { t.stop(); });
         var blob = new Blob(vwChunks, { type: (rec.mimeType || "audio/webm").split(";")[0] });
-        if (blob.size > 200) vwTranscribe(blob);
+        if (blob.size > 200) {
+          vwPoseAudio(blob);
+          if (envoyer) vwTranscribe(blob);
+        }
       };
       rec.start();
       vwTimer = setTimeout(function () { if (vwRecOn) vwStopRec(false); }, 90000); // 90 s maks
