@@ -142,6 +142,25 @@ d.lang=l||"ht";})();
     .pro-bloc .prix{color:#eaf2fb;font-size:0.92rem;margin:0 0 0.8rem}
     .pro-bloc a.achat{display:inline-block;background:#f4a261;color:#2b1a06;text-decoration:none;padding:0.55rem 1rem;border-radius:8px;font-weight:700;margin:0 0.4rem 0.4rem 0}
 
+    /* --- la preparation se mesure : sinon on ne sait jamais si on est pret --- */
+    .prep{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:0.7rem 0.9rem;margin:0 0 0.9rem}
+    .prep-l{display:flex;justify-content:space-between;align-items:baseline;gap:0.6rem;margin:0 0 0.4rem}
+    .prep-t{color:#eaf2fb;font-size:0.85rem;font-weight:600;margin:0}
+    .prep-n{color:#9db2c7;font-size:0.78rem;margin:0}
+    .prep-j{height:7px;background:rgba(255,255,255,0.1);border-radius:5px;overflow:hidden}
+    .prep-j i{display:block;height:100%;border-radius:5px;transition:width 0.35s ease;background:linear-gradient(90deg,#e07a7a,#f4a261,#2ec4b6)}
+    .prep-pts{display:flex;gap:4px;margin-top:0.45rem;flex-wrap:wrap}
+    .prep-pts b{width:22px;height:22px;border-radius:5px;font-size:0.7rem;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.09);color:#7b8c9c;font-weight:700}
+    .prep-pts b.n1{background:rgba(224,122,122,0.28);color:#ffcdcd}
+    .prep-pts b.n2{background:rgba(244,162,97,0.28);color:#ffe0c2}
+    .prep-pts b.n3{background:rgba(46,196,182,0.28);color:#b6f0ea}
+    .bilan{background:linear-gradient(180deg,rgba(46,196,182,0.1),rgba(46,196,182,0.02));border:1px solid rgba(46,196,182,0.45);border-radius:14px;padding:1.1rem 1.2rem;margin:1.1rem 0}
+    .bilan h3{font-family:"Space Grotesk",sans-serif;color:#fff;font-size:1.1rem;margin:0 0 0.3rem}
+    .bilan .sub{color:#9db2c7;font-size:0.84rem;margin:0 0 0.8rem;line-height:1.55}
+    .bilan-out h2,.bilan-out h3{font-family:"Space Grotesk",sans-serif;color:#2ec4b6;font-size:0.98rem;margin:1.1rem 0 0.35rem}
+    .bilan-out p,.bilan-out li{color:#d7e3f0;font-size:0.9rem;line-height:1.65}
+    .bilan-out ul{padding-left:1.1rem;margin:0.2rem 0 0.5rem}
+
     /* --- barre d'action fixe, mobile seulement --- */
     .fixe{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(10,26,47,0.96);border-top:1px solid rgba(46,196,182,0.35);padding:0.6rem 0.9rem;display:none;backdrop-filter:blur(6px)}
     .fixe .btn{width:100%;display:block;text-align:center;padding:0.8rem 1rem}
@@ -314,6 +333,11 @@ d.lang=l||"ht";})();
           <button id="sw-copy">📋 Kopye</button>
         </div>
         <div class="vw-panel" id="vw-panel" style="display:none">
+          <div class="prep" id="vw-prep" style="display:none">
+            <div class="prep-l"><p class="prep-t" id="vw-prep-t"></p><p class="prep-n" id="vw-prep-n"></p></div>
+            <div class="prep-j" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="vw-prep-j"><i style="width:0%"></i></div>
+            <div class="prep-pts" id="vw-prep-pts"></div>
+          </div>
           <p class="vw-prog" id="vw-prog"></p>
           <p class="vw-q" id="vw-q"></p>
           <p class="vw-note" id="vw-note" style="display:none"></p>
@@ -359,6 +383,17 @@ d.lang=l||"ht";})();
           </div>
           <p class="sw-status" id="vw-status" aria-live="polite"></p>
           <div class="vw-fb" id="vw-fb" aria-live="polite"></div>
+          <div class="bilan" id="vw-bilan" style="display:none">
+            <h3 id="vw-bilan-t"></h3>
+            <p class="sub" id="vw-bilan-s"></p>
+            <button type="button" class="btn btn-primary" id="vw-bilan-go"></button>
+            <p class="sw-status" id="vw-bilan-st" aria-live="polite"></p>
+            <div class="bilan-out" id="vw-bilan-out" style="display:none"></div>
+            <div class="vw-row" id="vw-bilan-act" style="display:none;margin-top:0.9rem">
+              <button type="button" class="vw-btn" id="vw-bilan-dl"></button>
+              <button type="button" class="vw-btn" id="vw-bilan-rejouer"></button>
+            </div>
+          </div>
         </div>
         <div class="cv-panel" id="cv-panel" style="display:none">
           <h3 id="cv-title">📄 CV pa konpetans ou</h3>
@@ -518,7 +553,7 @@ by();})();
       vwaMicErr: "Nou pa ka jwenn mikwo a. Tcheke si navigatè a gen pèmisyon pou sèvi ak li.",
       vwaSttErr: "Nou pa t rive ekri sa ou di a. Eseye ankò : pale pi fò, pi dousman.",
       vwaEmpty: "Anrejistre yon repons anvan, oswa ekri l nan bwat la.",
-      qLoad: "Rekritè a ap prepare kesyon l…", promesse: "Prepare pwochen entèvyou w nan 2 minit.", explique: "Reponn 6 kesyon. W ap resevwa fòs ou, sa pou w amelyore, ak 3 kesyon rekritè a ka poze w.", confiance: "Gratis • San enskripsyon • Rezilta a se pou ou sèlman", startBtn: "Kòmanse SWOT mwen — 2 minit", egzA: "Se tou pa w — rezilta pa w ap fèt sou mezi w, menm jan ak sa a.", start2: "Kòmanse SWOT mwen", epNum: "Etap {i} sou 3", epMin: "≈ 2 minit", epNext: "Kontinye", epBack: "Tounen", errWork: "Mete travay ou fè kounye a pou n kontinye.", errTasks: "Di nou 2 oswa 3 bagay ou fè nan travay la.", prodT: "Mwen gen yon kòd Pro deja", succK: "Fini", succT: "SWOT ou a pare", succP: "Men fòs ou, risk yo, ak kesyon rekritè a ka poze w.", toVoice: "🎙 Pratike repons mwen yo ak vwa mwen", suivantT: "Pwochèn etap : antrene w sou 3 kesyon rekritè a.", toVoice2: "🎙 Kòmanse similasyon entèvyou a", aksT: "🤖 Twa aks ou yo devan IA", proT: "Ale pi lwen ak Kit Pro a", proL: ["8 a 12 kesyon fèt sou mezi pou pòs ou vize a", "Repons yo bati sou prèv PA W — pa sou fraz tou fèt", "Yon prezantasyon « Pale m de ou » ou ka repete", "Yon plan 90 jou pou premye mwa yo", "Yon CV pa konpetans, ki matche ak anons lan"], proP: "Kit la : 9,99 $ yon sèl fwa (5 jenerasyon). Pro 90 jou : 19,99 $, jiska 8 pa jou pandan 90 jou. Pa gen abònman, pa gen renouvèlman otomatik.", gen1: "N ap li pwofil ou…", gen2: "N ap chèche fòs ou…", gen3: "N ap prepare kesyon rekritè a…", fixeNext: "Kontinye", fixeGen: "🧭 Fè SWOT mwen", fixeVoice: "🎙 Pratike ak vwa", reessaye: "Eseye ankò", aviT: "💬 Èske sa te itil pou ou ?", aviP: "Yon fraz senp — sa ki te ede w, oswa sa ki manke. Se konsa nou amelyore zouti a. Nou pa mande non ou nan yon lis, nou p ap voye anyen ba ou.", aviPh: "Egzanp : kesyon yo te tankou sa rekritè a te mande m vre…", aviN: "Non ou (opsyonèl)", aviV: "Vil ou (opsyonèl)", aviOk: "Ou mèt pibliye fraz mwen an sou sit la, ak non ak vil mwen.", aviGo: "📨 Voye avi mwen an", aviMesi: "Mèsi ! Nou li chak fraz. 🙏", aviKout: "Ekri yon ti kras plis, souple.", aviErr: "Sa pa mache. Eseye pita.", memoOn: "🔑 Kòd sa a anrejistre sou aparèy sa a — ou p ap bezwen retape l.", memoF: "Bliye l", memoGone: "Kòd la efase sou aparèy sa a.", askBtn: "🙋 Poze kesyon PA W", askClose: "✕ Fèmen", askHint: "Yon antrevi se yon konvèsasyon. Moun ki pa poze anyen sanble li pa enterese. Poze kesyon ou vle poze rekritè a — l ap reponn ou, epi kòch la ap di ou sa kesyon an montre sou ou ak ki lè pou poze l.", askPh: "Egzanp : Kijan yon bon premye twa mwa ta sanble nan pòs sa a ?", askSend: "📨 Voye kesyon an", askEmpty: "Ekri kesyon ou an anvan.", askWait: "Rekritè a ap reflechi…", sesMq: "Kesyon ou poze panèl la :", audioNote: "🔒 Anrejistreman sa a rete sou aparèy ou — li disparèt lè ou fèmen paj la. Koute tèt ou : se konsa ou tande kote ou ezite.", audioDl: "📥 Kenbe odyo a", qNote: "Kesyon yo vini youn apre lòt, san yo pa anonse — menm jan ak yon vrè entèvyou. Yo chanje chak seyans. 3 kesyon egzanp nan rapò ou a se pou ba w ton an.", qErr: "Nou pa t rive jwenn yon kesyon. Eseye ankò nan yon moman.",
+      qLoad: "Rekritè a ap prepare kesyon l…", prepT: "Nivo preparasyon ou", prepN: "{a}/{b} kesyon travay", prepVide: "Chak repons ap monte jij la. Objektif : tout an vèt.", bilanT: "📋 Bilan preparasyon ou", bilanS: "Kòch la ap relè tout sa ou di, epi l ap ekri fich ou pral li maten entèvyou a.", bilanGo: "📋 Fè bilan preparasyon mwen an", bilanWait: "Kòch la ap relè tout seyans lan…", bilanDl: "📥 Telechaje fich la", bilanRe: "🔁 Refè yon seyans", bilanErr: "Nou pa rive fè bilan an. Eseye ankò.", reprise: "Nou jwenn yon seyans ou te kòmanse. Nou kontinye l.", prete: "Ou pare", presque: "Prèske", travay: "Gen travay", promesse: "Prepare pwochen entèvyou w nan 2 minit.", explique: "Reponn 6 kesyon. W ap resevwa fòs ou, sa pou w amelyore, ak 3 kesyon rekritè a ka poze w.", confiance: "Gratis • San enskripsyon • Rezilta a se pou ou sèlman", startBtn: "Kòmanse SWOT mwen — 2 minit", egzA: "Se tou pa w — rezilta pa w ap fèt sou mezi w, menm jan ak sa a.", start2: "Kòmanse SWOT mwen", epNum: "Etap {i} sou 3", epMin: "≈ 2 minit", epNext: "Kontinye", epBack: "Tounen", errWork: "Mete travay ou fè kounye a pou n kontinye.", errTasks: "Di nou 2 oswa 3 bagay ou fè nan travay la.", prodT: "Mwen gen yon kòd Pro deja", succK: "Fini", succT: "SWOT ou a pare", succP: "Men fòs ou, risk yo, ak kesyon rekritè a ka poze w.", toVoice: "🎙 Pratike repons mwen yo ak vwa mwen", suivantT: "Pwochèn etap : antrene w sou 3 kesyon rekritè a.", toVoice2: "🎙 Kòmanse similasyon entèvyou a", aksT: "🤖 Twa aks ou yo devan IA", proT: "Ale pi lwen ak Kit Pro a", proL: ["8 a 12 kesyon fèt sou mezi pou pòs ou vize a", "Repons yo bati sou prèv PA W — pa sou fraz tou fèt", "Yon prezantasyon « Pale m de ou » ou ka repete", "Yon plan 90 jou pou premye mwa yo", "Yon CV pa konpetans, ki matche ak anons lan"], proP: "Kit la : 9,99 $ yon sèl fwa (5 jenerasyon). Pro 90 jou : 19,99 $, jiska 8 pa jou pandan 90 jou. Pa gen abònman, pa gen renouvèlman otomatik.", gen1: "N ap li pwofil ou…", gen2: "N ap chèche fòs ou…", gen3: "N ap prepare kesyon rekritè a…", fixeNext: "Kontinye", fixeGen: "🧭 Fè SWOT mwen", fixeVoice: "🎙 Pratike ak vwa", reessaye: "Eseye ankò", aviT: "💬 Èske sa te itil pou ou ?", aviP: "Yon fraz senp — sa ki te ede w, oswa sa ki manke. Se konsa nou amelyore zouti a. Nou pa mande non ou nan yon lis, nou p ap voye anyen ba ou.", aviPh: "Egzanp : kesyon yo te tankou sa rekritè a te mande m vre…", aviN: "Non ou (opsyonèl)", aviV: "Vil ou (opsyonèl)", aviOk: "Ou mèt pibliye fraz mwen an sou sit la, ak non ak vil mwen.", aviGo: "📨 Voye avi mwen an", aviMesi: "Mèsi ! Nou li chak fraz. 🙏", aviKout: "Ekri yon ti kras plis, souple.", aviErr: "Sa pa mache. Eseye pita.", memoOn: "🔑 Kòd sa a anrejistre sou aparèy sa a — ou p ap bezwen retape l.", memoF: "Bliye l", memoGone: "Kòd la efase sou aparèy sa a.", askBtn: "🙋 Poze kesyon PA W", askClose: "✕ Fèmen", askHint: "Yon antrevi se yon konvèsasyon. Moun ki pa poze anyen sanble li pa enterese. Poze kesyon ou vle poze rekritè a — l ap reponn ou, epi kòch la ap di ou sa kesyon an montre sou ou ak ki lè pou poze l.", askPh: "Egzanp : Kijan yon bon premye twa mwa ta sanble nan pòs sa a ?", askSend: "📨 Voye kesyon an", askEmpty: "Ekri kesyon ou an anvan.", askWait: "Rekritè a ap reflechi…", sesMq: "Kesyon ou poze panèl la :", audioNote: "🔒 Anrejistreman sa a rete sou aparèy ou — li disparèt lè ou fèmen paj la. Koute tèt ou : se konsa ou tande kote ou ezite.", audioDl: "📥 Kenbe odyo a", qNote: "Kesyon yo vini youn apre lòt, san yo pa anonse — menm jan ak yon vrè entèvyou. Yo chanje chak seyans. 3 kesyon egzanp nan rapò ou a se pou ba w ton an.", qErr: "Nou pa t rive jwenn yon kesyon. Eseye ankò nan yon moman.",
       vwaNoQ: "Fè SWOT360 ou a anvan — kesyon pratik yo ap soti nan rezilta a.",
       vwaLimit: "Ou sèvi ak tout vwa ou pou jodi a — tounen demen ! 🙂",
       vwaNote: "ℹ️ Vwa AI a poko pale kreyòl. Li kesyon an awotvwa, epi reponn ak vwa PA OU — n ap konprann ou.",
@@ -591,7 +626,7 @@ by();})();
       vwaMicErr: "Micro inaccessible. Vérifiez que le navigateur a la permission de l'utiliser.",
       vwaSttErr: "Transcription impossible. Réessayez : parlez plus fort, plus lentement.",
       vwaEmpty: "Enregistrez d'abord une réponse, ou écrivez-la dans la zone de texte.",
-      qLoad: "Le recruteur prépare sa question…", promesse: "Préparez votre prochain entretien en 2 minutes.", explique: "Répondez à 6 questions. Recevez vos forces, vos points à améliorer et 3 questions que le recruteur pourrait vous poser.", confiance: "Gratuit • Aucune inscription • Résultat privé", startBtn: "Commencer mon SWOT — 2 minutes", egzA: "À votre tour — votre résultat sera personnalisé comme celui-ci.", start2: "Commencer mon SWOT", epNum: "Étape {i} sur 3", epMin: "≈ 2 minutes", epNext: "Continuer", epBack: "Retour", errWork: "Ajoutez votre activité actuelle pour continuer.", errTasks: "Dites-nous deux ou trois choses que vous faites dans ce travail.", prodT: "J'ai déjà un code Pro", succK: "Terminé", succT: "Votre SWOT est prêt", succP: "Voici vos forces, vos risques et les questions que le recruteur pourrait vous poser.", toVoice: "🎙 Pratiquer mes réponses à voix haute", suivantT: "Étape suivante : entraînez-vous aux trois questions du recruteur.", toVoice2: "🎙 Commencer la simulation d'entretien", aksT: "🤖 Vos trois axes face à l'IA", proT: "Aller plus loin avec le Kit Pro", proL: ["8 à 12 questions taillées pour le poste que vous visez", "Des réponses bâties sur VOS preuves — pas des formules toutes faites", "Une présentation « Parlez-moi de vous » que vous pouvez répéter", "Un plan de 90 jours pour vos premiers mois", "Un CV par compétences, aligné sur l'offre"], proP: "Le Kit : 9,99 $ une fois (5 générations). Pro 90 jours : 19,99 $, jusqu'à 8 par jour pendant 90 jours. Pas d'abonnement, pas de reconduction automatique.", gen1: "Nous analysons votre profil…", gen2: "Identification de vos forces…", gen3: "Préparation des questions du recruteur…", fixeNext: "Continuer", fixeGen: "🧭 Générer mon SWOT", fixeVoice: "🎙 Pratiquer à voix haute", reessaye: "Réessayer", aviT: "💬 Est-ce que ça vous a servi ?", aviP: "Une phrase suffit — ce qui vous a aidé, ou ce qui manque. C'est comme ça qu'on améliore l'outil. On ne vous inscrit à aucune liste et on ne vous enverra rien.", aviPh: "Exemple : les questions ressemblaient vraiment à celles du recruteur…", aviN: "Votre prénom (facultatif)", aviV: "Votre ville (facultatif)", aviOk: "Vous pouvez publier ma phrase sur le site, avec mon prénom et ma ville.", aviGo: "📨 Envoyer mon avis", aviMesi: "Merci ! Chaque phrase est lue. 🙏", aviKout: "Écrivez un peu plus, s'il vous plaît.", aviErr: "Ça n'a pas marché. Réessayez plus tard.", memoOn: "🔑 Ce code est enregistré sur cet appareil — vous n'aurez plus à le retaper.", memoF: "L'oublier", memoGone: "Code effacé de cet appareil.", askBtn: "🙋 Poser MA question", askClose: "✕ Fermer", askHint: "Un entretien est une conversation. Celui qui ne demande rien paraît désintéressé. Posez la question que vous voulez poser au recruteur — il vous répond, puis le coach vous dit ce que cette question révèle de vous et à quel moment la poser.", askPh: "Exemple : à quoi ressemblent trois premiers mois réussis à ce poste ?", askSend: "📨 Envoyer ma question", askEmpty: "Écrivez votre question d'abord.", askWait: "Le recruteur réfléchit…", sesMq: "Votre question au panel :", audioNote: "🔒 Cet enregistrement reste sur votre appareil — il disparaît quand vous fermez la page. Écoutez-vous : c'est là qu'on entend ses hésitations.", audioDl: "📥 Garder l'audio", qNote: "Les questions arrivent une par une, sans être annoncées — comme dans un vrai entretien. Elles changent à chaque séance. Les 3 exemples de votre rapport sont là pour vous donner le ton.", qErr: "Nous n'avons pas pu obtenir de question. Réessayez dans un instant.",
+      qLoad: "Le recruteur prépare sa question…", prepT: "Votre niveau de préparation", prepN: "{a}/{b} questions travaillées", prepVide: "Chaque réponse fait monter la jauge. Objectif : tout en vert.", bilanT: "📋 Votre bilan de préparation", bilanS: "Le coach relit tout ce que vous avez dit et écrit la fiche que vous relirez le matin de l'entretien.", bilanGo: "📋 Faire mon bilan de préparation", bilanWait: "Le coach relit toute la séance…", bilanDl: "📥 Télécharger la fiche", bilanRe: "🔁 Refaire une séance", bilanErr: "Le bilan n'a pas pu être écrit. Réessayez.", reprise: "Nous avons retrouvé une séance commencée. On la continue.", prete: "Prêt", presque: "Presque", travay: "À travailler", promesse: "Préparez votre prochain entretien en 2 minutes.", explique: "Répondez à 6 questions. Recevez vos forces, vos points à améliorer et 3 questions que le recruteur pourrait vous poser.", confiance: "Gratuit • Aucune inscription • Résultat privé", startBtn: "Commencer mon SWOT — 2 minutes", egzA: "À votre tour — votre résultat sera personnalisé comme celui-ci.", start2: "Commencer mon SWOT", epNum: "Étape {i} sur 3", epMin: "≈ 2 minutes", epNext: "Continuer", epBack: "Retour", errWork: "Ajoutez votre activité actuelle pour continuer.", errTasks: "Dites-nous deux ou trois choses que vous faites dans ce travail.", prodT: "J'ai déjà un code Pro", succK: "Terminé", succT: "Votre SWOT est prêt", succP: "Voici vos forces, vos risques et les questions que le recruteur pourrait vous poser.", toVoice: "🎙 Pratiquer mes réponses à voix haute", suivantT: "Étape suivante : entraînez-vous aux trois questions du recruteur.", toVoice2: "🎙 Commencer la simulation d'entretien", aksT: "🤖 Vos trois axes face à l'IA", proT: "Aller plus loin avec le Kit Pro", proL: ["8 à 12 questions taillées pour le poste que vous visez", "Des réponses bâties sur VOS preuves — pas des formules toutes faites", "Une présentation « Parlez-moi de vous » que vous pouvez répéter", "Un plan de 90 jours pour vos premiers mois", "Un CV par compétences, aligné sur l'offre"], proP: "Le Kit : 9,99 $ une fois (5 générations). Pro 90 jours : 19,99 $, jusqu'à 8 par jour pendant 90 jours. Pas d'abonnement, pas de reconduction automatique.", gen1: "Nous analysons votre profil…", gen2: "Identification de vos forces…", gen3: "Préparation des questions du recruteur…", fixeNext: "Continuer", fixeGen: "🧭 Générer mon SWOT", fixeVoice: "🎙 Pratiquer à voix haute", reessaye: "Réessayer", aviT: "💬 Est-ce que ça vous a servi ?", aviP: "Une phrase suffit — ce qui vous a aidé, ou ce qui manque. C'est comme ça qu'on améliore l'outil. On ne vous inscrit à aucune liste et on ne vous enverra rien.", aviPh: "Exemple : les questions ressemblaient vraiment à celles du recruteur…", aviN: "Votre prénom (facultatif)", aviV: "Votre ville (facultatif)", aviOk: "Vous pouvez publier ma phrase sur le site, avec mon prénom et ma ville.", aviGo: "📨 Envoyer mon avis", aviMesi: "Merci ! Chaque phrase est lue. 🙏", aviKout: "Écrivez un peu plus, s'il vous plaît.", aviErr: "Ça n'a pas marché. Réessayez plus tard.", memoOn: "🔑 Ce code est enregistré sur cet appareil — vous n'aurez plus à le retaper.", memoF: "L'oublier", memoGone: "Code effacé de cet appareil.", askBtn: "🙋 Poser MA question", askClose: "✕ Fermer", askHint: "Un entretien est une conversation. Celui qui ne demande rien paraît désintéressé. Posez la question que vous voulez poser au recruteur — il vous répond, puis le coach vous dit ce que cette question révèle de vous et à quel moment la poser.", askPh: "Exemple : à quoi ressemblent trois premiers mois réussis à ce poste ?", askSend: "📨 Envoyer ma question", askEmpty: "Écrivez votre question d'abord.", askWait: "Le recruteur réfléchit…", sesMq: "Votre question au panel :", audioNote: "🔒 Cet enregistrement reste sur votre appareil — il disparaît quand vous fermez la page. Écoutez-vous : c'est là qu'on entend ses hésitations.", audioDl: "📥 Garder l'audio", qNote: "Les questions arrivent une par une, sans être annoncées — comme dans un vrai entretien. Elles changent à chaque séance. Les 3 exemples de votre rapport sont là pour vous donner le ton.", qErr: "Nous n'avons pas pu obtenir de question. Réessayez dans un instant.",
       vwaNoQ: "Faites d'abord votre SWOT360 — les questions d'entraînement en sortent.",
       vwaLimit: "Quota vocal du jour atteint — revenez demain ! 🙂",
       vwaNote: "",
@@ -664,7 +699,7 @@ by();})();
       vwaMicErr: "Can't access the microphone. Check the browser permission.",
       vwaSttErr: "Couldn't transcribe. Try again: speak louder and slower.",
       vwaEmpty: "Record an answer first, or type it in the box.",
-      qLoad: "The recruiter is preparing the question…", promesse: "Get ready for your next interview in 2 minutes.", explique: "Answer 6 questions. Get your strengths, what to improve, and 3 questions the recruiter might ask you.", confiance: "Free • No sign-up • Your result stays private", startBtn: "Start my SWOT — 2 minutes", egzA: "Your turn — your result will be personalised just like this one.", start2: "Start my SWOT", epNum: "Step {i} of 3", epMin: "≈ 2 minutes", epNext: "Continue", epBack: "Back", errWork: "Add what you do today so we can continue.", errTasks: "Tell us two or three things you do in this job.", prodT: "I already have a Pro code", succK: "Done", succT: "Your SWOT is ready", succP: "Here are your strengths, your risks, and the questions the recruiter might ask.", toVoice: "🎙 Practise my answers out loud", suivantT: "Next step: practise the three recruiter questions.", toVoice2: "🎙 Start the interview simulation", aksT: "🤖 Your three axes facing AI", proT: "Go further with the Pro Kit", proL: ["8 to 12 questions built for the exact role you are after", "Answers built on YOUR evidence — not generic phrases", "A “Tell me about yourself” pitch you can rehearse", "A 90-day plan for your first months", "A competency résumé aligned with the posting"], proP: "The Kit: $9.99 once (5 generations). Pro 90 days: $19.99, up to 8 per day for 90 days. No subscription, no automatic renewal.", gen1: "Reading your profile…", gen2: "Finding your strengths…", gen3: "Preparing the recruiter's questions…", fixeNext: "Continue", fixeGen: "🧭 Get my SWOT", fixeVoice: "🎙 Practise out loud", reessaye: "Try again", aviT: "💬 Was this useful to you?", aviP: "One sentence is enough — what helped, or what is missing. That is how the tool gets better. We add you to no list and will send you nothing.", aviPh: "Example: the questions really sounded like the recruiter's…", aviN: "Your first name (optional)", aviV: "Your city (optional)", aviOk: "You may publish my sentence on the site, with my first name and city.", aviGo: "📨 Send my feedback", aviMesi: "Thank you! Every sentence is read. 🙏", aviKout: "Please write a little more.", aviErr: "That did not work. Try again later.", memoOn: "🔑 This code is saved on this device — you will not have to type it again.", memoF: "Forget it", memoGone: "Code erased from this device.", askBtn: "🙋 Ask MY question", askClose: "✕ Close", askHint: "An interview is a conversation. Someone who asks nothing looks uninterested. Ask the recruiter what you actually want to know — they answer, then the coach tells you what your question reveals about you and when to ask it.", askPh: "Example: what does a successful first three months look like in this role?", askSend: "📨 Send my question", askEmpty: "Write your question first.", askWait: "The recruiter is thinking…", sesMq: "Your question to the panel:", audioNote: "🔒 This recording stays on your device — it disappears when you close the page. Listen to yourself: that is where you hear your hesitations.", audioDl: "📥 Keep the audio", qNote: "Questions come one at a time, unannounced — like a real interview. They change every session. The 3 examples in your report are there to set the tone.", qErr: "We could not get a question. Try again in a moment.",
+      qLoad: "The recruiter is preparing the question…", prepT: "Your readiness level", prepN: "{a}/{b} questions worked", prepVide: "Every answer moves the gauge. Target: all green.", bilanT: "📋 Your preparation debrief", bilanS: "The coach rereads everything you said and writes the sheet you will reread on interview morning.", bilanGo: "📋 Build my preparation debrief", bilanWait: "The coach is rereading the whole session…", bilanDl: "📥 Download the sheet", bilanRe: "🔁 Run another session", bilanErr: "The debrief could not be written. Try again.", reprise: "We found a session you had started. Picking it up.", prete: "Ready", presque: "Almost", travay: "Needs work", promesse: "Get ready for your next interview in 2 minutes.", explique: "Answer 6 questions. Get your strengths, what to improve, and 3 questions the recruiter might ask you.", confiance: "Free • No sign-up • Your result stays private", startBtn: "Start my SWOT — 2 minutes", egzA: "Your turn — your result will be personalised just like this one.", start2: "Start my SWOT", epNum: "Step {i} of 3", epMin: "≈ 2 minutes", epNext: "Continue", epBack: "Back", errWork: "Add what you do today so we can continue.", errTasks: "Tell us two or three things you do in this job.", prodT: "I already have a Pro code", succK: "Done", succT: "Your SWOT is ready", succP: "Here are your strengths, your risks, and the questions the recruiter might ask.", toVoice: "🎙 Practise my answers out loud", suivantT: "Next step: practise the three recruiter questions.", toVoice2: "🎙 Start the interview simulation", aksT: "🤖 Your three axes facing AI", proT: "Go further with the Pro Kit", proL: ["8 to 12 questions built for the exact role you are after", "Answers built on YOUR evidence — not generic phrases", "A “Tell me about yourself” pitch you can rehearse", "A 90-day plan for your first months", "A competency résumé aligned with the posting"], proP: "The Kit: $9.99 once (5 generations). Pro 90 days: $19.99, up to 8 per day for 90 days. No subscription, no automatic renewal.", gen1: "Reading your profile…", gen2: "Finding your strengths…", gen3: "Preparing the recruiter's questions…", fixeNext: "Continue", fixeGen: "🧭 Get my SWOT", fixeVoice: "🎙 Practise out loud", reessaye: "Try again", aviT: "💬 Was this useful to you?", aviP: "One sentence is enough — what helped, or what is missing. That is how the tool gets better. We add you to no list and will send you nothing.", aviPh: "Example: the questions really sounded like the recruiter's…", aviN: "Your first name (optional)", aviV: "Your city (optional)", aviOk: "You may publish my sentence on the site, with my first name and city.", aviGo: "📨 Send my feedback", aviMesi: "Thank you! Every sentence is read. 🙏", aviKout: "Please write a little more.", aviErr: "That did not work. Try again later.", memoOn: "🔑 This code is saved on this device — you will not have to type it again.", memoF: "Forget it", memoGone: "Code erased from this device.", askBtn: "🙋 Ask MY question", askClose: "✕ Close", askHint: "An interview is a conversation. Someone who asks nothing looks uninterested. Ask the recruiter what you actually want to know — they answer, then the coach tells you what your question reveals about you and when to ask it.", askPh: "Example: what does a successful first three months look like in this role?", askSend: "📨 Send my question", askEmpty: "Write your question first.", askWait: "The recruiter is thinking…", sesMq: "Your question to the panel:", audioNote: "🔒 This recording stays on your device — it disappears when you close the page. Listen to yourself: that is where you hear your hesitations.", audioDl: "📥 Keep the audio", qNote: "Questions come one at a time, unannounced — like a real interview. They change every session. The 3 examples in your report are there to set the tone.", qErr: "We could not get a question. Try again in a moment.",
       vwaNoQ: "Get your SWOT360 first — the practice questions come from it.",
       vwaLimit: "Today's voice quota is used up — come back tomorrow! 🙂",
       vwaNote: "",
@@ -737,7 +772,7 @@ by();})();
       vwaMicErr: "No se puede acceder al micrófono. Verifica el permiso del navegador.",
       vwaSttErr: "No se pudo transcribir. Inténtalo de nuevo: habla más fuerte y despacio.",
       vwaEmpty: "Graba primero una respuesta, o escríbela en el cuadro.",
-      qLoad: "El reclutador prepara su pregunta…", promesse: "Prepara tu próxima entrevista en 2 minutos.", explique: "Responde 6 preguntas. Recibe tus fortalezas, lo que debes mejorar y 3 preguntas que el reclutador podría hacerte.", confiance: "Gratis • Sin registro • Tu resultado es privado", startBtn: "Empezar mi SWOT — 2 minutos", egzA: "Te toca — tu resultado será personalizado igual que este.", start2: "Empezar mi SWOT", epNum: "Paso {i} de 3", epMin: "≈ 2 minutos", epNext: "Continuar", epBack: "Volver", errWork: "Añade tu actividad actual para continuar.", errTasks: "Dinos dos o tres cosas que haces en ese trabajo.", prodT: "Ya tengo un código Pro", succK: "Listo", succT: "Tu SWOT está listo", succP: "Aquí están tus fortalezas, tus riesgos y las preguntas que el reclutador podría hacerte.", toVoice: "🎙 Practicar mis respuestas en voz alta", suivantT: "Siguiente paso: practica las tres preguntas del reclutador.", toVoice2: "🎙 Empezar la simulación de entrevista", aksT: "🤖 Tus tres ejes frente a la IA", proT: "Ir más lejos con el Kit Pro", proL: ["De 8 a 12 preguntas hechas para el puesto que buscas", "Respuestas construidas sobre TUS pruebas — nada genérico", "Una presentación «Háblame de ti» que puedes ensayar", "Un plan de 90 días para tus primeros meses", "Un CV por competencias, alineado con el anuncio"], proP: "El Kit: 9,99 $ una vez (5 generaciones). Pro 90 días: 19,99 $, hasta 8 al día durante 90 días. Sin suscripción, sin renovación automática.", gen1: "Analizamos tu perfil…", gen2: "Identificando tus fortalezas…", gen3: "Preparando las preguntas del reclutador…", fixeNext: "Continuar", fixeGen: "🧭 Generar mi SWOT", fixeVoice: "🎙 Practicar en voz alta", reessaye: "Reintentar", aviT: "💬 ¿Te sirvió?", aviP: "Con una frase basta — lo que te ayudó, o lo que falta. Así mejoramos la herramienta. No te apuntamos a ninguna lista y no te enviaremos nada.", aviPh: "Ejemplo: las preguntas se parecían mucho a las del reclutador…", aviN: "Tu nombre (opcional)", aviV: "Tu ciudad (opcional)", aviOk: "Pueden publicar mi frase en el sitio, con mi nombre y mi ciudad.", aviGo: "📨 Enviar mi opinión", aviMesi: "¡Gracias! Leemos cada frase. 🙏", aviKout: "Escribe un poco más, por favor.", aviErr: "No funcionó. Inténtalo más tarde.", memoOn: "🔑 Este código está guardado en este dispositivo — no tendrás que volver a escribirlo.", memoF: "Olvidarlo", memoGone: "Código borrado de este dispositivo.", askBtn: "🙋 Hacer MI pregunta", askClose: "✕ Cerrar", askHint: "Una entrevista es una conversación. Quien no pregunta nada parece desinteresado. Haz la pregunta que de verdad quieres hacer — el reclutador responde y luego el coach te dice qué revela tu pregunta y cuándo conviene hacerla.", askPh: "Ejemplo: ¿cómo serían unos primeros tres meses logrados en este puesto?", askSend: "📨 Enviar mi pregunta", askEmpty: "Escribe tu pregunta primero.", askWait: "El reclutador está pensando…", sesMq: "Tu pregunta al panel:", audioNote: "🔒 Esta grabación se queda en tu dispositivo — desaparece al cerrar la página. Escúchate: ahí es donde se oyen las dudas.", audioDl: "📥 Guardar el audio", qNote: "Las preguntas llegan una por una, sin anunciarse — como en una entrevista real. Cambian en cada sesión. Los 3 ejemplos de tu informe están para darte el tono.", qErr: "No pudimos obtener una pregunta. Inténtalo de nuevo en un momento.",
+      qLoad: "El reclutador prepara su pregunta…", prepT: "Tu nivel de preparación", prepN: "{a}/{b} preguntas trabajadas", prepVide: "Cada respuesta sube el indicador. Objetivo: todo en verde.", bilanT: "📋 Tu balance de preparación", bilanS: "El coach relee todo lo que dijiste y escribe la ficha que releerás la mañana de la entrevista.", bilanGo: "📋 Hacer mi balance de preparación", bilanWait: "El coach está releyendo toda la sesión…", bilanDl: "📥 Descargar la ficha", bilanRe: "🔁 Hacer otra sesión", bilanErr: "No se pudo escribir el balance. Inténtalo de nuevo.", reprise: "Encontramos una sesión que habías empezado. La continuamos.", prete: "Listo", presque: "Casi", travay: "Por trabajar", promesse: "Prepara tu próxima entrevista en 2 minutos.", explique: "Responde 6 preguntas. Recibe tus fortalezas, lo que debes mejorar y 3 preguntas que el reclutador podría hacerte.", confiance: "Gratis • Sin registro • Tu resultado es privado", startBtn: "Empezar mi SWOT — 2 minutos", egzA: "Te toca — tu resultado será personalizado igual que este.", start2: "Empezar mi SWOT", epNum: "Paso {i} de 3", epMin: "≈ 2 minutos", epNext: "Continuar", epBack: "Volver", errWork: "Añade tu actividad actual para continuar.", errTasks: "Dinos dos o tres cosas que haces en ese trabajo.", prodT: "Ya tengo un código Pro", succK: "Listo", succT: "Tu SWOT está listo", succP: "Aquí están tus fortalezas, tus riesgos y las preguntas que el reclutador podría hacerte.", toVoice: "🎙 Practicar mis respuestas en voz alta", suivantT: "Siguiente paso: practica las tres preguntas del reclutador.", toVoice2: "🎙 Empezar la simulación de entrevista", aksT: "🤖 Tus tres ejes frente a la IA", proT: "Ir más lejos con el Kit Pro", proL: ["De 8 a 12 preguntas hechas para el puesto que buscas", "Respuestas construidas sobre TUS pruebas — nada genérico", "Una presentación «Háblame de ti» que puedes ensayar", "Un plan de 90 días para tus primeros meses", "Un CV por competencias, alineado con el anuncio"], proP: "El Kit: 9,99 $ una vez (5 generaciones). Pro 90 días: 19,99 $, hasta 8 al día durante 90 días. Sin suscripción, sin renovación automática.", gen1: "Analizamos tu perfil…", gen2: "Identificando tus fortalezas…", gen3: "Preparando las preguntas del reclutador…", fixeNext: "Continuar", fixeGen: "🧭 Generar mi SWOT", fixeVoice: "🎙 Practicar en voz alta", reessaye: "Reintentar", aviT: "💬 ¿Te sirvió?", aviP: "Con una frase basta — lo que te ayudó, o lo que falta. Así mejoramos la herramienta. No te apuntamos a ninguna lista y no te enviaremos nada.", aviPh: "Ejemplo: las preguntas se parecían mucho a las del reclutador…", aviN: "Tu nombre (opcional)", aviV: "Tu ciudad (opcional)", aviOk: "Pueden publicar mi frase en el sitio, con mi nombre y mi ciudad.", aviGo: "📨 Enviar mi opinión", aviMesi: "¡Gracias! Leemos cada frase. 🙏", aviKout: "Escribe un poco más, por favor.", aviErr: "No funcionó. Inténtalo más tarde.", memoOn: "🔑 Este código está guardado en este dispositivo — no tendrás que volver a escribirlo.", memoF: "Olvidarlo", memoGone: "Código borrado de este dispositivo.", askBtn: "🙋 Hacer MI pregunta", askClose: "✕ Cerrar", askHint: "Una entrevista es una conversación. Quien no pregunta nada parece desinteresado. Haz la pregunta que de verdad quieres hacer — el reclutador responde y luego el coach te dice qué revela tu pregunta y cuándo conviene hacerla.", askPh: "Ejemplo: ¿cómo serían unos primeros tres meses logrados en este puesto?", askSend: "📨 Enviar mi pregunta", askEmpty: "Escribe tu pregunta primero.", askWait: "El reclutador está pensando…", sesMq: "Tu pregunta al panel:", audioNote: "🔒 Esta grabación se queda en tu dispositivo — desaparece al cerrar la página. Escúchate: ahí es donde se oyen las dudas.", audioDl: "📥 Guardar el audio", qNote: "Las preguntas llegan una por una, sin anunciarse — como en una entrevista real. Cambian en cada sesión. Los 3 ejemplos de tu informe están para darte el tono.", qErr: "No pudimos obtener una pregunta. Inténtalo de nuevo en un momento.",
       vwaNoQ: "Haz primero tu SWOT360 — las preguntas de práctica salen de él.",
       vwaLimit: "Cuota de voz de hoy agotada — ¡vuelve mañana! 🙂",
       vwaNote: "",
@@ -966,6 +1001,122 @@ by();})();
     status.textContent = MSG.memoGone;
   });
   majMemo();
+// ---------------------------------------------------------------- preparation
+  // Une pratique sans mesure laisse la personne sans reponse a la seule question
+  // qui compte la veille : « est-ce que je suis pret ? ». Chaque reponse recoit
+  // un niveau 1-3 du coach ; la jauge en fait une progression visible.
+  var vwNivos = [];
+
+  function prepDessine() {
+    var box = document.getElementById("vw-prep");
+    if (!box || !MSG || !MSG.prepT) return;
+    var n = vwNivos.filter(function (x) { return x > 0; }).length;
+    var total = vwTotal || 3;
+    box.style.display = vwOn ? "" : "none";
+    document.getElementById("vw-prep-n").textContent = MSG.prepN.replace("{a}", n).replace("{b}", total);
+    // La barre dit OU on en est, le libelle dit CE QUE CA VAUT. Melanger les
+    // deux donnait "22 % — a travailler" apres une bonne reponse sur trois :
+    // decourageant, et faux.
+    var pc = total ? Math.round((n / total) * 100) : 0;
+    var somme = vwNivos.reduce(function (a, x) { return a + (x || 0); }, 0);
+    var moy = n ? somme / n : 0;
+    var j = document.getElementById("vw-prep-j");
+    j.setAttribute("aria-valuenow", pc);
+    j.firstElementChild.style.width = pc + "%";
+    var pts = "";
+    for (var i = 0; i < total; i++) {
+      var v = vwNivos[i] || 0;
+      pts += '<b class="' + (v ? "n" + v : "") + '" title="' + (i + 1) + '">' + (v ? v : "·") + "</b>";
+    }
+    document.getElementById("vw-prep-pts").innerHTML = pts;
+    var t = document.getElementById("vw-prep-t");
+    t.textContent = MSG.prepT + (n ? " — " + (moy >= 2.5 ? MSG.prete : moy >= 1.8 ? MSG.presque : MSG.travay) : "");
+  }
+
+  // Une seance interrompue ne doit pas etre perdue : elle reprend au retour.
+  // Tout reste dans le navigateur, rien ne part chez nous.
+  function prepSauve() {
+    try {
+      localStorage.setItem("s360_prep", JSON.stringify({
+        d: new Date().toISOString().slice(0, 10),
+        qs: vwQs, idx: vwIdx, log: vwLog, niv: vwNivos, total: vwTotal,
+        swot: lastMd || "", pro: !!dernierEtaitPro,
+      }));
+    } catch (e) {}
+  }
+  function prepLit() {
+    try {
+      var o = JSON.parse(localStorage.getItem("s360_prep") || "null");
+      if (!o || o.d !== new Date().toISOString().slice(0, 10)) return null;
+      return o;
+    } catch (e) { return null; }
+  }
+  function prepOublie() { try { localStorage.removeItem("s360_prep"); } catch (e) {} }
+
+  // ---------------------------------------------------------------- bilan
+  var bilanTexte = "", bilanBusy = false;
+  function bilanMontre() {
+    var b = document.getElementById("vw-bilan");
+    if (b) b.style.display = vwLog.length ? "" : "none";
+  }
+
+  document.getElementById("vw-bilan-go").addEventListener("click", function () {
+    if (bilanBusy || !vwLog.length) return;
+    bilanBusy = true;
+    var bt = document.getElementById("vw-bilan-go"), st = document.getElementById("vw-bilan-st");
+    bt.disabled = true;
+    st.innerHTML = '<span class="sw-spin"></span>' + MSG.bilanWait;
+    fetch(ENDPOINT, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "bilan", language: siteLang(), swot: lastMd || "",
+        log: vwLog.map(function (x) { return { q: x.q, a: x.a || "", fb: x.fb }; }),
+        work: document.getElementById("sw-work").value.trim(),
+        goal: document.getElementById("sw-goal").value.trim(),
+        jobDesc: document.getElementById("sw-jobdesc").value.trim(),
+      }),
+    })
+      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+      .then(function (res) {
+        bilanBusy = false; bt.disabled = false;
+        if (res.ok && res.body && res.body.bilan) {
+          bilanTexte = res.body.bilan;
+          var out = document.getElementById("vw-bilan-out");
+          out.innerHTML = render(bilanTexte);
+          out.style.display = "";
+          document.getElementById("vw-bilan-act").style.display = "flex";
+          bt.style.display = "none";
+          st.textContent = "";
+          mesure("voice_done");
+          out.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          st.textContent = (res.body && res.body.error === "rate_limited") ? MSG.vwaLimit : MSG.bilanErr;
+        }
+      })
+      .catch(function () { bilanBusy = false; bt.disabled = false; st.textContent = MSG.offline; });
+  });
+
+  document.getElementById("vw-bilan-dl").addEventListener("click", function () {
+    if (!bilanTexte) return;
+    var corps = render(bilanTexte)
+      + '<p class="foot">' + esc(MSG.sesFoot) + "</p>";
+    dlDoc(MSG.fnSes + "-" + dlDate(), MSG.bilanT, corps);
+    document.getElementById("vw-bilan-st").textContent = MSG.dlOk;
+    mesure("download_result");
+  });
+
+  document.getElementById("vw-bilan-rejouer").addEventListener("click", function () {
+    prepOublie();
+    vwNivos = [];
+    bilanTexte = "";
+    document.getElementById("vw-bilan-out").style.display = "none";
+    document.getElementById("vw-bilan-act").style.display = "none";
+    document.getElementById("vw-bilan-go").style.display = "";
+    document.getElementById("vw-bilan").style.display = "none";
+    vwReset();
+    document.getElementById("sw-vwa").click();
+  });
+
 // ---------------------------------------------------------------- parcours
   // Le meme formulaire, montre en trois fois. Aucun champ ne change d'identite :
   // toutes les fonctions existantes (generation, CV, pratique vocale, code Pro)
@@ -1110,6 +1261,23 @@ by();})();
   var eg = document.getElementById("sw-egz");
   if (eg) eg.addEventListener("toggle", function () { if (eg.open) mesure("sample_open"); });
   epRestaure();
+  // Le rapport du jour revient avec la seance : sans lui, "reprendre" ne veut
+  // rien dire. Tout vit dans le navigateur, rien n a ete garde chez nous.
+  (function () {
+    var o = prepLit();
+    if (!o || !o.swot) return;
+    lastMd = o.swot;
+    dernierEtaitPro = !!o.pro;
+    out.innerHTML = renderCards(lastMd);
+    ph.style.display = "none"; bar.style.display = "flex"; cta.style.display = "";
+    ["sw-succes", "sw-suivant", "sw-aks", "sw-avi", "sw-mail"].forEach(function (id) {
+      var el = document.getElementById(id); if (el) el.style.display = "";
+    });
+    document.getElementById("sw-pro").style.display = dernierEtaitPro ? "none" : "";
+    document.getElementById("sw-share").href = "https://wa.me/?text=" + encodeURIComponent(MSG.waTxt);
+    majCta();
+    epFini = true; epBarre();
+  })();
   mesure("view_entevyou");
 
   // Mesure des actions : uniquement le nom de l'action, jamais une reponse.
@@ -1327,6 +1495,13 @@ by();})();
       $("vw-note").style.display = T.vwaNote ? "" : "none";
       $("vw-qnote").textContent = T.qNote;
       $("vw-audionote").textContent = T.audioNote;
+      $("vw-prep-t").textContent = T.prepT;
+      $("vw-bilan-t").textContent = T.bilanT;
+      $("vw-bilan-s").textContent = T.bilanS;
+      $("vw-bilan-go").textContent = T.bilanGo;
+      $("vw-bilan-dl").textContent = T.bilanDl;
+      $("vw-bilan-rejouer").textContent = T.bilanRe;
+      prepDessine();
       $("vw-ask").textContent = vwAskOn ? T.askClose : T.askBtn;
       $("vw-askhint").textContent = T.askHint;
       $("vw-mq").placeholder = T.askPh;
@@ -1389,6 +1564,7 @@ by();})();
     vwFermerAsk();
     vwStatus("");
     vwQEl.textContent = vwQs[vwIdx];
+    prepDessine(); prepSauve();
     vwSyncLang(MSG);
     vwSpeak(vwQs[vwIdx]);
   }
@@ -1457,8 +1633,25 @@ by();})();
     // Les questions ne sont plus tirées du rapport : les avoir lues, c'est
     // déjà les avoir préparées. On les demande une par une, au moment de
     // répondre — et elles changent d'une séance à l'autre.
-    vwOn = true; vwIdx = 0; vwQs = []; vwLog = [];
+    vwOn = true;
     vwTotal = document.getElementById("sw-procode").value.trim() ? 8 : 3;
+    // Une seance interrompue du jour meme se reprend la ou elle s est arretee :
+    // personne ne recommence trois questions parce que son telephone a sonne.
+    var repris = prepLit();
+    if (repris && repris.log && repris.log.length && repris.qs && repris.qs.length) {
+      vwQs = repris.qs; vwIdx = Math.min(repris.idx || 0, vwQs.length - 1);
+      vwLog = repris.log; vwNivos = repris.niv || []; vwTotal = repris.total || vwTotal;
+      vwPanel.style.display = "";
+      vwLast = vwIdx >= vwTotal - 1;
+      vwQEl.textContent = vwQs[vwIdx];
+      vwProg.textContent = MSG.vwaProg.replace("{i}", vwIdx + 1).replace("{n}", vwTotal);
+      vwStatus(MSG.reprise);
+      document.getElementById("vw-dl").style.display = "";
+      vwSyncLang(MSG); prepDessine(); bilanMontre();
+      vwPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    vwIdx = 0; vwQs = []; vwLog = []; vwNivos = [];
     document.getElementById("vw-dl").style.display = "none";
     vwPanel.style.display = "";
     vwPanel.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1480,6 +1673,7 @@ by();})();
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         action: "kesyon", language: siteLang(), deja: vwQs,
+        swot: lastMd || "",
         index: vwIdx, total: vwTotal,
         work: document.getElementById("sw-work").value.trim(),
         tasks: document.getElementById("sw-tasks").value.trim(),
@@ -1615,6 +1809,7 @@ by();})();
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         action: "pratik", language: siteLang(),
+        swot: lastMd || "",
         question: vwQs[vwIdx], answer: ans,
         work: document.getElementById("sw-work").value.trim(),
         goal: document.getElementById("sw-goal").value.trim(),
@@ -1633,6 +1828,8 @@ by();})();
           vwFb.style.display = "";
           vwNextB.style.display = "";
           vwLog.push({ q: vwQs[vwIdx], a: ans, fb: res.body.feedback });
+          vwNivos[vwIdx] = res.body.niveau || 2;
+          prepDessine(); prepSauve(); bilanMontre();
           document.getElementById("vw-dl").style.display = "";
           vwSyncLang(MSG);
           vwSpeak(res.body.feedback);
@@ -1705,6 +1902,7 @@ by();})();
             .map(function (l) { return "<p>" + inline(esc(l.trim())) + "</p>"; }).join("");
           fb.style.display = "";
           vwLog.push({ type: "mande", q: q, fb: res.body.reponse });
+          prepSauve(); bilanMontre();
           document.getElementById("vw-dl").style.display = "";
           mq.value = "";
           vwSpeak(res.body.reponse);
@@ -1721,7 +1919,14 @@ by();})();
 
   vwNextB.addEventListener("click", function () {
     vwStopAll();
-    if (vwLast) { vwReset(); status.textContent = MSG.vwaDone; return; }
+    if (vwLast) {
+      // Fin des questions : on ne referme pas, on propose la suite reelle.
+      status.textContent = MSG.vwaDone;
+      bilanMontre();
+      var b = document.getElementById("vw-bilan");
+      if (b) b.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
     vwIdx++;
     vwProchaineQuestion();
   });
@@ -2057,6 +2262,15 @@ by();})();
           majCta();
           if (payload.proCode) majSolde();
           if (payload.proCode) { try { localStorage.setItem("entevyou_pro", payload.proCode); } catch (e) {} }
+          // Un nouveau rapport = un nouveau programme d entrainement : la seance
+          // precedente ne doit pas se rouvrir a sa derniere question.
+          prepOublie();
+          vwNivos = [];
+          bilanTexte = "";
+          document.getElementById("vw-bilan").style.display = "none";
+          document.getElementById("vw-bilan-out").style.display = "none";
+          document.getElementById("vw-bilan-act").style.display = "none";
+          document.getElementById("vw-bilan-go").style.display = "";
           vwReset();
           out.innerHTML = renderCards(lastMd);
           ph.style.display = "none"; bar.style.display = "flex"; cta.style.display = "";
