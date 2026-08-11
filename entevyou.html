@@ -351,7 +351,7 @@ d.lang=l||"ht";})();
           <select id="vw-coach" style="width:100%;background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.45rem 0.6rem;font:inherit;font-size:0.88rem">
             <option value="chalere">Bienveillant · encourageant</option>
             <option value="egzijan">Exigeant · comme un vrai recruteur</option>
-            <option value="dirèk">Direct · va droit au but</option>
+            <option value="direk">Direct · va droit au but</option>
             <option value="pedagog">Pédagogue · explique chaque conseil</option>
           </select></p>
           <p style="margin:0 0 0.6rem"><label for="vw-voix" id="Lvw-voix" style="font-size:0.84rem;color:#9db2c7;display:block;margin-bottom:0.25rem">Voix du coach</label>
@@ -1181,6 +1181,29 @@ by();})();
       st.textContent = tout;
     }
   }
+  // Le choix femme/homme depend des voix installees sur l appareil. Quand il n y
+  // en a qu une, le choix ne peut pas etre tenu : il faut le dire tout de suite,
+  // pas laisser la personne croire que le produit ignore son reglage.
+  function vwVerifieVoix() {
+    var sel = document.getElementById("vw-voix"), note = document.getElementById("vw-voixnote");
+    if (!sel || !note || !MSG) return;
+    if (sel.value === "auto") { note.textContent = ""; return; }
+    var lg = (SPEECH_LANG[siteLang()] || "fr-FR").slice(0, 2);
+    var vs = [];
+    try {
+      vs = (speechSynthesis.getVoices() || []).filter(function (v) {
+        return (v.lang || "").replace("_", "-").slice(0, 2) === lg;
+      });
+    } catch (e) {}
+    var FEM = /(zira|hortense|denise|julie|amelie|female|femme|elvira|monica|paulina|sabina|helena|susan|samantha|karen|serena|tessa|fiona|google fran|google espa|google us english|google uk english female)/i;
+    var MAS = /(david|mark|paul|thomas|claude|male|homme|jorge|pablo|diego|daniel|alex|fred|guy|ryan|google uk english male)/i;
+    var trouve = vs.filter(function (v) { return (sel.value === "f" ? FEM : MAS).test(v.name); })[0];
+    note.textContent = trouve ? "" : MSG.voixNon;
+  }
+  var vxSel = document.getElementById("vw-voix");
+  if (vxSel) vxSel.addEventListener("change", vwVerifieVoix);
+  try { speechSynthesis.addEventListener("voiceschanged", vwVerifieVoix); } catch (e) {}
+
   var swPartajB = document.getElementById("sw-partaj");
   if (swPartajB) swPartajB.addEventListener("click", partagerApp);
 
