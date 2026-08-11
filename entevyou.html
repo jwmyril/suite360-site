@@ -100,6 +100,70 @@ d.lang=l||"ht";})();
     .cv-out h4{font-size:0.95rem;color:#111;margin:0.7rem 0 0.25rem}
     .cv-out p,.cv-out li{font-size:0.9rem;line-height:1.55;color:#222}
     .cv-out ul{padding-left:1.15rem;margin:0.2rem 0 0.5rem}
+/* --- parcours en etapes : le formulaire ne doit plus ressembler a un mur --- */
+    .ep{display:none}
+    .ep.on{display:block}
+    .ep-tete{display:flex;align-items:baseline;justify-content:space-between;gap:0.6rem;margin:0 0 0.2rem}
+    .ep-num{color:#2ec4b6;font-size:0.76rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0}
+    .ep-min{color:#9db2c7;font-size:0.76rem;margin:0}
+    .ep-jauge{height:5px;background:rgba(255,255,255,0.1);border-radius:4px;overflow:hidden;margin:0 0 1rem}
+    .ep-jauge i{display:block;height:100%;background:linear-gradient(90deg,#2ec4b6,#1c8f85);border-radius:4px;transition:width 0.28s ease}
+    .ep-titre{font-family:"Space Grotesk",sans-serif;color:#fff;font-size:1.05rem;margin:0 0 0.9rem}
+    .ep-nav{display:flex;gap:0.6rem;margin-top:1.2rem}
+    .ep-nav .btn{flex:1}
+    .ep-err{color:#ffb4a2;font-size:0.82rem;margin:0.3rem 0 0;line-height:1.45}
+    .sw-form input.mauvais,.sw-form textarea.mauvais{border-color:#e07a7a}
+    /* zones tactiles : 44 px minimum, exige sur mobile */
+    .sw-form input,.sw-form select,.sw-form textarea{min-height:44px}
+    .sw-form input::placeholder,.sw-form textarea::placeholder{color:#8fa6bd;opacity:1}
+    :focus-visible{outline:3px solid #2ec4b6;outline-offset:2px}
+
+    /* --- premier ecran : la promesse doit tenir sans defiler --- */
+    .hero-min h1{margin:0 0 0.3rem}
+    .promesse{font-family:"Space Grotesk",sans-serif;font-size:1.25rem;color:#fff;margin:0 0 0.5rem;line-height:1.35}
+    .explique{color:#d7e3f0;font-size:0.98rem;line-height:1.6;margin:0 0 0.6rem;max-width:44rem}
+    .confiance{color:#2ec4b6;font-size:0.86rem;font-weight:600;margin:0 0 1rem;letter-spacing:0.01em}
+    .btn-lg{font-size:1rem;padding:0.85rem 1.5rem}
+    @media (max-width:640px){.btn-lg{width:100%;display:block;text-align:center}.promesse{font-size:1.12rem}}
+
+    /* --- le resultat : titre et action suivante visibles ensemble --- */
+    .succes{background:linear-gradient(180deg,rgba(46,196,182,0.13),rgba(46,196,182,0.03));border:1px solid rgba(46,196,182,0.45);border-radius:14px;padding:1.1rem 1.2rem;margin:0 0 1.2rem}
+    .succes .k{color:#2ec4b6;font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 0.25rem}
+    .succes h2{font-family:"Space Grotesk",sans-serif;color:#fff;font-size:1.35rem;margin:0 0 0.4rem;line-height:1.25}
+    .succes p.s{color:#d7e3f0;font-size:0.93rem;line-height:1.6;margin:0 0 0.9rem}
+    .suivant{background:rgba(46,196,182,0.08);border:1px solid rgba(46,196,182,0.4);border-radius:12px;padding:1rem 1.15rem;margin:1.4rem 0}
+    .suivant p{margin:0 0 0.7rem;color:#eaf2fb;font-size:0.95rem;line-height:1.55}
+    @media (max-width:640px){.succes h2{font-size:1.18rem}.succes .btn,.suivant .btn{width:100%;display:block;text-align:center}}
+
+    /* --- l'offre Pro, apres le resultat, jamais avant --- */
+    .pro-bloc{background:rgba(255,255,255,0.04);border:1px solid rgba(244,162,97,0.42);border-radius:12px;padding:1.1rem 1.2rem;margin:1.4rem 0}
+    .pro-bloc h3{font-family:"Space Grotesk",sans-serif;color:#f4a261;font-size:1.02rem;margin:0 0 0.5rem}
+    .pro-bloc ul{margin:0 0 0.8rem;padding-left:1.1rem;color:#d7e3f0;font-size:0.9rem;line-height:1.65}
+    .pro-bloc .prix{color:#eaf2fb;font-size:0.92rem;margin:0 0 0.8rem}
+    .pro-bloc a.achat{display:inline-block;background:#f4a261;color:#2b1a06;text-decoration:none;padding:0.55rem 1rem;border-radius:8px;font-weight:700;margin:0 0.4rem 0.4rem 0}
+
+    /* --- barre d'action fixe, mobile seulement --- */
+    .fixe{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(10,26,47,0.96);border-top:1px solid rgba(46,196,182,0.35);padding:0.6rem 0.9rem;display:none;backdrop-filter:blur(6px)}
+    .fixe .btn{width:100%;display:block;text-align:center;padding:0.8rem 1rem}
+    @media (max-width:900px){.fixe.on{display:block}body.a-barre{padding-bottom:5.2rem}}
+
+    /* Debordement horizontal : un enfant de grille garde une largeur minimale
+       egale a son contenu tant qu on ne lui dit pas le contraire. */
+    .sw-app > *{min-width:0}
+    #sw-out,.sw-result,.vw-fb,.cv-out{overflow-wrap:anywhere}
+    /* Zones tactiles : 44 px partout ou le doigt se pose. */
+    @media (max-width:900px){
+      .btn,.vw-btn,#sw-forget,#sw-jdbtn,#cv-oldbtn{min-height:44px}
+      #s360-lang{min-height:44px;padding:0.5rem 0.6rem}
+    }
+    @media (max-width:420px){
+      #sw-mail-in{min-width:0}
+      .vw-row{flex-wrap:wrap}
+      .vw-row .vw-btn{flex:1 1 100%}
+      .ep-nav{flex-wrap:wrap}
+    }
+
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
     .sw-step{color:#2ec4b6;font-size:0.76rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:1.2rem 0 0.1rem;padding-top:0.9rem;border-top:1px dashed rgba(255,255,255,0.12)}
     .sw-step.first{margin-top:0;padding-top:0;border-top:none}
     /* ---- eksplikasyon « kisa yon SWOT ye » ---- */
@@ -132,13 +196,13 @@ d.lang=l||"ht";})();
 </header>
 
 <!-- HERO -->
-<section class="hero" style="padding-bottom:1rem">
-  <div class="container">
-    <p class="kreyol" id="sw-hero-k">Un entretien en vue ? Soyez prêt — 6 questions, 2 minutes.</p>
+<section class="hero" style="padding-bottom:0.8rem">
+  <div class="container hero-min">
     <h1>Entèvyou<em>360</em></h1>
-    <p class="lead" id="sw-hero-l">Avant l'entretien : connaissez vos forces, vos faiblesses, vos opportunités et vos menaces. Et vos 3 axes : 🤖 ce que vous <strong>déléguez</strong> à l'IA, 🔍 ce que vous <strong>supervisez</strong>, 🌱 ce que vous <strong>renforcez</strong> — parce que c'est ce qui vous rend humain.</p>
-    <p style="color:#eaf2fb;font-size:0.95rem;margin-top:0.5rem" id="sw-hero-i">💼 Idéal aussi pour préparer un entretien d'embauche : arrivez avec vos forces, vos preuves et votre plan.</p>
-    <p style="color:#9db2c7;font-size:0.88rem" id="sw-hero-n">Gratuit · 5 SWOT par jour · Aucune réponse n'est enregistrée — le résultat n'appartient qu'à vous.</p>
+    <p class="promesse" id="sw-promesse">Préparez votre prochain entretien en 2 minutes.</p>
+    <p class="explique" id="sw-explique">Répondez à 6 questions. Recevez vos forces, vos points à améliorer et 3 questions que le recruteur pourrait vous poser.</p>
+    <p class="confiance" id="sw-confiance">Gratuit • Aucune inscription • Résultat privé</p>
+    <p><button type="button" class="btn btn-primary btn-lg" id="sw-start">Commencer mon SWOT — 2 minutes</button></p>
   </div>
 </section>
 
@@ -153,18 +217,33 @@ d.lang=l||"ht";})();
     <details class="sw-what" id="sw-egz">
       <summary id="sw-egz-t">👀 Gade yon ti egzanp rezilta (30 segonn)</summary>
       <div id="sw-egz-b"></div>
+      <p id="sw-egz-a" style="color:#2ec4b6;font-size:0.92rem;font-weight:600;margin:1rem 0 0.7rem"></p>
+      <button type="button" class="btn btn-primary" id="sw-start2"></button>
     </details>
     <div class="sw-app">
 
-      <form class="sw-form" id="sw-form">
-        <p class="sw-step first" id="st-1">Etap 1 sou 3 — Travay ou</p>
+      <form class="sw-form" id="sw-form" novalidate>
+        <div class="ep-tete">
+          <p class="ep-num" id="ep-num">Étape 1 sur 3</p>
+          <p class="ep-min" id="ep-min">≈ 2 minutes</p>
+        </div>
+        <div class="ep-jauge" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" id="ep-jauge"><i style="width:33%"></i></div>
+
+        <div class="ep on" id="ep-1" role="group" aria-labelledby="st-1">
+        <p class="ep-titre" id="st-1">Etap 1 sou 3 — Travay ou</p>
         <label for="sw-work" id="L-work">1. Ki travay w ap fè kounye a ?<small>oswa : etidyan, san travay…</small></label>
         <input type="text" id="sw-work" maxlength="140" required placeholder="Ex. : enfimyè, chofè, pwofesè, komèsant, kontab…" />
 
         <label for="sw-tasks" id="L-tasks">2. Ki 3 bagay ou fè pi souvan nan travay la ?</label>
         <textarea id="sw-tasks" maxlength="400" required placeholder="Ex. : m pran swen pasyan, m ranpli fòm rapò, m reponn fanmi yo…"></textarea>
 
-        <p class="sw-step" id="st-2">Etap 2 sou 3 — Fòs ou ak objektif ou</p>
+          <div class="ep-nav">
+            <button type="button" class="btn btn-primary" id="ep-1-next">Continuer</button>
+          </div>
+        </div>
+
+        <div class="ep" id="ep-2" role="group" aria-labelledby="st-2">
+        <p class="ep-titre" id="st-2">Etap 2 sou 3 — Fòs ou ak objektif ou</p>
         <label for="sw-strength" id="L-strength">3. Nan kisa ou pi fò ?</label>
         <input type="text" id="sw-strength" maxlength="250" placeholder="Ex. : moun fè m konfyans fasil ; m pa janm lage yon travay…" />
 
@@ -191,13 +270,21 @@ d.lang=l||"ht";})();
           <option value="55+">55+</option>
         </select>
 
-        <p class="sw-step" id="st-3">Etap 3 sou 3 — Anons lan (opsyonèl men li fè rezilta a pi djanm)</p>
+          <div class="ep-nav">
+            <button type="button" class="btn btn-outline" id="ep-2-back">Retour</button>
+            <button type="button" class="btn btn-primary" id="ep-2-next">Continuer</button>
+          </div>
+        </div>
+
+        <div class="ep" id="ep-3" role="group" aria-labelledby="st-3">
+        <p class="ep-titre" id="st-3">Etap 3 sou 3 — Anons lan (opsyonèl men li fè rezilta a pi djanm)</p>
         <label for="sw-jobdesc" id="L-jobdesc">8. Kole deskripsyon pòs la (si ou genyen l)<small>Pou n ka devine kesyon entèvyou yo pi byen</small></label>
         <textarea id="sw-jobdesc" maxlength="3500" style="min-height:80px" placeholder="Kole tèks anons travay la isit la (opsyonèl)…"></textarea>
         <p style="margin:0.4rem 0 0"><button type="button" id="sw-jdbtn" style="background:none;border:1px dashed rgba(46,196,182,0.6);color:#2ec4b6;border-radius:8px;padding:0.35rem 0.7rem;font:inherit;font-size:0.82rem;cursor:pointer">📎 Oswa voye yon foto / PDF anons lan</button></p>
         <input type="file" id="sw-jdfile" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,application/pdf,image/png,image/jpeg,image/webp,text/plain" style="display:none" />
 
-        <div style="margin-top:1rem;padding-top:0.9rem;border-top:1px dashed rgba(46,196,182,0.5)">
+        <details id="sw-prod" style="margin-top:1rem;padding-top:0.9rem;border-top:1px dashed rgba(46,196,182,0.5)">
+          <summary id="sw-prod-t" style="cursor:pointer;color:#2ec4b6;font-size:0.88rem;font-weight:600;list-style:revert">J'ai déjà un code Pro</summary>
           <label for="sw-procode" id="L-procode">⭐ Kòd Entèvyou360 Pro (si ou achte l)<small>Ak yon kòd, w ap jwenn TOUT kit la : 8-12 kesyon AK repons yo, deck, plan 90 jou + CV pa konpetans · Kòd PRO90 : san limit pandan 90 jou (jiska 8 pa jou)</small></label>
           <input type="text" id="sw-procode" maxlength="24" autocomplete="off" placeholder="ENT-XXXX-XXXX / PRO90-XXXX-XXXX" />
           <p id="sw-solde" style="display:none;color:#2ec4b6;font-size:0.83rem;margin:0.35rem 0 0"></p>
@@ -206,10 +293,12 @@ d.lang=l||"ht";})();
             <button type="button" id="sw-forget" style="background:none;border:none;color:#7fb2d9;text-decoration:underline;cursor:pointer;padding:0;font:inherit"></button>
           </p>
         <p id="L-probuy" style="color:#9db2c7;font-size:0.8rem;margin-top:0.35rem">Ou poko gen kòd ? <a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00" style="color:#2ec4b6">💳 Kit 9,99 $</a> · <a href="https://buy.stripe.com/28E8wP0Tf9Pn5B761JaEE01" style="color:#2ec4b6">💳 90 jou 19,99 $</a></p>
-        </div>
+        </details>
 
-        <div style="margin-top:1.1rem">
-          <button type="submit" class="btn btn-primary" id="sw-go">🧭 Fè SWOT360 mwen</button>
+          <div class="ep-nav">
+            <button type="button" class="btn btn-outline" id="ep-3-back">Retour</button>
+            <button type="submit" class="btn btn-primary" id="sw-go">🧭 Fè SWOT360 mwen</button>
+          </div>
         </div>
         <p class="sw-status" id="sw-status" aria-live="polite"></p>
       </form>
@@ -312,7 +401,31 @@ d.lang=l||"ht";})();
           <div class="big">🧭</div>
           <p>Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style="color:#2ec4b6">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap ba w feedback. GRATIS pou tout moun.</span></p>
         </div>
+        <div class="succes" id="sw-succes" style="display:none" tabindex="-1">
+          <p class="k" id="sw-succes-k">✅ Terminé</p>
+          <h2 id="sw-succes-t">Votre SWOT est prêt</h2>
+          <p class="s" id="sw-succes-p">Voici vos forces, vos risques et les questions que le recruteur pourrait vous poser.</p>
+          <button type="button" class="btn btn-primary" id="sw-tovoice">🎙 Pratiquer mes réponses à voix haute</button>
+        </div>
         <article id="sw-out"></article>
+        <div class="suivant" id="sw-suivant" style="display:none">
+          <p id="sw-suivant-t">Étape suivante : entraînez-vous aux trois questions du recruteur.</p>
+          <button type="button" class="btn btn-primary" id="sw-tovoice2">🎙 Commencer la simulation d'entretien</button>
+        </div>
+        <div class="pro-bloc" id="sw-pro" style="display:none">
+          <h3 id="sw-pro-t">Aller plus loin avec le Kit Pro</h3>
+          <ul id="sw-pro-l"></ul>
+          <p class="prix" id="sw-pro-p"></p>
+          <div id="sw-pro-b"></div>
+        </div>
+        <details class="sw-what" id="sw-aks" style="display:none;margin-top:1.2rem">
+          <summary id="sw-aks-t">🤖 Vos trois axes face à l'IA</summary>
+          <p class="lead" id="sw-hero-l" style="font-size:0.95rem"></p>
+        </details>
+        <div class="sw-cta" id="sw-cta" style="display:none">
+          <p>📚 <strong>Pwochen etap ou :</strong> li leson gratis la — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.html">Management &amp; carrière à l'ère de l'IA</a> — pou w aprofondi chak aks.</p>
+          <p style="margin-top:0.4rem">🚀 <strong>SWOT360 Deep</strong> (rapò konplè : klasman tout tach ou yo + plan 90 jou) ap vini. Enskri : <a href="mailto:sales@atmart.ltd?subject=SWOT360%20Deep%20-%20liste%20d'attente">sales@atmart.ltd</a></p>
+        </div>
         <div class="sw-cta" id="sw-avi" style="display:none">
           <p id="sw-avi-t" style="margin:0 0 0.5rem;font-weight:600"></p>
           <p id="sw-avi-p" style="margin:0 0 0.6rem;color:#9db2c7;font-size:0.86rem;line-height:1.6"></p>
@@ -335,10 +448,6 @@ d.lang=l||"ht";})();
             <button type="button" id="sw-mail-go" class="vw-btn send">📩 Enskri m</button>
           </div>
           <p class="sw-status" id="sw-mail-st" aria-live="polite"></p>
-        </div>
-        <div class="sw-cta" id="sw-cta" style="display:none">
-          <p>📚 <strong>Pwochen etap ou :</strong> li leson gratis la — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.html">Management &amp; carrière à l'ère de l'IA</a> — pou w aprofondi chak aks.</p>
-          <p style="margin-top:0.4rem">🚀 <strong>SWOT360 Deep</strong> (rapò konplè : klasman tout tach ou yo + plan 90 jou) ap vini. Enskri : <a href="mailto:sales@atmart.ltd?subject=SWOT360%20Deep%20-%20liste%20d'attente">sales@atmart.ltd</a></p>
         </div>
       </div>
 
@@ -409,7 +518,7 @@ by();})();
       vwaMicErr: "Nou pa ka jwenn mikwo a. Tcheke si navigatè a gen pèmisyon pou sèvi ak li.",
       vwaSttErr: "Nou pa t rive ekri sa ou di a. Eseye ankò : pale pi fò, pi dousman.",
       vwaEmpty: "Anrejistre yon repons anvan, oswa ekri l nan bwat la.",
-      qLoad: "Rekritè a ap prepare kesyon l…", aviT: "💬 Èske sa te itil pou ou ?", aviP: "Yon fraz senp — sa ki te ede w, oswa sa ki manke. Se konsa nou amelyore zouti a. Nou pa mande non ou nan yon lis, nou p ap voye anyen ba ou.", aviPh: "Egzanp : kesyon yo te tankou sa rekritè a te mande m vre…", aviN: "Non ou (opsyonèl)", aviV: "Vil ou (opsyonèl)", aviOk: "Ou mèt pibliye fraz mwen an sou sit la, ak non ak vil mwen.", aviGo: "📨 Voye avi mwen an", aviMesi: "Mèsi ! Nou li chak fraz. 🙏", aviKout: "Ekri yon ti kras plis, souple.", aviErr: "Sa pa mache. Eseye pita.", memoOn: "🔑 Kòd sa a anrejistre sou aparèy sa a — ou p ap bezwen retape l.", memoF: "Bliye l", memoGone: "Kòd la efase sou aparèy sa a.", askBtn: "🙋 Poze kesyon PA W", askClose: "✕ Fèmen", askHint: "Yon antrevi se yon konvèsasyon. Moun ki pa poze anyen sanble li pa enterese. Poze kesyon ou vle poze rekritè a — l ap reponn ou, epi kòch la ap di ou sa kesyon an montre sou ou ak ki lè pou poze l.", askPh: "Egzanp : Kijan yon bon premye twa mwa ta sanble nan pòs sa a ?", askSend: "📨 Voye kesyon an", askEmpty: "Ekri kesyon ou an anvan.", askWait: "Rekritè a ap reflechi…", sesMq: "Kesyon ou poze panèl la :", audioNote: "🔒 Anrejistreman sa a rete sou aparèy ou — li disparèt lè ou fèmen paj la. Koute tèt ou : se konsa ou tande kote ou ezite.", audioDl: "📥 Kenbe odyo a", qNote: "Kesyon yo vini youn apre lòt, san yo pa anonse — menm jan ak yon vrè entèvyou. Yo chanje chak seyans. 3 kesyon egzanp nan rapò ou a se pou ba w ton an.", qErr: "Nou pa t rive jwenn yon kesyon. Eseye ankò nan yon moman.",
+      qLoad: "Rekritè a ap prepare kesyon l…", promesse: "Prepare pwochen entèvyou w nan 2 minit.", explique: "Reponn 6 kesyon. W ap resevwa fòs ou, sa pou w amelyore, ak 3 kesyon rekritè a ka poze w.", confiance: "Gratis • San enskripsyon • Rezilta a se pou ou sèlman", startBtn: "Kòmanse SWOT mwen — 2 minit", egzA: "Se tou pa w — rezilta pa w ap fèt sou mezi w, menm jan ak sa a.", start2: "Kòmanse SWOT mwen", epNum: "Etap {i} sou 3", epMin: "≈ 2 minit", epNext: "Kontinye", epBack: "Tounen", errWork: "Mete travay ou fè kounye a pou n kontinye.", errTasks: "Di nou 2 oswa 3 bagay ou fè nan travay la.", prodT: "Mwen gen yon kòd Pro deja", succK: "Fini", succT: "SWOT ou a pare", succP: "Men fòs ou, risk yo, ak kesyon rekritè a ka poze w.", toVoice: "🎙 Pratike repons mwen yo ak vwa mwen", suivantT: "Pwochèn etap : antrene w sou 3 kesyon rekritè a.", toVoice2: "🎙 Kòmanse similasyon entèvyou a", aksT: "🤖 Twa aks ou yo devan IA", proT: "Ale pi lwen ak Kit Pro a", proL: ["8 a 12 kesyon fèt sou mezi pou pòs ou vize a", "Repons yo bati sou prèv PA W — pa sou fraz tou fèt", "Yon prezantasyon « Pale m de ou » ou ka repete", "Yon plan 90 jou pou premye mwa yo", "Yon CV pa konpetans, ki matche ak anons lan"], proP: "Kit la : 9,99 $ yon sèl fwa (5 jenerasyon). Pro 90 jou : 19,99 $, jiska 8 pa jou pandan 90 jou. Pa gen abònman, pa gen renouvèlman otomatik.", gen1: "N ap li pwofil ou…", gen2: "N ap chèche fòs ou…", gen3: "N ap prepare kesyon rekritè a…", fixeNext: "Kontinye", fixeGen: "🧭 Fè SWOT mwen", fixeVoice: "🎙 Pratike ak vwa", reessaye: "Eseye ankò", aviT: "💬 Èske sa te itil pou ou ?", aviP: "Yon fraz senp — sa ki te ede w, oswa sa ki manke. Se konsa nou amelyore zouti a. Nou pa mande non ou nan yon lis, nou p ap voye anyen ba ou.", aviPh: "Egzanp : kesyon yo te tankou sa rekritè a te mande m vre…", aviN: "Non ou (opsyonèl)", aviV: "Vil ou (opsyonèl)", aviOk: "Ou mèt pibliye fraz mwen an sou sit la, ak non ak vil mwen.", aviGo: "📨 Voye avi mwen an", aviMesi: "Mèsi ! Nou li chak fraz. 🙏", aviKout: "Ekri yon ti kras plis, souple.", aviErr: "Sa pa mache. Eseye pita.", memoOn: "🔑 Kòd sa a anrejistre sou aparèy sa a — ou p ap bezwen retape l.", memoF: "Bliye l", memoGone: "Kòd la efase sou aparèy sa a.", askBtn: "🙋 Poze kesyon PA W", askClose: "✕ Fèmen", askHint: "Yon antrevi se yon konvèsasyon. Moun ki pa poze anyen sanble li pa enterese. Poze kesyon ou vle poze rekritè a — l ap reponn ou, epi kòch la ap di ou sa kesyon an montre sou ou ak ki lè pou poze l.", askPh: "Egzanp : Kijan yon bon premye twa mwa ta sanble nan pòs sa a ?", askSend: "📨 Voye kesyon an", askEmpty: "Ekri kesyon ou an anvan.", askWait: "Rekritè a ap reflechi…", sesMq: "Kesyon ou poze panèl la :", audioNote: "🔒 Anrejistreman sa a rete sou aparèy ou — li disparèt lè ou fèmen paj la. Koute tèt ou : se konsa ou tande kote ou ezite.", audioDl: "📥 Kenbe odyo a", qNote: "Kesyon yo vini youn apre lòt, san yo pa anonse — menm jan ak yon vrè entèvyou. Yo chanje chak seyans. 3 kesyon egzanp nan rapò ou a se pou ba w ton an.", qErr: "Nou pa t rive jwenn yon kesyon. Eseye ankò nan yon moman.",
       vwaNoQ: "Fè SWOT360 ou a anvan — kesyon pratik yo ap soti nan rezilta a.",
       vwaLimit: "Ou sèvi ak tout vwa ou pou jodi a — tounen demen ! 🙂",
       vwaNote: "ℹ️ Vwa AI a poko pale kreyòl. Li kesyon an awotvwa, epi reponn ak vwa PA OU — n ap konprann ou.",
@@ -482,7 +591,7 @@ by();})();
       vwaMicErr: "Micro inaccessible. Vérifiez que le navigateur a la permission de l'utiliser.",
       vwaSttErr: "Transcription impossible. Réessayez : parlez plus fort, plus lentement.",
       vwaEmpty: "Enregistrez d'abord une réponse, ou écrivez-la dans la zone de texte.",
-      qLoad: "Le recruteur prépare sa question…", aviT: "💬 Est-ce que ça vous a servi ?", aviP: "Une phrase suffit — ce qui vous a aidé, ou ce qui manque. C'est comme ça qu'on améliore l'outil. On ne vous inscrit à aucune liste et on ne vous enverra rien.", aviPh: "Exemple : les questions ressemblaient vraiment à celles du recruteur…", aviN: "Votre prénom (facultatif)", aviV: "Votre ville (facultatif)", aviOk: "Vous pouvez publier ma phrase sur le site, avec mon prénom et ma ville.", aviGo: "📨 Envoyer mon avis", aviMesi: "Merci ! Chaque phrase est lue. 🙏", aviKout: "Écrivez un peu plus, s'il vous plaît.", aviErr: "Ça n'a pas marché. Réessayez plus tard.", memoOn: "🔑 Ce code est enregistré sur cet appareil — vous n'aurez plus à le retaper.", memoF: "L'oublier", memoGone: "Code effacé de cet appareil.", askBtn: "🙋 Poser MA question", askClose: "✕ Fermer", askHint: "Un entretien est une conversation. Celui qui ne demande rien paraît désintéressé. Posez la question que vous voulez poser au recruteur — il vous répond, puis le coach vous dit ce que cette question révèle de vous et à quel moment la poser.", askPh: "Exemple : à quoi ressemblent trois premiers mois réussis à ce poste ?", askSend: "📨 Envoyer ma question", askEmpty: "Écrivez votre question d'abord.", askWait: "Le recruteur réfléchit…", sesMq: "Votre question au panel :", audioNote: "🔒 Cet enregistrement reste sur votre appareil — il disparaît quand vous fermez la page. Écoutez-vous : c'est là qu'on entend ses hésitations.", audioDl: "📥 Garder l'audio", qNote: "Les questions arrivent une par une, sans être annoncées — comme dans un vrai entretien. Elles changent à chaque séance. Les 3 exemples de votre rapport sont là pour vous donner le ton.", qErr: "Nous n'avons pas pu obtenir de question. Réessayez dans un instant.",
+      qLoad: "Le recruteur prépare sa question…", promesse: "Préparez votre prochain entretien en 2 minutes.", explique: "Répondez à 6 questions. Recevez vos forces, vos points à améliorer et 3 questions que le recruteur pourrait vous poser.", confiance: "Gratuit • Aucune inscription • Résultat privé", startBtn: "Commencer mon SWOT — 2 minutes", egzA: "À votre tour — votre résultat sera personnalisé comme celui-ci.", start2: "Commencer mon SWOT", epNum: "Étape {i} sur 3", epMin: "≈ 2 minutes", epNext: "Continuer", epBack: "Retour", errWork: "Ajoutez votre activité actuelle pour continuer.", errTasks: "Dites-nous deux ou trois choses que vous faites dans ce travail.", prodT: "J'ai déjà un code Pro", succK: "Terminé", succT: "Votre SWOT est prêt", succP: "Voici vos forces, vos risques et les questions que le recruteur pourrait vous poser.", toVoice: "🎙 Pratiquer mes réponses à voix haute", suivantT: "Étape suivante : entraînez-vous aux trois questions du recruteur.", toVoice2: "🎙 Commencer la simulation d'entretien", aksT: "🤖 Vos trois axes face à l'IA", proT: "Aller plus loin avec le Kit Pro", proL: ["8 à 12 questions taillées pour le poste que vous visez", "Des réponses bâties sur VOS preuves — pas des formules toutes faites", "Une présentation « Parlez-moi de vous » que vous pouvez répéter", "Un plan de 90 jours pour vos premiers mois", "Un CV par compétences, aligné sur l'offre"], proP: "Le Kit : 9,99 $ une fois (5 générations). Pro 90 jours : 19,99 $, jusqu'à 8 par jour pendant 90 jours. Pas d'abonnement, pas de reconduction automatique.", gen1: "Nous analysons votre profil…", gen2: "Identification de vos forces…", gen3: "Préparation des questions du recruteur…", fixeNext: "Continuer", fixeGen: "🧭 Générer mon SWOT", fixeVoice: "🎙 Pratiquer à voix haute", reessaye: "Réessayer", aviT: "💬 Est-ce que ça vous a servi ?", aviP: "Une phrase suffit — ce qui vous a aidé, ou ce qui manque. C'est comme ça qu'on améliore l'outil. On ne vous inscrit à aucune liste et on ne vous enverra rien.", aviPh: "Exemple : les questions ressemblaient vraiment à celles du recruteur…", aviN: "Votre prénom (facultatif)", aviV: "Votre ville (facultatif)", aviOk: "Vous pouvez publier ma phrase sur le site, avec mon prénom et ma ville.", aviGo: "📨 Envoyer mon avis", aviMesi: "Merci ! Chaque phrase est lue. 🙏", aviKout: "Écrivez un peu plus, s'il vous plaît.", aviErr: "Ça n'a pas marché. Réessayez plus tard.", memoOn: "🔑 Ce code est enregistré sur cet appareil — vous n'aurez plus à le retaper.", memoF: "L'oublier", memoGone: "Code effacé de cet appareil.", askBtn: "🙋 Poser MA question", askClose: "✕ Fermer", askHint: "Un entretien est une conversation. Celui qui ne demande rien paraît désintéressé. Posez la question que vous voulez poser au recruteur — il vous répond, puis le coach vous dit ce que cette question révèle de vous et à quel moment la poser.", askPh: "Exemple : à quoi ressemblent trois premiers mois réussis à ce poste ?", askSend: "📨 Envoyer ma question", askEmpty: "Écrivez votre question d'abord.", askWait: "Le recruteur réfléchit…", sesMq: "Votre question au panel :", audioNote: "🔒 Cet enregistrement reste sur votre appareil — il disparaît quand vous fermez la page. Écoutez-vous : c'est là qu'on entend ses hésitations.", audioDl: "📥 Garder l'audio", qNote: "Les questions arrivent une par une, sans être annoncées — comme dans un vrai entretien. Elles changent à chaque séance. Les 3 exemples de votre rapport sont là pour vous donner le ton.", qErr: "Nous n'avons pas pu obtenir de question. Réessayez dans un instant.",
       vwaNoQ: "Faites d'abord votre SWOT360 — les questions d'entraînement en sortent.",
       vwaLimit: "Quota vocal du jour atteint — revenez demain ! 🙂",
       vwaNote: "",
@@ -555,7 +664,7 @@ by();})();
       vwaMicErr: "Can't access the microphone. Check the browser permission.",
       vwaSttErr: "Couldn't transcribe. Try again: speak louder and slower.",
       vwaEmpty: "Record an answer first, or type it in the box.",
-      qLoad: "The recruiter is preparing the question…", aviT: "💬 Was this useful to you?", aviP: "One sentence is enough — what helped, or what is missing. That is how the tool gets better. We add you to no list and will send you nothing.", aviPh: "Example: the questions really sounded like the recruiter's…", aviN: "Your first name (optional)", aviV: "Your city (optional)", aviOk: "You may publish my sentence on the site, with my first name and city.", aviGo: "📨 Send my feedback", aviMesi: "Thank you! Every sentence is read. 🙏", aviKout: "Please write a little more.", aviErr: "That did not work. Try again later.", memoOn: "🔑 This code is saved on this device — you will not have to type it again.", memoF: "Forget it", memoGone: "Code erased from this device.", askBtn: "🙋 Ask MY question", askClose: "✕ Close", askHint: "An interview is a conversation. Someone who asks nothing looks uninterested. Ask the recruiter what you actually want to know — they answer, then the coach tells you what your question reveals about you and when to ask it.", askPh: "Example: what does a successful first three months look like in this role?", askSend: "📨 Send my question", askEmpty: "Write your question first.", askWait: "The recruiter is thinking…", sesMq: "Your question to the panel:", audioNote: "🔒 This recording stays on your device — it disappears when you close the page. Listen to yourself: that is where you hear your hesitations.", audioDl: "📥 Keep the audio", qNote: "Questions come one at a time, unannounced — like a real interview. They change every session. The 3 examples in your report are there to set the tone.", qErr: "We could not get a question. Try again in a moment.",
+      qLoad: "The recruiter is preparing the question…", promesse: "Get ready for your next interview in 2 minutes.", explique: "Answer 6 questions. Get your strengths, what to improve, and 3 questions the recruiter might ask you.", confiance: "Free • No sign-up • Your result stays private", startBtn: "Start my SWOT — 2 minutes", egzA: "Your turn — your result will be personalised just like this one.", start2: "Start my SWOT", epNum: "Step {i} of 3", epMin: "≈ 2 minutes", epNext: "Continue", epBack: "Back", errWork: "Add what you do today so we can continue.", errTasks: "Tell us two or three things you do in this job.", prodT: "I already have a Pro code", succK: "Done", succT: "Your SWOT is ready", succP: "Here are your strengths, your risks, and the questions the recruiter might ask.", toVoice: "🎙 Practise my answers out loud", suivantT: "Next step: practise the three recruiter questions.", toVoice2: "🎙 Start the interview simulation", aksT: "🤖 Your three axes facing AI", proT: "Go further with the Pro Kit", proL: ["8 to 12 questions built for the exact role you are after", "Answers built on YOUR evidence — not generic phrases", "A “Tell me about yourself” pitch you can rehearse", "A 90-day plan for your first months", "A competency résumé aligned with the posting"], proP: "The Kit: $9.99 once (5 generations). Pro 90 days: $19.99, up to 8 per day for 90 days. No subscription, no automatic renewal.", gen1: "Reading your profile…", gen2: "Finding your strengths…", gen3: "Preparing the recruiter's questions…", fixeNext: "Continue", fixeGen: "🧭 Get my SWOT", fixeVoice: "🎙 Practise out loud", reessaye: "Try again", aviT: "💬 Was this useful to you?", aviP: "One sentence is enough — what helped, or what is missing. That is how the tool gets better. We add you to no list and will send you nothing.", aviPh: "Example: the questions really sounded like the recruiter's…", aviN: "Your first name (optional)", aviV: "Your city (optional)", aviOk: "You may publish my sentence on the site, with my first name and city.", aviGo: "📨 Send my feedback", aviMesi: "Thank you! Every sentence is read. 🙏", aviKout: "Please write a little more.", aviErr: "That did not work. Try again later.", memoOn: "🔑 This code is saved on this device — you will not have to type it again.", memoF: "Forget it", memoGone: "Code erased from this device.", askBtn: "🙋 Ask MY question", askClose: "✕ Close", askHint: "An interview is a conversation. Someone who asks nothing looks uninterested. Ask the recruiter what you actually want to know — they answer, then the coach tells you what your question reveals about you and when to ask it.", askPh: "Example: what does a successful first three months look like in this role?", askSend: "📨 Send my question", askEmpty: "Write your question first.", askWait: "The recruiter is thinking…", sesMq: "Your question to the panel:", audioNote: "🔒 This recording stays on your device — it disappears when you close the page. Listen to yourself: that is where you hear your hesitations.", audioDl: "📥 Keep the audio", qNote: "Questions come one at a time, unannounced — like a real interview. They change every session. The 3 examples in your report are there to set the tone.", qErr: "We could not get a question. Try again in a moment.",
       vwaNoQ: "Get your SWOT360 first — the practice questions come from it.",
       vwaLimit: "Today's voice quota is used up — come back tomorrow! 🙂",
       vwaNote: "",
@@ -628,7 +737,7 @@ by();})();
       vwaMicErr: "No se puede acceder al micrófono. Verifica el permiso del navegador.",
       vwaSttErr: "No se pudo transcribir. Inténtalo de nuevo: habla más fuerte y despacio.",
       vwaEmpty: "Graba primero una respuesta, o escríbela en el cuadro.",
-      qLoad: "El reclutador prepara su pregunta…", aviT: "💬 ¿Te sirvió?", aviP: "Con una frase basta — lo que te ayudó, o lo que falta. Así mejoramos la herramienta. No te apuntamos a ninguna lista y no te enviaremos nada.", aviPh: "Ejemplo: las preguntas se parecían mucho a las del reclutador…", aviN: "Tu nombre (opcional)", aviV: "Tu ciudad (opcional)", aviOk: "Pueden publicar mi frase en el sitio, con mi nombre y mi ciudad.", aviGo: "📨 Enviar mi opinión", aviMesi: "¡Gracias! Leemos cada frase. 🙏", aviKout: "Escribe un poco más, por favor.", aviErr: "No funcionó. Inténtalo más tarde.", memoOn: "🔑 Este código está guardado en este dispositivo — no tendrás que volver a escribirlo.", memoF: "Olvidarlo", memoGone: "Código borrado de este dispositivo.", askBtn: "🙋 Hacer MI pregunta", askClose: "✕ Cerrar", askHint: "Una entrevista es una conversación. Quien no pregunta nada parece desinteresado. Haz la pregunta que de verdad quieres hacer — el reclutador responde y luego el coach te dice qué revela tu pregunta y cuándo conviene hacerla.", askPh: "Ejemplo: ¿cómo serían unos primeros tres meses logrados en este puesto?", askSend: "📨 Enviar mi pregunta", askEmpty: "Escribe tu pregunta primero.", askWait: "El reclutador está pensando…", sesMq: "Tu pregunta al panel:", audioNote: "🔒 Esta grabación se queda en tu dispositivo — desaparece al cerrar la página. Escúchate: ahí es donde se oyen las dudas.", audioDl: "📥 Guardar el audio", qNote: "Las preguntas llegan una por una, sin anunciarse — como en una entrevista real. Cambian en cada sesión. Los 3 ejemplos de tu informe están para darte el tono.", qErr: "No pudimos obtener una pregunta. Inténtalo de nuevo en un momento.",
+      qLoad: "El reclutador prepara su pregunta…", promesse: "Prepara tu próxima entrevista en 2 minutos.", explique: "Responde 6 preguntas. Recibe tus fortalezas, lo que debes mejorar y 3 preguntas que el reclutador podría hacerte.", confiance: "Gratis • Sin registro • Tu resultado es privado", startBtn: "Empezar mi SWOT — 2 minutos", egzA: "Te toca — tu resultado será personalizado igual que este.", start2: "Empezar mi SWOT", epNum: "Paso {i} de 3", epMin: "≈ 2 minutos", epNext: "Continuar", epBack: "Volver", errWork: "Añade tu actividad actual para continuar.", errTasks: "Dinos dos o tres cosas que haces en ese trabajo.", prodT: "Ya tengo un código Pro", succK: "Listo", succT: "Tu SWOT está listo", succP: "Aquí están tus fortalezas, tus riesgos y las preguntas que el reclutador podría hacerte.", toVoice: "🎙 Practicar mis respuestas en voz alta", suivantT: "Siguiente paso: practica las tres preguntas del reclutador.", toVoice2: "🎙 Empezar la simulación de entrevista", aksT: "🤖 Tus tres ejes frente a la IA", proT: "Ir más lejos con el Kit Pro", proL: ["De 8 a 12 preguntas hechas para el puesto que buscas", "Respuestas construidas sobre TUS pruebas — nada genérico", "Una presentación «Háblame de ti» que puedes ensayar", "Un plan de 90 días para tus primeros meses", "Un CV por competencias, alineado con el anuncio"], proP: "El Kit: 9,99 $ una vez (5 generaciones). Pro 90 días: 19,99 $, hasta 8 al día durante 90 días. Sin suscripción, sin renovación automática.", gen1: "Analizamos tu perfil…", gen2: "Identificando tus fortalezas…", gen3: "Preparando las preguntas del reclutador…", fixeNext: "Continuar", fixeGen: "🧭 Generar mi SWOT", fixeVoice: "🎙 Practicar en voz alta", reessaye: "Reintentar", aviT: "💬 ¿Te sirvió?", aviP: "Con una frase basta — lo que te ayudó, o lo que falta. Así mejoramos la herramienta. No te apuntamos a ninguna lista y no te enviaremos nada.", aviPh: "Ejemplo: las preguntas se parecían mucho a las del reclutador…", aviN: "Tu nombre (opcional)", aviV: "Tu ciudad (opcional)", aviOk: "Pueden publicar mi frase en el sitio, con mi nombre y mi ciudad.", aviGo: "📨 Enviar mi opinión", aviMesi: "¡Gracias! Leemos cada frase. 🙏", aviKout: "Escribe un poco más, por favor.", aviErr: "No funcionó. Inténtalo más tarde.", memoOn: "🔑 Este código está guardado en este dispositivo — no tendrás que volver a escribirlo.", memoF: "Olvidarlo", memoGone: "Código borrado de este dispositivo.", askBtn: "🙋 Hacer MI pregunta", askClose: "✕ Cerrar", askHint: "Una entrevista es una conversación. Quien no pregunta nada parece desinteresado. Haz la pregunta que de verdad quieres hacer — el reclutador responde y luego el coach te dice qué revela tu pregunta y cuándo conviene hacerla.", askPh: "Ejemplo: ¿cómo serían unos primeros tres meses logrados en este puesto?", askSend: "📨 Enviar mi pregunta", askEmpty: "Escribe tu pregunta primero.", askWait: "El reclutador está pensando…", sesMq: "Tu pregunta al panel:", audioNote: "🔒 Esta grabación se queda en tu dispositivo — desaparece al cerrar la página. Escúchate: ahí es donde se oyen las dudas.", audioDl: "📥 Guardar el audio", qNote: "Las preguntas llegan una por una, sin anunciarse — como en una entrevista real. Cambian en cada sesión. Los 3 ejemplos de tu informe están para darte el tono.", qErr: "No pudimos obtener una pregunta. Inténtalo de nuevo en un momento.",
       vwaNoQ: "Haz primero tu SWOT360 — las preguntas de práctica salen de él.",
       vwaLimit: "Cuota de voz de hoy agotada — ¡vuelve mañana! 🙂",
       vwaNote: "",
@@ -723,6 +832,24 @@ by();})();
     var hl = document.getElementById("sw-hero-l"); if (hl) hl.innerHTML = T.heroL;
     var hi = document.getElementById("sw-hero-i"); if (hi) hi.textContent = T.heroI;
     var hn = document.getElementById("sw-hero-n"); if (hn) hn.textContent = T.heroN;
+    // Nouveau parcours : promesse, etapes, resultat, offre Pro.
+    var mets = function (id, k, html) {
+      var el = document.getElementById(id);
+      if (el && T[k] !== undefined) { if (html) el.innerHTML = T[k]; else el.textContent = T[k]; }
+    };
+    mets("sw-promesse", "promesse"); mets("sw-explique", "explique"); mets("sw-confiance", "confiance");
+    mets("sw-start", "startBtn"); mets("sw-start2", "start2"); mets("sw-egz-a", "egzA");
+    mets("ep-min", "epMin"); mets("ep-1-next", "epNext"); mets("ep-2-next", "epNext");
+    mets("ep-2-back", "epBack"); mets("ep-3-back", "epBack");
+    mets("sw-prod-t", "prodT");
+    mets("sw-succes-k", "succK"); mets("sw-succes-t", "succT"); mets("sw-succes-p", "succP");
+    mets("sw-tovoice", "toVoice"); mets("sw-suivant-t", "suivantT"); mets("sw-tovoice2", "toVoice2");
+    mets("sw-aks-t", "aksT"); mets("sw-pro-t", "proT"); mets("sw-pro-p", "proP");
+    var pl = document.getElementById("sw-pro-l");
+    if (pl && T.proL) pl.innerHTML = T.proL.map(function (x) { return "<li>" + x + "</li>"; }).join("");
+    var pb = document.getElementById("sw-pro-b");
+    if (pb) pb.innerHTML = T.pcB || "";
+    epSyncLang();
     ["st-1","st-2","st-3"].forEach(function (sid, i) {
       var el = document.getElementById(sid);
       if (el) el.textContent = T["st" + (i + 1)];
@@ -839,6 +966,168 @@ by();})();
     status.textContent = MSG.memoGone;
   });
   majMemo();
+// ---------------------------------------------------------------- parcours
+  // Le meme formulaire, montre en trois fois. Aucun champ ne change d'identite :
+  // toutes les fonctions existantes (generation, CV, pratique vocale, code Pro)
+  // continuent de lire les memes elements.
+  var EV_EP = "https://atmart-chat.atmartllc.workers.dev/ev";
+  function mesure(nom) {
+    try {
+      fetch(EV_EP, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: nom, lang: siteLang() }),
+        keepalive: true, credentials: "omit",
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  var epIdx = 1, epFini = false;
+  var CHAMPS = ["sw-work", "sw-tasks", "sw-strength", "sw-weakness", "sw-aiuse", "sw-goal", "sw-age", "sw-jobdesc"];
+
+  // Les reponses vivent dans l'onglet, le temps de la visite. Elles disparaissent
+  // a la fermeture : c'est la promesse faite sur la page, on ne la contourne pas.
+  function epSauve() {
+    try {
+      var o = {};
+      CHAMPS.forEach(function (id) { var e = document.getElementById(id); if (e) o[id] = e.value; });
+      sessionStorage.setItem("s360_form", JSON.stringify(o));
+    } catch (e) {}
+  }
+  function epRestaure() {
+    try {
+      var o = JSON.parse(sessionStorage.getItem("s360_form") || "{}");
+      CHAMPS.forEach(function (id) { var e = document.getElementById(id); if (e && o[id]) e.value = o[id]; });
+    } catch (e) {}
+  }
+
+  function epErreur(champId, texte) {
+    var c = document.getElementById(champId);
+    if (!c) return;
+    c.classList.add("mauvais");
+    c.setAttribute("aria-invalid", "true");
+    var p = document.getElementById("err-" + champId);
+    if (!p) {
+      p = document.createElement("p");
+      p.className = "ep-err";
+      p.id = "err-" + champId;
+      p.setAttribute("role", "alert");
+      c.parentNode.insertBefore(p, c.nextSibling);
+    }
+    p.textContent = texte;
+    c.focus();
+  }
+  function epNettoie() {
+    CHAMPS.forEach(function (id) {
+      var c = document.getElementById(id);
+      if (c) { c.classList.remove("mauvais"); c.removeAttribute("aria-invalid"); }
+      var p = document.getElementById("err-" + id);
+      if (p) p.remove();
+    });
+  }
+
+  function epValide(i) {
+    epNettoie();
+    if (i === 1) {
+      if (document.getElementById("sw-work").value.trim().length < 2) { epErreur("sw-work", MSG.errWork); return false; }
+      if (document.getElementById("sw-tasks").value.trim().length < 5) { epErreur("sw-tasks", MSG.errTasks); return false; }
+    }
+    return true;
+  }
+
+  function epSyncLang() {
+    // applyLang peut tourner avant l initialisation du parcours : on se protege.
+    if (!epIdx) epIdx = 1;
+    var n = document.getElementById("ep-num");
+    if (n && MSG && MSG.epNum) n.textContent = MSG.epNum.replace("{i}", epIdx);
+    epBarre();
+  }
+
+  // La barre fixe ne sert que si elle propose la bonne action au bon moment.
+  function epBarre() {
+    var b = document.getElementById("sw-fixe"), bt = document.getElementById("sw-fixe-b");
+    if (!b || !bt || !MSG) return;
+    var visible = false, texte = "", action = null;
+    if (epFini) { visible = true; texte = MSG.fixeVoice; action = ouvrirVoix; }
+    else if (epIdx === 3) { visible = true; texte = MSG.fixeGen; action = function () { document.getElementById("sw-go").click(); }; }
+    else if (epVu) { visible = true; texte = MSG.fixeNext; action = function () { epVa(epIdx + 1); }; }
+    bt.textContent = texte;
+    bt.onclick = action;
+    b.classList.toggle("on", visible);
+    document.body.classList.toggle("a-barre", visible);
+  }
+
+  var epVu = false; // la barre n'apparait qu'une fois le formulaire atteint
+  function epVa(i, focus) {
+    if (i > epIdx && !epValide(epIdx)) return;
+    epIdx = Math.min(3, Math.max(1, i));
+    for (var k = 1; k <= 3; k++) {
+      var d = document.getElementById("ep-" + k);
+      if (d) d.classList.toggle("on", k === epIdx);
+    }
+    var j = document.getElementById("ep-jauge");
+    if (j) { j.setAttribute("aria-valuenow", epIdx); j.firstElementChild.style.width = (epIdx * 33.34) + "%"; }
+    epSyncLang();
+    epSauve();
+    if (focus !== false) {
+      var prem = document.querySelector("#ep-" + epIdx + " input, #ep-" + epIdx + " textarea, #ep-" + epIdx + " select");
+      if (prem) prem.focus({ preventScroll: true });
+    }
+    if (epIdx === 2) mesure("complete_step_1");
+    if (epIdx === 3) mesure("complete_step_2");
+  }
+
+  function epAllerAuFormulaire() {
+    epVu = true;
+    var f = document.getElementById("sw-form");
+    f.scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(function () {
+      var prem = document.querySelector("#ep-" + epIdx + " input, #ep-" + epIdx + " textarea");
+      if (prem) prem.focus({ preventScroll: true });
+      epBarre();
+    }, 380);
+    mesure("swot_start");
+  }
+
+  function ouvrirVoix() {
+    var b = document.getElementById("sw-vwa");
+    if (b) b.click();
+  }
+
+  ["sw-start", "sw-start2"].forEach(function (id) {
+    var b = document.getElementById(id);
+    if (b) b.addEventListener("click", epAllerAuFormulaire);
+  });
+  document.getElementById("ep-1-next").addEventListener("click", function () { epVa(2); });
+  document.getElementById("ep-2-next").addEventListener("click", function () { epVa(3); });
+  document.getElementById("ep-2-back").addEventListener("click", function () { epVa(1); });
+  document.getElementById("ep-3-back").addEventListener("click", function () { epVa(2); });
+  document.getElementById("sw-tovoice").addEventListener("click", ouvrirVoix);
+  document.getElementById("sw-tovoice2").addEventListener("click", ouvrirVoix);
+  CHAMPS.forEach(function (id) {
+    var e = document.getElementById(id);
+    if (e) e.addEventListener("change", epSauve);
+  });
+  var eg = document.getElementById("sw-egz");
+  if (eg) eg.addEventListener("toggle", function () { if (eg.open) mesure("sample_open"); });
+  epRestaure();
+  mesure("view_entevyou");
+
+  // Mesure des actions : uniquement le nom de l'action, jamais une reponse.
+  [["sw-dl", "download_result"], ["sw-share", "share_result"], ["sw-print", "download_result"],
+   ["sw-vwa", "voice_start"], ["cv-go", "cv_done"]].forEach(function (p) {
+    var b = document.getElementById(p[0]);
+    if (b) b.addEventListener("click", function () { mesure(p[1]); });
+  });
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest ? e.target.closest("a") : null;
+    if (!a || !a.href) return;
+    if (a.href.indexOf("buy.stripe.com") >= 0) {
+      mesure(a.href.indexOf("28E8wP0Tf9Pn5B761JaEE01") >= 0 ? "buy_click_90" : "buy_click_kit");
+    } else if (/karye|career360/.test(a.href)) {
+      mesure("click_career360");
+    }
+  });
+
   // Un temoignage se demande apres avoir rendu service, jamais avant.
   var aviEnvoye = false;
   document.getElementById("sw-avi-go").addEventListener("click", function () {
@@ -1723,8 +2012,24 @@ by();})();
     navigator.clipboard.writeText(lastCv).then(function () { cvStatus(MSG.copied); });
   });
 
+  var swBusy = false, genTimer = null;
+  // Un spinner muet inquiete. On dit ce qui se passe, dans l'ordre ou ca se passe.
+  function genMessages(pro) {
+    var etapes = [MSG.gen1, MSG.gen2, MSG.gen3];
+    var i = 0;
+    status.innerHTML = '<span class="sw-spin"></span>' + (pro ? MSG.proGen : etapes[0]);
+    clearInterval(genTimer);
+    genTimer = setInterval(function () {
+      i = (i + 1) % etapes.length;
+      status.innerHTML = '<span class="sw-spin"></span>' + (pro ? MSG.proGen : etapes[i]);
+    }, 2600);
+  }
+  function genStop() { clearInterval(genTimer); genTimer = null; }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+    if (swBusy) return; // double clic : la generation coute une utilisation
+    if (!epValide(1)) { epVa(1); return; }
     var payload = {
       work: document.getElementById("sw-work").value.trim(),
       tasks: document.getElementById("sw-tasks").value.trim(),
@@ -1737,12 +2042,15 @@ by();})();
       proCode: document.getElementById("sw-procode").value.trim(),
       language: siteLang(),
     };
+    swBusy = true;
     go.disabled = true;
-    status.innerHTML = '<span class="sw-spin"></span>' + (payload.proCode ? MSG.proGen : MSG.gen);
+    go.setAttribute("aria-busy", "true");
+    genMessages(!!payload.proCode);
+    mesure("swot_generate");
     fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
       .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
       .then(function (res) {
-        go.disabled = false;
+        swBusy = false; go.disabled = false; go.removeAttribute("aria-busy"); genStop();
         if (res.ok && res.body && res.body.swot) {
           lastMd = res.body.swot;
           dernierEtaitPro = !!res.body.pro;
@@ -1756,16 +2064,32 @@ by();})();
           document.getElementById("sw-avi").style.display = "";
           status.textContent = MSG.done;
           document.getElementById("sw-share").href = "https://wa.me/?text=" + encodeURIComponent(MSG.waTxt);
-          out.scrollIntoView({ behavior: "smooth", block: "start" });
+          // Le titre du resultat et l'action suivante doivent entrer ensemble
+          // dans l'ecran : on cadre sur le bloc de reussite, pas sur les cartes.
+          ["sw-succes", "sw-suivant", "sw-aks"].forEach(function (id) {
+            var el = document.getElementById(id); if (el) el.style.display = "";
+          });
+          document.getElementById("sw-pro").style.display = dernierEtaitPro ? "none" : "";
+          epFini = true; epBarre();
+          var succ = document.getElementById("sw-succes");
+          succ.scrollIntoView({ behavior: "smooth", block: "start" });
+          setTimeout(function () { try { succ.focus({ preventScroll: true }); } catch (e) {} }, 420);
+          mesure("swot_done");
         } else {
           var ec = res.body && res.body.error;
-          status.textContent = ec === "rate_limited" ? (payload.proCode ? MSG.proDaily : MSG.limit)
+          status.textContent = (ec === "rate_limited" ? (payload.proCode ? MSG.proDaily : MSG.limit)
             : ec === "pro_invalid" ? MSG.proInvalid
             : ec === "pro_expired" ? MSG.proExpired
-            : MSG.err;
+            : MSG.err) + " — " + MSG.reessaye;
+          mesure("swot_error");
         }
       })
-      .catch(function () { go.disabled = false; status.textContent = MSG.offline; });
+      .catch(function () {
+        // Rien n'est efface : la personne reclique et repart de ses reponses.
+        swBusy = false; go.disabled = false; go.removeAttribute("aria-busy"); genStop();
+        status.textContent = MSG.offline + " — " + MSG.reessaye;
+        mesure("swot_error");
+      });
   });
 
   // inscription e-mail facultative (liste /subscribe existante)
@@ -1825,6 +2149,10 @@ by();})();
   });
 })();
 </script>
+<div class="fixe" id="sw-fixe">
+  <button type="button" class="btn btn-primary" id="sw-fixe-b"></button>
+</div>
+
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>
 </body>
 </html>
