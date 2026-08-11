@@ -1521,6 +1521,14 @@ by();})();
       $("vw-listen").style.display = canTTS() ? "" : "none";
     }
   }
+  // Ceinture et bretelles : si la ligne technique de niveau echappait au
+  // nettoyage du serveur, elle ne doit ni s afficher ni etre lue a voix haute.
+  function sansNivo(t) {
+    var lignes = String(t || "").split(/\r?\n/).filter(function (l) {
+      return !/^\s*\**\s*NIVO\s*:/i.test(l);
+    });
+    return lignes.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+  }
   function vwStripSpoken(t) {
     return stripMd(t).replace(/[✅🔧💬🎤🔊🎙⏹➜✖📨🎉]/g, "").replace(/\s+/g, " ").trim();
   }
@@ -1528,7 +1536,7 @@ by();})();
     if (!canTTS() || !txt) return;
     try {
       speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(vwStripSpoken(txt));
+      var u = new SpeechSynthesisUtterance(vwStripSpoken(sansNivo(txt)));
       var lg = SPEECH_LANG[siteLang()] || "fr-FR";
       u.lang = lg; u.rate = 0.95;
       var vs = (speechSynthesis.getVoices() || []).filter(function (v) {
@@ -1834,6 +1842,7 @@ by();})();
       .then(function (res) {
         vwBusy = false; vwSendB.disabled = false;
         if (res.ok && res.body && res.body.feedback) {
+          res.body.feedback = sansNivo(res.body.feedback);
           vwStatus("");
           vwFb.innerHTML = res.body.feedback.split(/\r?\n/).filter(function (l) { return l.trim(); })
             .map(function (l) { return "<p>" + inline(esc(l.trim())) + "</p>"; }).join("");
