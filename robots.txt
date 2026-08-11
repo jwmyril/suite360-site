@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /mesi.html
 Disallow: /estatistik.html
+Disallow: /admin.html
 
 Sitemap: https://360.atmart.ltd/sitemap.xml

@@ -20,12 +20,26 @@ window.ATM = (function () {
   // Compteur d'événement — silencieux, jamais bloquant.
   // fetch + keepalive plutôt que sendBeacon : sendBeacon envoie en mode
   // credentials "include", que notre CORS (origine nommée, sans cookie) refuse.
+  // D'où vient la personne : le paramètre de campagne s'il existe, sinon le
+  // nom du site qui l'a envoyée. Jamais l'URL complète, jamais rien de nominatif.
+  function source() {
+    try {
+      var q = new URLSearchParams(location.search);
+      var u = q.get("utm_source") || q.get("src");
+      if (u) return String(u).slice(0, 32);
+      if (!document.referrer) return "direct";
+      var h = new URL(document.referrer).hostname.replace(/^www\./, "");
+      if (h.indexOf("atmart.ltd") >= 0) return "interne";
+      return h;
+    } catch (e) { return "direct"; }
+  }
+
   function track(name) {
     try {
       fetch(EP + "/ev", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name, lang: lang() }),
+        body: JSON.stringify({ name: name, lang: lang(), src: source() }),
         keepalive: true,
         credentials: "omit",
       }).catch(function () {});

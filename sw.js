@@ -2,7 +2,7 @@
 // Stratégie : RÉSEAU D'ABORD pour les pages HTML (jamais de page figée — leçon
 // de l'Explorateur), cache d'abord pour les assets. L'API atmart-chat est
 // cross-origin : jamais interceptée.
-const CACHE = "suite360-v5";
+const CACHE = "suite360-v6";
 const CORE = [
   "/",
   "/index.html",
@@ -11,7 +11,7 @@ const CORE = [
   "/organisations.html",
   "/karye.html",
   "/assets/style.css?v=1",
-  "/assets/atm360.js?v=2",
+  "/assets/atm360.js?v=3",
   "/assets/brand/logo-360-96.png",
   "/assets/brand/icon-360-192.png",
 ];
