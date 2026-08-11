@@ -1035,7 +1035,16 @@ by();})();
 
   // Une seance interrompue ne doit pas etre perdue : elle reprend au retour.
   // Tout reste dans le navigateur, rien ne part chez nous.
+  // ⚠️ NE JAMAIS rendre cette ecriture synchrone : elle serialise le rapport
+  // entier (plusieurs kilo-octets) et elle est appelee juste avant la synthese
+  // vocale. Un blocage du fil principal a cet instant precis fait bafouiller,
+  // couper ou retarder la voix du coach — constate en production le 11/08/2026.
+  var prepTimer = null;
   function prepSauve() {
+    clearTimeout(prepTimer);
+    prepTimer = setTimeout(prepEcrit, 600);
+  }
+  function prepEcrit() {
     try {
       localStorage.setItem("s360_prep", JSON.stringify({
         d: new Date().toISOString().slice(0, 10),
@@ -1051,7 +1060,10 @@ by();})();
       return o;
     } catch (e) { return null; }
   }
-  function prepOublie() { try { localStorage.removeItem("s360_prep"); } catch (e) {} }
+  function prepOublie() {
+    clearTimeout(prepTimer); // sinon une ecriture en attente reecrit ce qu on efface
+    try { localStorage.removeItem("s360_prep"); } catch (e) {}
+  }
 
   // ---------------------------------------------------------------- bilan
   var bilanTexte = "", bilanBusy = false;
@@ -1564,9 +1576,9 @@ by();})();
     vwFermerAsk();
     vwStatus("");
     vwQEl.textContent = vwQs[vwIdx];
-    prepDessine(); prepSauve();
     vwSyncLang(MSG);
     vwSpeak(vwQs[vwIdx]);
+    prepDessine(); prepSauve();
   }
   // L'enregistrement sert d'abord à la personne : s'entendre, c'est entendre
   // ses hésitations. Il vit dans la page et nulle part ailleurs.
@@ -1829,10 +1841,10 @@ by();})();
           vwNextB.style.display = "";
           vwLog.push({ q: vwQs[vwIdx], a: ans, fb: res.body.feedback });
           vwNivos[vwIdx] = res.body.niveau || 2;
-          prepDessine(); prepSauve(); bilanMontre();
           document.getElementById("vw-dl").style.display = "";
           vwSyncLang(MSG);
           vwSpeak(res.body.feedback);
+          prepDessine(); prepSauve(); bilanMontre();
         } else {
           vwStatus(res.body && res.body.error === "rate_limited" ? MSG.vwaLimit : MSG.err);
         }
