@@ -1039,6 +1039,12 @@ by();})();
     var l = (document.documentElement.lang || localStorage.getItem("atmart_lang") || "fr").slice(0, 2);
     return L[l] ? l : "fr";
   }
+  // La page doit etre traduite AVANT tout le reste. L appel initial se trouvait
+  // 700 lignes plus bas : la moindre erreur en chemin laissait la page dans ses
+  // textes bruts — moitie kreyol (elements d origine), moitie francais (ajouts
+  // recents). C est le mélange de langues signalé en production.
+  applyLang(siteLang());
+
   new MutationObserver(function () { applyLang(siteLang()); })
     .observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
   // Le code arrive par l'URL (retour de paiement) ou du navigateur : le
