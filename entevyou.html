@@ -1890,6 +1890,13 @@ by();})();
     $("vw-send").textContent = T.vwaSend;
     $("vw-next").textContent = vwLast ? T.vwaFinish : T.vwaNext;
     $("vw-dl").textContent = T.dlSes;
+    // Libelles statiques du bloc « poser ma question » : ils etaient ecrits
+    // uniquement pendant une seance, donc ils restaient en kreyol sur une page
+    // francaise. Ils sortent du if (vwOn).
+    if (T.askBtn) $("vw-ask").textContent = vwAskOn ? T.askClose : T.askBtn;
+    if (T.askHint) $("vw-askhint").textContent = T.askHint;
+    if (T.askPh) $("vw-mq").placeholder = T.askPh;
+    if (T.askSend) $("vw-mqsend").textContent = T.askSend;
     if (vwOn) {
       $("vw-prog").textContent = T.vwaProg.replace("{i}", vwIdx + 1).replace("{n}", vwTotal);
       $("vw-note").textContent = T.vwaNote || "";
@@ -1903,10 +1910,6 @@ by();})();
       $("vw-bilan-dl").textContent = T.bilanDl;
       $("vw-bilan-rejouer").textContent = T.bilanRe;
       prepDessine();
-      $("vw-ask").textContent = vwAskOn ? T.askClose : T.askBtn;
-      $("vw-askhint").textContent = T.askHint;
-      $("vw-mq").placeholder = T.askPh;
-      $("vw-mqsend").textContent = T.askSend;
       $("vw-listen").style.display = canTTS() ? "" : "none";
     }
   }
