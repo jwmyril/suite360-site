@@ -944,6 +944,14 @@ by();})();
     document.getElementById("sw-copy").textContent = T.copy;
     document.getElementById("sw-dl").textContent = T.dlRap;
     majCta();
+    // Textes GENERES (message d erreur, solde du code) : ils gardent la langue
+    // de leur production. On les efface — ils se recreent dans la bonne langue
+    // a la prochaine action. C est la derniere source de page bilingue.
+    try {
+      if (typeof epNettoie === "function") epNettoie();
+      var sol = document.getElementById("sw-solde");
+      if (sol) { sol.textContent = ""; sol.style.display = "none"; }
+    } catch (e) {}
     var hk = document.getElementById("sw-hero-k"); if (hk) hk.textContent = T.heroK;
     var hl = document.getElementById("sw-hero-l"); if (hl) hl.innerHTML = T.heroL;
     var hi = document.getElementById("sw-hero-i"); if (hi) hi.textContent = T.heroI;
