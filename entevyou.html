@@ -2239,7 +2239,7 @@ by();})();
       vwStatus(limite ? MSG.vwaLimit : MSG.qErr);
     }
   }
-  vwCloseB.addEventListener("click", vwReset);
+  vwCloseB.addEventListener("click", function () { vwReset(); montrerVue("swot"); });
   vwListenB.addEventListener("click", function () { vwSpeak(vwQs[vwIdx] || ""); });
 
   vwMicB.addEventListener("click", function () {
@@ -2567,13 +2567,12 @@ by();})();
   }
 
   document.getElementById("sw-cv").addEventListener("click", function () {
+    // Plus de bascule : le selecteur d onglets gere l affichage. Basculer ici
+    // refermait la section que montrerVue venait d ouvrir.
     montrerVue("cv");
-    var open = cvPanel.style.display === "none";
-    cvPanel.style.display = open ? "" : "none";
-    if (open) cvPanel.scrollIntoView({ behavior: "smooth", block: "start" });
   });
   document.getElementById("cv-close").addEventListener("click", function () {
-    cvPanel.style.display = "none";
+    montrerVue("swot");
   });
 
 
