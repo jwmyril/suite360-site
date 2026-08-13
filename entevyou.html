@@ -1774,7 +1774,10 @@ by();})();
   epRestaure();
   // Le rapport du jour revient avec la seance : sans lui, "reprendre" ne veut
   // rien dire. Tout vit dans le navigateur, rien n a ete garde chez nous.
-  (function () {
+  // La restauration s execute APRES le reste du script : la generation appelle
+  // exactement les memes fonctions et fonctionne, donc ce n est pas leur contenu
+  // qui echoue mais l instant — certaines variables ne sont pas encore pretes.
+  setTimeout(function () {
    // Cette restauration ne doit JAMAIS pouvoir casser la page : si elle echoue,
    // on perd le rapport enregistre, mais le bouton « Generer » doit continuer a
    // marcher. Sans ce filet, l echec ici tuait tout le script — le rapport ne
@@ -1796,7 +1799,7 @@ by();})();
    } catch (e) {
      if (window.console && console.error) console.error("restauration du rapport :", e);
    }
-  })();
+  }, 0);
   mesure("view_entevyou");
 
   // Mesure des actions : uniquement le nom de l'action, jamais une reponse.
