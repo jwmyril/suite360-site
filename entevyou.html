@@ -2779,6 +2779,10 @@ by();})();
           });
           document.getElementById("sw-pro").style.display = dernierEtaitPro ? "none" : "";
           epFini = true; epBarre();
+          // Le rapport n etait sauvegarde QUE si la personne lancait la pratique
+          // vocale. Sortir de l application juste apres l avoir lu le perdait.
+          // On l enregistre des qu il existe.
+          prepSauve();
           var succ = document.getElementById("sw-succes");
           succ.scrollIntoView({ behavior: "smooth", block: "start" });
           setTimeout(function () { try { succ.focus({ preventScroll: true }); } catch (e) {} }, 420);
