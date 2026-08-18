@@ -35,7 +35,7 @@ def header(active):
             '      <a href="entevyou.html" ' + cls("entevyou") + '>Entèvyou360</a>\n'
             '      <a href="karye.html" ' + cls("karye") + '>Career360</a>\n'
             '      <select id="s360-lang" aria-label="Lang" style="background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">\n'
-            '        <option value="ht">Kreyòl</option><option value="fr">Français</option><option value="en">English</option><option value="es">Español</option>\n'
+            '        <option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="ht">Kreyòl</option>\n'
             '      </select>\n    </div>\n  </nav>\n</header>')
 
 FOOTER = ('<footer>\n  <div class="container">\n'
