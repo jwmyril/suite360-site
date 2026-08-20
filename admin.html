@@ -102,6 +102,17 @@
         </div>
       </div>
 
+      <h2 class="ad-h2">Jour par jour — Entèvyou360</h2>
+      <div class="card"><div style="overflow-x:auto"><table class="t" id="ad-jour-ent"></table></div></div>
+
+      <h2 class="ad-h2">Jour par jour — Career360</h2>
+      <div class="card"><div style="overflow-x:auto"><table class="t" id="ad-jour-kar"></table></div></div>
+
+      <div class="card" style="margin-top:0.9rem">
+        <p class="vide" id="ad-jour-note"></p>
+        <p style="margin:0.7rem 0 0"><button type="button" id="ad-csv" class="btn">⬇️ Télécharger les deux tableaux (.csv)</button></p>
+      </div>
+
       <h2 class="ad-h2">Argent encaissé</h2>
       <div class="card"><table class="t" id="ad-rev"></table></div>
 
@@ -236,6 +247,8 @@
         + '<span class="fun-n">' + e[1] + (pc ? ' <span class="flat">(' + pc + ')</span>' : "") + '</span></div>';
     }).join("");
 
+    peindreJours(d);
+
     // visiteurs par jour
     var vis = d.visiteurs || {};
     var jours = Object.keys(vis).sort();
@@ -279,6 +292,106 @@
   }
 
   function j0(n) { return n + " jours"; }
+
+  // ---------------------------------------------------------------- jour par jour
+  // Un compteur d'evenements n'est PAS un compteur de personnes : sans compte et
+  // sans identifiant conserve, on sait combien d'ouvertures et combien de taches
+  // finies, jamais QUI. La colonne « sans suite » est une difference de deux
+  // comptages, pas une liste de gens.
+  var derniersJours = null;
+
+  function serie(d, nom) { return (d.byDay || {})[nom] || {}; }
+
+  function joursTries(d) {
+    var vus = {};
+    Object.keys(d.visiteurs || {}).forEach(function (j) { vus[j] = 1; });
+    Object.keys(d.byDay || {}).forEach(function (n) {
+      Object.keys(d.byDay[n]).forEach(function (j) { vus[j] = 1; });
+    });
+    return Object.keys(vus).sort().reverse();
+  }
+
+  function tableJours(cible, titres, lignes) {
+    var el = $(cible);
+    if (!lignes.length) { el.innerHTML = '<tr><td class="vide">Aucune donnée sur la période.</td></tr>'; return; }
+    el.innerHTML = "<tr>" + titres.map(function (t) {
+      return '<th style="text-align:' + (t.num ? "right" : "left") + '">' + esc(t.l) + "</th>";
+    }).join("") + "</tr>" + lignes.map(function (r) {
+      return "<tr>" + r.map(function (v, i) {
+        var num = titres[i].num;
+        var creux = num && !v;
+        return '<td style="text-align:' + (num ? "right" : "left") + (creux ? ";color:#9db2c7" : "") + '">' + esc(v) + "</td>";
+      }).join("") + "</tr>";
+    }).join("");
+  }
+
+  function peindreJours(d) {
+    var jours = joursTries(d);
+    var vue = serie(d, "view_entevyou"), swot = serie(d, "swot_done"),
+        cvOk = serie(d, "cv_ok"), cvClic = serie(d, "cv_done"),
+        coach = serie(d, "voice_done"),
+        achEnt = serie(d, "buy_click_kit"), ach90 = serie(d, "buy_click_90"),
+        vKar = serie(d, "view_karye"), kStart = serie(d, "karye_start"),
+        kDone = serie(d, "karye_done"), kAch = serie(d, "buy_click_career"),
+        essai = serie(d, "trial_created"), ventes = serie(d, "code_delivered");
+    var g = function (o, j) { return o[j] || 0; };
+
+    var ligEnt = jours.map(function (j) {
+      var ouv = g(vue, j), sw = g(swot, j);
+      return [j, ouv, sw, g(cvOk, j) || g(cvClic, j), g(coach, j), Math.max(0, ouv - sw),
+              g(achEnt, j) + g(ach90, j), g(ventes, j)];
+    });
+    var ligKar = jours.map(function (j) {
+      var ouv = g(vKar, j), fin = g(kDone, j);
+      return [j, ouv, g(kStart, j), fin, Math.max(0, ouv - fin), g(essai, j), g(kAch, j)];
+    });
+
+    var somme = function (lig) {
+      var t = ["Total"];
+      for (var c = 1; c < lig[0].length; c++) {
+        t.push(lig.reduce(function (a, r) { return a + r[c]; }, 0));
+      }
+      return t;
+    };
+    if (ligEnt.length) ligEnt.push(somme(ligEnt));
+    if (ligKar.length) ligKar.push(somme(ligKar));
+
+    var tEnt = [{ l: "Date" }, { l: "Ouvertures", num: 1 }, { l: "SWOT terminé", num: 1 },
+                { l: "CV produit", num: 1 }, { l: "Exercice coach", num: 1 },
+                { l: "Ouvertures sans SWOT", num: 1 }, { l: "Clics paiement", num: 1 },
+                { l: "Codes livrés", num: 1 }];
+    var tKar = [{ l: "Date" }, { l: "Ouvertures", num: 1 }, { l: "Séances ouvertes", num: 1 },
+                { l: "Échanges avec le coach", num: 1 }, { l: "Ouvertures sans échange", num: 1 },
+                { l: "Essais 7 j créés", num: 1 }, { l: "Clics paiement", num: 1 }];
+
+    tableJours("ad-jour-ent", tEnt, ligEnt);
+    tableJours("ad-jour-kar", tKar, ligKar);
+    derniersJours = { tEnt: tEnt, ligEnt: ligEnt, tKar: tKar, ligKar: ligKar };
+
+    $("ad-jour-note").innerHTML =
+      "<b>Ces chiffres comptent des actions, pas des personnes.</b> Sans compte et sans identifiant conservé, "
+      + "« Ouvertures sans SWOT » est une soustraction entre deux comptages — pas une liste de gens, et personne "
+      + "n'y est identifiable. Une même personne qui recharge la page compte deux ouvertures. "
+      + "« Codes livrés » n'est pas réparti par produit : le paiement ne dit pas encore lequel a été acheté.";
+  }
+
+  $("ad-csv").addEventListener("click", function () {
+    if (!derniersJours) return;
+    var q = function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; };
+    var SL = String.fromCharCode(10);   // une vraie fin de ligne, sans echappement fragile
+    var bloc = function (titre, t, lig) {
+      return [titre, t.map(function (x) { return q(x.l); }).join(";")]
+        .concat(lig.map(function (r) { return r.map(q).join(";"); })).join(SL);
+    };
+    var csv = String.fromCharCode(0xFEFF)
+      + bloc("Entevyou360", derniersJours.tEnt, derniersJours.ligEnt)
+      + SL + SL + bloc("Career360", derniersJours.tKar, derniersJours.ligKar);
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+    a.download = "suite360-jour-par-jour-" + new Date().toISOString().slice(0, 10) + ".csv";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+  });
 
   function peindreAvis(d) {
     var a = d.avis || [];

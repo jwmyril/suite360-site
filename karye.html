@@ -186,6 +186,20 @@ by();})();
 (function () {
   "use strict";
   var ENDPOINT = "https://atmart-chat.atmartllc.workers.dev/koach";
+  // Career360 n'envoyait aucune mesure : il etait invisible dans le tableau de
+  // bord. On compte des EVENEMENTS, jamais des personnes — aucun identifiant,
+  // aucun contenu de seance ne part d'ici.
+  var EV_EP = "https://atmart-chat.atmartllc.workers.dev/ev";
+  function mesure(nom) {
+    try {
+      fetch(EV_EP, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: nom, lang: (document.documentElement.lang || "ht") }),
+        keepalive: true, credentials: "omit",
+      }).catch(function () {});
+    } catch (e) {}
+  }
+  mesure("view_karye");
 
   // ---------- 4 langues (suit le sélecteur 🌐 du site : html[lang]) ----------
   var L = {
@@ -430,6 +444,7 @@ by();})();
         codeEl.value = res.body.code;
         try { localStorage.setItem("karye360_code", res.body.code); } catch (e) {}
         st1.textContent = t.trialOk.replace("{code}", res.body.code).replace("{exp}", res.body.exp);
+        mesure("trial_created");
       } else if (res.body && res.body.error === "trial_used") {
         st1.textContent = t.trialUsed;
       } else {
@@ -542,6 +557,7 @@ by();})();
         st1.textContent = errMsg(ec); return;
       }
       st1.textContent = "";
+      mesure("karye_start");
       localStorage.setItem("karye360_code", codeEl.value.trim().toUpperCase());
       kyMajMemo();
       kyShowChat(false);
@@ -705,10 +721,13 @@ by();})();
       st2.textContent = "";
       if (!res.ok) { st2.textContent = errMsg(res.body && res.body.error); return; }
       addMsg("coach", res.body.reply);
+      mesure("karye_done");
       speakReply(res.body.reply);
     }).catch(function () { busy = false; st2.textContent = t.err; });
   }
   document.getElementById("ky-send").addEventListener("click", send);
+  var kyBuy = document.getElementById("ky-ro-r");
+  if (kyBuy) kyBuy.addEventListener("click", function () { mesure("buy_click_career"); });
   input.addEventListener("keydown", function (e) {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
   });

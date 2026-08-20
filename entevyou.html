@@ -3423,6 +3423,7 @@ by();})();
         cvBusy = false; cvGoB.disabled = false;
         if (res.ok && res.body && res.body.cv) {
           lastCv = res.body.cv;
+          mesure("cv_ok");   // cv_done compte le CLIC ; celui-ci compte le CV produit
           cvOut.innerHTML = render(lastCv);
           cvOut.style.display = "block";
           cvPrintB.style.display = ""; cvCopyB.style.display = "";
