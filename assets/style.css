@@ -171,6 +171,11 @@ header {
 .nav-links a { color: var(--ink-dim); font-size: 0.95rem; font-weight: 500; }
 .nav-links a:hover, .nav-links a.active { color: var(--ink); }
 .btn {
+  /* Un <button> sans fond declare prend « buttonface », le gris par defaut du
+     navigateur — que color-scheme: dark assombrit : le texte teal devenait
+     alors gris sur gris. Les <a class="btn"> n'avaient pas le probleme, c'est
+     pour cela que le defaut est reste invisible si longtemps. */
+  background: transparent;
   display: inline-block; padding: 0.65rem 1.3rem; border-radius: 999px;
   font-weight: 600; font-size: 0.95rem; transition: transform .15s ease, box-shadow .15s ease;
 }
