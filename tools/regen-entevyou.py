@@ -82,8 +82,8 @@ for a, b in [
     ('href="tutoriels/management-ia.en.html"', 'href="https://lojik360.atmart.ltd/tutoriels/management-ia.en.html"'),
 ]:
     s = s.replace(a, b)
-s = s.replace('<link rel="stylesheet" href="assets/style.css?v=1" />',
-              HEAD_THEME + '\n  <link rel="stylesheet" href="assets/style.css?v=2" />\n' + HEAD_LANG)
+s = s.replace('<link rel="stylesheet" href="assets/style.css?v=3" />',
+              HEAD_THEME + '\n  <link rel="stylesheet" href="assets/style.css?v=3" />\n' + HEAD_LANG)
 # PWA : icônes 360 + manifest + theme-color + service worker
 s = s.replace('<link rel="icon" type="image/png" href="assets/brand/logo-32.png" />',
               '<link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />\n'
@@ -97,7 +97,7 @@ s = s.replace('<link rel="icon" type="image/png" href="assets/brand/logo-32.png"
 # de la page contient lui-même la chaîne "</body>" (générateur de fichier .doc),
 # et un replace() global casserait ce script.
 _i = s.rfind("</body>")
-s = s[:_i] + '<script defer src="assets/theme.js?v=1"></script>\n' \
+s = s[:_i] + '<script defer src="assets/theme.js?v=2"></script>\n' \
     '<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>\n' + s[_i:]
 io.open(DST, "w", encoding="utf-8", newline="").write(s)
 print("entevyou.html régénéré —", len(s), "caractères")
