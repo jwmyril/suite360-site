@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="ht">
 <head>
+<script>/* Thème avant le premier rendu — sans lui, éclair blanc puis bascule.
+Ne pas déplacer plus bas ni différer : il doit précéder les styles. */
+(function(){try{var v=localStorage.getItem("atmart_apparence"),
+d=v==="sombre"||(v!=="clair"&&window.matchMedia&&
+window.matchMedia("(prefers-color-scheme: dark)").matches);
+if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"light");
+}catch(e){}})();
+</script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
@@ -23,9 +32,9 @@ d.lang=l||"ht";})();
 </script>
   <style>
     .nf{max-width:620px;margin:0 auto;text-align:center;padding:3rem 0 4rem}
-    .nf-num{font-family:"Space Grotesk",sans-serif;font-size:4rem;color:#2ec4b6;margin:0;line-height:1}
+    .nf-num{font-family:"Space Grotesk",sans-serif;font-size:4rem;color:var(--accent);margin:0;line-height:1}
     .nf h1{font-family:"Space Grotesk",sans-serif;font-size:1.5rem;color:#fff;margin:0.6rem 0 0.8rem}
-    .nf p{color:#9db2c7;line-height:1.7;margin:0 0 1.8rem}
+    .nf p{color:var(--ink-dim);line-height:1.7;margin:0 0 1.8rem}
     .nf-links{display:flex;gap:0.7rem;justify-content:center;flex-wrap:wrap}
   </style>
 </head>
@@ -68,5 +77,6 @@ d.lang=l||"ht";})();
 })();
 </script>
 
+<script defer src="assets/theme.js?v=1"></script>
 </body>
 </html>

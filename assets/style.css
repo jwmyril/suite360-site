@@ -1,18 +1,133 @@
 /* ===== Lojik360 — Design System ===== */
 :root {
-  --navy: #0a1a2f;
-  --navy-2: #102a4c;
-  --teal: #2ec4b6;
-  --teal-dark: #21998e;
-  --amber: #f4a261;
-  --red: #e63946;
-  --ink: #eaf2fb;
-  --ink-dim: #9fb3c8;
-  --card: #12233d;
-  --border: #1e3a5f;
+  /* ---------------- rôles, palette CLAIRE (base) ----------------
+     Mêmes valeurs que l'Explorateur Haïti : deux produits d'Atmart ne
+     doivent pas avoir deux gris différents. Les contrastes sont MESURÉS,
+     pas supposés — c'est pour cela que les accents changent de valeur
+     d'un thème à l'autre : #2ec4b6 donne 2,17:1 sur blanc, illisible. */
+  --fond: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-2: #F5F7FA;
+  --ink: #102033;             /* 16,45:1 sur le fond */
+  --ink-2: #2b3f52;           /* texte de deuxième plan */
+  --ink-dim: #516173;         /* 6,35:1 */
+  --border: #D7DEE8;
+  --border-fort: #7b8798;
+  --accent: #12796f;          /* 5,26:1 sur blanc */
+  --accent-fort: #0f6a61;
+  --danger: #c1121f;
+  --attention: #8a4f08;
+  --lien: #12406b;
+  --focus: #0f6a61;
+  /* L'encre POSÉE SUR un aplat d'accent : elle suit le bouton, pas la page. */
+  --danger-doux: #a3141f;
+  --attention-doux: #7a4506;
+  --accent-doux: #0e6a61;
+  --lien-doux: #17548c;
+  --bulle: #dbeafe;          /* bulle du candidat */
+  --sur-accent: #FFFFFF;
+  --fond-flou: rgba(255, 255, 255, 0.92);
+  --ombre: 0 1px 3px rgba(16, 32, 51, 0.10), 0 4px 14px rgba(16, 32, 51, 0.06);
+  /* Voiles : en sombre ce sont des blancs très dilués, en clair il faut des
+     encres diluées — sinon un « voile blanc » sur fond blanc ne fait rien. */
+  --voile-04: rgba(16, 32, 51, 0.035);
+  --voile-09: rgba(16, 32, 51, 0.08);
+  --voile-12: rgba(16, 32, 51, 0.10);
+  --voile-15: rgba(16, 32, 51, 0.14);
+  --voile-25: rgba(16, 32, 51, 0.22);
+
+  /* ---------------- alias hérités ----------------
+     Toute la feuille et toutes les pages lisent déjà ces noms. Ils ne sont
+     plus des couleurs mais des renvois : le thème bascule sans réécrire
+     les règles qui les emploient. */
+  --navy: var(--fond);
+  --navy-2: var(--surface-2);
+  --card: var(--surface);
+  --teal: var(--accent);
+  --teal-dark: var(--accent-fort);
+  --amber: var(--attention);
+  --red: var(--danger);
+
   --radius: 14px;
   --font-head: "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
+  /* Teinte les pièces natives du navigateur : ascenseurs, cases, listes
+     déroulantes. Sans cela, un menu reste blanc au milieu d'une page sombre. */
+  color-scheme: light;
+}
+
+/* Le fond sombre d'origine de Suite 360, conservé à l'identique. */
+:root[data-theme="dark"],
+:root:not([data-theme="light"]) {
+  --nuit-fond: #0a1a2f;
+  --nuit-surface: #12233d;
+  --nuit-surface-2: #0e2240;
+}
+
+/* AUTOMATIQUE : le système décide — sauf si le lecteur a tranché pour clair.
+   Sans le `:not`, la requête média l'emporterait sur son choix explicite. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fond: #0a1a2f;
+    --surface: #12233d;
+    --surface-2: #0e2240;
+    --ink: #eaf2fb;
+    --ink-2: #d7e3f0;
+    --ink-dim: #9fb3c8;
+    --border: #1e3a5f;
+    --border-fort: #46617f;
+    --accent: #2ec4b6;
+    --accent-fort: #5eead4;
+    --danger: #ff6b78;        /* #e63946 tombe sous le seuil sur ce fond */
+    --attention: #f4a261;
+    --lien: #7fb2d9;
+    --focus: #5eead4;
+    --danger-doux: #ffcdcd;
+    --attention-doux: #ffe0c2;
+    --accent-doux: #b6f0ea;
+    --lien-doux: #bcd2ff;
+    --bulle: #12406b;
+    --sur-accent: #06251f;
+    --fond-flou: rgba(10, 26, 47, 0.92);
+    --ombre: 0 1px 3px rgba(0, 0, 0, 0.45), 0 4px 14px rgba(0, 0, 0, 0.35);
+    --voile-04: rgba(255, 255, 255, 0.04);
+    --voile-09: rgba(255, 255, 255, 0.09);
+    --voile-12: rgba(255, 255, 255, 0.12);
+    --voile-15: rgba(255, 255, 255, 0.15);
+    --voile-25: rgba(255, 255, 255, 0.25);
+    color-scheme: dark;
+  }
+}
+
+/* CHOIX EXPLICITE « sombre » : il gagne, y compris sur un système clair. */
+:root[data-theme="dark"] {
+  --fond: #0a1a2f;
+  --surface: #12233d;
+  --surface-2: #0e2240;
+  --ink: #eaf2fb;
+  --ink-2: #d7e3f0;
+  --ink-dim: #9fb3c8;
+  --border: #1e3a5f;
+  --border-fort: #46617f;
+  --accent: #2ec4b6;
+  --accent-fort: #5eead4;
+  --danger: #ff6b78;
+  --attention: #f4a261;
+  --lien: #7fb2d9;
+  --focus: #5eead4;
+  --danger-doux: #ffcdcd;
+  --attention-doux: #ffe0c2;
+  --accent-doux: #b6f0ea;
+  --lien-doux: #bcd2ff;
+  --sur-accent: #06251f;
+  --fond-flou: rgba(10, 26, 47, 0.92);
+  --ombre: 0 1px 3px rgba(0, 0, 0, 0.45), 0 4px 14px rgba(0, 0, 0, 0.35);
+  --voile-04: rgba(255, 255, 255, 0.04);
+  --voile-09: rgba(255, 255, 255, 0.09);
+  --voile-12: rgba(255, 255, 255, 0.12);
+  --voile-15: rgba(255, 255, 255, 0.15);
+  --voile-25: rgba(255, 255, 255, 0.25);
+  color-scheme: dark;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -36,7 +151,7 @@ a:hover { color: var(--amber); }
 /* ===== Header ===== */
 header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(10, 26, 47, 0.92);
+  background: var(--fond-flou);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }

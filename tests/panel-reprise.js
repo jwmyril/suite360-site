@@ -25,7 +25,9 @@ let p = 0;
 while (true) {
   const i = html.indexOf("<script>", p);
   if (i < 0) break;
-  const suivant = html.indexOf("<script>", i + 8);
+  // Le script suivant peut porter des attributs (<script defer src=...>) :
+  // chercher "<script>" en laissait passer un et le bloc debordait dans le HTML.
+  const suivant = html.indexOf("<script", i + 8);
   let fin = html.indexOf("</script>", i);
   let k = fin;
   while (true) {

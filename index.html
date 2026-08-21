@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="ht">
 <head>
+<script>/* Thème avant le premier rendu — sans lui, éclair blanc puis bascule.
+Ne pas déplacer plus bas ni différer : il doit précéder les styles. */
+(function(){try{var v=localStorage.getItem("atmart_apparence"),
+d=v==="sombre"||(v!=="clair"&&window.matchMedia&&
+window.matchMedia("(prefers-color-scheme: dark)").matches);
+if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"light");
+}catch(e){}})();
+</script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
@@ -33,24 +42,24 @@ d.lang=l||"ht";})();
 </script>
   <style>
     .p360-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem;max-width:900px;margin:0 auto}
-    .p360{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:16px;padding:1.6rem;display:flex;flex-direction:column}
+    .p360{background:var(--voile-04);border:1px solid var(--voile-09);border-radius:16px;padding:1.6rem;display:flex;flex-direction:column}
     .p360.hot{border-color:rgba(46,196,182,0.55)}
-    .p360 .tag{font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;color:#2ec4b6;font-weight:600;margin:0 0 0.3rem}
+    .p360 .tag{font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 0.3rem}
     .p360 h3{font-family:"Space Grotesk",sans-serif;font-size:1.5rem;color:#fff;margin:0 0 0.5rem}
-    .p360 .desc{color:#9db2c7;font-size:0.93rem;line-height:1.6;margin:0 0 1rem}
+    .p360 .desc{color:var(--ink-dim);font-size:0.93rem;line-height:1.6;margin:0 0 1rem}
     .p360 .price{font-family:"Space Grotesk",sans-serif;font-size:1.6rem;color:#fff;margin:0.2rem 0 0.1rem}
-    .p360 .price small{font-size:0.85rem;color:#9db2c7;font-weight:400}
+    .p360 .price small{font-size:0.85rem;color:var(--ink-dim);font-weight:400}
     .p360 ul{list-style:none;padding:0;margin:0.6rem 0 1.2rem}
-    .p360 li{font-size:0.9rem;color:#d7e3f0;line-height:1.55;padding-left:1.4em;position:relative;margin-bottom:0.45rem}
-    .p360 li::before{content:"✓";position:absolute;left:0;color:#2ec4b6;font-weight:700}
+    .p360 li{font-size:0.9rem;color:var(--ink-2);line-height:1.55;padding-left:1.4em;position:relative;margin-bottom:0.45rem}
+    .p360 li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
     .p360 .cta2{font-size:0.85rem;margin-top:0.6rem}
-    .p360 .cta2 a{color:#2ec4b6}
+    .p360 .cta2 a{color:var(--accent)}
     .p360 .split{border-top:1px dashed rgba(46,196,182,0.4);margin:0.4rem 0 0.8rem;padding-top:0.8rem}
     .p360 .spacer{flex:1}
-    .s360-pay{text-align:center;color:#9db2c7;font-size:0.85rem;margin-top:1.6rem}
-    .s360-pay a{color:#2ec4b6}
+    .s360-pay{text-align:center;color:var(--ink-dim);font-size:0.85rem;margin-top:1.6rem}
+    .s360-pay a{color:var(--accent)}
     .s360-badges{display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
-    .s360-badge{background:rgba(46,196,182,0.12);border:1px solid rgba(46,196,182,0.35);color:#d7e3f0;border-radius:99px;padding:0.35rem 0.9rem;font-size:0.82rem}
+    .s360-badge{background:rgba(46,196,182,0.12);border:1px solid rgba(46,196,182,0.35);color:var(--ink-2);border-radius:99px;padding:0.35rem 0.9rem;font-size:0.82rem}
   </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -66,9 +75,9 @@ d.lang=l||"ht";})();
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
     <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small id="s360-by">pa Atmart</small></a>
     <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">
-      <a href="candidats.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem" id="nav-cand">Candidats</a>
-      <a href="organisations.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem" id="nav-org">Organisations</a>
-      <select id="s360-lang" aria-label="Lang" style="background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">
+      <a href="candidats.html" style="color:var(--ink);text-decoration:none;font-size:0.9rem" id="nav-cand">Candidats</a>
+      <a href="organisations.html" style="color:var(--ink);text-decoration:none;font-size:0.9rem" id="nav-org">Organisations</a>
+      <select id="s360-lang" aria-label="Lang" style="background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">
         <option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="ht">Kreyòl</option>
       </select>
     </div>
@@ -99,14 +108,14 @@ d.lang=l||"ht";})();
       <a href="candidats.html" style="text-decoration:none;background:rgba(46,196,182,0.09);border:1px solid rgba(46,196,182,0.5);border-radius:16px;padding:1.3rem 1.4rem;display:block">
         <div style="font-size:1.7rem;margin-bottom:0.4rem">🙋</div>
         <div id="dr-1t" style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;color:#fff;font-weight:700;margin-bottom:0.3rem">Je cherche un emploi</div>
-        <div id="dr-1d" style="color:#9db2c7;font-size:0.9rem;line-height:1.55">Préparez votre entretien et obtenez votre CV — gratuitement pour commencer.</div>
-        <div id="dr-1c" style="color:#2ec4b6;font-size:0.9rem;font-weight:600;margin-top:0.7rem">Commencer →</div>
+        <div id="dr-1d" style="color:var(--ink-dim);font-size:0.9rem;line-height:1.55">Préparez votre entretien et obtenez votre CV — gratuitement pour commencer.</div>
+        <div id="dr-1c" style="color:var(--accent);font-size:0.9rem;font-weight:600;margin-top:0.7rem">Commencer →</div>
       </a>
       <a href="organisations.html" style="text-decoration:none;background:rgba(106,159,216,0.09);border:1px solid rgba(106,159,216,0.5);border-radius:16px;padding:1.3rem 1.4rem;display:block">
         <div style="font-size:1.7rem;margin-bottom:0.4rem">🏛</div>
         <div id="dr-2t" style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;color:#fff;font-weight:700;margin-bottom:0.3rem">J'accompagne des chercheurs d'emploi</div>
-        <div id="dr-2d" style="color:#9db2c7;font-size:0.9rem;line-height:1.55">Organismes d'emploi, associations, collèges : pilote de 4 semaines pour 50 participants.</div>
-        <div id="dr-2c" style="color:#6a9fd8;font-size:0.9rem;font-weight:600;margin-top:0.7rem">Voir l'offre organisations →</div>
+        <div id="dr-2d" style="color:var(--ink-dim);font-size:0.9rem;line-height:1.55">Organismes d'emploi, associations, collèges : pilote de 4 semaines pour 50 participants.</div>
+        <div id="dr-2c" style="color:var(--lien);font-size:0.9rem;font-weight:600;margin-top:0.7rem">Voir l'offre organisations →</div>
       </a>
     </div>
   </div>
@@ -116,10 +125,10 @@ d.lang=l||"ht";})();
 <section id="demo" style="padding-top:0">
   <div class="container">
     <div style="max-width:400px;margin:0 auto;text-align:center">
-      <p id="vid-t" style="font-size:0.86rem;letter-spacing:0.06em;text-transform:uppercase;color:#2ec4b6;font-weight:600;margin:0 0 0.7rem">🎥 Gade kijan sa mache — 75 segonn</p>
+      <p id="vid-t" style="font-size:0.86rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 0.7rem">🎥 Gade kijan sa mache — 75 segonn</p>
       <video id="vid" controls playsinline preload="none"
-             style="width:100%;display:block;border-radius:18px;border:1px solid rgba(46,196,182,0.45);background:#0a1a2f"></video>
-      <p id="vid-note" style="color:#9db2c7;font-size:0.8rem;margin:0.6rem 0 0;line-height:1.5">Videyo a an kreyòl — vèsyon FR / EN / ES ap vini.</p>
+             style="width:100%;display:block;border-radius:18px;border:1px solid rgba(46,196,182,0.45);background:var(--fond)"></video>
+      <p id="vid-note" style="color:var(--ink-dim);font-size:0.8rem;margin:0.6rem 0 0;line-height:1.5">Videyo a an kreyòl — vèsyon FR / EN / ES ap vini.</p>
     </div>
   </div>
 </section>
@@ -131,16 +140,16 @@ d.lang=l||"ht";})();
       <p class="tag" id="pv-tag">👀 Anvan / Apre — sa zouti a fè ak yon vye fraz CV</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:0.6rem">
         <div style="background:rgba(230,57,70,0.07);border:1px solid rgba(230,57,70,0.35);border-radius:12px;padding:1rem 1.1rem">
-          <p style="margin:0 0 0.4rem;font-size:0.78rem;font-weight:700;letter-spacing:0.05em;color:#e63946" id="pv-b-t">ANVAN — ansyen CV a</p>
-          <p style="margin:0;color:#d7e3f0;font-size:0.95rem;font-style:italic">« Hardworking and motivated team player. »</p>
+          <p style="margin:0 0 0.4rem;font-size:0.78rem;font-weight:700;letter-spacing:0.05em;color:var(--danger)" id="pv-b-t">ANVAN — ansyen CV a</p>
+          <p style="margin:0;color:var(--ink-2);font-size:0.95rem;font-style:italic">« Hardworking and motivated team player. »</p>
         </div>
         <div style="background:rgba(46,196,182,0.07);border:1px solid rgba(46,196,182,0.4);border-radius:12px;padding:1rem 1.1rem">
-          <p style="margin:0 0 0.4rem;font-size:0.78rem;font-weight:700;letter-spacing:0.05em;color:#2ec4b6" id="pv-a-t">APRE — Entèvyou360</p>
-          <p style="margin:0;color:#d7e3f0;font-size:0.95rem">« Trained 6 new nurses on patient care protocols. »<br />« Manage daily care for 12 residents per shift, tracking vital signs. »</p>
+          <p style="margin:0 0 0.4rem;font-size:0.78rem;font-weight:700;letter-spacing:0.05em;color:var(--accent)" id="pv-a-t">APRE — Entèvyou360</p>
+          <p style="margin:0;color:var(--ink-2);font-size:0.95rem">« Trained 6 new nurses on patient care protocols. »<br />« Manage daily care for 12 residents per shift, tracking vital signs. »</p>
         </div>
       </div>
-      <p style="margin:0.9rem 0 0"><a href="egzanp.html" id="pv-more" style="color:#2ec4b6;font-weight:600;font-size:0.92rem">Voir le rapport complet et le CV entier →</a></p>
-      <p style="margin:0.8rem 0 0;color:#9db2c7;font-size:0.82rem" id="pv-note">Ekstrè ki soti nan yon CV zouti a te reyèlman jenere sou yon pwofil demonstrasyon (enfimyè → CNA Boston). Se pa yon kliyan — premye temwayaj reyèl yo ap vini ak lansman an.</p>
+      <p style="margin:0.9rem 0 0"><a href="egzanp.html" id="pv-more" style="color:var(--accent);font-weight:600;font-size:0.92rem">Voir le rapport complet et le CV entier →</a></p>
+      <p style="margin:0.8rem 0 0;color:var(--ink-dim);font-size:0.82rem" id="pv-note">Ekstrè ki soti nan yon CV zouti a te reyèlman jenere sou yon pwofil demonstrasyon (enfimyè → CNA Boston). Se pa yon kliyan — premye temwayaj reyèl yo ap vini ak lansman an.</p>
     </div>
   </div>
 </section>
@@ -152,7 +161,7 @@ d.lang=l||"ht";})();
 
       <div class="p360">
         <p class="tag" id="e-tag">Prepare entèvyou a</p>
-        <h3>Entèvyou<em style="color:#2ec4b6">360</em></h3>
+        <h3>Entèvyou<em style="color:var(--accent)">360</em></h3>
         <p class="desc" id="e-desc">Yon dyagnostik SWOT pèsonèl, 3 kesyon rekritè a ka poze w — epi yon mòd pratik kote ou reponn ak vwa ou e koach la ba w feedback.</p>
         <p class="price" id="e-free">Gratis</p>
         <ul>
@@ -180,7 +189,7 @@ d.lang=l||"ht";})();
 
       <div class="p360 hot">
         <p class="tag" id="k-tag">Grandi nan karyè ou</p>
-        <h3>Career<em style="color:#2ec4b6">360</em></h3>
+        <h3>Career<em style="color:var(--accent)">360</em></h3>
         <p class="desc" id="k-desc">Yon coach karyè ki sonje w, semèn apre semèn — nouvo djòb, rechèch travay, pwogrè. Ou ka pale ak li ak vwa ou, li ka li repons li yo fò.</p>
         <p class="price">14,99 $ <small id="k-mo">/ mwa · 🎁 7 jou esè gratis</small></p>
         <ul>
@@ -201,7 +210,7 @@ d.lang=l||"ht";})();
 
 <footer>
   <div class="container">
-    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:#9db2c7" id="f-legal">Kondisyon · Konfidansyalite · Ranbousman</a> · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>
+    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:var(--ink-dim)" id="f-legal">Kondisyon · Konfidansyalite · Ranbousman</a> · <a href="mailto:sales@atmart.ltd" style="color:var(--accent)">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:var(--ink-dim)">atmart.ltd</a></p>
   </div>
 </footer>
 
@@ -209,7 +218,7 @@ d.lang=l||"ht";})();
 (function () {
   var L = {
     ht: {
-      kicker: "Suite 360 — pa Atmart", byline: "pa Atmart", navCand: "Kandida", navOrg: "Òganizasyon", d1t: "M ap chèche travay", d1d: "Prepare entèvyou w epi jwenn CV ou — gratis pou kòmanse.", d1c: "Kòmanse →", d2t: "M ap ede moun jwenn travay", d2d: "Òganizasyon, asosyasyon, kolèj : yon pilòt 4 semèn pou 50 patisipan.", d2c: "Gade òf òganizasyon an →", pvMore: "Gade rapò konplè a ak tout CV a →", vidT: "🎥 Gade kijan sa mache — 90 segonn", vidNote: "Rapò a ak CV a nan videyo a se vre sòti zouti a.<br /><span style=\"opacity:0.8\">♪ Mizik : « Double O » — Kevin MacLeod (<a href=\"https://incompetech.com\" rel=\"nofollow noopener\" target=\"_blank\" style=\"color:#9db2c7\">incompetech.com</a>), <a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"license nofollow noopener\" target=\"_blank\" style=\"color:#9db2c7\">CC BY 4.0</a></span>", pvTag: "👀 Anvan / Apre — sa zouti a fè ak yon vye fraz CV", pvBT: "ANVAN — ansyen CV a", pvAT: "APRE — Entèvyou360", pvNote: "Ekstrè ki soti nan yon CV zouti a te reyèlman jenere sou yon pwofil demonstrasyon (enfimyè → CNA Boston). Se pa yon kliyan — premye temwayaj reyèl yo ap vini ak lansman an.", legal: "Kondisyon · Konfidansyalite · Ranbousman",
+      kicker: "Suite 360 — pa Atmart", byline: "pa Atmart", navCand: "Kandida", navOrg: "Òganizasyon", d1t: "M ap chèche travay", d1d: "Prepare entèvyou w epi jwenn CV ou — gratis pou kòmanse.", d1c: "Kòmanse →", d2t: "M ap ede moun jwenn travay", d2d: "Òganizasyon, asosyasyon, kolèj : yon pilòt 4 semèn pou 50 patisipan.", d2c: "Gade òf òganizasyon an →", pvMore: "Gade rapò konplè a ak tout CV a →", vidT: "🎥 Gade kijan sa mache — 90 segonn", vidNote: "Rapò a ak CV a nan videyo a se vre sòti zouti a.<br /><span style=\"opacity:0.8\">♪ Mizik : « Double O » — Kevin MacLeod (<a href=\"https://incompetech.com\" rel=\"nofollow noopener\" target=\"_blank\" style=\"color:var(--ink-dim)\">incompetech.com</a>), <a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"license nofollow noopener\" target=\"_blank\" style=\"color:var(--ink-dim)\">CC BY 4.0</a></span>", pvTag: "👀 Anvan / Apre — sa zouti a fè ak yon vye fraz CV", pvBT: "ANVAN — ansyen CV a", pvAT: "APRE — Entèvyou360", pvNote: "Ekstrè ki soti nan yon CV zouti a te reyèlman jenere sou yon pwofil demonstrasyon (enfimyè → CNA Boston). Se pa yon kliyan — premye temwayaj reyèl yo ap vini ak lansman an.", legal: "Kondisyon · Konfidansyalite · Ranbousman",
       title: "Prepare pwochen entèvyou w — soti ak yon CV ki matche ak anons lan",
       lead: "An mwens pase 15 minit, an kreyòl, franse, anglè oswa panyòl. San kreye kont, san bay imèl — ou kòmanse, epi se sa.",
       b1: "🗣 Kreyòl · Français · English · Español", b2: "🎙 Ou ka reponn ak vwa ou", b3: "🔒 Okenn kont, okenn imèl",
@@ -229,7 +238,7 @@ d.lang=l||"ht";})();
       pay: 'Peman : 💳 kat bankè dirèk sou lyen yo — oswa MonCash, Zelle, vireman : ekri <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a>. Kòd ou parèt sou ekran an kou peman an fini — san kreye kont.',
     },
     fr: {
-      kicker: "Suite 360 — par Atmart", byline: "par Atmart", navCand: "Candidats", navOrg: "Organisations", d1t: "Je cherche un emploi", d1d: "Préparez votre entretien et obtenez votre CV — gratuitement pour commencer.", d1c: "Commencer →", d2t: "J'accompagne des chercheurs d'emploi", d2d: "Organismes d'emploi, associations, collèges : pilote de 4 semaines pour 50 participants.", d2c: "Voir l'offre organisations →", pvMore: "Voir le rapport complet et le CV entier →", vidT: "🎥 Voyez comment ça marche — 90 secondes", vidNote: "Le rapport et le CV de la vidéo sont de vraies sorties de l'outil.<br /><span style=\"opacity:0.8\">♪ Musique : « Double O » — Kevin MacLeod (<a href=\"https://incompetech.com\" rel=\"nofollow noopener\" target=\"_blank\" style=\"color:#9db2c7\">incompetech.com</a>), <a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"license nofollow noopener\" target=\"_blank\" style=\"color:#9db2c7\">CC BY 4.0</a></span>", pvTag: "👀 Avant / Après — ce que l'outil fait d'une phrase creuse", pvBT: "AVANT — l'ancien CV", pvAT: "APRÈS — Entèvyou360", pvNote: "Extraits d'un CV réellement généré par l'outil sur un profil de démonstration (infirmière → CNA à Boston). Ce n'est pas un client — les premiers témoignages réels arriveront avec le lancement.", legal: "Conditions · Confidentialité · Remboursements",
+      kicker: "Suite 360 — par Atmart", byline: "par Atmart", navCand: "Candidats", navOrg: "Organisations", d1t: "Je cherche un emploi", d1d: "Préparez votre entretien et obtenez votre CV — gratuitement pour commencer.", d1c: "Commencer →", d2t: "J'accompagne des chercheurs d'emploi", d2d: "Organismes d'emploi, associations, collèges : pilote de 4 semaines pour 50 participants.", d2c: "Voir l'offre organisations →", pvMore: "Voir le rapport complet et le CV entier →", vidT: "🎥 Voyez comment ça marche — 90 secondes", vidNote: "Le rapport et le CV de la vidéo sont de vraies sorties de l'outil.<br /><span style=\"opacity:0.8\">♪ Musique : « Double O » — Kevin MacLeod (<a href=\"https://incompetech.com\" rel=\"nofollow noopener\" target=\"_blank\" style=\"color:var(--ink-dim)\">incompetech.com</a>), <a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"license nofollow noopener\" target=\"_blank\" style=\"color:var(--ink-dim)\">CC BY 4.0</a></span>", pvTag: "👀 Avant / Après — ce que l'outil fait d'une phrase creuse", pvBT: "AVANT — l'ancien CV", pvAT: "APRÈS — Entèvyou360", pvNote: "Extraits d'un CV réellement généré par l'outil sur un profil de démonstration (infirmière → CNA à Boston). Ce n'est pas un client — les premiers témoignages réels arriveront avec le lancement.", legal: "Conditions · Confidentialité · Remboursements",
       title: "Préparez votre prochain entretien — et repartez avec un CV adapté à l'offre",
       lead: "En moins de 15 minutes, en créole, français, anglais ou espagnol. Sans compte, sans e-mail — vous commencez, c'est tout.",
       b1: "🗣 Kreyòl · Français · English · Español", b2: "🎙 Vous pouvez répondre à voix haute", b3: "🔒 Aucun compte, aucun e-mail",
@@ -249,7 +258,7 @@ d.lang=l||"ht";})();
       pay: 'Paiement : 💳 carte bancaire directement via les liens — ou MonCash, Zelle, virement : écrivez à <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a>. Votre code s\'affiche à l\'écran dès la fin du paiement — sans créer de compte.',
     },
     en: {
-      kicker: "360 Suite — by Atmart", byline: "by Atmart", navCand: "Job seekers", navOrg: "Organizations", d1t: "I'm looking for a job", d1d: "Prepare your interview and get your résumé — free to start.", d1c: "Start →", d2t: "I support job seekers", d2d: "Workforce agencies, associations, colleges: a 4-week pilot for 50 participants.", d2c: "See the organizations offer →", pvMore: "See the full report and the whole résumé →", vidT: "🎥 See how it works — 90 seconds", vidNote: "The report and résumé in the video are real outputs of the tool.<br /><span style=\"opacity:0.8\">♪ Music : « Double O » — Kevin MacLeod (<a href=\"https://incompetech.com\" rel=\"nofollow noopener\" target=\"_blank\" style=\"color:#9db2c7\">incompetech.com</a>), <a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"license nofollow noopener\" target=\"_blank\" style=\"color:#9db2c7\">CC BY 4.0</a></span>", pvTag: "👀 Before / After — what the tool does with an empty phrase", pvBT: "BEFORE — the old résumé", pvAT: "AFTER — Entèvyou360", pvNote: "Excerpts from a résumé actually generated by the tool on a demo profile (nurse → CNA in Boston). Not a client — the first real testimonials arrive with the launch.", legal: "Terms · Privacy · Refunds",
+      kicker: "360 Suite — by Atmart", byline: "by Atmart", navCand: "Job seekers", navOrg: "Organizations", d1t: "I'm looking for a job", d1d: "Prepare your interview and get your résumé — free to start.", d1c: "Start →", d2t: "I support job seekers", d2d: "Workforce agencies, associations, colleges: a 4-week pilot for 50 participants.", d2c: "See the organizations offer →", pvMore: "See the full report and the whole résumé →", vidT: "🎥 See how it works — 90 seconds", vidNote: "The report and résumé in the video are real outputs of the tool.<br /><span style=\"opacity:0.8\">♪ Music : « Double O » — Kevin MacLeod (<a href=\"https://incompetech.com\" rel=\"nofollow noopener\" target=\"_blank\" style=\"color:var(--ink-dim)\">incompetech.com</a>), <a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"license nofollow noopener\" target=\"_blank\" style=\"color:var(--ink-dim)\">CC BY 4.0</a></span>", pvTag: "👀 Before / After — what the tool does with an empty phrase", pvBT: "BEFORE — the old résumé", pvAT: "AFTER — Entèvyou360", pvNote: "Excerpts from a résumé actually generated by the tool on a demo profile (nurse → CNA in Boston). Not a client — the first real testimonials arrive with the launch.", legal: "Terms · Privacy · Refunds",
       title: "Prepare your next interview — and leave with a résumé matched to the job posting",
       lead: "In under 15 minutes, in Creole, French, English or Spanish. No account, no email — you just start.",
       b1: "🗣 Kreyòl · Français · English · Español", b2: "🎙 You can answer out loud", b3: "🔒 No account, no email",
@@ -269,7 +278,7 @@ d.lang=l||"ht";})();
       pay: 'Payment: 💳 card directly through the links — or MonCash, Zelle, transfer: write to <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a>. Your code appears on screen as soon as payment completes — no account needed.',
     },
     es: {
-      kicker: "Suite 360 — por Atmart", byline: "por Atmart", navCand: "Candidatos", navOrg: "Organizaciones", d1t: "Busco empleo", d1d: "Prepara tu entrevista y obtén tu CV — gratis para empezar.", d1c: "Empezar →", d2t: "Acompaño a personas que buscan empleo", d2d: "Agencias de empleo, asociaciones, colegios: piloto de 4 semanas para 50 participantes.", d2c: "Ver la oferta para organizaciones →", pvMore: "Ver el informe completo y el CV entero →", vidT: "🎥 Mira cómo funciona — 90 segundos", vidNote: "El informe y el CV del vídeo son salidas reales de la herramienta.<br /><span style=\"opacity:0.8\">♪ Música : « Double O » — Kevin MacLeod (<a href=\"https://incompetech.com\" rel=\"nofollow noopener\" target=\"_blank\" style=\"color:#9db2c7\">incompetech.com</a>), <a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"license nofollow noopener\" target=\"_blank\" style=\"color:#9db2c7\">CC BY 4.0</a></span>", pvTag: "👀 Antes / Después — lo que la herramienta hace con una frase vacía", pvBT: "ANTES — el CV antiguo", pvAT: "DESPUÉS — Entèvyou360", pvNote: "Extractos de un CV realmente generado por la herramienta con un perfil de demostración (enfermera → CNA en Boston). No es un cliente — los primeros testimonios reales llegan con el lanzamiento.", legal: "Términos · Privacidad · Reembolsos",
+      kicker: "Suite 360 — por Atmart", byline: "por Atmart", navCand: "Candidatos", navOrg: "Organizaciones", d1t: "Busco empleo", d1d: "Prepara tu entrevista y obtén tu CV — gratis para empezar.", d1c: "Empezar →", d2t: "Acompaño a personas que buscan empleo", d2d: "Agencias de empleo, asociaciones, colegios: piloto de 4 semanas para 50 participantes.", d2c: "Ver la oferta para organizaciones →", pvMore: "Ver el informe completo y el CV entero →", vidT: "🎥 Mira cómo funciona — 90 segundos", vidNote: "El informe y el CV del vídeo son salidas reales de la herramienta.<br /><span style=\"opacity:0.8\">♪ Música : « Double O » — Kevin MacLeod (<a href=\"https://incompetech.com\" rel=\"nofollow noopener\" target=\"_blank\" style=\"color:var(--ink-dim)\">incompetech.com</a>), <a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"license nofollow noopener\" target=\"_blank\" style=\"color:var(--ink-dim)\">CC BY 4.0</a></span>", pvTag: "👀 Antes / Después — lo que la herramienta hace con una frase vacía", pvBT: "ANTES — el CV antiguo", pvAT: "DESPUÉS — Entèvyou360", pvNote: "Extractos de un CV realmente generado por la herramienta con un perfil de demostración (enfermera → CNA en Boston). No es un cliente — los primeros testimonios reales llegan con el lanzamiento.", legal: "Términos · Privacidad · Reembolsos",
       title: "Prepara tu próxima entrevista — y sal con un CV adaptado al anuncio",
       lead: "En menos de 15 minutos, en criollo, francés, inglés o español. Sin cuenta, sin correo — simplemente empiezas.",
       b1: "🗣 Kreyòl · Français · English · Español", b2: "🎙 Puedes responder en voz alta", b3: "🔒 Sin cuenta, sin correo",
@@ -354,5 +363,6 @@ d.lang=l||"ht";})();
 })();
 </script>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>
+<script defer src="assets/theme.js?v=1"></script>
 </body>
 </html>

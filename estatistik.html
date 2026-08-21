@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script>/* Thème avant le premier rendu — sans lui, éclair blanc puis bascule.
+Ne pas déplacer plus bas ni différer : il doit précéder les styles. */
+(function(){try{var v=localStorage.getItem("atmart_apparence"),
+d=v==="sombre"||(v!=="clair"&&window.matchMedia&&
+window.matchMedia("(prefers-color-scheme: dark)").matches);
+if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"light");
+}catch(e){}})();
+</script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
@@ -14,7 +23,7 @@
     .st-wrap h1{font-family:"Space Grotesk",sans-serif;font-size:1.5rem;color:#fff;margin:0 0 0.3rem}
     .st-sub{color:#9db2c7;font-size:0.86rem;margin:0 0 1.4rem}
     .st-bar{display:flex;gap:0.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1.4rem}
-    .st-bar input,.st-bar select{background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.5rem 0.7rem;font:inherit;font-size:0.9rem}
+    .st-bar input,.st-bar select{background:var(--surface-2);color:var(--ink);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.5rem 0.7rem;font:inherit;font-size:0.9rem}
     .st-bar input{flex:1;min-width:220px}
     .st-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0.8rem;margin-bottom:1.4rem}
     .st-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1rem}
@@ -136,5 +145,6 @@
   try { var k = sessionStorage.getItem("st_tok"); if (k) { document.getElementById("tok").value = k; document.getElementById("go").click(); } } catch (e) {}
 })();
 </script>
+<script defer src="assets/theme.js?v=1"></script>
 </body>
 </html>

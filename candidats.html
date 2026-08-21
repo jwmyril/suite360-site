@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script>/* Thème avant le premier rendu — sans lui, éclair blanc puis bascule.
+Ne pas déplacer plus bas ni différer : il doit précéder les styles. */
+(function(){try{var v=localStorage.getItem("atmart_apparence"),
+d=v==="sombre"||(v!=="clair"&&window.matchMedia&&
+window.matchMedia("(prefers-color-scheme: dark)").matches);
+if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"light");
+}catch(e){}})();
+</script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
@@ -29,24 +38,24 @@ d.lang=l||"fr";})();
   <style>
     .cd-wrap{max-width:880px;margin:0 auto}
     .cd-steps{counter-reset:s;margin:1.6rem 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
-    .cd-steps li{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:1.2rem 1.2rem 1.2rem 1.2rem}
-    .cd-steps li::before{counter-increment:s;content:counter(s);display:flex;width:2rem;height:2rem;border-radius:50%;background:rgba(46,196,182,0.15);border:1px solid rgba(46,196,182,0.5);color:#2ec4b6;font-weight:700;align-items:center;justify-content:center;font-family:"Space Grotesk",sans-serif;margin-bottom:0.6rem}
+    .cd-steps li{background:var(--voile-04);border:1px solid var(--voile-12);border-radius:14px;padding:1.2rem 1.2rem 1.2rem 1.2rem}
+    .cd-steps li::before{counter-increment:s;content:counter(s);display:flex;width:2rem;height:2rem;border-radius:50%;background:rgba(46,196,182,0.15);border:1px solid rgba(46,196,182,0.5);color:var(--accent);font-weight:700;align-items:center;justify-content:center;font-family:"Space Grotesk",sans-serif;margin-bottom:0.6rem}
     .cd-steps b{display:block;color:#fff;font-family:"Space Grotesk",sans-serif;font-size:1rem;margin-bottom:0.3rem}
-    .cd-steps span{color:#9db2c7;font-size:0.88rem;line-height:1.55}
+    .cd-steps span{color:var(--ink-dim);font-size:0.88rem;line-height:1.55}
     .cd-h2{font-family:"Space Grotesk",sans-serif;color:#fff;font-size:1.35rem;margin:2.4rem 0 0.4rem}
     .cd-plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.2rem}
-    .cd-plan{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.11);border-radius:16px;padding:1.4rem;display:flex;flex-direction:column}
+    .cd-plan{background:var(--voile-04);border:1px solid rgba(255,255,255,0.11);border-radius:16px;padding:1.4rem;display:flex;flex-direction:column}
     .cd-plan.hot{border-color:rgba(46,196,182,0.55)}
     .cd-plan h3{font-family:"Space Grotesk",sans-serif;font-size:1.1rem;color:#fff;margin:0 0 0.2rem}
     .cd-plan .price{font-family:"Space Grotesk",sans-serif;font-size:1.6rem;color:#fff;margin:0.3rem 0 0.1rem}
-    .cd-plan .price small{font-size:0.8rem;color:#9db2c7;font-weight:400}
+    .cd-plan .price small{font-size:0.8rem;color:var(--ink-dim);font-weight:400}
     .cd-plan ul{list-style:none;padding:0;margin:0.7rem 0 1rem}
-    .cd-plan li{font-size:0.88rem;color:#d7e3f0;line-height:1.5;padding-left:1.3em;position:relative;margin-bottom:0.4rem}
-    .cd-plan li::before{content:"✓";position:absolute;left:0;color:#2ec4b6;font-weight:700}
+    .cd-plan li{font-size:0.88rem;color:var(--ink-2);line-height:1.5;padding-left:1.3em;position:relative;margin-bottom:0.4rem}
+    .cd-plan li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
     .cd-plan .sp{flex:1}
-    .cd-faq details{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:0.9rem 1.1rem;margin-bottom:0.6rem}
+    .cd-faq details{background:var(--voile-04);border:1px solid var(--voile-09);border-radius:12px;padding:0.9rem 1.1rem;margin-bottom:0.6rem}
     .cd-faq summary{cursor:pointer;color:#fff;font-weight:600;font-size:0.93rem}
-    .cd-faq p{margin:0.7rem 0 0;color:#9db2c7;font-size:0.88rem;line-height:1.65}
+    .cd-faq p{margin:0.7rem 0 0;color:var(--ink-dim);font-size:0.88rem;line-height:1.65}
     .cd-sample{background:rgba(106,159,216,0.08);border:1px solid rgba(106,159,216,0.45);border-radius:14px;padding:1.2rem 1.3rem;margin:1.6rem 0;display:flex;gap:1rem;align-items:center;flex-wrap:wrap;justify-content:space-between}
   </style>
 </head>
@@ -56,9 +65,9 @@ d.lang=l||"fr";})();
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
     <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small id="s360-by">par Atmart</small></a>
     <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">
-      <a href="candidats.html" style="color:#2ec4b6;text-decoration:none;font-size:0.9rem;font-weight:600" id="nav-cand">Candidats</a>
-      <a href="organisations.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem" id="nav-org">Organisations</a>
-      <select id="s360-lang" aria-label="Lang" style="background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">
+      <a href="candidats.html" style="color:var(--accent);text-decoration:none;font-size:0.9rem;font-weight:600" id="nav-cand">Candidats</a>
+      <a href="organisations.html" style="color:var(--ink);text-decoration:none;font-size:0.9rem" id="nav-org">Organisations</a>
+      <select id="s360-lang" aria-label="Lang" style="background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">
         <option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="ht">Kreyòl</option>
       </select>
     </div>
@@ -93,7 +102,7 @@ d.lang=l||"fr";})();
       <div class="cd-sample">
         <div style="flex:1;min-width:220px">
           <b style="color:#fff;font-family:'Space Grotesk',sans-serif" id="cd-smpt">Vous voulez voir avant d'essayer ?</b>
-          <p style="margin:0.3rem 0 0;color:#9db2c7;font-size:0.88rem" id="cd-smpd">Un rapport complet et un CV avant/après, réellement produits par l'outil.</p>
+          <p style="margin:0.3rem 0 0;color:var(--ink-dim);font-size:0.88rem" id="cd-smpd">Un rapport complet et un CV avant/après, réellement produits par l'outil.</p>
         </div>
         <a href="egzanp.html" class="btn btn-outline" id="cd-smpc">Voir l'exemple</a>
       </div>
@@ -136,7 +145,7 @@ d.lang=l||"fr";})();
           <a href="https://buy.stripe.com/28E8wP0Tf9Pn5B761JaEE01" class="btn btn-primary" id="cd-p2c2" data-ev="buy_click_90">💳 Acheter — 19,99 $</a>
         </div>
       </div>
-      <p style="color:#9db2c7;font-size:0.85rem;margin-top:0.9rem" id="cd-paynote">💳 Carte bancaire : votre code s'affiche à l'écran immédiatement après le paiement. MonCash, Zelle ou virement : écrivez à <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a>.</p>
+      <p style="color:var(--ink-dim);font-size:0.85rem;margin-top:0.9rem" id="cd-paynote">💳 Carte bancaire : votre code s'affiche à l'écran immédiatement après le paiement. MonCash, Zelle ou virement : écrivez à <a href="mailto:sales@atmart.ltd" style="color:var(--accent)">sales@atmart.ltd</a>.</p>
 
       <h2 class="cd-h2" id="cd-faqt">Questions fréquentes</h2>
       <div class="cd-faq">
@@ -149,7 +158,7 @@ d.lang=l||"fr";})();
 
       <div style="text-align:center;margin:2.4rem 0 1rem">
         <a href="entevyou.html" class="btn btn-primary" id="cd-cta3">🧭 Commencer gratuitement</a>
-        <p style="margin-top:0.8rem;font-size:0.88rem"><a href="organisations.html" style="color:#2ec4b6" id="cd-orglink">Vous accompagnez des chercheurs d'emploi ? Voir la page organisations →</a></p>
+        <p style="margin-top:0.8rem;font-size:0.88rem"><a href="organisations.html" style="color:var(--accent)" id="cd-orglink">Vous accompagnez des chercheurs d'emploi ? Voir la page organisations →</a></p>
       </div>
     </div>
   </div>
@@ -157,7 +166,7 @@ d.lang=l||"fr";})();
 
 <footer>
   <div class="container">
-    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:#9db2c7" id="f-legal">Conditions · Confidentialité · Remboursements</a> · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>
+    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:var(--ink-dim)" id="f-legal">Conditions · Confidentialité · Remboursements</a> · <a href="mailto:sales@atmart.ltd" style="color:var(--accent)">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:var(--ink-dim)">atmart.ltd</a></p>
   </div>
 </footer>
 
@@ -180,7 +189,7 @@ d.lang=l||"fr";})();
       p0a: "Votre SWOT personnel face à l'IA", p0b: "3 questions que le recruteur va vous poser", p0c: "🎙 Entraînement vocal avec retour du coach", p0d: "Carte WhatsApp · rapport et séance téléchargeables (.doc)", p0c2: "Commencer",
       p1n: "Pro Kit", p1s: "· paiement unique", p1a: "8-12 questions AVEC les réponses bâties sur vos preuves", p1b: "📄 Le CV par compétences, téléchargeable (.doc)", p1c: "Deck « Présentez-vous » + plan 90 jours", p1d: "5 générations", p1c2: "💳 Acheter — 9,99 $",
       p2n: "Pro 90 jours", p2s: "· 90 jours, illimité", p2a: "Tout le Pro Kit, sans limite (jusqu'à 8/jour)", p2b: "Un CV adapté à CHAQUE annonce", p2c: "Toute votre recherche d'emploi couverte", p2c2: "💳 Acheter — 19,99 $",
-      paynote: '💳 Carte bancaire : votre code s\'affiche à l\'écran immédiatement après le paiement. MonCash, Zelle ou virement : écrivez à <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a>.',
+      paynote: '💳 Carte bancaire : votre code s\'affiche à l\'écran immédiatement après le paiement. MonCash, Zelle ou virement : écrivez à <a href="mailto:sales@atmart.ltd" style="color:var(--accent)">sales@atmart.ltd</a>.',
       faqt: "Questions fréquentes",
       q1: "Est-ce que mes réponses sont conservées ?", a1: "Non. Le diagnostic gratuit et le CV ne gardent rien : vous répondez, vous recevez votre résultat, et rien n'est stocké. Aucun compte, aucun e-mail demandé. Votre voix sert uniquement à la transcription, puis elle est abandonnée.",
       q2: "Je parle créole mais je dois postuler en anglais.", a2: "C'est exactement pour ça que l'outil existe. Vous répondez en créole, et vous choisissez la langue de sortie du CV : anglais, français, espagnol ou créole.",
@@ -203,7 +212,7 @@ d.lang=l||"fr";})();
       p0a: "SWOT pa ou fas ak IA", p0b: "3 kesyon rekritè a pral poze w", p0c: "🎙 Pratik ak vwa ou + feedback koach la", p0d: "Kat WhatsApp · rapò ak seyans lan telechajab (.doc)", p0c2: "Kòmanse",
       p1n: "Pro Kit", p1s: "· yon sèl peman", p1a: "8-12 kesyon AK repons ki bati sou prèv ou", p1b: "📄 CV pa konpetans lan, ou ka telechaje l (.doc)", p1c: "Deck « Prezante tèt ou » + plan 90 jou", p1d: "5 jenerasyon", p1c2: "💳 Achte — 9,99 $",
       p2n: "Pro 90 jou", p2s: "· 90 jou, san limit", p2a: "Tout Pro Kit la, san limit (jiska 8 pa jou)", p2b: "Yon CV adapte pou CHAK anons", p2c: "Tout rechèch travay ou kouvri", p2c2: "💳 Achte — 19,99 $",
-      paynote: '💳 Kat bankè : kòd ou parèt sou ekran an kou peman an fini. MonCash, Zelle oswa vireman : ekri <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a>.',
+      paynote: '💳 Kat bankè : kòd ou parèt sou ekran an kou peman an fini. MonCash, Zelle oswa vireman : ekri <a href="mailto:sales@atmart.ltd" style="color:var(--accent)">sales@atmart.ltd</a>.',
       faqt: "Kesyon moun poze souvan",
       q1: "Èske nou kenbe repons mwen yo ?", a1: "Non. Dyagnostik gratis la ak CV a pa kenbe anyen : ou reponn, ou resevwa rezilta ou, epi anyen pa rete. Okenn kont, okenn imèl. Vwa ou sèvi sèlman pou ekri tèks la, apre sa nou lage l.",
       q2: "Mwen pale kreyòl men mwen dwe aplike an anglè.", a2: "Se jisteman pou sa zouti a egziste. Ou reponn an kreyòl, epi ou chwazi nan ki lang CV a ap soti : anglè, franse, panyòl oswa kreyòl.",
@@ -226,7 +235,7 @@ d.lang=l||"fr";})();
       p0a: "Your personal SWOT facing AI", p0b: "3 questions the recruiter will ask you", p0c: "🎙 Voice practice with coach feedback", p0d: "WhatsApp card · report and session downloadable (.doc)", p0c2: "Start",
       p1n: "Pro Kit", p1s: "· one-time payment", p1a: "8-12 questions WITH answers built on your proof", p1b: "📄 The competency résumé, downloadable (.doc)", p1c: "«Present yourself» deck + 90-day plan", p1d: "5 generations", p1c2: "💳 Get it — $9.99",
       p2n: "Pro 90 days", p2s: "· 90 days, unlimited", p2a: "Everything in Pro Kit, unlimited (up to 8/day)", p2b: "A résumé tailored to EVERY posting", p2c: "Your whole job search covered", p2c2: "💳 Get it — $19.99",
-      paynote: '💳 Card: your code appears on screen immediately after payment. MonCash, Zelle or transfer: write to <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a>.',
+      paynote: '💳 Card: your code appears on screen immediately after payment. MonCash, Zelle or transfer: write to <a href="mailto:sales@atmart.ltd" style="color:var(--accent)">sales@atmart.ltd</a>.',
       faqt: "Frequently asked questions",
       q1: "Are my answers stored?", a1: "No. The free diagnostic and the résumé keep nothing: you answer, you get your result, and nothing is stored. No account, no email required. Your voice is used only for transcription, then dropped.",
       q2: "I speak Creole but I have to apply in English.", a2: "That is exactly why the tool exists. You answer in Creole, and you choose the résumé's output language: English, French, Spanish or Creole.",
@@ -249,7 +258,7 @@ d.lang=l||"fr";})();
       p0a: "Tu FODA personal frente a la IA", p0b: "3 preguntas que te hará el reclutador", p0c: "🎙 Práctica de voz con feedback del coach", p0d: "Tarjeta WhatsApp · informe y sesión descargables (.doc)", p0c2: "Empezar",
       p1n: "Pro Kit", p1s: "· pago único", p1a: "8-12 preguntas CON respuestas basadas en tus pruebas", p1b: "📄 El CV por competencias, descargable (.doc)", p1c: "Deck «Preséntate» + plan de 90 días", p1d: "5 generaciones", p1c2: "💳 Comprar — $9.99",
       p2n: "Pro 90 días", p2s: "· 90 días, ilimitado", p2a: "Todo el Pro Kit, sin límite (hasta 8/día)", p2b: "Un CV adaptado a CADA anuncio", p2c: "Toda tu búsqueda de empleo cubierta", p2c2: "💳 Comprar — $19.99",
-      paynote: '💳 Tarjeta: tu código aparece en pantalla justo después del pago. MonCash, Zelle o transferencia: escribe a <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a>.',
+      paynote: '💳 Tarjeta: tu código aparece en pantalla justo después del pago. MonCash, Zelle o transferencia: escribe a <a href="mailto:sales@atmart.ltd" style="color:var(--accent)">sales@atmart.ltd</a>.',
       faqt: "Preguntas frecuentes",
       q1: "¿Guardan mis respuestas?", a1: "No. El diagnóstico gratuito y el CV no guardan nada: respondes, recibes tu resultado, y nada se almacena. Sin cuenta, sin correo. Tu voz se usa solo para la transcripción y luego se descarta.",
       q2: "Hablo criollo pero debo postular en inglés.", a2: "Para eso existe la herramienta. Respondes en criollo y eliges el idioma de salida del CV: inglés, francés, español o criollo.",
@@ -284,5 +293,6 @@ d.lang=l||"fr";})();
 })();
 </script>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>
+<script defer src="assets/theme.js?v=1"></script>
 </body>
 </html>

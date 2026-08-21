@@ -24,23 +24,33 @@ if(c==="ht"||c==="hat"){l="ht";break}if(S[c]){l=c;break}}}
 d.lang=l||"ht";})();
 </script>'''
 
+# Apparence : ce bloc DOIT preceder la feuille de style, sinon eclair blanc au
+# chargement puis bascule visible. Voir assets/theme.js.
+HEAD_THEME = """<script>/* Theme avant le premier rendu. Ne pas differer. */
+(function(){try{var v=localStorage.getItem("atmart_apparence"),
+d=v==="sombre"||(v!=="clair"&&window.matchMedia&&
+window.matchMedia("(prefers-color-scheme: dark)").matches);
+if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"light");
+}catch(e){}})();
+</script>"""
+
 def header(active):
     def cls(p):
         if p == active:
-            return 'style="color:#2ec4b6;text-decoration:none;font-size:0.9rem;font-weight:600"'
-        return 'style="color:#eaf2fb;text-decoration:none;font-size:0.9rem"'
+            return 'style="color:var(--accent);text-decoration:none;font-size:0.9rem;font-weight:600"'
+        return 'style="color:var(--ink);text-decoration:none;font-size:0.9rem"'
     return ('<header>\n  <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">\n'
             '    <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small id="s360-by">pa Atmart</small></a>\n'
             '    <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">\n'
             '      <a href="entevyou.html" ' + cls("entevyou") + '>Entèvyou360</a>\n'
             '      <a href="karye.html" ' + cls("karye") + '>Career360</a>\n'
-            '      <select id="s360-lang" aria-label="Lang" style="background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">\n'
+            '      <select id="s360-lang" aria-label="Lang" style="background:var(--surface-2);color:var(--ink);border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">\n'
             '        <option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="ht">Kreyòl</option>\n'
             '      </select>\n    </div>\n  </nav>\n</header>')
 
 FOOTER = ('<footer>\n  <div class="container">\n'
-          '    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:#9db2c7" id="f-legal">Kondisyon · Konfidansyalite · Ranbousman</a> · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · '
-          '<a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>\n  </div>\n</footer>')
+          '    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:var(--ink-dim)" id="f-legal">Kondisyon · Konfidansyalite · Ranbousman</a> · <a href="mailto:sales@atmart.ltd" style="color:var(--accent)">sales@atmart.ltd</a> · '
+          '<a href="https://atmart.ltd" style="color:var(--ink-dim)">atmart.ltd</a></p>\n  </div>\n</footer>')
 
 SWITCHER = '''<script>
 (function(){var BY={ht:"pa Atmart",fr:"par Atmart",en:"by Atmart",es:"por Atmart"},LEG={ht:"Kondisyon · Konfidansyalite · Ranbousman",fr:"Conditions · Confidentialité · Remboursements",en:"Terms · Privacy · Refunds",es:"Términos · Privacidad · Reembolsos"};
@@ -73,7 +83,7 @@ for a, b in [
 ]:
     s = s.replace(a, b)
 s = s.replace('<link rel="stylesheet" href="assets/style.css?v=1" />',
-              '<link rel="stylesheet" href="assets/style.css?v=1" />\n' + HEAD_LANG)
+              HEAD_THEME + '\n  <link rel="stylesheet" href="assets/style.css?v=2" />\n' + HEAD_LANG)
 # PWA : icônes 360 + manifest + theme-color + service worker
 s = s.replace('<link rel="icon" type="image/png" href="assets/brand/logo-32.png" />',
               '<link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />\n'
@@ -82,11 +92,12 @@ s = s.replace('<link rel="icon" type="image/png" href="assets/brand/logo-32.png"
               '  <meta property="og:url" content="https://360.atmart.ltd/entevyou.html" />\n'
               '  <meta property="og:image" content="https://360.atmart.ltd/assets/brand/icon-360-512.png" />\n'
               '  <meta name="twitter:card" content="summary" />\n'
-              '  <meta name="theme-color" content="#0e2240" />')
+              '  <meta name="theme-color" content="#0a1a2f" />')
 # Injecter le service worker sur le DERNIER </body> uniquement : le JavaScript
 # de la page contient lui-même la chaîne "</body>" (générateur de fichier .doc),
 # et un replace() global casserait ce script.
 _i = s.rfind("</body>")
-s = s[:_i] + '<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>\n' + s[_i:]
+s = s[:_i] + '<script defer src="assets/theme.js?v=1"></script>\n' \
+    '<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>\n' + s[_i:]
 io.open(DST, "w", encoding="utf-8", newline="").write(s)
 print("entevyou.html régénéré —", len(s), "caractères")

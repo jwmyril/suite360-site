@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script>/* Thème avant le premier rendu — sans lui, éclair blanc puis bascule.
+Ne pas déplacer plus bas ni différer : il doit précéder les styles. */
+(function(){try{var v=localStorage.getItem("atmart_apparence"),
+d=v==="sombre"||(v!=="clair"&&window.matchMedia&&
+window.matchMedia("(prefers-color-scheme: dark)").matches);
+if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"light");
+}catch(e){}})();
+</script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
@@ -28,24 +37,24 @@ d.lang=l||"fr";})();
 </script>
   <style>
     .ex-wrap{max-width:820px;margin:0 auto}
-    .ex-note{background:rgba(244,162,97,0.09);border:1px solid rgba(244,162,97,0.45);border-radius:12px;padding:0.9rem 1.1rem;color:#d7e3f0;font-size:0.88rem;line-height:1.6;margin:1.2rem 0}
-    .ex-prof{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.4rem;font-size:0.9rem;color:#9db2c7;line-height:1.7}
-    .ex-prof b{color:#eaf2fb}
+    .ex-note{background:rgba(244,162,97,0.09);border:1px solid rgba(244,162,97,0.45);border-radius:12px;padding:0.9rem 1.1rem;color:var(--ink-2);font-size:0.88rem;line-height:1.6;margin:1.2rem 0}
+    .ex-prof{background:var(--voile-04);border:1px solid var(--voile-12);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.4rem;font-size:0.9rem;color:var(--ink-dim);line-height:1.7}
+    .ex-prof b{color:var(--ink)}
     .ex-h2{font-family:"Space Grotesk",sans-serif;color:#fff;font-size:1.3rem;margin:2.2rem 0 0.6rem}
-    .ex-doc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.11);border-radius:14px;padding:1.5rem 1.7rem}
+    .ex-doc{background:var(--voile-04);border:1px solid rgba(255,255,255,0.11);border-radius:14px;padding:1.5rem 1.7rem}
     .ex-doc h1{font-family:"Space Grotesk",sans-serif;font-size:1.4rem;color:#fff;margin:0 0 1rem}
-    .ex-doc h2{font-family:"Space Grotesk",sans-serif;font-size:1.05rem;color:#2ec4b6;margin:1.5rem 0 0.5rem}
-    .ex-doc p,.ex-doc li{font-size:0.93rem;line-height:1.65;color:#d7e3f0}
+    .ex-doc h2{font-family:"Space Grotesk",sans-serif;font-size:1.05rem;color:var(--accent);margin:1.5rem 0 0.5rem}
+    .ex-doc p,.ex-doc li{font-size:0.93rem;line-height:1.65;color:var(--ink-2)}
     .ex-doc ul,.ex-doc ol{padding-left:1.2rem;margin:0.3rem 0 0.6rem}
     .ex-doc li{margin-bottom:0.4rem}
     .ex-doc strong{color:#fff}
-    .ex-cv{background:#fff;color:#111;border-radius:12px;padding:1.5rem 1.7rem}
-    .ex-cv h3{font-family:Georgia,serif;font-size:1rem;color:#0e2240;border-bottom:2px solid #0e2240;padding-bottom:0.15rem;margin:1.1rem 0 0.5rem;text-transform:uppercase;letter-spacing:0.04em}
-    .ex-cv h4{font-size:0.94rem;margin:0.7rem 0 0.25rem;color:#111}
-    .ex-cv p,.ex-cv li{font-size:0.89rem;line-height:1.55;color:#222}
+    .ex-cv{background:#fff;color:var(--ink);border-radius:12px;padding:1.5rem 1.7rem}
+    .ex-cv h3{font-family:Georgia,serif;font-size:1rem;color:var(--ink);border-bottom:2px solid var(--surface-2);padding-bottom:0.15rem;margin:1.1rem 0 0.5rem;text-transform:uppercase;letter-spacing:0.04em}
+    .ex-cv h4{font-size:0.94rem;margin:0.7rem 0 0.25rem;color:var(--ink)}
+    .ex-cv p,.ex-cv li{font-size:0.89rem;line-height:1.55;color:var(--ink)}
     .ex-cv ul{padding-left:1.1rem;margin:0.2rem 0 0.5rem}
     .ex-cv .name{font-family:Georgia,serif;font-size:1.5rem;margin:0 0 0.1rem}
-    .ex-brk{background:#fff3cd;border-radius:3px;padding:0 0.15em}
+    .ex-brk{background:#fff3cd;color:#2b1a06;border-radius:3px;padding:0 0.15em}
     .ex-ba{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
     @media (max-width:640px){.ex-ba{grid-template-columns:1fr}}
     .ex-before{background:rgba(230,57,70,0.07);border:1px solid rgba(230,57,70,0.4);border-radius:12px;padding:1rem 1.1rem}
@@ -59,9 +68,9 @@ d.lang=l||"fr";})();
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
     <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small id="s360-by">par Atmart</small></a>
     <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">
-      <a href="candidats.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem" id="nav-cand">Candidats</a>
-      <a href="organisations.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem" id="nav-org">Organisations</a>
-      <select id="s360-lang" aria-label="Lang" style="background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">
+      <a href="candidats.html" style="color:var(--ink);text-decoration:none;font-size:0.9rem" id="nav-cand">Candidats</a>
+      <a href="organisations.html" style="color:var(--ink);text-decoration:none;font-size:0.9rem" id="nav-org">Organisations</a>
+      <select id="s360-lang" aria-label="Lang" style="background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">
         <option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="ht">Kreyòl</option>
       </select>
     </div>
@@ -130,25 +139,25 @@ d.lang=l||"fr";})();
           <li>Décrivez un moment où une famille vous a fait confiance même quand une situation était difficile ; qu'avez-vous fait ?</li>
           <li>Vous souhaitez devenir infirmière à Boston en 1–3 ans ; comment ce poste à Sunrise vous prépare-t-il, et quelles lacunes anticipez-vous ?</li>
         </ol>
-        <p style="color:#9db2c7;font-size:0.85rem;margin-top:1.2rem"><em>Entèvyou360 — un instantané, pas un destin.</em></p>
+        <p style="color:var(--ink-dim);font-size:0.85rem;margin-top:1.2rem"><em>Entèvyou360 — un instantané, pas un destin.</em></p>
       </div>
 
       <h2 class="ex-h2" id="ex-h2b">2. Le CV — avant et après</h2>
-      <p id="ex-bad" style="color:#9db2c7;font-size:0.9rem;line-height:1.6">Deuxième profil de démonstration : un ancien policier haïtien devenu agent de sécurité à Boston, qui visait un poste de Hospital Security Officer. Il a joint la photo de son vieux CV.</p>
+      <p id="ex-bad" style="color:var(--ink-dim);font-size:0.9rem;line-height:1.6">Deuxième profil de démonstration : un ancien policier haïtien devenu agent de sécurité à Boston, qui visait un poste de Hospital Security Officer. Il a joint la photo de son vieux CV.</p>
       <div class="ex-ba">
         <div class="ex-before">
-          <p class="ex-lbl" style="color:#e63946" id="ex-bt">AVANT — SON ANCIEN CV</p>
-          <p style="margin:0;color:#d7e3f0;font-size:0.95rem;font-style:italic">« Hardworking and motivated team player. »<br />« Patrolled neighborhoods and wrote reports. »</p>
+          <p class="ex-lbl" style="color:var(--danger)" id="ex-bt">AVANT — SON ANCIEN CV</p>
+          <p style="margin:0;color:var(--ink-2);font-size:0.95rem;font-style:italic">« Hardworking and motivated team player. »<br />« Patrolled neighborhoods and wrote reports. »</p>
         </div>
         <div class="ex-after">
-          <p class="ex-lbl" style="color:#2ec4b6" id="ex-at">APRÈS — ENTÈVYOU360</p>
-          <p style="margin:0;color:#d7e3f0;font-size:0.95rem">Quatre blocs de compétences calqués sur les tâches de l'annonce, chacun adossé à ses preuves réelles. ↓</p>
+          <p class="ex-lbl" style="color:var(--accent)" id="ex-at">APRÈS — ENTÈVYOU360</p>
+          <p style="margin:0;color:var(--ink-2);font-size:0.95rem">Quatre blocs de compétences calqués sur les tâches de l'annonce, chacun adossé à ses preuves réelles. ↓</p>
         </div>
       </div>
 
       <div class="ex-cv">
         <p class="name">Marie-Lourdes Jean-Baptiste</p>
-        <p style="margin:0 0 0.3rem;color:#333;font-size:0.9rem">Brockton, MA · (508) 555-0147 · mljb@email.com</p>
+        <p style="margin:0 0 0.3rem;color:var(--ink);font-size:0.9rem">Brockton, MA · (508) 555-0147 · mljb@email.com</p>
         <h3>Professional Summary</h3>
         <p>Bilingual nursing professional (Creole, French, intermediate English) with a nursing degree and three years of direct patient care experience as a Registered Nurse in Haiti, now working as a CNA in Massachusetts while pursuing RN licensure. Builds fast trust with patients and families, maintains accurate medical records, and has trained incoming nursing staff.</p>
         <h3>Core Competencies</h3>
@@ -175,11 +184,11 @@ d.lang=l||"fr";})();
         <h3>Languages &amp; Tools</h3>
         <p>Creole (native) · French (fluent) · English (intermediate) · EHR, vital signs monitoring, elder care</p>
       </div>
-      <p id="ex-brknote" style="color:#9db2c7;font-size:0.85rem;margin-top:0.7rem">Le passage <span class="ex-brk" style="color:#111">surligné</span> est un crochet à compléter : quand un chiffre manque, l'outil laisse la place au lieu d'inventer — et l'instruction est écrite dans la langue de la personne.</p>
+      <p id="ex-brknote" style="color:var(--ink-dim);font-size:0.85rem;margin-top:0.7rem">Le passage <span class="ex-brk" style="color:var(--ink)">surligné</span> est un crochet à compléter : quand un chiffre manque, l'outil laisse la place au lieu d'inventer — et l'instruction est écrite dans la langue de la personne.</p>
 
       <div style="text-align:center;margin:2.4rem 0 1rem">
         <a href="entevyou.html" class="btn btn-primary" id="ex-cta">Faire le mien — gratuitement</a>
-        <p style="margin-top:0.7rem"><a href="candidats.html" style="color:#2ec4b6;font-size:0.9rem" id="ex-cta2">Voir les formules →</a></p>
+        <p style="margin-top:0.7rem"><a href="candidats.html" style="color:var(--accent);font-size:0.9rem" id="ex-cta2">Voir les formules →</a></p>
       </div>
     </div>
   </div>
@@ -187,7 +196,7 @@ d.lang=l||"fr";})();
 
 <footer>
   <div class="container">
-    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:#9db2c7" id="f-legal">Conditions · Confidentialité · Remboursements</a> · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>
+    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:var(--ink-dim)" id="f-legal">Conditions · Confidentialité · Remboursements</a> · <a href="mailto:sales@atmart.ltd" style="color:var(--accent)">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:var(--ink-dim)">atmart.ltd</a></p>
   </div>
 </footer>
 
@@ -203,7 +212,7 @@ d.lang=l||"fr";})();
       h2a: "1. Le rapport gratuit (généré en 20 secondes)", h2b: "2. Le CV — avant et après",
       bad: "Deuxième profil de démonstration : un ancien policier haïtien devenu agent de sécurité à Boston, qui visait un poste de Hospital Security Officer. Il a joint la photo de son vieux CV.",
       bt: "AVANT — SON ANCIEN CV", at: "APRÈS — ENTÈVYOU360",
-      brknote: 'Le passage <span class="ex-brk" style="color:#111">surligné</span> est un crochet à compléter : quand un chiffre manque, l\'outil laisse la place au lieu d\'inventer — et l\'instruction est écrite dans la langue de la personne.',
+      brknote: 'Le passage <span class="ex-brk" style="color:var(--ink)">surligné</span> est un crochet à compléter : quand un chiffre manque, l\'outil laisse la place au lieu d\'inventer — et l\'instruction est écrite dans la langue de la personne.',
       cta: "Faire le mien — gratuitement", cta2: "Voir les formules →" },
     en: { __title: "A real sample — report and résumé | Suite 360", navCand: "Job seekers", navOrg: "Organizations",
       h1: "A real report, and a résumé before/after",
@@ -213,7 +222,7 @@ d.lang=l||"fr";})();
       h2a: "1. The free report (generated in 20 seconds)", h2b: "2. The résumé — before and after",
       bad: "A second demo profile: a former Haitian police officer, now a security guard in Boston, targeting a Hospital Security Officer role. He attached a photo of his old résumé.",
       bt: "BEFORE — HIS OLD RÉSUMÉ", at: "AFTER — ENTÈVYOU360",
-      brknote: 'The <span class="ex-brk" style="color:#111">highlighted</span> passage is a bracket to fill in: when a number is missing, the tool leaves the space instead of inventing one — and writes the instruction in the person\'s own language.',
+      brknote: 'The <span class="ex-brk" style="color:var(--ink)">highlighted</span> passage is a bracket to fill in: when a number is missing, the tool leaves the space instead of inventing one — and writes the instruction in the person\'s own language.',
       cta: "Make mine — free", cta2: "See the plans →" },
     ht: { __title: "Yon vre egzanp — rapò ak CV | Suite 360", navCand: "Kandida", navOrg: "Òganizasyon",
       h1: "Yon vre rapò, ak yon CV anvan/apre",
@@ -223,7 +232,7 @@ d.lang=l||"fr";})();
       h2a: "1. Rapò gratis la (li soti nan 20 segonn)", h2b: "2. CV a — anvan ak apre",
       bad: "Yon dezyèm pwofil demonstrasyon : yon ansyen polisye ayisyen ki vin ajan sekirite nan Boston, k ap vize yon pòs Hospital Security Officer. Li te voye foto ansyen CV li.",
       bt: "ANVAN — ANSYEN CV LI", at: "APRE — ENTÈVYOU360",
-      brknote: 'Pasaj ki <span class="ex-brk" style="color:#111">make an jòn</span> nan se yon kwochè pou konplete : lè yon chif manke, zouti a kite plas la olye pou l envante — epi enstriksyon an ekri nan lang moun nan.',
+      brknote: 'Pasaj ki <span class="ex-brk" style="color:var(--ink)">make an jòn</span> nan se yon kwochè pou konplete : lè yon chif manke, zouti a kite plas la olye pou l envante — epi enstriksyon an ekri nan lang moun nan.',
       cta: "Fè pa m — gratis", cta2: "Gade fòmil yo →" },
     es: { __title: "Un ejemplo real — informe y CV | Suite 360", navCand: "Candidatos", navOrg: "Organizaciones",
       h1: "Un informe real, y un CV antes/después",
@@ -233,7 +242,7 @@ d.lang=l||"fr";})();
       h2a: "1. El informe gratuito (generado en 20 segundos)", h2b: "2. El CV — antes y después",
       bad: "Un segundo perfil de demostración: un ex policía haitiano, hoy guardia de seguridad en Boston, que apuntaba a un puesto de Hospital Security Officer. Adjuntó la foto de su CV antiguo.",
       bt: "ANTES — SU CV ANTIGUO", at: "DESPUÉS — ENTÈVYOU360",
-      brknote: 'El pasaje <span class="ex-brk" style="color:#111">resaltado</span> es un corchete por completar: cuando falta una cifra, la herramienta deja el espacio en vez de inventarla — y escribe la instrucción en el idioma de la persona.',
+      brknote: 'El pasaje <span class="ex-brk" style="color:var(--ink)">resaltado</span> es un corchete por completar: cuando falta una cifra, la herramienta deja el espacio en vez de inventarla — y escribe la instrucción en el idioma de la persona.',
       cta: "Hacer el mío — gratis", cta2: "Ver los planes →" },
   };
   var MAP = {
@@ -247,5 +256,6 @@ d.lang=l||"fr";})();
 })();
 </script>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>
+<script defer src="assets/theme.js?v=1"></script>
 </body>
 </html>

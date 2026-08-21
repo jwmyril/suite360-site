@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="ht">
 <head>
+<script>/* Thème avant le premier rendu — sans lui, éclair blanc puis bascule.
+Ne pas déplacer plus bas ni différer : il doit précéder les styles. */
+(function(){try{var v=localStorage.getItem("atmart_apparence"),
+d=v==="sombre"||(v!=="clair"&&window.matchMedia&&
+window.matchMedia("(prefers-color-scheme: dark)").matches);
+if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"light");
+}catch(e){}})();
+</script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
@@ -24,17 +33,17 @@ d.lang=l||"ht";})();
 </script>
   <style>
     .ms-wrap{max-width:640px;margin:0 auto;text-align:center;padding:1rem 0 3rem}
-    .ms-card{background:rgba(255,255,255,0.04);border:1px solid rgba(46,196,182,0.45);border-radius:16px;padding:2rem 1.6rem}
+    .ms-card{background:var(--voile-04);border:1px solid rgba(46,196,182,0.45);border-radius:16px;padding:2rem 1.6rem}
     .ms-big{font-size:2.6rem;margin:0 0 0.4rem}
     .ms-card h1{font-family:"Space Grotesk",sans-serif;font-size:1.5rem;color:#fff;margin:0 0 0.5rem}
-    .ms-sub{color:#9db2c7;font-size:0.95rem;line-height:1.6;margin:0 0 1.4rem}
-    .ms-code{font-family:"Space Grotesk",monospace;font-size:1.7rem;letter-spacing:0.08em;color:#2ec4b6;background:#0e2240;border:2px dashed rgba(46,196,182,0.6);border-radius:12px;padding:0.9rem 1rem;margin:0 0 0.8rem;word-break:break-all;user-select:all}
-    .ms-note{color:#f4a261;font-size:0.88rem;margin:0 0 1.2rem}
+    .ms-sub{color:var(--ink-dim);font-size:0.95rem;line-height:1.6;margin:0 0 1.4rem}
+    .ms-code{font-family:"Space Grotesk",monospace;font-size:1.7rem;letter-spacing:0.08em;color:var(--accent);background:var(--surface-2);border:2px dashed rgba(46,196,182,0.6);border-radius:12px;padding:0.9rem 1rem;margin:0 0 0.8rem;word-break:break-all;user-select:all}
+    .ms-note{color:var(--attention);font-size:0.88rem;margin:0 0 1.2rem}
     .ms-row{display:flex;gap:0.6rem;justify-content:center;flex-wrap:wrap}
-    .ms-spin{display:inline-block;width:1.4em;height:1.4em;border:3px solid rgba(255,255,255,0.25);border-top-color:#2ec4b6;border-radius:50%;animation:msspin 0.8s linear infinite;vertical-align:middle}
+    .ms-spin{display:inline-block;width:1.4em;height:1.4em;border:3px solid var(--voile-25);border-top-color:#2ec4b6;border-radius:50%;animation:msspin 0.8s linear infinite;vertical-align:middle}
     @keyframes msspin{to{transform:rotate(360deg)}}
-    .ms-help{color:#9db2c7;font-size:0.85rem;margin-top:1.4rem;line-height:1.6}
-    .ms-help a{color:#2ec4b6}
+    .ms-help{color:var(--ink-dim);font-size:0.85rem;margin-top:1.4rem;line-height:1.6}
+    .ms-help a{color:var(--accent)}
   </style>
 </head>
 <body>
@@ -43,9 +52,9 @@ d.lang=l||"ht";})();
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
     <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small id="s360-by">pa Atmart</small></a>
     <div style="display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap">
-      <a href="entevyou.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Entèvyou360</a>
-      <a href="karye.html" style="color:#eaf2fb;text-decoration:none;font-size:0.9rem">Career360</a>
-      <select id="s360-lang" aria-label="Lang" style="background:#0e2240;color:#eaf2fb;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">
+      <a href="entevyou.html" style="color:var(--ink);text-decoration:none;font-size:0.9rem">Entèvyou360</a>
+      <a href="karye.html" style="color:var(--ink);text-decoration:none;font-size:0.9rem">Career360</a>
+      <select id="s360-lang" aria-label="Lang" style="background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem">
         <option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="ht">Kreyòl</option>
       </select>
     </div>
@@ -77,7 +86,7 @@ d.lang=l||"ht";})();
 
 <footer>
   <div class="container">
-    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:#9db2c7" id="f-legal">Kondisyon · Konfidansyalite · Ranbousman</a> · <a href="mailto:sales@atmart.ltd" style="color:#2ec4b6">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:#9db2c7">atmart.ltd</a></p>
+    <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:var(--ink-dim)" id="f-legal">Kondisyon · Konfidansyalite · Ranbousman</a> · <a href="mailto:sales@atmart.ltd" style="color:var(--accent)">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:var(--ink-dim)">atmart.ltd</a></p>
   </div>
 </footer>
 
@@ -243,5 +252,6 @@ d.lang=l||"ht";})();
 })();
 </script>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>
+<script defer src="assets/theme.js?v=1"></script>
 </body>
 </html>
