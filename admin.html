@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script>/* Anti-encadrement : GitHub Pages ne permet pas frame-ancestors.
+   Le tableau de bord ne doit jamais s'afficher dans la page d'un tiers. */
+if (window.top !== window.self) { try { window.top.location = window.self.location; } catch (e) { document.documentElement.innerHTML = ""; } }
+</script>
+
 <script>/* Thème avant le premier rendu — sans lui, éclair blanc puis bascule.
 Ne pas déplacer plus bas ni différer : il doit précéder les styles. */
 (function(){try{var v=localStorage.getItem("atmart_apparence"),
@@ -10,7 +15,10 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
 }catch(e){}})();
 </script>
 
-  <meta charset="UTF-8" />
+<meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' https://atmart-chat.atmartllc.workers.dev https://fonts.googleapis.com https://fonts.gstatic.com; worker-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />

@@ -34,6 +34,9 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
 }catch(e){}})();
 </script>"""
 
+CSP_META = """<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' https://atmart-chat.atmartllc.workers.dev https://fonts.googleapis.com https://fonts.gstatic.com; worker-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />"""
+
 def header(active):
     def cls(p):
         if p == active:
@@ -85,6 +88,7 @@ for a, b in [
 s = s.replace('<link rel="stylesheet" href="assets/style.css?v=1" />',
               HEAD_THEME + '\n  <link rel="stylesheet" href="assets/style.css?v=3" />\n' + HEAD_LANG)
 # PWA : icônes 360 + manifest + theme-color + service worker
+s = s.replace('<meta charset="UTF-8" />', CSP_META + '\n  <meta charset="UTF-8" />')
 s = s.replace('<link rel="icon" type="image/png" href="assets/brand/logo-32.png" />',
               '<link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />\n'
               '  <link rel="manifest" href="manifest.webmanifest" />\n'
