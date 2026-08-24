@@ -72,6 +72,7 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
     <a href="index.html" class="logo"><img src="assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small>administration</small></a>
     <button type="button" class="btn btn-outline" id="ad-out" style="display:none">Se déconnecter</button>
+    <button type="button" class="btn btn-outline" id="ad-out-all" style="display:none" title="Invalide immédiatement toutes les sessions ouvertes, sur tous les appareils">Déconnecter tous mes appareils</button>
   </nav>
 </header>
 
@@ -201,6 +202,16 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   });
   $("ad-p").addEventListener("keydown", function (e) { if (e.key === "Enter") $("ad-go").click(); });
 
+    // Une session volée ne se coupe plus en changeant un secret — ce qui aurait
+  // aussi cassé le comptage anonyme des visiteurs. On incrémente une génération.
+  $("ad-out-all").addEventListener("click", function () {
+    if (!window.confirm("Déconnecter toutes les sessions, sur tous les appareils ? Vous devrez vous reconnecter.")) return;
+    appel("/admin-sessions", {}, function () {
+      try { localStorage.removeItem("s360_admin"); } catch (e) {}
+      location.reload();
+    }, function () { window.alert("Impossible pour l'instant."); });
+  });
+
   $("ad-out").addEventListener("click", function () {
     jeton = "";
     try { localStorage.removeItem("s360_admin"); } catch (e) {}
@@ -210,7 +221,7 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   function entrer() {
     $("ad-login").style.display = "none";
     $("ad-board").style.display = "";
-    $("ad-out").style.display = "";
+    $("ad-out-all").style.display = $("ad-out").style.display = "";
     charger();
   }
 
