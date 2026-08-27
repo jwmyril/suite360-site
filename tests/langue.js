@@ -1,0 +1,90 @@
+/* ===========================================================================
+   Suite 360 — banc : les fuites de langue, en ligne de commande
+
+   POURQUOI CELUI-CI EN PLUS. `tests/langue-audit.js` se colle dans la console
+   d'un navigateur : c'est excellent pour un contrôle final, mais ça ne peut
+   pas tourner avant une mise en ligne, donc en pratique ça ne tourne pas. Il
+   n'existait donc AUCUN garde-fou automatisable contre les fuites de langue —
+   alors que le défaut est arrivé quatre fois.
+
+   Deux contrôles statiques, qui attrapent la classe de défaut vécue :
+     1. un élément qui porte du texte en dur dans le HTML et que la fonction
+        de traduction n'atteint jamais restera dans sa langue d'origine ;
+     2. les quatre dictionnaires doivent avoir exactement les mêmes clés.
+
+   USAGE :  node tests/langue.js
+   =========================================================================== */
+const fs = require("fs");
+const path = require("path");
+const RACINE = path.join(__dirname, "..");
+const PAGES = ["index.html", "entevyou.html", "karye.html", "candidats.html",
+  "organisations.html", "egzanp.html", "kondisyon.html", "mesi.html"];
+
+// Ids dont le texte n'a PAS à changer d'une langue à l'autre. En ajouter un
+// est une décision, pas un oubli.
+const INVARIANTS = /^(s360-lang|s360-theme|s360-by|sw-procode|sw-solde|sw-memo|ky-code|ad-|st-|pf-contact|pf-ville|cv-)/;
+
+let ko = 0;
+const ok = (nom, cond, detail) => {
+  console.log((cond ? "  ✅ " : "  ❌ ") + nom + (cond ? "" : "   → " + detail));
+  if (!cond) ko++;
+};
+
+console.log("\n— un texte en dur que la traduction n'atteint jamais —");
+const orphelins = [];
+for (const p of PAGES) {
+  const s = fs.readFileSync(path.join(RACINE, p), "utf8");
+  // Les ids que le SCRIPT cite. On ne regarde que les blocs <script> : en
+  // scannant tout le fichier, chaque `id="x"` se citait lui-même et le
+  // contrôle ne pouvait plus jamais échouer. Vérifié en injectant un défaut.
+  const scripts = [...s.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)].map((m) => m[1]).join("\n");
+  const cites = new Set();
+  for (const m of scripts.matchAll(/["'`]([A-Za-z][\w-]{1,40})["'`]/g)) cites.add(m[1]);
+  // les éléments porteurs de texte : on ne juge que ceux qui ont un id
+  for (const m of s.matchAll(/<(h1|h2|h3|h4|p|span|button|summary|li|label)\b[^>]*\bid="([^"]+)"[^>]*>([^<]{3,})</g)) {
+    const [, , id, texte] = m;
+    if (INVARIANTS.test(id)) continue;
+    if (cites.has(id)) continue;
+    if (!/[A-Za-zÀ-ÿ]{3}/.test(texte)) continue;          // pas de vrai mot
+    orphelins.push(p + " → #" + id + " « " + texte.trim().slice(0, 34) + " »");
+  }
+}
+ok("aucun texte en dur hors de portée de la traduction",
+  !orphelins.length, orphelins.slice(0, 6).join(" | "));
+
+console.log("\n— les quatre dictionnaires ont-ils les mêmes clés ? —");
+const ecarts = [];
+for (const p of PAGES) {
+  const s = fs.readFileSync(path.join(RACINE, p), "utf8");
+  const dicos = {};
+  for (const lg of ["ht", "fr", "en", "es"]) {
+    const i = s.search(new RegExp("\n\s{2,6}" + lg + ": \{"));
+    if (i < 0) continue;
+    // jusqu'au début du dictionnaire suivant, ou la fin de l'objet L
+    const suite = s.slice(i + 1);
+    const fin = suite.search(/\n\s{2,6}(ht|fr|en|es): \{|\n\s{2}\};/);
+    const corps = fin > 0 ? suite.slice(0, fin) : suite.slice(0, 20000);
+    dicos[lg] = new Set([...corps.matchAll(/(?:^|[,{]\s*)([A-Za-z_][\w]*)\s*:/g)].map((m) => m[1]));
+  }
+  const langues = Object.keys(dicos);
+  if (langues.length < 2) continue;
+  const ref = dicos[langues[0]];
+  for (const lg of langues.slice(1)) {
+    const manque = [...ref].filter((k) => !dicos[lg].has(k));
+    const enTrop = [...dicos[lg]].filter((k) => !ref.has(k));
+    if (manque.length || enTrop.length) {
+      ecarts.push(p + " (" + lg + ") : " + [...manque, ...enTrop].slice(0, 4).join(", "));
+    }
+  }
+}
+ok("aucune clé manquante ni en trop", !ecarts.length, ecarts.slice(0, 5).join(" | "));
+
+console.log("\n— chaque page déclare un titre par langue —");
+const sansTitre = PAGES.filter((p) => {
+  const s = fs.readFileSync(path.join(RACINE, p), "utf8");
+  return !/__title|document\.title\s*=/.test(s);
+});
+ok("le titre de l'onglet suit la langue", !sansTitre.length, sansTitre.join(", "));
+
+console.log(ko ? "\n❌ " + ko + " vérification(s) en échec\n" : "\n✅ langue : aucune fuite détectée\n");
+process.exit(ko ? 1 : 0);
