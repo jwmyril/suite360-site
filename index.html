@@ -56,6 +56,11 @@ d.lang=l||"ht";})();
     .p360 li{font-size:0.9rem;color:var(--ink-2);line-height:1.55;padding-left:1.4em;position:relative;margin-bottom:0.45rem}
     .p360 li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
     .p360 .cta2{font-size:0.85rem;margin-top:0.6rem}
+    /* Un lien de paiement doit se toucher. En display:inline il faisait 16 px
+       de haut : le minimum WCAG est 24, la recommandation Apple et Google 44.
+       Les boutons gratuits, eux, faisaient deja 49 px. */
+    .p360 .cta2 a{display:inline-block;min-height:44px;padding:0.7rem 1rem;
+      border:1px solid var(--accent);border-radius:10px;font-weight:600;margin-top:0.2rem}
     .p360 .cta2 a{color:var(--accent)}
     .p360 .split{border-top:1px dashed rgba(46,196,182,0.4);margin:0.4rem 0 0.8rem;padding-top:0.8rem}
     .p360 .spacer{flex:1}

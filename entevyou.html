@@ -49,6 +49,10 @@ d.lang=l||"ht";})();
     .sw-result{background:var(--voile-04);border:1px solid var(--voile-09);border-radius:14px;padding:1.5rem;min-height:380px}
     .sw-placeholder{color:var(--ink-dim);text-align:center;padding:3rem 1rem}
     .sw-placeholder .big{font-size:2.4rem;margin-bottom:0.5rem}
+    .solde-neutre{color:var(--ink-dim)}
+    .solde-ok{color:var(--accent);font-weight:600}
+    .solde-ko{color:var(--danger);font-weight:600}
+    .solde-att{color:var(--attention);font-weight:600}
     .sw-status{color:var(--attention);font-size:0.9rem;margin-top:0.7rem;min-height:1.2em}
     .sw-toolbar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;padding-bottom:0.9rem;border-bottom:1px solid var(--voile-12)}
     .sw-toolbar a,.sw-toolbar button{background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-25);border-radius:8px;padding:0.4rem 0.8rem;font:inherit;font-size:0.85rem;cursor:pointer;text-decoration:none;display:inline-block}
@@ -73,7 +77,9 @@ d.lang=l||"ht";})();
     .sw-card.c-lock{border:1px dashed rgba(46,196,182,0.6);border-left:5px dashed var(--accent);background:rgba(46,196,182,0.05)}
     @media print{.sw-card{border-color:#999!important;background:#fff!important;page-break-inside:avoid}}
     .sw-cta{margin-top:1.4rem;padding:1rem;border:1px dashed rgba(46,196,182,0.5);border-radius:10px}
-    .sw-cta a{color:var(--accent);font-weight:600}
+    .sw-cta a{color:var(--accent);font-weight:600;display:inline-block;min-height:44px;
+      padding:0.7rem 1.1rem;border:1px solid var(--accent);border-radius:10px;margin-top:0.5rem}
+    #L-probuy a{display:inline-block;min-height:44px;padding:0.6rem 0.9rem}
     .sw-spin{display:inline-block;width:1em;height:1em;border:2px solid var(--voile-25);border-top-color:var(--accent);border-radius:50%;animation:swspin 0.8s linear infinite;vertical-align:-0.15em;margin-right:0.4em}
     @keyframes swspin{to{transform:rotate(360deg)}}
     @media print{body *{visibility:hidden}#sw-out,#sw-out *{visibility:visible}#sw-out{position:absolute;inset:0;padding:1cm;background:#fff}#sw-out h2,#sw-out h3,#sw-out p,#sw-out li{color:#000!important}}
@@ -719,7 +725,7 @@ by();})();
       phTxt: "Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style=\"color:var(--accent)\">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap ba w feedback. GRATIS pou tout moun.</span>",
       share: "💬 Pataje sou WhatsApp", print: "🖨 Enprime / PDF", copy: "📋 Kopye",
       cta1: '📚 <strong>Pwochen etap ou :</strong> li leson gratis la — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.html">Management &amp; carrière à l\'ère de l\'IA</a> — pou w aprofondi chak aks.',
-      cta2: '🚀 <strong>Entèvyou360 Pro</strong> — <s>29 $</s> <strong>9,99 $</strong> (yon sèl fwa) : kesyon yo pral poze OU ak repons ki chita sou prèv OU, rapò PDF, deck « Prezante tèt ou », plan 90 jou + CV pa konpetans. <a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00">💳 Achte Pro a pa kat</a>',
+      cta2: '🚀 <strong>Entèvyou360 Pro</strong> — <strong>9,99 $</strong> (yon sèl fwa) : kesyon yo pral poze OU ak repons ki chita sou prèv OU, rapò PDF, deck « Prezante tèt ou », plan 90 jou + CV pa konpetans. <a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00">💳 Achte Pro a pa kat</a>',
       waTxt: "Mwen fèk fè Entèvyou360 mwen sou Lojik360 — 6 kesyon, 2 minit, gratis. Fè pa w la tou: https://360.atmart.ltd/entevyou.html\n(Je viens de faire mon SWOT360 — 6 questions, 2 minutes, gratuit, en 4 langues. Faites le vôtre avec le même lien.)",
       card: "🖼 Telechaje kat SWOT ou", cardCta: "Fè pa w la tou:",
       gen: "N ap prepare SWOT360 ou a… (15–30 segonn)", done: "Men rezilta ou ! Li l, enprime l, pataje l.",
@@ -792,7 +798,7 @@ by();})();
       phTxt: "Votre résultat SWOT360 apparaîtra ici.<br />Répondez aux 6 questions puis cliquez « Faire mon SWOT360 ».<br /><span style=\"color:var(--accent)\">🎙 Nouveau : ensuite, entraînez-vous aux questions d'entretien à voix haute — le coach vous fait un retour. GRATUIT pour tous.</span>",
       share: "💬 Partager sur WhatsApp", print: "🖨 Imprimer / PDF", copy: "📋 Copier",
       cta1: '📚 <strong>Votre prochaine étape :</strong> lisez la leçon gratuite — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.html">Management &amp; carrière à l\'ère de l\'IA</a> — pour approfondir chaque axe.',
-      cta2: '🚀 <strong>Entèvyou360 Pro</strong> — <s>29 $</s> <strong>9,99 $</strong> (paiement unique) : les questions que le recruteur va VOUS poser, avec des réponses bâties sur VOS preuves, rapport PDF, deck « Prezante tèt ou », plan 90 jours + CV par compétences. <a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00">💳 Acheter Pro par carte</a>',
+      cta2: '🚀 <strong>Entèvyou360 Pro</strong> — <strong>9,99 $</strong> (paiement unique) : les questions que le recruteur va VOUS poser, avec des réponses bâties sur VOS preuves, rapport PDF, deck « Prezante tèt ou », plan 90 jours + CV par compétences. <a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00">💳 Acheter Pro par carte</a>',
       waTxt: "Je viens de faire mon Entèvyou360 sur Lojik360 — 6 questions, 2 minutes, gratuit. Faites le vôtre : https://360.atmart.ltd/entevyou.html",
       card: "🖼 Télécharger ma carte SWOT", cardCta: "Faites le vôtre :",
       gen: "Préparation de votre SWOT360… (15–30 secondes)", done: "Voici votre résultat ! Lisez, imprimez, partagez.",
@@ -865,7 +871,7 @@ by();})();
       phTxt: "Your SWOT360 result will appear here.<br />Answer the 6 questions and click “Get my SWOT360”.<br /><span style=\"color:var(--accent)\">🎙 New: then practice your interview questions out loud — the coach gives you feedback. FREE for everyone.</span>",
       share: "💬 Share on WhatsApp", print: "🖨 Print / PDF", copy: "📋 Copy",
       cta1: '📚 <strong>Your next step:</strong> read the free lesson — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.en.html">Management &amp; career in the AI era</a> — to go deeper on each axis.',
-      cta2: '🚀 <strong>Entèvyou360 Pro</strong> — <s>$29</s> <strong>$9.99</strong> (one-time): the questions they will ask YOU with answers built on YOUR proof, PDF report, «Present yourself» deck, 90-day plan + competency résumé. <a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00">💳 Get Pro by card</a>',
+      cta2: '🚀 <strong>Entèvyou360 Pro</strong> — <strong>$9.99</strong> (one-time): the questions they will ask YOU with answers built on YOUR proof, PDF report, «Present yourself» deck, 90-day plan + competency résumé. <a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00">💳 Get Pro by card</a>',
       waTxt: "I just did my Entèvyou360 on Lojik360 — 6 questions, 2 minutes, free. Do yours: https://360.atmart.ltd/entevyou.html",
       card: "🖼 Download my SWOT card", cardCta: "Do yours too:",
       gen: "Preparing your SWOT360… (15–30 seconds)", done: "Here is your result! Read it, print it, share it.",
@@ -938,7 +944,7 @@ by();})();
       phTxt: "Tu resultado SWOT360 aparecerá aquí.<br />Responde las 6 preguntas y haz clic en «Hacer mi SWOT360».<br /><span style=\"color:var(--accent)\">🎙 Nuevo: luego practica las preguntas de entrevista en voz alta — el coach te da su retroalimentación. GRATIS para todos.</span>",
       share: "💬 Compartir en WhatsApp", print: "🖨 Imprimir / PDF", copy: "📋 Copiar",
       cta1: '📚 <strong>Tu próximo paso:</strong> lee la lección gratuita — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.en.html">Management &amp; career in the AI era</a> — para profundizar cada eje.',
-      cta2: '🚀 <strong>Entèvyou360 Pro</strong> — <s>$29</s> <strong>$9.99</strong> (pago único): las preguntas que te harán A TI con respuestas basadas en TUS pruebas, informe PDF, deck «Preséntate», plan de 90 días + CV por competencias. <a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00">💳 Comprar Pro con tarjeta</a>',
+      cta2: '🚀 <strong>Entèvyou360 Pro</strong> — <strong>$9.99</strong> (pago único): las preguntas que te harán A TI con respuestas basadas en TUS pruebas, informe PDF, deck «Preséntate», plan de 90 días + CV por competencias. <a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00">💳 Comprar Pro con tarjeta</a>',
       waTxt: "Acabo de hacer mi Entèvyou360 en Lojik360 — 6 preguntas, 2 minutos, gratis. Haz el tuyo: https://360.atmart.ltd/entevyou.html",
       card: "🖼 Descargar mi tarjeta SWOT", cardCta: "Haz el tuyo:",
       gen: "Preparando tu SWOT360… (15–30 segundos)", done: "¡Aquí está tu resultado! Léelo, imprímelo, compártelo.",
@@ -1203,7 +1209,7 @@ by();})();
     var c = document.getElementById("sw-procode").value.trim().toUpperCase();
     if (!el) return;
     if (!/^(ENT|PRO90)-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(c)) {
-      el.textContent = MSG.sansCode; el.style.display = ""; el.style.color = "#9db2c7";
+      el.textContent = MSG.sansCode; el.style.display = ""; el.className = "solde-neutre";
       return;
     }
     if (soldeEnCours) return;
@@ -1214,14 +1220,25 @@ by();})();
       .then(function (res) {
         soldeEnCours = false;
         var b = res.body || {};
-        if (!res.ok) { el.textContent = MSG.proInvalid; el.style.color = "#f4a261"; el.style.display = ""; return; }
+        if (!res.ok) {
+          // Un code que le serveur refuse ne doit pas rester enregistre : sinon
+          // une faute de frappe se re-remplit a chaque visite, et la personne
+          // qui a paye ne comprend jamais pourquoi rien ne marche.
+          try { localStorage.removeItem("entevyou_pro"); } catch (e) {}
+          majMemo();
+          el.textContent = MSG.proInvalid; el.className = "solde-ko"; el.style.display = "";
+          return;
+        }
+        // Le serveur a reconnu le code : c'est le seul moment ou on l'enregistre.
+        try { localStorage.setItem("entevyou_pro", c); } catch (e) {}
+        majMemo();
         if (b.type === "pro90") {
           el.textContent = b.expire ? MSG.soldeExp.replace("{exp}", b.exp || "")
             : MSG.solde90.replace("{n}", b.restantJour).replace("{exp}", b.exp || "");
-          el.style.color = b.expire ? "#e63946" : "#2ec4b6";
+          el.className = b.expire ? "solde-ko" : "solde-ok";
         } else {
           el.textContent = b.restant > 0 ? MSG.soldeKit.replace("{n}", b.restant) : MSG.soldeVide;
-          el.style.color = b.restant > 0 ? "#2ec4b6" : "#e63946";
+          el.className = b.restant > 0 ? "solde-ok" : "solde-ko";
         }
         el.style.display = "";
       })
@@ -1234,13 +1251,10 @@ by();})();
     try { m = localStorage.getItem("entevyou_pro") || ""; } catch (e) {}
     document.getElementById("sw-memo").style.display = m ? "" : "none";
   }
-  function memoriser() {
-    var c = document.getElementById("sw-procode").value.trim().toUpperCase();
-    if (/^(ENT|PRO90)-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(c)) {
-      try { localStorage.setItem("entevyou_pro", c); } catch (e) {}
-      majMemo();
-    }
-  }
+  // On ne memorise plus sur le seul FORMAT : c'est majSolde, qui a la reponse
+  // du serveur, qui decide d'enregistrer ou d'oublier. Un code jamais valide
+  // ne doit jamais devenir permanent.
+  function memoriser() { majMemo(); }
   document.getElementById("sw-forget").addEventListener("click", function () {
     try { localStorage.removeItem("entevyou_pro"); } catch (e) {}
     document.getElementById("sw-procode").value = "";
