@@ -1485,7 +1485,7 @@ by();})();
   // Le micro de la pratique, detourne le temps d une tentative.
   document.getElementById("f5-mic").addEventListener("click", function () {
     var zone = document.getElementById("f5-txt");
-    if (f5RecOn) { f5RecOn = false; this.textContent = MSG.f5Mic; vwStopRec(true); vwCible = vwAns; return; }
+    if (f5RecOn) { f5RecOn = false; this.textContent = MSG.f5Mic; vwStopRec(false); return; }
     // On reprend exactement le chemin du bouton de la pratique : navigateur pour
     // fr/en/es, Whisper pour le kreyol. La transcription atterrit dans f5-txt.
     f5RecOn = true; this.textContent = MSG.f5Stop;
@@ -1799,7 +1799,7 @@ by();})();
 
   document.getElementById("pn-mic").addEventListener("click", function () {
     var zone = document.getElementById("pn-txt");
-    if (pnRecOn) { pnRecOn = false; this.textContent = MSG.f5Mic; vwStopRec(true); vwCible = vwAns; return; }
+    if (pnRecOn) { pnRecOn = false; this.textContent = MSG.f5Mic; vwStopRec(false); return; }
     pnRecOn = true; this.textContent = MSG.f5Stop;
     vwCible = zone;
     vwRecOn = true;
@@ -2048,7 +2048,10 @@ by();})();
 
   document.getElementById("pf-save").addEventListener("click", function () {
     var ok = document.getElementById("pf-ok").checked;
-    if (!ok) { pfEtat(MSG.pfBesoinOk); }
+    // Sans ce return, la requete partait quand meme : le serveur refusait bien
+    // d'enregistrer, mais le nom, le contact, le SWOT et le CV avaient deja
+    // traverse le reseau — et le message etait ecrase douze lignes plus bas.
+    if (!ok) { pfEtat(MSG.pfBesoinOk); return; }
     var moys = profMoyennes();
     var nivos = (typeof vwNivos !== "undefined" && vwNivos) ? vwNivos.filter(function (n) { return n >= 1 && n <= 3; }) : [];
     var profil = {
@@ -2948,6 +2951,10 @@ by();})();
   vwMicB.addEventListener("click", function () {
     if (vwRecOn) { vwStopRec(false); return; }
     if ("speechSynthesis" in window) { try { speechSynthesis.cancel(); } catch (e) {} }
+    // Celui qui PREND le micro declare ou va le texte. Sans cette ligne, une
+    // seance de First 5 Minutes laissait la cible sur sa propre zone.
+    vwCible = vwAns;
+    f5RecOn = false; pnRecOn = false;
     vwRecOn = true;
     vwMicB.classList.add("rec");
     vwMicB.textContent = MSG.vwaStop;
