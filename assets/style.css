@@ -132,6 +132,10 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* Lien d'evitement : invisible jusqu'a ce qu'on l'atteigne au clavier. */
+.saut{position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--sur-accent);padding:0.6rem 1rem;border-radius:0 0 8px 0;z-index:999}.saut:focus{left:0}
+
+
 html { scroll-behavior: smooth; }
 
 body {

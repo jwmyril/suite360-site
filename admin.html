@@ -67,6 +67,8 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   </style>
 </head>
 <body>
+<a href="#contenu" class="saut">Ale dirèk nan kontni an</a>
+
 
 <header>
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
@@ -76,20 +78,20 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   </nav>
 </header>
 
-<main>
+<main id="contenu" tabindex="-1">
   <div class="ad">
 
     <div class="ad-login" id="ad-login">
       <h1>🔐 Tableau de bord Suite 360</h1>
-      <input class="ad-in" type="text" id="ad-u" placeholder="Identifiant" autocomplete="username" />
-      <input class="ad-in" type="password" id="ad-p" placeholder="Mot de passe" autocomplete="current-password" />
+      <input class="ad-in" type="text" id="ad-u" placeholder="Identifiant" autocomplete="username" / aria-label="Idantifyan">
+      <input class="ad-in" type="password" id="ad-p" placeholder="Mot de passe" autocomplete="current-password" / aria-label="Modpas">
       <button type="button" class="btn btn-primary" id="ad-go" style="width:100%">Entrer</button>
       <p class="msg" id="ad-msg"></p>
     </div>
 
     <div id="ad-board" style="display:none">
       <div class="ad-bar">
-        <select id="ad-days">
+        <select id="ad-days" aria-label="Peryòd la">
           <option value="7">7 derniers jours</option>
           <option value="30" selected>30 derniers jours</option>
           <option value="90">90 derniers jours</option>

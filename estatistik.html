@@ -43,14 +43,17 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   </style>
 </head>
 <body>
+<main id="contenu" tabindex="-1">
+<a href="#contenu" class="saut">Ale dirèk nan kontni an</a>
+
 <section class="hero" style="padding-bottom:0">
   <div class="container">
     <div class="st-wrap">
       <h1>Tableau de bord Suite 360</h1>
       <p class="st-sub">Compteurs anonymes — aucune donnée personnelle, aucun cookie. Page privée (non indexée).</p>
       <div class="st-bar">
-        <input type="password" id="tok" placeholder="Jeton d'accès (STATS_TOKEN)" autocomplete="off" />
-        <select id="days"><option value="7">7 jours</option><option value="30" selected>30 jours</option><option value="90">90 jours</option></select>
+        <input type="password" id="tok" placeholder="Jeton d'accès (STATS_TOKEN)" autocomplete="off" / aria-label="Jeton aksè">
+        <select id="days" aria-label="Peryòd la"><option value="7">7 jours</option><option value="30" selected>30 jours</option><option value="90">90 jours</option></select>
         <button class="btn btn-primary" id="go">Afficher</button>
       </div>
       <p class="st-msg" id="msg"></p>
@@ -148,6 +151,7 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   try { var k = sessionStorage.getItem("st_tok"); if (k) { document.getElementById("tok").value = k; document.getElementById("go").click(); } } catch (e) {}
 })();
 </script>
+</main>
 <script defer src="assets/theme.js?v=2"></script>
 </body>
 </html>

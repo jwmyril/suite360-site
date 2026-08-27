@@ -247,6 +247,8 @@ d.lang=l||"ht";})();
   </style>
 </head>
 <body>
+<a href="#contenu" class="saut">Ale dirèk nan kontni an</a>
+
 
 <header>
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
@@ -260,6 +262,7 @@ d.lang=l||"ht";})();
     </div>
   </nav>
 </header>
+<main id="contenu" tabindex="-1">
 
 <!-- HERO -->
 <section class="hero" style="padding-bottom:0.8rem">
@@ -350,7 +353,7 @@ d.lang=l||"ht";})();
         <label for="sw-jobdesc" id="L-jobdesc">8. Kole deskripsyon pòs la (si ou genyen l)<small>Pou n ka devine kesyon entèvyou yo pi byen</small></label>
         <textarea id="sw-jobdesc" maxlength="3500" style="min-height:80px" placeholder="Kole tèks anons travay la isit la (opsyonèl)…"></textarea>
         <p style="margin:0.4rem 0 0"><button type="button" id="sw-jdbtn" style="background:none;border:1px dashed rgba(46,196,182,0.6);color:var(--accent);border-radius:8px;padding:0.35rem 0.7rem;font:inherit;font-size:0.82rem;cursor:pointer">📎 Oswa voye yon foto / PDF anons lan</button></p>
-        <input type="file" id="sw-jdfile" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,application/pdf,image/png,image/jpeg,image/webp,text/plain" style="display:none" />
+        <input type="file" id="sw-jdfile" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,application/pdf,image/png,image/jpeg,image/webp,text/plain" style="display:none" / aria-label="Voye yon foto oswa yon PDF anons lan">
 
         <details id="sw-prod" style="margin-top:1rem;padding-top:0.9rem;border-top:1px dashed rgba(46,196,182,0.5)">
           <summary id="sw-prod-t" style="cursor:pointer;color:var(--accent);font-size:0.88rem;font-weight:600;list-style:revert">Mwen gen yon kòd Pro deja</summary>
@@ -413,7 +416,7 @@ d.lang=l||"ht";})();
             <button type="button" class="vw-btn" id="vw-listen">🔊 Tande kesyon an ankò</button>
             <button type="button" class="vw-btn" id="vw-close">✖ Fèmen</button>
           </div>
-          <textarea id="vw-ans"></textarea>
+          <textarea id="vw-ans" aria-label="Repons ou pou kesyon rekritè a"></textarea>
           <p class="vw-hint" id="vw-hint">Ou ka korije tèks la anvan ou voye l.</p>
           <div id="vw-audio" style="display:none;margin:0 0 0.7rem">
             <audio id="vw-player" controls style="width:100%"></audio>
@@ -427,7 +430,7 @@ d.lang=l||"ht";})();
           </div>
           <div id="vw-askbox" style="display:none;margin:0 0 0.8rem;padding:0.8rem;border:1px solid var(--border);border-radius:10px;background:var(--surface-2)">
             <p id="vw-askhint" style="color:var(--ink-dim);font-size:0.85rem;margin:0 0 0.5rem;line-height:1.6"></p>
-            <textarea id="vw-mq" rows="2" style="width:100%;box-sizing:border-box"></textarea>
+            <textarea id="vw-mq" rows="2" style="width:100%;box-sizing:border-box" aria-label="Kesyon ou pou panèl la"></textarea>
             <div class="vw-row" style="margin-top:0.5rem">
               <button type="button" class="vw-btn send" id="vw-mqsend">📨 Voye kesyon an</button>
             </div>
@@ -567,7 +570,7 @@ d.lang=l||"ht";})();
           <textarea id="cv-old" maxlength="3500" style="min-height:64px" placeholder="Kole tout tèks ansyen CV ou a isit la…"></textarea>
           <p style="margin:0.35rem 0 0"><button type="button" id="cv-oldbtn" style="background:none;border:1px dashed rgba(106,159,216,0.7);color:var(--lien);border-radius:8px;padding:0.35rem 0.7rem;font:inherit;font-size:0.82rem;cursor:pointer">📎 Oswa voye foto / PDF ansyen CV a</button></p>
           <p id="cv-oldnote" style="display:none;color:var(--accent);font-size:0.83rem;margin:0.5rem 0 0;line-height:1.5"></p>
-          <input type="file" id="cv-oldfile" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/png,image/jpeg,image/webp,text/plain" style="display:none" />
+          <input type="file" id="cv-oldfile" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/png,image/jpeg,image/webp,text/plain" style="display:none" / aria-label="Voye yon foto oswa yon PDF ansyen CV ou">
           <label for="cv-name" id="Lcv-name">Non konplè ou</label>
           <input type="text" id="cv-name" maxlength="80" autocomplete="off" />
           <label for="cv-contact" id="Lcv-contact">Liy kontak la</label>
@@ -599,9 +602,9 @@ d.lang=l||"ht";})();
         </div>
         <div id="sw-placeholder" class="sw-placeholder">
           <div class="big">🧭</div>
-          <p>Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style="color:var(--accent)">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap ba w feedback. GRATIS pou tout moun.</span></p>
+          <p>Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style="color:var(--accent)">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap di w sa k bon ak sa pou w ranfòse. GRATIS pou tout moun.</span></p>
         </div>
-        <div class="nav-res" id="nav-res" role="tablist"></div>
+        <div class="nav-res" id="nav-res"></div>
         <div class="succes" id="sw-succes" style="display:none" tabindex="-1">
           <p class="k" id="sw-succes-k">Fini</p>
           <h2 id="sw-succes-t">SWOT ou a pare</h2>
@@ -625,9 +628,9 @@ d.lang=l||"ht";})();
         <details class="sw-what" id="pf-box" style="display:none;margin-top:1.2rem">
           <summary id="pf-t">📋 Kenbe pwofil pwofesyonèl mwen sou kòd Pro 90 mwen an</summary>
           <p id="pf-sub" style="color:var(--ink-2);font-size:0.9rem;line-height:1.65;margin:0.6rem 0">Konsa ou ka jwenn pwofil ou ankò sou yon lòt telefòn, ak menm kòd la. Si ou pa mande l, nou pa kenbe anyen.</p>
-          <p style="margin:0.5rem 0"><label style="display:flex;gap:0.5rem;align-items:flex-start;cursor:pointer"><input type="checkbox" id="pf-ok" style="margin-top:0.25rem" /><span id="Lpf-ok">Wi, kenbe pwofil mwen sou kòd Pro 90 mwen an.</span></label></p>
+          <p style="margin:0.5rem 0"><label style="display:flex;gap:0.5rem;align-items:flex-start;cursor:pointer"><input type="checkbox" id="pf-ok" style="margin-top:0.25rem" / aria-label="Kenbe pwofil mwen sou kòd Pro 90 mwen an"><span id="Lpf-ok">Wi, kenbe pwofil mwen sou kòd Pro 90 mwen an.</span></label></p>
           <div id="pf-plus" style="display:none;border-left:2px solid rgba(46,196,182,0.5);padding-left:0.8rem;margin:0.6rem 0">
-            <p style="margin:0.3rem 0"><label style="display:flex;gap:0.5rem;align-items:flex-start;cursor:pointer"><input type="checkbox" id="pf-story" style="margin-top:0.25rem" /><span id="Lpf-story">Nou ka kontakte m si istwa m ka ede lòt moun.</span></label></p>
+            <p style="margin:0.3rem 0"><label style="display:flex;gap:0.5rem;align-items:flex-start;cursor:pointer"><input type="checkbox" id="pf-story" style="margin-top:0.25rem" / aria-label="Aksepte pou n kontakte w pou yon istwa"><span id="Lpf-story">Nou ka kontakte m si istwa m ka ede lòt moun.</span></label></p>
             <p id="pf-story-note" style="color:var(--ink-dim);font-size:0.82rem;line-height:1.55;margin:0.3rem 0 0">Kontakte, se pa pibliye. Nou p ap janm mete anyen deyò san nou pa montre w li anvan epi san ou pa dakò.</p>
             <div id="pf-story-champs" style="display:none;margin-top:0.6rem">
               <label for="pf-contact" id="Lpf-contact">Kijan pou nou jwenn ou</label>
@@ -654,13 +657,13 @@ d.lang=l||"ht";})();
         <div class="sw-cta" id="sw-avi" style="display:none">
           <p id="sw-avi-t" style="margin:0 0 0.5rem;font-weight:600"></p>
           <p id="sw-avi-p" style="margin:0 0 0.6rem;color:var(--ink-dim);font-size:0.86rem;line-height:1.6"></p>
-          <textarea id="sw-avi-x" rows="3" maxlength="600" style="width:100%;box-sizing:border-box;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit"></textarea>
+          <textarea id="sw-avi-x" rows="3" maxlength="600" style="width:100%;box-sizing:border-box;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" aria-label="Non ou (si w vle)"></textarea>
           <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem">
-            <input type="text" id="sw-avi-n" maxlength="40" style="flex:1;min-width:130px;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" />
-            <input type="text" id="sw-avi-v" maxlength="60" style="flex:1;min-width:130px;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" />
+            <input type="text" id="sw-avi-n" maxlength="40" style="flex:1;min-width:130px;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" / aria-label="Vil ou (si w vle)">
+            <input type="text" id="sw-avi-v" maxlength="60" style="flex:1;min-width:130px;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" / aria-label="Sa ou vle di">
           </div>
           <label style="display:flex;gap:0.5rem;align-items:flex-start;margin:0.6rem 0 0.5rem;color:var(--ink-dim);font-size:0.84rem;line-height:1.5;cursor:pointer">
-            <input type="checkbox" id="sw-avi-ok" style="margin-top:0.2rem" />
+            <input type="checkbox" id="sw-avi-ok" style="margin-top:0.2rem" / aria-label="Mwen dakò pou nou pibliye sa m ekri a">
             <span id="sw-avi-okl"></span>
           </label>
           <button type="button" id="sw-avi-go" class="vw-btn send"></button>
@@ -669,7 +672,7 @@ d.lang=l||"ht";})();
         <div class="sw-cta" id="sw-mail" style="display:none">
           <p id="sw-mail-t" style="margin:0 0 0.5rem">📩 Vle w resevwa konsèy entèvyou yo pa imèl ? (opsyonèl — ou ka retire tèt ou nenpòt lè)</p>
           <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
-            <input type="email" id="sw-mail-in" maxlength="120" placeholder="imel@egzanp.com" style="flex:1;min-width:200px;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" />
+            <input type="email" id="sw-mail-in" maxlength="120" placeholder="imel@egzanp.com" style="flex:1;min-width:200px;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" / aria-label="Adrès imèl ou">
             <button type="button" id="sw-mail-go" class="vw-btn send">📩 Enskri m</button>
           </div>
           <p class="sw-status" id="sw-mail-st" aria-live="polite"></p>
@@ -680,6 +683,7 @@ d.lang=l||"ht";})();
   </div>
 </section>
 
+</main>
 <footer>
   <div class="container">
     <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:var(--ink-dim)" id="f-legal">Kondisyon · Konfidansyalite · Ranbousman</a> · <a href="mailto:sales@atmart.ltd" style="color:var(--accent)">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:var(--ink-dim)">atmart.ltd</a></p>
@@ -710,7 +714,7 @@ by();})();
 
   // ---- interface complète en 4 langues ----
   var L = {
-    ht: {
+    ht: { __title: "Entèvyou360 — vin pare pou entèvyou travay ou | Suite 360",
       lang: "🌍 Chwazi lang ou",
       work: "1. Ki travay w ap fè kounye a ?", workS: "oswa : etidyan, san travay…", workP: "Ex. : enfimyè, chofè, pwofesè, komèsant, kontab…",
       tasks: "2. Ki 3 bagay ou fè pi souvan nan travay la ?", tasksP: "Ex. : m pran swen pasyan, m ranpli fòm rapò, m reponn fanmi yo…",
@@ -723,11 +727,11 @@ by();})();
       jd: "8. Kole deskripsyon pòs la (si ou genyen l)", jdS: "Pou n ka devine kesyon entèvyou yo pi byen", jdP: "Kole tèks anons travay la isit la (opsyonèl)…",
       pc: "⭐ Kòd Entèvyou360 Pro (si ou achte l)", pcS: "Ak yon kòd, w ap jwenn TOUT kit la : 8-12 kesyon AK repons yo, deck, plan 90 jou + CV pa konpetans · Kòd PRO90 : san limit pandan 90 jou (jiska 8 pa jou)", pcB: "Ou poko gen kòd ? <a href=\"https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00\" style=\"color:var(--accent)\">💳 Kit 9,99 $</a> · <a href=\"https://buy.stripe.com/28E8wP0Tf9Pn5B761JaEE01\" style=\"color:var(--accent)\">💳 90 jou 19,99 $</a>", proGen: "N ap prepare kit Pro ou a… (60–90 segonn — li long, li vo li)", proInvalid: "Kòd sa a pa bon oswa li fini. Verifye l, oswa achte yon kòd sou atmart.ltd.",
       go: "🧭 Fè SWOT360 mwen",
-      phTxt: "Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style=\"color:var(--accent)\">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap ba w feedback. GRATIS pou tout moun.</span>",
+      phTxt: "Rezilta SWOT360 ou a ap parèt isit la.<br />Reponn 6 kesyon yo epi klike « Fè SWOT360 mwen ».<br /><span style=\"color:var(--accent)\">🎙 Nouvo : apre sa, pratike kesyon entèvyou yo ak vwa ou — koach la ap di w sa k bon ak sa pou w ranfòse. GRATIS pou tout moun.</span>",
       share: "💬 Pataje sou WhatsApp", print: "🖨 Enprime / PDF", copy: "📋 Kopye",
       cta1: '📚 <strong>Pwochen etap ou :</strong> li leson gratis la — <a href="https://lojik360.atmart.ltd/tutoriels/management-ia.html">Management &amp; carrière à l\'ère de l\'IA</a> — pou w aprofondi chak aks.',
       cta2: '🚀 <strong>Entèvyou360 Pro</strong> — <strong>9,99 $</strong> (yon sèl fwa) : kesyon yo pral poze OU ak repons ki chita sou prèv OU, rapò PDF, deck « Prezante tèt ou », plan 90 jou + CV pa konpetans. <a href="https://buy.stripe.com/cNi3cvfO91iR3sZ75NaEE00">💳 Achte Pro a pa kat</a>',
-      waTxt: "Mwen fèk fè Entèvyou360 mwen sou Lojik360 — 6 kesyon, 2 minit, gratis. Fè pa w la tou: https://360.atmart.ltd/entevyou.html\n(Je viens de faire mon SWOT360 — 6 questions, 2 minutes, gratuit, en 4 langues. Faites le vôtre avec le même lien.)",
+      waTxt: "Mwen fèk fè Entèvyou360 mwen sou Suite 360 — 6 kesyon, 2 minit, gratis. Fè pa w la tou: https://360.atmart.ltd/entevyou.html\n(Je viens de faire mon SWOT360 — 6 questions, 2 minutes, gratuit, en 4 langues. Faites le vôtre avec le même lien.)",
       card: "🖼 Telechaje kat SWOT ou", cardCta: "Fè pa w la tou:",
       gen: "N ap prepare SWOT360 ou a… (15–30 segonn)", done: "Men rezilta ou ! Li l, enprime l, pataje l.",
       err: "Gen yon erè. Eseye ankò nan yon moman.", limit: "Ou fè 3 SWOT jodi a — tounen demen ! 🙂",
@@ -783,7 +787,7 @@ by();})();
       jdErr: "Nou pa t ka li fichye a. Eseye yon foto pi klè, oswa kole tèks la ou menm.",
       jdBig: "Fichye a twò lou (maks 4 Mo). Pran yon foto pi lejè.",
     },
-    fr: {
+    fr: { __title: "Entèvyou360 — arrivez prêt à votre entretien d'embauche | Suite 360",
       lang: "🌍 Choisissez votre langue",
       work: "1. Quel est votre travail actuel ?", workS: "ou : étudiant, sans emploi…", workP: "Ex. : infirmière, chauffeur, enseignant, commerçante, comptable…",
       tasks: "2. Les 3 tâches que vous faites le plus souvent ?", tasksP: "Ex. : je soigne les patients, je remplis les rapports, je réponds aux familles…",
@@ -856,7 +860,7 @@ by();})();
       jdErr: "Impossible de lire le fichier. Essayez une photo plus nette, ou collez le texte vous-même.",
       jdBig: "Fichier trop lourd (max 4 Mo). Prenez une photo plus légère.",
     },
-    en: {
+    en: { __title: "Entèvyou360 — walk into your job interview ready | Suite 360",
       lang: "🌍 Choose your language",
       work: "1. What is your current work?", workS: "or: student, between jobs…", workP: "E.g.: nurse, driver, teacher, vendor, accountant…",
       tasks: "2. The 3 tasks you do most often?", tasksP: "E.g.: I care for patients, fill daily reports, answer families…",
@@ -929,7 +933,7 @@ by();})();
       jdErr: "Couldn't read the file. Try a clearer photo, or paste the text yourself.",
       jdBig: "File too large (max 4 MB). Take a lighter photo.",
     },
-    es: {
+    es: { __title: "Entèvyou360 — llega preparado a tu entrevista de trabajo | Suite 360",
       lang: "🌍 Elige tu idioma",
       work: "1. ¿Cuál es tu trabajo actual?", workS: "o: estudiante, sin empleo…", workP: "Ej.: enfermera, chofer, maestro, comerciante, contador…",
       tasks: "2. ¿Las 3 tareas que haces más a menudo?", tasksP: "Ej.: cuido pacientes, lleno informes, respondo a las familias…",
@@ -1025,6 +1029,8 @@ by();})();
     appliedLang = code;
     var T = L[code] || L.ht;
     MSG = T;
+    // L'onglet et le snippet Google suivent la langue affichee, comme le reste.
+    if (T.__title) document.title = T.__title;
     setLabel("L-work", T.work, T.workS);
     setLabel("L-tasks", T.tasks);
     setLabel("L-strength", T.strength);
@@ -2696,7 +2702,7 @@ by();})();
     ctx.fillStyle = "#0a1a2f"; ctx.fillRect(0, 0, 1080, 1080);
     ctx.fillStyle = "#2ec4b6"; ctx.font = "bold 58px Arial"; ctx.fillText("Entèvyou360", 48, 84);
     ctx.fillStyle = "#9db2c7"; ctx.font = "26px Arial"; ctx.textAlign = "right";
-    ctx.fillText("Lojik360 · pa Atmart", 1032, 80); ctx.textAlign = "left";
+    ctx.fillText("Entèvyou360 · pa Atmart", 1032, 80); ctx.textAlign = "left";
     ctx.fillStyle = "#ffffff"; ctx.font = "bold 40px Arial";
     var tl = wrapLines(ctx, d.title, 984, 1); ctx.fillText(tl[0] || "", 48, 150);
     var colors = ["#2ec4b6", "#f4a261", "#6a9fd8", "#e63946"];

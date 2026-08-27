@@ -50,6 +50,8 @@ d.lang=l||"ht";})();
   </style>
 </head>
 <body>
+<a href="#contenu" class="saut">Ale dirèk nan kontni an</a>
+
 
 <header>
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
@@ -63,6 +65,7 @@ d.lang=l||"ht";})();
     </div>
   </nav>
 </header>
+<main id="contenu" tabindex="-1">
 
 <section class="hero" style="padding-bottom:1rem">
   <div class="container">
@@ -87,6 +90,7 @@ d.lang=l||"ht";})();
   </div>
 </section>
 
+</main>
 <footer>
   <div class="container">
     <p class="footer-note">© Atmart LLC — Suite 360 · <a href="kondisyon.html" style="color:var(--ink-dim)" id="f-legal">Kondisyon · Konfidansyalite · Ranbousman</a> · <a href="mailto:sales@atmart.ltd" style="color:var(--accent)">sales@atmart.ltd</a> · <a href="https://atmart.ltd" style="color:var(--ink-dim)">atmart.ltd</a></p>
@@ -97,7 +101,7 @@ d.lang=l||"ht";})();
 (function () {
   var EP = "https://atmart-chat.atmartllc.workers.dev/stripe-code";
   var L = {
-    ht: {
+    ht: { __title: "Mèsi ! Men kòd ou — Suite 360",
       wait: "N ap prepare kòd ou…",
       waitSub: "Peman ou pase — tann yon ti moman, kòd ou ap parèt isit la (mwens pase yon minit an jeneral).",
       done: "Mèsi ! Men kòd ou 🎉",
@@ -109,7 +113,7 @@ d.lang=l||"ht";})();
       help: 'Yon pwoblèm ? Ekri <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a> ak resi Stripe ou a — n ap voye kòd la pou ou.',
       noSid: "Paj sa a louvri apre yon peman. Si ou fèk peye, tounen sou lyen Stripe la voye w la a.",
     },
-    fr: {
+    fr: { __title: "Merci ! Voici votre code — Suite 360",
       wait: "Préparation de votre code…",
       waitSub: "Paiement reçu — un instant, votre code apparaît ici (moins d'une minute en général).",
       done: "Merci ! Voici votre code 🎉",
@@ -121,7 +125,7 @@ d.lang=l||"ht";})();
       help: 'Un souci ? Écrivez à <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a> avec votre reçu Stripe — nous vous enverrons le code.',
       noSid: "Cette page s'ouvre après un paiement. Si vous venez de payer, revenez par le lien où Stripe vous a envoyé.",
     },
-    en: {
+    en: { __title: "Thank you! Here is your code — Suite 360",
       wait: "Preparing your code…",
       waitSub: "Payment received — one moment, your code will appear here (usually under a minute).",
       done: "Thank you! Here is your code 🎉",
@@ -133,7 +137,7 @@ d.lang=l||"ht";})();
       help: 'A problem? Write to <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a> with your Stripe receipt — we will send you the code.',
       noSid: "This page opens after a payment. If you just paid, come back through the link Stripe sent you to.",
     },
-    es: {
+    es: { __title: "¡Gracias! Aquí está tu código — Suite 360",
       wait: "Preparando tu código…",
       waitSub: "Pago recibido — un momento, tu código aparecerá aquí (menos de un minuto normalmente).",
       done: "¡Gracias! Aquí está tu código 🎉",
@@ -152,6 +156,8 @@ d.lang=l||"ht";})();
   var BY = { ht: "pa Atmart", fr: "par Atmart", en: "by Atmart", es: "por Atmart" };
   var LEG = { ht: "Kondisyon · Konfidansyalite · Ranbousman", fr: "Conditions · Confidentialité · Remboursements", en: "Terms · Privacy · Refunds", es: "Términos · Privacidad · Reembolsos" };
   function byline() {
+    var t = T();
+    if (t && t.__title) document.title = t.__title;
     var el = document.getElementById("s360-by");
     if (el) el.textContent = BY[lang()] || BY.ht;
     var fl = document.getElementById("f-legal");
