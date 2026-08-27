@@ -48,6 +48,10 @@ const stockage = {
   getItem: (k) => (k in disque ? disque[k] : null),
   setItem: (k, v) => { disque[k] = String(v); },
   removeItem: (k) => { delete disque[k]; },
+  // key() et length : la purge et l'effacement les parcourent. Sans eux, le
+  // banc ne pourrait pas prouver qu'une promesse d'effacement est tenue.
+  get length() { return Object.keys(disque).length; },
+  key(i) { const t = Object.keys(disque); return i < t.length ? t[i] : null; },
 };
 
 let elements, appels, paroles = 0;
@@ -186,6 +190,29 @@ function ok(nom, cond, detail) {
   const neufEtat = JSON.parse(disque[cle] || "{}");
   ok("l'ancien entretien est effacé", (neufEtat.tours || []).length === 0, JSON.stringify(neufEtat.tours));
   ok("une nouvelle question est posée", /Question numéro/.test($("pn-q").innerHTML), $("pn-q").innerHTML);
+
+  // ============ ce qui reste sur l'appareil ================================
+  console.log("\n\u2014 purge et effacement \u2014");
+  disque["s360_pn:2020-01-01"] = '{"vieux":true}';
+  disque["s360_f5:2019-06-06"] = "[]";
+  disque["s360_prep"] = '{"d":"2019-06-06","swot":"vieux rapport"}';
+  disque["entevyou_pro"] = "PRO90-AAAA-BBBB";
+  charger();
+  await pause(60);
+  ok("les cl\u00e9s d'un autre jour sont purg\u00e9es au chargement",
+    disque["s360_pn:2020-01-01"] === undefined && disque["s360_f5:2019-06-06"] === undefined,
+    JSON.stringify(Object.keys(disque)));
+  ok("un rapport d'un autre jour ne survit pas", disque["s360_prep"] === undefined,
+    String(disque["s360_prep"]));
+  ok("le code Pro n'est pas emport\u00e9 par la purge", disque["entevyou_pro"] === "PRO90-AAAA-BBBB",
+    String(disque["entevyou_pro"]));
+
+  global.window.confirm = () => true;
+  disque["s360_pn:" + new Date().toISOString().slice(0, 10)] = '{"aujourdhui":true}';
+  $("sw-efacer").click();
+  await pause(60);
+  const restants = Object.keys(disque).filter((k) => /^s360_/.test(k) || k === "entevyou_pro");
+  ok("\u00ab tout effacer \u00bb n'en laisse aucune", restants.length === 0, restants.join(", "));
 
   console.log(ko ? "\n❌ " + ko + " vérification(s) en échec\n" : "\n✅ reprise de l'entretien : tout passe\n");
   process.exit(ko ? 1 : 0);
