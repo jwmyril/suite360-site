@@ -109,12 +109,17 @@ ok("la barre système suit le thème", /theme-color/.test(tjs), "");
 const PAGES = ["index.html", "entevyou.html", "karye.html", "candidats.html",
   "organisations.html", "egzanp.html", "kondisyon.html", "mesi.html", "404.html", "admin.html"];
 console.log("\n— les pages —");
-// Exemptions ASSUMÉES — en ajouter une est une décision, pas un oubli :
-//   #fff / #ffffff / #111 : le papier (aperçu du CV) et l'encre sur aplat plein ;
-//   #128c4a               : le vert WhatsApp — une marque, pas une couleur de thème ;
-//   #fff3cd / #2b1a06     : le surligneur d'egzanp.html — un surligneur reste
-//                           jaune pâle à encre foncée dans les deux thèmes.
-const EXEMPTS = /#fff\b|#ffffff\b|#111\b|#128c4a\b|#fff3cd\b|#2b1a06\b/i;
+// Exemptions ASSUMÉES — en ajouter une est une décision, pas un oubli.
+//   #128c4a           : le vert WhatsApp, une marque, pas une couleur de thème ;
+//   #fff3cd / #2b1a06 : le surligneur d'egzanp — jaune pâle à encre foncée
+//                       dans les deux thèmes, comme le papier.
+// #fff N'EST PLUS EXEMPTÉ GLOBALEMENT : cette exemption a laissé passer du
+// blanc sur blanc sur 8 pages — les titres, les noms de forfait et LES PRIX
+// invisibles en thème clair, du 21 au 26 août 2026. Le papier (aperçu du CV)
+// et l'encre sur aplat plein sont désormais reconnus par la RÈGLE qui les
+// porte, pas par la couleur.
+// Un #fff en FOND, c'est le papier (apercu du CV, impression) : legitime.
+const EXEMPTS = /#128c4a|#fff3cd|#2b1a06|#fff|#ffffff/i;
 let sansTete = [], apresStyle = [], figees = [];
 PAGES.forEach((p) => {
   const s = fs.readFileSync(path.join(RACINE, p), "utf8");
@@ -127,13 +132,40 @@ PAGES.forEach((p) => {
   const doc = u.match(/var css = "body\{font-family:Calibri[\s\S]*?";/);
   if (doc) u = u.replace(doc[0], "");
   u = u.replace(/@media print\{[\s\S]{0,400}?\}\s*\}/g, "");
-  const restes = (u.match(/(?<![-\w])(color|background|background-color)\s*:\s*#[0-9a-fA-F]{3,6}\b/g) || [])
+  // Les `color:` sont couverts plus bas par un contrôle CONSCIENT DE LA RÈGLE
+  // (une encre sur aplat est légitime, la même encre sans fond ne l'est pas).
+  // Ici on ne juge que les FONDS, où la liste d'exemptions suffit.
+  const restes = (u.match(/(?<![-\w])(background|background-color)\s*:\s*#[0-9a-fA-F]{3,6}\b/g) || [])
     .filter((x) => !EXEMPTS.test(x));
   if (restes.length) figees.push(p + " → " + restes.slice(0, 3).join(", "));
 });
 ok("toutes les pages portent le script de tête", !sansTete.length, sansTete.join(", "));
 ok("il précède toujours la feuille de style", !apresStyle.length, apresStyle.join(", "));
 ok("aucune couleur figée ne subsiste (hors papier et impression)", !figees.length, figees.join(" | "));
+
+// ---- la signature du blanc sur blanc ----------------------------------------
+// Une règle qui pose une encre absolue SANS poser de fond laisse le texte
+// suivre le fond de la page : blanc sur blanc en clair, noir sur noir en
+// sombre. C'est exactement ce qui a effacé les prix.
+const encreSansFond = [];
+PAGES.concat(["assets/style.css"]).forEach((p) => {
+  let u = fs.readFileSync(path.join(RACINE, p), "utf8");
+  const doc = u.match(/var css = "body\{font-family:Calibri[\s\S]*?";/);
+  if (doc) u = u.replace(doc[0], "");
+  u = u.replace(/@media print\{[\s\S]{0,600}?\}\s*\}/g, "");
+  const re = /color\s*:\s*(#fff|#ffffff|#111|#000)/gi;
+  let m;
+  while ((m = re.exec(u))) {
+    const deb = u.lastIndexOf("{", m.index);
+    const fin = u.indexOf("}", m.index);
+    if (deb < 0 || fin < 0) continue;
+    const corps = u.slice(deb + 1, fin);
+    if (/background(-color)?\s*:\s*(?!none|transparent)/.test(corps)) continue; // encre sur aplat : légitime
+    encreSansFond.push(p + " → " + m[0]);
+  }
+});
+ok("aucune encre absolue sans fond (la signature du blanc sur blanc)",
+  !encreSansFond.length, encreSansFond.slice(0, 6).join(" | "));
 
 console.log(ko ? "\n❌ " + ko + " vérification(s) en échec\n" : "\n✅ thème : tout passe\n");
 process.exit(ko ? 1 : 0);
