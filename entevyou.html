@@ -2898,11 +2898,33 @@ by();})();
     } catch (e) {}
   }
 
+  // UN SEUL PROPRIETAIRE DU MICRO. Cette fonction est le seul endroit qui rend
+  // le micro : elle doit donc tout rendre — les trois drapeaux, les trois
+  // libelles, et le flux lui-meme. Sinon Chrome, qui coupe la reconnaissance
+  // apres un silence, laisse le temoin d'enregistrement allume.
   function vwEndRecUi() {
     vwRecOn = false;
     vwMicB.classList.remove("rec");
     vwMicB.textContent = MSG.vwaMic;
     if (vwStatusEl.textContent === MSG.vwaRecing) vwStatus("");
+
+    if (f5RecOn) {
+      f5RecOn = false;
+      var bf5 = document.getElementById("f5-mic");
+      if (bf5) bf5.textContent = MSG.f5Mic;
+    }
+    if (pnRecOn) {
+      pnRecOn = false;
+      var bpn = document.getElementById("pn-mic");
+      if (bpn) bpn.textContent = MSG.f5Mic;
+    }
+    // Le flux reste ouvert tant que les pistes ne sont pas coupees : c'est lui
+    // qui garde le temoin allume et qui fuit d'un enregistrement au suivant.
+    try {
+      if (vwMedia && vwMedia.stream) vwMedia.stream.getTracks().forEach(function (t) { t.stop(); });
+    } catch (e) {}
+    clearTimeout(f5MicTimer);
+    clearTimeout(pnMicTimer);
   }
   function vwStopRec(silent) {
     if (vwSR) { try { vwSR.stop(); } catch (e) {} vwSR = null; }
