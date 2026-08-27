@@ -125,7 +125,7 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
     document.getElementById("all").innerHTML =
       "<tr><th>Événement</th><th style='text-align:right'>Période</th><th style='text-align:right'>Depuis le début</th></tr>" +
       Object.keys(LBL).map(function (k) {
-        return "<tr><td>" + esc(LBL[k]) + "</td><td class='n'>" + (t[k + "_period"] || 0) + "</td><td class='n'>" + (t[k] || 0) + "</td></tr>";
+        return "<tr><td>" + esc(LBL[k]) + "</td><td class='n'>" + (t[k + "_period"] === undefined ? "—" : t[k + "_period"]) + "</td><td class='n'>" + (t[k] || 0) + "</td></tr>";
       }).join("");
 
     document.getElementById("langs").innerHTML =
