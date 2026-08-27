@@ -28,7 +28,7 @@
 // worker ne s'installe pas du tout, silencieusement. On met donc en cache
 // entrée par entrée. `tests/pwa.js` vérifie en plus que chaque chemin de CORE
 // existe réellement dans le dépôt.
-const CACHE = "suite360-v52";
+const CACHE = "suite360-v53";
 const CORE = [
   "/",
   "/index.html",

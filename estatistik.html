@@ -52,7 +52,8 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
       <h1>Tableau de bord Suite 360</h1>
       <p class="st-sub">Compteurs anonymes — aucune donnée personnelle, aucun cookie. Page privée (non indexée).</p>
       <div class="st-bar">
-        <input type="password" id="tok" placeholder="Jeton d'accès (STATS_TOKEN)" autocomplete="off" / aria-label="Jeton aksè">
+        <input type="text" id="st-u" placeholder="Identifiant" autocomplete="username" aria-label="Idantifyan" />
+        <input type="password" id="st-p" placeholder="Mot de passe" autocomplete="current-password" aria-label="Modpas" />
         <select id="days" aria-label="Peryòd la"><option value="7">7 jours</option><option value="30" selected>30 jours</option><option value="90">90 jours</option></select>
         <button class="btn btn-primary" id="go">Afficher</button>
       </div>
@@ -87,20 +88,60 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   var msg = document.getElementById("msg");
   function esc(t){var d=document.createElement("div");d.textContent=t==null?"":String(t);return d.innerHTML;}
 
-  document.getElementById("go").addEventListener("click", function () {
-    var tok = document.getElementById("tok").value.trim();
-    if (!tok) { msg.textContent = "Collez le jeton d'accès."; return; }
+  // Le jeton de session vit dans sessionStorage : il disparait a la fermeture
+  // de l'onglet. Sur cette page consultee de partout, c'est le bon compromis.
+  function jetonMemorise() {
+    try { return sessionStorage.getItem("st_tok") || ""; } catch (e) { return ""; }
+  }
+
+  function charger(tok) {
     msg.textContent = "Chargement…";
-    try { sessionStorage.setItem("st_tok", tok); } catch (e) {}
     fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token: tok, days: parseInt(document.getElementById("days").value, 10) }) })
       .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
       .then(function (res) {
-        if (!res.ok) { msg.textContent = res.body && res.body.error === "forbidden" ? "Jeton refusé." : "Erreur."; return; }
+        if (!res.ok) {
+          if (res.body && res.body.error === "forbidden") {
+            try { sessionStorage.removeItem("st_tok"); } catch (e) {}
+            msg.textContent = "Session expirée. Reconnectez-vous.";
+          } else { msg.textContent = "Erreur."; }
+          return;
+        }
         render(res.body); msg.textContent = "";
       })
       .catch(function () { msg.textContent = "Serveur injoignable."; });
+  }
+
+  document.getElementById("go").addEventListener("click", function () {
+    var u = document.getElementById("st-u").value.trim();
+    var p = document.getElementById("st-p").value;
+    if (!u || !p) { msg.textContent = "Identifiant et mot de passe."; return; }
+    msg.textContent = "Connexion…";
+    fetch(EP.replace("/stats", "/admin-login"), {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user: u, pass: p }),
+    })
+      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+      .then(function (res) {
+        if (!res.ok || !res.body.token) {
+          msg.textContent = res.body && res.body.error === "rate_limited"
+            ? "Trop de tentatives. Réessayez demain." : "Identifiants refusés.";
+          return;
+        }
+        try { sessionStorage.setItem("st_tok", res.body.token); } catch (e) {}
+        document.getElementById("st-p").value = "";
+        charger(res.body.token);
+      })
+      .catch(function () { msg.textContent = "Serveur injoignable."; });
   });
+
+  document.getElementById("days").addEventListener("change", function () {
+    var t = jetonMemorise();
+    if (t) charger(t);
+  });
+
+  // Une session ouverte dans cet onglet reprend sans redemander le mot de passe.
+  (function () { var t = jetonMemorise(); if (t) charger(t); })();
 
   function render(d) {
     var t = d.totals, P = function (k) { return t[k + "_period"] || 0; };

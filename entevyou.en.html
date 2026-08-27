@@ -362,7 +362,7 @@ d.lang=l||"ht";})();
         <label for="sw-jobdesc" id="L-jobdesc">8. Kole deskripsyon pòs la (si ou genyen l)<small>Pou n ka devine kesyon entèvyou yo pi byen</small></label>
         <textarea id="sw-jobdesc" maxlength="3500" style="min-height:80px" placeholder="Kole tèks anons travay la isit la (opsyonèl)…"></textarea>
         <p style="margin:0.4rem 0 0"><button type="button" id="sw-jdbtn" style="background:none;border:1px dashed rgba(46,196,182,0.6);color:var(--accent);border-radius:8px;padding:0.35rem 0.7rem;font:inherit;font-size:0.82rem;cursor:pointer">📎 Oswa voye yon foto / PDF anons lan</button></p>
-        <input type="file" id="sw-jdfile" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,application/pdf,image/png,image/jpeg,image/webp,text/plain" style="display:none" / aria-label="Voye yon foto oswa yon PDF anons lan">
+        <input type="file" id="sw-jdfile" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,application/pdf,image/png,image/jpeg,image/webp,text/plain" style="display:none" aria-label="Voye yon foto oswa yon PDF anons lan" />
 
         <details id="sw-prod" style="margin-top:1rem;padding-top:0.9rem;border-top:1px dashed rgba(46,196,182,0.5)">
           <summary id="sw-prod-t" style="cursor:pointer;color:var(--accent);font-size:0.88rem;font-weight:600;list-style:revert">Mwen gen yon kòd Pro deja</summary>
@@ -579,7 +579,7 @@ d.lang=l||"ht";})();
           <textarea id="cv-old" maxlength="3500" style="min-height:64px" placeholder="Kole tout tèks ansyen CV ou a isit la…"></textarea>
           <p style="margin:0.35rem 0 0"><button type="button" id="cv-oldbtn" style="background:none;border:1px dashed rgba(106,159,216,0.7);color:var(--lien);border-radius:8px;padding:0.35rem 0.7rem;font:inherit;font-size:0.82rem;cursor:pointer">📎 Oswa voye foto / PDF ansyen CV a</button></p>
           <p id="cv-oldnote" style="display:none;color:var(--accent);font-size:0.83rem;margin:0.5rem 0 0;line-height:1.5"></p>
-          <input type="file" id="cv-oldfile" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/png,image/jpeg,image/webp,text/plain" style="display:none" / aria-label="Voye yon foto oswa yon PDF ansyen CV ou">
+          <input type="file" id="cv-oldfile" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/png,image/jpeg,image/webp,text/plain" style="display:none" aria-label="Voye yon foto oswa yon PDF ansyen CV ou" />
           <label for="cv-name" id="Lcv-name">Non konplè ou</label>
           <input type="text" id="cv-name" maxlength="80" autocomplete="off" />
           <label for="cv-contact" id="Lcv-contact">Liy kontak la</label>
@@ -637,9 +637,9 @@ d.lang=l||"ht";})();
         <details class="sw-what" id="pf-box" style="display:none;margin-top:1.2rem">
           <summary id="pf-t">📋 Kenbe pwofil pwofesyonèl mwen sou kòd Pro 90 mwen an</summary>
           <p id="pf-sub" style="color:var(--ink-2);font-size:0.9rem;line-height:1.65;margin:0.6rem 0">Konsa ou ka jwenn pwofil ou ankò sou yon lòt telefòn, ak menm kòd la. Si ou pa mande l, nou pa kenbe anyen.</p>
-          <p style="margin:0.5rem 0"><label style="display:flex;gap:0.5rem;align-items:flex-start;cursor:pointer"><input type="checkbox" id="pf-ok" style="margin-top:0.25rem" / aria-label="Kenbe pwofil mwen sou kòd Pro 90 mwen an"><span id="Lpf-ok">Wi, kenbe pwofil mwen sou kòd Pro 90 mwen an.</span></label></p>
+          <p style="margin:0.5rem 0"><label style="display:flex;gap:0.5rem;align-items:flex-start;cursor:pointer"><input type="checkbox" id="pf-ok" style="margin-top:0.25rem" aria-label="Kenbe pwofil mwen sou kòd Pro 90 mwen an" /><span id="Lpf-ok">Wi, kenbe pwofil mwen sou kòd Pro 90 mwen an.</span></label></p>
           <div id="pf-plus" style="display:none;border-left:2px solid rgba(46,196,182,0.5);padding-left:0.8rem;margin:0.6rem 0">
-            <p style="margin:0.3rem 0"><label style="display:flex;gap:0.5rem;align-items:flex-start;cursor:pointer"><input type="checkbox" id="pf-story" style="margin-top:0.25rem" / aria-label="Aksepte pou n kontakte w pou yon istwa"><span id="Lpf-story">Nou ka kontakte m si istwa m ka ede lòt moun.</span></label></p>
+            <p style="margin:0.3rem 0"><label style="display:flex;gap:0.5rem;align-items:flex-start;cursor:pointer"><input type="checkbox" id="pf-story" style="margin-top:0.25rem" aria-label="Aksepte pou n kontakte w pou yon istwa" /><span id="Lpf-story">Nou ka kontakte m si istwa m ka ede lòt moun.</span></label></p>
             <p id="pf-story-note" style="color:var(--ink-dim);font-size:0.82rem;line-height:1.55;margin:0.3rem 0 0">Kontakte, se pa pibliye. Nou p ap janm mete anyen deyò san nou pa montre w li anvan epi san ou pa dakò.</p>
             <div id="pf-story-champs" style="display:none;margin-top:0.6rem">
               <label for="pf-contact" id="Lpf-contact">Kijan pou nou jwenn ou</label>
@@ -668,11 +668,11 @@ d.lang=l||"ht";})();
           <p id="sw-avi-p" style="margin:0 0 0.6rem;color:var(--ink-dim);font-size:0.86rem;line-height:1.6"></p>
           <textarea id="sw-avi-x" rows="3" maxlength="600" style="width:100%;box-sizing:border-box;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" aria-label="Non ou (si w vle)"></textarea>
           <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem">
-            <input type="text" id="sw-avi-n" maxlength="40" style="flex:1;min-width:130px;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" / aria-label="Vil ou (si w vle)">
-            <input type="text" id="sw-avi-v" maxlength="60" style="flex:1;min-width:130px;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" / aria-label="Sa ou vle di">
+            <input type="text" id="sw-avi-n" maxlength="40" style="flex:1;min-width:130px;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" aria-label="Vil ou (si w vle)" />
+            <input type="text" id="sw-avi-v" maxlength="60" style="flex:1;min-width:130px;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" aria-label="Sa ou vle di" />
           </div>
           <label style="display:flex;gap:0.5rem;align-items:flex-start;margin:0.6rem 0 0.5rem;color:var(--ink-dim);font-size:0.84rem;line-height:1.5;cursor:pointer">
-            <input type="checkbox" id="sw-avi-ok" style="margin-top:0.2rem" / aria-label="Mwen dakò pou nou pibliye sa m ekri a">
+            <input type="checkbox" id="sw-avi-ok" style="margin-top:0.2rem" aria-label="Mwen dakò pou nou pibliye sa m ekri a" />
             <span id="sw-avi-okl"></span>
           </label>
           <button type="button" id="sw-avi-go" class="vw-btn send"></button>
@@ -681,7 +681,7 @@ d.lang=l||"ht";})();
         <div class="sw-cta" id="sw-mail" style="display:none">
           <p id="sw-mail-t" style="margin:0 0 0.5rem">📩 Vle w resevwa konsèy entèvyou yo pa imèl ? (opsyonèl — ou ka retire tèt ou nenpòt lè)</p>
           <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
-            <input type="email" id="sw-mail-in" maxlength="120" placeholder="imel@egzanp.com" style="flex:1;min-width:200px;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" / aria-label="Adrès imèl ou">
+            <input type="email" id="sw-mail-in" maxlength="120" placeholder="imel@egzanp.com" style="flex:1;min-width:200px;background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-15);border-radius:8px;padding:0.5rem 0.7rem;font:inherit" aria-label="Adrès imèl ou" />
             <button type="button" id="sw-mail-go" class="vw-btn send">📩 Enskri m</button>
           </div>
           <p class="sw-status" id="sw-mail-st" aria-live="polite"></p>
