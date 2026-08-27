@@ -90,6 +90,43 @@ for (const p of PAGES) {
 }
 ok("aucune clé manquante ni en trop", !ecarts.length, ecarts.slice(0, 5).join(" | "));
 
+console.log("\n— des mots anglais laissés dans le kreyòl ? —");
+// Le kreyòl s'écrit comme il se prononce. Un mot resté en graphie anglaise au
+// milieu d'une phrase kreyòl se lit deux fois : une pour buter dessus, une pour
+// comprendre. Sur un produit dont l'argument est « nous vous parlons dans votre
+// langue », c'est l'argument lui-même qui se défait.
+//
+// Cette liste s'allonge au fil des retours. Chaque entrée dit la forme à écrire :
+// un banc qui signale sans proposer se contourne en supprimant la phrase.
+const ANGLICISMES = [
+  ["coach", "koach"],
+  ["feedback", "dire ce qui est bon et ce qui est à corriger — pas de mot unique"],
+  ["interview", "entèvyou"],
+  ["meeting", "reyinyon"],
+  ["training", "fòmasyon"],
+  ["skills", "konpetans"],
+];
+
+function dicoHt(s) {
+  const m = /\n\s{2,6}ht: \{/.exec(s);
+  if (!m) return "";
+  const suite = s.slice(m.index + m[0].length);
+  const f = /\n\s{2,6}(fr|en|es): \{/.exec(suite);
+  return f ? suite.slice(0, f.index) : suite;
+}
+
+const fautes = [];
+for (const p of PAGES) {
+  const corps = dicoHt(fs.readFileSync(path.join(RACINE, p), "utf8"));
+  if (!corps) continue;
+  for (const [mot, forme] of ANGLICISMES) {
+    // le mot seul : ni « coachId », ni un identifiant qui le contient
+    const n = (corps.match(new RegExp("(?<![A-Za-z0-9_-])" + mot + "(?![A-Za-z0-9_-])", "gi")) || []).length;
+    if (n) fautes.push(p + " → « " + mot + " » ×" + n + " (écrire : " + forme + ")");
+  }
+}
+ok("aucun anglicisme dans les dictionnaires kreyòl", !fautes.length, fautes.join(" | "));
+
 console.log("\n— chaque page déclare un titre par langue —");
 const sansTitre = PAGES.filter((p) => {
   const s = fs.readFileSync(path.join(RACINE, p), "utf8");
