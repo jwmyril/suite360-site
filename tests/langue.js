@@ -52,6 +52,17 @@ for (const p of PAGES) {
 ok("aucun texte en dur hors de portée de la traduction",
   !orphelins.length, orphelins.slice(0, 6).join(" | "));
 
+console.log("\n— le lien d'évitement suit-il la langue ? —");
+// Il n'a pas d'id, donc le contrôle précédent ne le voyait pas. Il est traduit
+// par assets/theme.js, qui est chargé sur toutes les pages.
+const tjs = fs.readFileSync(path.join(RACINE, "assets", "theme.js"), "utf8");
+ok("les quatre langues du lien d'évitement sont déclarées",
+  ["ht", "fr", "en", "es"].every((l) => new RegExp(l + ":[^}]*saut:").test(tjs)),
+  "manque dans assets/theme.js");
+ok("il est traduit même sur une page sans sélecteur de langue",
+  tjs.indexOf("function poser() {\n    traduire();") > 0,
+  "poser() sort tôt sur admin et estatistik : traduire() doit passer avant");
+
 console.log("\n— les quatre dictionnaires ont-ils les mêmes clés ? —");
 const ecarts = [];
 for (const p of PAGES) {

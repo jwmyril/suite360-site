@@ -26,10 +26,14 @@
      toutes le même dictionnaire, et en ajouter un dixième aurait multiplié les
      occasions d'oublier une langue. */
   var MOTS = {
-    ht: { t: "Aparans", auto: "Otomatik", clair: "Klè", sombre: "Fonse" },
-    fr: { t: "Apparence", auto: "Automatique", clair: "Clair", sombre: "Sombre" },
-    en: { t: "Appearance", auto: "Automatic", clair: "Light", sombre: "Dark" },
-    es: { t: "Apariencia", auto: "Automático", clair: "Claro", sombre: "Oscuro" },
+    ht: { t: "Aparans", auto: "Otomatik", clair: "Klè", sombre: "Fonse",
+          saut: "Ale dirèk nan kontni an" },
+    fr: { t: "Apparence", auto: "Automatique", clair: "Clair", sombre: "Sombre",
+          saut: "Aller directement au contenu" },
+    en: { t: "Appearance", auto: "Automatic", clair: "Light", sombre: "Dark",
+          saut: "Skip to the main content" },
+    es: { t: "Apariencia", auto: "Automático", clair: "Claro", sombre: "Oscuro",
+          saut: "Ir directamente al contenido" },
   };
   function mots() { return MOTS[document.documentElement.lang] || MOTS.ht; }
 
@@ -68,6 +72,10 @@
   var boite = null;
 
   function traduire() {
+    // Le lien d'evitement vit hors du controle : il se traduit meme si le
+    // selecteur d'apparence n'a pas encore ete pose.
+    var lien = document.querySelector("a.saut");
+    if (lien) lien.textContent = mots().saut;
     if (!boite) return;
     var t = mots(), s = boite.querySelector("select");
     s.setAttribute("aria-label", t.t);
@@ -79,6 +87,7 @@
   }
 
   function poser() {
+    traduire();          // le lien d'evitement, meme sur les pages sans selecteur
     var lg = document.getElementById("s360-lang");
     if (!lg || document.getElementById("s360-theme")) return;
     var d = document.createElement("span");
