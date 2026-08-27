@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ht">
+<html lang="es" data-lang-fixe>
 <head>
 <script>/* Thème avant le premier rendu — sans lui, éclair blanc puis bascule.
 Ne pas déplacer plus bas ni différer : il doit précéder les styles. */
@@ -18,23 +18,23 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="canonical" href="https://360.atmart.ltd/" />
-    <link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/index.ht.html" />
+  <link rel="canonical" href="https://360.atmart.ltd/index.es.html" />
+  <link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/index.ht.html" />
   <link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/index.fr.html" />
   <link rel="alternate" hreflang="en" href="https://360.atmart.ltd/index.en.html" />
   <link rel="alternate" hreflang="es" href="https://360.atmart.ltd/index.es.html" />
   <link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/index.html" />
-<meta property="og:url" content="https://360.atmart.ltd/" />
+<meta property="og:url" content="https://360.atmart.ltd/index.es.html" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://360.atmart.ltd/assets/brand/icon-360-512.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:video" content="https://360.atmart.ltd/assets/video/demo-entevyou360.mp4" />
   <meta name="theme-color" content="#0e2240" />
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
-  <title>Suite 360 — prepare entèvyou w, soti ak yon CV ki matche ak anons lan</title>
-  <meta name="description" content="Suite 360 (pa Atmart) : Entèvyou360 prepare w pou entèvyou travay la (gratis · Pro 9,99 $) ; Career360 se coach karyè pèsonèl ou (14,99 $/mwa · 7 jou esè gratis). An kreyòl, français, English, español — ak vwa ou." />
-  <meta property="og:title" content="Suite 360 — zouti pou karyè ou" />
-  <meta property="og:description" content="Entèvyou360 : prepare entèvyou a, gratis. Career360 : coach karyè ou, 7 jou esè gratis. An 4 lang, ak vwa ou." />
+  <title>Suite 360 — prepara tu entrevista y sal con un CV que encaja con la oferta</title>
+  <meta name="description" content="Suite 360 de Atmart: Entèvyou360 te prepara para tu entrevista de trabajo (gratis · Pro 9,99 $), Career360 es tu coach de carrera (14,99 $/mes). En criollo, francés, inglés y español." />
+  <meta property="og:title" content="Suite 360 — prepara tu entrevista y sal con un CV que encaja con la oferta" />
+  <meta property="og:description" content="Suite 360 de Atmart: Entèvyou360 te prepara para tu entrevista de trabajo (gratis · Pro 9,99 $), Career360 es tu coach de carrera (14,99 $/mes). En criollo, francés, inglés y español." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style.css?v=3" />
@@ -386,5 +386,21 @@ d.lang=l||"ht";})();
 </script>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>
 <script defer src="assets/theme.js?v=2"></script>
+<script>/* Adresse par langue : le selecteur change d'ADRESSE, pas seulement
+   d'affichage — sinon l'URL dirait une langue et la page en montrerait une autre. */
+(function () {
+  var sel = document.getElementById("s360-lang");
+  if (!sel) return;
+  var base = "index", racine = "index.html", ici = "es";
+  sel.value = ici;
+  sel.addEventListener("change", function () {
+    var l = sel.value;
+    try { localStorage.setItem("atmart_lang", l); } catch (e) {}
+    location.href = l === ici ? location.href : (base + "." + l + ".html");
+  }, true);
+  var r = document.getElementById("s360-vers-auto");
+  if (r) r.setAttribute("href", racine);
+})();
+</script>
 </body>
 </html>

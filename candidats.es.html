@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="es" data-lang-fixe>
 <head>
 <script>/* Thème avant le premier rendu — sans lui, éclair blanc puis bascule.
 Ne pas déplacer plus bas ni différer : il doit précéder les styles. */
@@ -20,15 +20,15 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
   <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#0e2240" />
-  <title>Préparez votre entretien — Entèvyou360 | Suite 360</title>
-  <meta name="description" content="Préparez votre prochain entretien et repartez avec un CV adapté à l'offre, en moins de 15 minutes — en créole, français, anglais ou espagnol. Gratuit pour commencer, sans compte." />
-  <link rel="canonical" href="https://360.atmart.ltd/candidats.html" />
-    <link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/candidats.ht.html" />
+  <title>Prepara tu entrevista — Entèvyou360 | Suite 360</title>
+  <meta name="description" content="Prepara tu próxima entrevista y sal con un CV adaptado a la oferta, en menos de 15 minutos — en criollo, francés, inglés o español. Gratis para empezar, sin cuenta ni correo." />
+  <link rel="canonical" href="https://360.atmart.ltd/candidats.es.html" />
+  <link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/candidats.ht.html" />
   <link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/candidats.fr.html" />
   <link rel="alternate" hreflang="en" href="https://360.atmart.ltd/candidats.en.html" />
   <link rel="alternate" hreflang="es" href="https://360.atmart.ltd/candidats.es.html" />
   <link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/candidats.html" />
-<meta property="og:url" content="https://360.atmart.ltd/candidats.html" />
+<meta property="og:url" content="https://360.atmart.ltd/candidats.es.html" />
   <meta property="og:image" content="https://360.atmart.ltd/assets/brand/icon-360-512.png" />
   <meta name="twitter:card" content="summary" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -309,5 +309,21 @@ d.lang=l||"fr";})();
 </script>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>
 <script defer src="assets/theme.js?v=2"></script>
+<script>/* Adresse par langue : le selecteur change d'ADRESSE, pas seulement
+   d'affichage — sinon l'URL dirait une langue et la page en montrerait une autre. */
+(function () {
+  var sel = document.getElementById("s360-lang");
+  if (!sel) return;
+  var base = "candidats", racine = "candidats.html", ici = "es";
+  sel.value = ici;
+  sel.addEventListener("change", function () {
+    var l = sel.value;
+    try { localStorage.setItem("atmart_lang", l); } catch (e) {}
+    location.href = l === ici ? location.href : (base + "." + l + ".html");
+  }, true);
+  var r = document.getElementById("s360-vers-auto");
+  if (r) r.setAttribute("href", racine);
+})();
+</script>
 </body>
 </html>

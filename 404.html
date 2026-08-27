@@ -26,6 +26,10 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   <link rel="stylesheet" href="/assets/style.css?v=3" />
 <script>/* lang otomatik */
 (function(){var S={fr:1,ht:1,en:1,es:1},d=document.documentElement,s=null;
+/* Une page servie a une adresse par langue DECLARE sa langue : la detection
+   ne doit pas passer par-dessus, sinon l'adresse dit une chose et la page en
+   affiche une autre — et Google indexe la mauvaise. */
+if(d.hasAttribute("data-lang-fixe"))return;
 try{s=localStorage.getItem("atmart_lang")}catch(e){}
 var l=s&&S[s]?s:null;
 if(!l){var n=navigator.languages||[navigator.language||""];

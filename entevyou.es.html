@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ht">
+<html lang="es" data-lang-fixe>
 <head>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' https://atmart-chat.atmartllc.workers.dev https://fonts.googleapis.com https://fonts.gstatic.com; worker-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -8,21 +8,21 @@
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="canonical" href="https://360.atmart.ltd/entevyou.html" />
+  <link rel="canonical" href="https://360.atmart.ltd/entevyou.es.html" />
   <link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/entevyou.ht.html" />
   <link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/entevyou.fr.html" />
   <link rel="alternate" hreflang="en" href="https://360.atmart.ltd/entevyou.en.html" />
   <link rel="alternate" hreflang="es" href="https://360.atmart.ltd/entevyou.es.html" />
   <link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/entevyou.html" />
-  <meta property="og:url" content="https://360.atmart.ltd/entevyou.html" />
+<meta property="og:url" content="https://360.atmart.ltd/entevyou.es.html" />
   <meta property="og:image" content="https://360.atmart.ltd/assets/brand/icon-360-512.png" />
   <meta name="twitter:card" content="summary" />
   <meta name="theme-color" content="#0a1a2f" />
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
-  <title>Entèvyou360 — vin pare pou entèvyou travay ou | Suite 360</title>
-  <meta name="description" content="Entèvyou360 (gratis) : 6 kesyon, 2 minit — konnen fòs ou, feblès ou ak 3 aks ou anvan entèvyou travay la. Vèsyon Pro : kesyon yo pral poze OU + repons ak prèv OU. An kreyòl, français, English, español." />
-  <meta property="og:title" content="Entèvyou360 — vin pare pou entèvyou travay ou" />
-  <meta property="og:description" content="6 kesyon, 2 minit — konnen fòs ou anvan entèvyou a. Gratis, an 4 lang. Pro : kesyon yo pral poze OU + repons ak prèv OU." />
+  <title>Entèvyou360 — llega preparado a tu entrevista de trabajo | Suite 360</title>
+  <meta name="description" content="Entèvyou360 gratis: 6 preguntas, 2 minutos — conoce tus fuerzas, tus fallas y tus 3 ejes antes de la entrevista. Practica en voz alta y sal con un CV por competencias." />
+  <meta property="og:title" content="Entèvyou360 — llega preparado a tu entrevista de trabajo | Suite 360" />
+  <meta property="og:description" content="Entèvyou360 gratis: 6 preguntas, 2 minutos — conoce tus fuerzas, tus fallas y tus 3 ejes antes de la entrevista. Practica en voz alta y sal con un CV por competencias." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
   <script>/* Theme avant le premier rendu. Ne pas differer. */
@@ -3716,7 +3716,23 @@ by();})();
       + ".foot{color:#666;font-size:9pt;margin-top:18pt;border-top:1px solid #ccc;padding-top:6pt}";
     var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">'
       + '<head><meta charset="utf-8" /><title>' + esc(titre) + "</title><style>" + css + "</style></head><body>"
-      + corps + "</body></html>";
+      + corps + "<script>/* Adresse par langue : le selecteur change d'ADRESSE, pas seulement
+   d'affichage — sinon l'URL dirait une langue et la page en montrerait une autre. */
+(function () {
+  var sel = document.getElementById("s360-lang");
+  if (!sel) return;
+  var base = "entevyou", racine = "entevyou.html", ici = "es";
+  sel.value = ici;
+  sel.addEventListener("change", function () {
+    var l = sel.value;
+    try { localStorage.setItem("atmart_lang", l); } catch (e) {}
+    location.href = l === ici ? location.href : (base + "." + l + ".html");
+  }, true);
+  var r = document.getElementById("s360-vers-auto");
+  if (r) r.setAttribute("href", racine);
+})();
+</script>
+</body></html>";
     var a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob(["\ufeff" + html], { type: "application/msword" }));
     a.download = nom + ".doc";

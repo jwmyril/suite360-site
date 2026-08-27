@@ -1,10 +1,278 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://360.atmart.ltd/</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://360.atmart.ltd/candidats.html</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://360.atmart.ltd/organisations.html</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://360.atmart.ltd/egzanp.html</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://360.atmart.ltd/entevyou.html</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://360.atmart.ltd/karye.html</loc><lastmod>2026-08-10</lastmod></url>
-  <url><loc>https://360.atmart.ltd/kondisyon.html</loc><lastmod>2026-08-10</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://360.atmart.ltd/</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/index.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/index.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/index.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/index.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/index.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/index.ht.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/index.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/index.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/index.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/index.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/index.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/index.fr.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/index.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/index.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/index.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/index.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/index.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/index.en.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/index.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/index.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/index.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/index.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/index.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/index.es.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/index.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/index.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/index.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/index.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/index.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/entevyou.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/entevyou.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/entevyou.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/entevyou.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/entevyou.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/entevyou.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/entevyou.ht.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/entevyou.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/entevyou.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/entevyou.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/entevyou.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/entevyou.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/entevyou.fr.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/entevyou.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/entevyou.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/entevyou.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/entevyou.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/entevyou.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/entevyou.en.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/entevyou.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/entevyou.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/entevyou.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/entevyou.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/entevyou.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/entevyou.es.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/entevyou.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/entevyou.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/entevyou.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/entevyou.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/entevyou.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/karye.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/karye.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/karye.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/karye.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/karye.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/karye.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/karye.ht.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/karye.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/karye.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/karye.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/karye.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/karye.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/karye.fr.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/karye.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/karye.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/karye.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/karye.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/karye.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/karye.en.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/karye.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/karye.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/karye.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/karye.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/karye.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/karye.es.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/karye.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/karye.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/karye.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/karye.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/karye.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/candidats.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/candidats.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/candidats.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/candidats.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/candidats.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/candidats.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/candidats.ht.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/candidats.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/candidats.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/candidats.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/candidats.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/candidats.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/candidats.fr.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/candidats.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/candidats.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/candidats.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/candidats.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/candidats.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/candidats.en.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/candidats.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/candidats.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/candidats.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/candidats.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/candidats.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/candidats.es.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/candidats.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/candidats.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/candidats.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/candidats.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/candidats.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/organisations.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/organisations.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/organisations.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/organisations.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/organisations.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/organisations.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/organisations.ht.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/organisations.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/organisations.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/organisations.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/organisations.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/organisations.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/organisations.fr.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/organisations.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/organisations.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/organisations.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/organisations.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/organisations.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/organisations.en.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/organisations.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/organisations.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/organisations.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/organisations.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/organisations.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/organisations.es.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/organisations.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/organisations.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/organisations.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/organisations.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/organisations.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/egzanp.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/egzanp.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/egzanp.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/egzanp.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/egzanp.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/egzanp.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/egzanp.ht.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/egzanp.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/egzanp.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/egzanp.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/egzanp.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/egzanp.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/egzanp.fr.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/egzanp.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/egzanp.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/egzanp.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/egzanp.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/egzanp.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/egzanp.en.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/egzanp.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/egzanp.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/egzanp.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/egzanp.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/egzanp.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/egzanp.es.html</loc>
+    <lastmod>2026-08-26</lastmod>
+      <xhtml:link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/egzanp.ht.html" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/egzanp.fr.html" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://360.atmart.ltd/egzanp.en.html" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://360.atmart.ltd/egzanp.es.html" />
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/egzanp.html" />
+  </url>
+  <url>
+    <loc>https://360.atmart.ltd/kondisyon.html</loc>
+    <lastmod>2026-08-26</lastmod>
+  </url>
 </urlset>

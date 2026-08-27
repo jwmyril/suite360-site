@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ht" data-lang-fixe>
 <head>
 <script>/* Thème avant le premier rendu — sans lui, éclair blanc puis bascule.
 Ne pas déplacer plus bas ni différer : il doit précéder les styles. */
@@ -18,18 +18,18 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="canonical" href="https://360.atmart.ltd/karye.html" />
-    <link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/karye.ht.html" />
+  <link rel="canonical" href="https://360.atmart.ltd/karye.ht.html" />
+  <link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/karye.ht.html" />
   <link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/karye.fr.html" />
   <link rel="alternate" hreflang="en" href="https://360.atmart.ltd/karye.en.html" />
   <link rel="alternate" hreflang="es" href="https://360.atmart.ltd/karye.es.html" />
   <link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/karye.html" />
-<meta property="og:url" content="https://360.atmart.ltd/karye.html" />
+<meta property="og:url" content="https://360.atmart.ltd/karye.ht.html" />
   <meta property="og:image" content="https://360.atmart.ltd/assets/brand/icon-360-512.png" />
   <meta name="twitter:card" content="summary" />
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
-  <title>Career360 — votre coach de carrière à l'ère de l'IA | Suite 360</title>
-  <meta name="description" content="Career360 : le coach de carrière par abonnement de la Suite 360 — il vous accompagne dans votre nouveau poste, votre recherche d'emploi et votre progression, en kreyòl, français, anglais ou espagnol. Dossier anonyme par code, effaçable à tout moment." />
+  <title>Career360 — koach karyè w nan epòk IA a | Suite 360</title>
+  <meta name="description" content="Career360 : koach karyè w chak semèn, 14,99 $/mwa. Li akonpaye w nan nouvo pòs ou, nan chèche travay ou ak nan grandi. Dosye san non — kòd ou se kont ou. Esè 7 jou gratis." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
   <meta name="theme-color" content="#0e2240" />
@@ -796,5 +796,21 @@ by();})();
 </script>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>
 <script defer src="assets/theme.js?v=2"></script>
+<script>/* Adresse par langue : le selecteur change d'ADRESSE, pas seulement
+   d'affichage — sinon l'URL dirait une langue et la page en montrerait une autre. */
+(function () {
+  var sel = document.getElementById("s360-lang");
+  if (!sel) return;
+  var base = "karye", racine = "karye.html", ici = "ht";
+  sel.value = ici;
+  sel.addEventListener("change", function () {
+    var l = sel.value;
+    try { localStorage.setItem("atmart_lang", l); } catch (e) {}
+    location.href = l === ici ? location.href : (base + "." + l + ".html");
+  }, true);
+  var r = document.getElementById("s360-vers-auto");
+  if (r) r.setAttribute("href", racine);
+})();
+</script>
 </body>
 </html>

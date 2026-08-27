@@ -16,6 +16,10 @@ DST = os.path.join(ROOT, "entevyou.html")
 
 HEAD_LANG = '''<script>/* lang otomatik */
 (function(){var S={fr:1,ht:1,en:1,es:1},d=document.documentElement,s=null;
+/* Une page servie a une adresse par langue DECLARE sa langue : la detection
+   ne doit pas passer par-dessus, sinon l'adresse dit une chose et la page en
+   affiche une autre — et Google indexe la mauvaise. */
+if(d.hasAttribute("data-lang-fixe"))return;
 try{s=localStorage.getItem("atmart_lang")}catch(e){}
 var l=s&&S[s]?s:null;
 if(!l){var n=navigator.languages||[navigator.language||""];
@@ -93,6 +97,11 @@ s = s.replace('<link rel="icon" type="image/png" href="assets/brand/logo-32.png"
               '<link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />\n'
               '  <link rel="manifest" href="manifest.webmanifest" />\n'
               '  <link rel="canonical" href="https://360.atmart.ltd/entevyou.html" />\n'
+              '  <link rel="alternate" hreflang="ht" href="https://360.atmart.ltd/entevyou.ht.html" />\n'
+              '  <link rel="alternate" hreflang="fr" href="https://360.atmart.ltd/entevyou.fr.html" />\n'
+              '  <link rel="alternate" hreflang="en" href="https://360.atmart.ltd/entevyou.en.html" />\n'
+              '  <link rel="alternate" hreflang="es" href="https://360.atmart.ltd/entevyou.es.html" />\n'
+              '  <link rel="alternate" hreflang="x-default" href="https://360.atmart.ltd/entevyou.html" />\n'
               '  <meta property="og:url" content="https://360.atmart.ltd/entevyou.html" />\n'
               '  <meta property="og:image" content="https://360.atmart.ltd/assets/brand/icon-360-512.png" />\n'
               '  <meta name="twitter:card" content="summary" />\n'
