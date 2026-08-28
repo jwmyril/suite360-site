@@ -18,7 +18,13 @@
 const fs = require("fs");
 const path = require("path");
 const RACINE = path.join(__dirname, "..");
-const PAGES = fs.readdirSync(RACINE).filter((f) => f.endsWith(".html"));
+// admin.html et estatistik.html ne sont plus que des redirections de quinze
+// lignes depuis le 28/08/2026 : les vraies pages sont servies par le Worker, et
+// c'est Atmart_chat_worker/tests/pages-admin.js qui les controle. Exiger un
+// <main> et un lien d'evitement sur une redirection n'aiderait personne.
+const REDIRECTIONS = ["admin.html", "estatistik.html"];
+const PAGES = fs.readdirSync(RACINE)
+  .filter((f) => f.endsWith(".html") && !REDIRECTIONS.includes(f));
 
 let ko = 0;
 const ok = (nom, cond, detail) => {

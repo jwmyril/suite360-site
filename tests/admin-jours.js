@@ -8,7 +8,11 @@
    USAGE :  node tests/admin-jours.js
    =========================================================================== */
 const fs = require("fs");
-const src = fs.readFileSync(require("path").join(__dirname, "..", "admin.html"), "utf8");
+// Le tableau de bord est servi par le Worker depuis le 28/08/2026 : GitHub
+// Pages ne pouvait poser aucun en-tete sur la page ou se tape le mot de passe.
+// Le banc suit la page, sinon il controlerait une redirection.
+const src = fs.readFileSync(require("path").join(
+  __dirname, "..", "..", "Atmart_chat_worker", "pages", "admin.html"), "utf8");
 
 function extrait(nom) {
   const i = src.indexOf("function " + nom + "(");

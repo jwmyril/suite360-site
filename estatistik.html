@@ -1,198 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<script>/* Thème avant le premier rendu — sans lui, éclair blanc puis bascule.
-Ne pas déplacer plus bas ni différer : il doit précéder les styles. */
-(function(){try{var v=localStorage.getItem("atmart_apparence"),
-d=v==="sombre"||(v!=="clair"&&window.matchMedia&&
-window.matchMedia("(prefers-color-scheme: dark)").matches);
-if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"light");
-}catch(e){}})();
-</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>L'administration a déménagé — Suite 360</title>
+  <!--
+    Cette page ne contient PLUS de formulaire de connexion.
 
-<meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' https://atmart-chat.atmartllc.workers.dev https://fonts.googleapis.com https://fonts.gstatic.com; worker-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
+    GitHub Pages ne permet de poser aucun en-tête de réponse : ni HSTS, ni un
+    vrai Content-Security-Policy, ni frame-ancestors. Tant que le mot de passe
+    se tapait ici, c'était irréparable. L'administration est donc servie par le
+    Worker, où la réponse nous appartient entièrement.
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
-  <link rel="icon" type="image/png" href="assets/brand/logo-360-32.png" />
-  <title>Tableau de bord — Suite 360 (privé)</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style.css?v=3" />
+    Il ne reste ici qu'une redirection. Elle ne porte aucun secret.
+  -->
+  <meta http-equiv="refresh" content="0; url=https://atmart-chat.atmartllc.workers.dev/estatistik" />
   <style>
-    .st-wrap{max-width:900px;margin:0 auto;padding:1rem 0 3rem}
-    .st-wrap h1{font-family:"Space Grotesk",sans-serif;font-size:1.5rem;color:var(--ink);margin:0 0 0.3rem}
-    .st-sub{color:#9db2c7;font-size:0.86rem;margin:0 0 1.4rem}
-    .st-bar{display:flex;gap:0.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1.4rem}
-    .st-bar input,.st-bar select{background:var(--surface-2);color:var(--ink);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.5rem 0.7rem;font:inherit;font-size:0.9rem}
-    .st-bar input{flex:1;min-width:220px}
-    .st-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0.8rem;margin-bottom:1.4rem}
-    .st-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1rem}
-    .st-card .n{font-family:"Space Grotesk",sans-serif;font-size:1.8rem;color:#2ec4b6;line-height:1}
-    .st-card .l{color:#9db2c7;font-size:0.8rem;margin-top:0.3rem}
-    table{width:100%;border-collapse:collapse;font-size:0.88rem}
-    th,td{text-align:left;padding:0.5rem 0.6rem;border-bottom:1px solid rgba(255,255,255,0.08);color:#d7e3f0}
-    th{color:#9db2c7;font-weight:600;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.04em}
-    td.n{text-align:right;font-family:"Space Grotesk",sans-serif}
-    h2{font-family:"Space Grotesk",sans-serif;color:var(--ink);font-size:1.1rem;margin:2rem 0 0.5rem}
-    .st-msg{color:#f4a261;font-size:0.9rem;min-height:1.2em}
-    .st-org{background:rgba(106,159,216,0.08);border:1px solid rgba(106,159,216,0.4);border-radius:10px;padding:0.8rem 1rem;margin-bottom:0.6rem;font-size:0.88rem;color:#d7e3f0;line-height:1.6}
-    .st-org b{color:var(--ink)}
+    body { font-family: system-ui, Segoe UI, Arial, sans-serif; max-width: 34rem;
+           margin: 4rem auto; padding: 0 1.25rem; line-height: 1.6; color: #102033; }
+    a { color: #0b6b7f; }
   </style>
 </head>
 <body>
-<main id="contenu" tabindex="-1">
-<a href="#contenu" class="saut">Ale dirèk nan kontni an</a>
-
-<section class="hero" style="padding-bottom:0">
-  <div class="container">
-    <div class="st-wrap">
-      <h1>Tableau de bord Suite 360</h1>
-      <p class="st-sub">Compteurs anonymes — aucune donnée personnelle, aucun cookie. Page privée (non indexée).</p>
-      <div class="st-bar">
-        <input type="text" id="st-u" placeholder="Identifiant" autocomplete="username" aria-label="Idantifyan" />
-        <input type="password" id="st-p" placeholder="Mot de passe" autocomplete="current-password" aria-label="Modpas" />
-        <select id="days" aria-label="Peryòd la"><option value="7">7 jours</option><option value="30" selected>30 jours</option><option value="90">90 jours</option></select>
-        <button class="btn btn-primary" id="go">Afficher</button>
-      </div>
-      <p class="st-msg" id="msg"></p>
-      <div id="out" style="display:none">
-        <div class="st-kpi" id="kpi"></div>
-        <h2>Entonnoir</h2>
-        <table id="funnel"></table>
-        <h2>Tous les événements</h2>
-        <table id="all"></table>
-        <h2>Langues</h2>
-        <table id="langs"></table>
-        <h2>Demandes d'organisations</h2>
-        <div id="orgs"></div>
-      </div>
-    </div>
-  </div>
-</section>
-<script>
-(function () {
-  var EP = "https://atmart-chat.atmartllc.workers.dev/stats";
-  var LBL = {
-    view_home: "Accueil vu", view_kandida: "Page candidats", view_org: "Page organisations",
-    view_entevyou: "App Entèvyou360", view_karye: "App Career360",
-    video_play: "Vidéo lancée", sample_open: "Exemple consulté",
-    swot_start: "SWOT commencé", swot_done: "SWOT généré",
-    voice_start: "Micro utilisé", voice_feedback: "Feedback vocal reçu",
-    jd_upload: "Annonce jointe", cv_done: "CV généré", mail_signup: "Inscription e-mail",
-    buy_click_kit: "Clic achat Kit", buy_click_90: "Clic achat 90 jours", buy_click_career: "Clic achat Career360",
-    trial_created: "Essai Career360 créé", org_demo_request: "Demande organisation", code_delivered: "VENTE (code livré)",
-  };
-  var msg = document.getElementById("msg");
-  function esc(t){var d=document.createElement("div");d.textContent=t==null?"":String(t);return d.innerHTML;}
-
-  // Le jeton de session vit dans sessionStorage : il disparait a la fermeture
-  // de l'onglet. Sur cette page consultee de partout, c'est le bon compromis.
-  function jetonMemorise() {
-    try { return sessionStorage.getItem("st_tok") || ""; } catch (e) { return ""; }
-  }
-
-  function charger(tok) {
-    msg.textContent = "Chargement…";
-    fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token: tok, days: parseInt(document.getElementById("days").value, 10) }) })
-      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
-      .then(function (res) {
-        if (!res.ok) {
-          if (res.body && res.body.error === "forbidden") {
-            try { sessionStorage.removeItem("st_tok"); } catch (e) {}
-            msg.textContent = "Session expirée. Reconnectez-vous.";
-          } else { msg.textContent = "Erreur."; }
-          return;
-        }
-        render(res.body); msg.textContent = "";
-      })
-      .catch(function () { msg.textContent = "Serveur injoignable."; });
-  }
-
-  document.getElementById("go").addEventListener("click", function () {
-    var u = document.getElementById("st-u").value.trim();
-    var p = document.getElementById("st-p").value;
-    if (!u || !p) { msg.textContent = "Identifiant et mot de passe."; return; }
-    msg.textContent = "Connexion…";
-    fetch(EP.replace("/stats", "/admin-login"), {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user: u, pass: p }),
-    })
-      .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
-      .then(function (res) {
-        if (!res.ok || !res.body.token) {
-          msg.textContent = res.body && res.body.error === "rate_limited"
-            ? "Trop de tentatives. Réessayez demain." : "Identifiants refusés.";
-          return;
-        }
-        try { sessionStorage.setItem("st_tok", res.body.token); } catch (e) {}
-        document.getElementById("st-p").value = "";
-        charger(res.body.token);
-      })
-      .catch(function () { msg.textContent = "Serveur injoignable."; });
-  });
-
-  document.getElementById("days").addEventListener("change", function () {
-    var t = jetonMemorise();
-    if (t) charger(t);
-  });
-
-  // Une session ouverte dans cet onglet reprend sans redemander le mot de passe.
-  (function () { var t = jetonMemorise(); if (t) charger(t); })();
-
-  function render(d) {
-    var t = d.totals, P = function (k) { return t[k + "_period"] || 0; };
-    document.getElementById("out").style.display = "";
-    var kpis = [
-      ["Ventes (période)", P("code_delivered")], ["SWOT générés", P("swot_done")],
-      ["Essais Career360", P("trial_created")], ["Demandes organisations", P("org_demo_request")],
-      ["CV générés", P("cv_done")], ["Sessions vocales", P("voice_start")],
-    ];
-    document.getElementById("kpi").innerHTML = kpis.map(function (k) {
-      return '<div class="st-card"><div class="n">' + k[1] + '</div><div class="l">' + esc(k[0]) + '</div></div>';
-    }).join("");
-
-    var f = [["Accueil vu", P("view_home")], ["Page candidats", P("view_kandida")],
-             ["SWOT généré", P("swot_done")], ["Clic achat", P("buy_click_kit") + P("buy_click_90")],
-             ["Vente", P("code_delivered")]];
-    document.getElementById("funnel").innerHTML =
-      "<tr><th>Étape</th><th style='text-align:right'>Période</th><th style='text-align:right'>% de l'étape précédente</th></tr>" +
-      f.map(function (row, i) {
-        var prev = i ? f[i - 1][1] : 0;
-        var pct = i && prev ? Math.round((row[1] / prev) * 1000) / 10 + " %" : "—";
-        return "<tr><td>" + esc(row[0]) + "</td><td class='n'>" + row[1] + "</td><td class='n'>" + pct + "</td></tr>";
-      }).join("");
-
-    document.getElementById("all").innerHTML =
-      "<tr><th>Événement</th><th style='text-align:right'>Période</th><th style='text-align:right'>Depuis le début</th></tr>" +
-      Object.keys(LBL).map(function (k) {
-        return "<tr><td>" + esc(LBL[k]) + "</td><td class='n'>" + (t[k + "_period"] === undefined ? "—" : t[k + "_period"]) + "</td><td class='n'>" + (t[k] || 0) + "</td></tr>";
-      }).join("");
-
-    document.getElementById("langs").innerHTML =
-      "<tr><th>Langue</th><th style='text-align:right'>Événements</th></tr>" +
-      ["ht", "fr", "en", "es"].map(function (l) {
-        return "<tr><td>" + l + "</td><td class='n'>" + ((d.byLang && d.byLang[l]) || 0) + "</td></tr>";
-      }).join("");
-
-    var orgs = d.orgRequests || [];
-    document.getElementById("orgs").innerHTML = orgs.length
-      ? orgs.map(function (o) {
-          return '<div class="st-org"><b>' + esc(o.org) + "</b> — " + esc(o.city || "") + " · " + esc(o.size || "") +
-            "<br />" + esc(o.person || "") + " · <a href='mailto:" + esc(o.email) + "' style='color:#2ec4b6'>" + esc(o.email) + "</a> · " + esc(o.phone || "") +
-            (o.message ? "<br /><em>" + esc(o.message) + "</em>" : "") +
-            "<br /><span style='color:#9db2c7;font-size:0.8rem'>" + esc(o.ts) + " · " + esc(o.lang) + "</span></div>";
-        }).join("")
-      : "<p style='color:#9db2c7;font-size:0.88rem'>Aucune demande pour l'instant.</p>";
-  }
-
-  try { var k = sessionStorage.getItem("st_tok"); if (k) { document.getElementById("tok").value = k; document.getElementById("go").click(); } } catch (e) {}
-})();
-</script>
-</main>
-<script defer src="assets/theme.js?v=2"></script>
+  <h1>L'administration a déménagé</h1>
+  <p>Elle est désormais servie par le Worker, seule origine où de vrais en-têtes
+     de sécurité peuvent être posés.</p>
+  <p><a href="https://atmart-chat.atmartllc.workers.dev/estatistik">Continuer vers la nouvelle adresse</a>
+     — pensez à remplacer votre signet.</p>
+  <p><b>Vous devrez vous reconnecter :</b> une session est liée à son origine,
+     celle d'ici ne vaut rien là-bas.</p>
 </body>
 </html>

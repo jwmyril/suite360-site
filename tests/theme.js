@@ -107,7 +107,9 @@ ok("la barre système suit le thème", /theme-color/.test(tjs), "");
 
 // ---------------------------------------------------------------- les pages
 const PAGES = ["index.html", "entevyou.html", "karye.html", "candidats.html",
-  "organisations.html", "egzanp.html", "kondisyon.html", "mesi.html", "404.html", "admin.html"];
+  "organisations.html", "egzanp.html", "kondisyon.html", "mesi.html", "404.html"];
+// admin.html est parti chez le Worker (voir Atmart_chat_worker/pages/). Ce qui
+// reste ici est une redirection : elle n'a pas de theme a porter.
 console.log("\n— les pages —");
 // Exemptions ASSUMÉES — en ajouter une est une décision, pas un oubli.
 //   #128c4a           : le vert WhatsApp, une marque, pas une couleur de thème ;
