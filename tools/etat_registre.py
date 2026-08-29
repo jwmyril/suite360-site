@@ -346,6 +346,24 @@ def _():
     return c(not manquants, "sans <main> ou lien d'evitement : " + (", ".join(manquants) or "aucune"))
 
 
+@controle("V4-06")
+def _():
+    # On MESURE, on ne fait pas confiance a une valeur ecrite dans un commentaire.
+    def lum(h):
+        h = h.lstrip("#")
+        v = [int(h[i:i + 2], 16) / 255.0 for i in (0, 2, 4)]
+        v = [(x / 12.92) if x <= 0.03928 else ((x + 0.055) / 1.055) ** 2.4 for x in v]
+        return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2]
+
+    s = page("entevyou.html")
+    mauvais = []
+    for fond in set(re.findall(r"background:\s*(#[0-9a-fA-F]{6})[^}]{0,120}?color:\s*#fff", s, re.I)):
+        r = (1.05) / (lum(fond) + 0.05)
+        if r < 4.5:
+            mauvais.append("%s (%.2f:1)" % (fond, r))
+    return c(not mauvais, "blanc sous 4,5:1 sur : " + (", ".join(mauvais) or "aucun aplat"))
+
+
 humain("V4-01", "14 controles sans etiquette — relancer le controle d'accessibilite")
 humain("V4-02", 'role="tablist" sans role="tab" — verifier au navigateur')
 humain("V4-05", "aria-live sur Career360 — verifier l'annonce des reponses")

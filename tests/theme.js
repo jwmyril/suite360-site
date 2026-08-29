@@ -112,7 +112,13 @@ const PAGES = ["index.html", "entevyou.html", "karye.html", "candidats.html",
 // reste ici est une redirection : elle n'a pas de theme a porter.
 console.log("\n— les pages —");
 // Exemptions ASSUMÉES — en ajouter une est une décision, pas un oubli.
-//   #128c4a           : le vert WhatsApp, une marque, pas une couleur de thème ;
+//   #118848           : le vert d'envoi, une marque, pas une couleur de thème.
+//                       ⚠ Une exemption de THÈME ne vaut pas quitus sur le
+//                       CONTRASTE : dans sa teinte précédente (#128c4a) ce vert
+//                       portait du blanc à 4,31:1, sous le seuil AA — et cette
+//                       ligne le dispensait d'être mesuré. Assombri à #118848
+//                       (4,53:1) le 28/08/2026. Deux contrôles distincts :
+//                       la cohérence de thème ici, le contraste dans acces.js ;
 //   #fff3cd / #2b1a06 : le surligneur d'egzanp — jaune pâle à encre foncée
 //                       dans les deux thèmes, comme le papier.
 // #fff N'EST PLUS EXEMPTÉ GLOBALEMENT : cette exemption a laissé passer du
@@ -121,7 +127,7 @@ console.log("\n— les pages —");
 // et l'encre sur aplat plein sont désormais reconnus par la RÈGLE qui les
 // porte, pas par la couleur.
 // Un #fff en FOND, c'est le papier (apercu du CV, impression) : legitime.
-const EXEMPTS = /#128c4a|#fff3cd|#2b1a06|#fff|#ffffff/i;
+const EXEMPTS = /#118848|#fff3cd|#2b1a06|#fff|#ffffff/i;
 let sansTete = [], apresStyle = [], figees = [];
 PAGES.forEach((p) => {
   const s = fs.readFileSync(path.join(RACINE, p), "utf8");

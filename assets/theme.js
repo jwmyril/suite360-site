@@ -60,13 +60,32 @@
     if (choix === "auto") e.removeAttribute("data-theme");
     else e.setAttribute("data-theme", choix === "sombre" ? "dark" : "light");
 
-    var m = document.querySelector('meta[name="theme-color"]');
-    if (!m) {
-      m = document.createElement("meta");
+    /* La barre du navigateur. Les pages declarent DEUX balises `theme-color`
+       portant chacune un `media` : c'est le seul etat correct avant que ce
+       script ne tourne, ou s'il ne tourne pas du tout — auparavant une balise
+       unique et figee en sombre laissait la barre bleu nuit sur une page claire.
+
+       On les remplace donc entierement au lieu d'ecraser le contenu de la
+       premiere : lui poser la couleur sombre alors que son `media` dit « clair »
+       donnerait une balise qui se contredit. En « auto », on repose la paire —
+       elle suit le reglage systeme meme s'il change pendant la visite, ce qu'une
+       valeur figee ne peut pas faire. */
+    var vieilles = document.querySelectorAll('meta[name="theme-color"]');
+    for (var i = 0; i < vieilles.length; i++) vieilles[i].parentNode.removeChild(vieilles[i]);
+
+    var pose = function (couleur, media) {
+      var m = document.createElement("meta");
       m.setAttribute("name", "theme-color");
+      m.setAttribute("content", couleur);
+      if (media) m.setAttribute("media", media);
       document.head.appendChild(m);
+    };
+    if (choix === "auto") {
+      pose(BARRE.clair, "(prefers-color-scheme: light)");
+      pose(BARRE.sombre, "(prefers-color-scheme: dark)");
+    } else {
+      pose(BARRE[effectif(choix)], null);
     }
-    m.setAttribute("content", BARRE[effectif(choix)]);
   }
 
   var boite = null;

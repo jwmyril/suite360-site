@@ -105,7 +105,12 @@ s = s.replace('<link rel="icon" type="image/png" href="assets/brand/logo-32.png"
               '  <meta property="og:url" content="https://360.atmart.ltd/entevyou.html" />\n'
               '  <meta property="og:image" content="https://360.atmart.ltd/assets/brand/icon-360-512.png" />\n'
               '  <meta name="twitter:card" content="summary" />\n'
-              '  <meta name="theme-color" content="#0a1a2f" />')
+              # Deux balises et non une : une seule, figée en sombre, laissait la
+              # barre du navigateur bleu nuit sur une page claire — avant que
+              # theme.js ne tourne, ou s'il ne tourne pas du tout. theme.js les
+              # remplace ensuite selon le choix réel.
+              '  <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />\n'
+              '  <meta name="theme-color" content="#0a1a2f" media="(prefers-color-scheme: dark)" />')
 # Injecter le service worker sur le DERNIER </body> uniquement : le JavaScript
 # de la page contient lui-même la chaîne "</body>" (générateur de fichier .doc),
 # et un replace() global casserait ce script.

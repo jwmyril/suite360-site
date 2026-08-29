@@ -163,7 +163,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **Vérification** Lecture des colonnes Gratuit dans les 4 langues + `grep "gratuitement" $PLAN`.
 
 ### V1-08 · Déplacer le CV dans la colonne Gratuit
-- **Gravité** MOYEN — **Effort** S — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** S — **Statut** VÉRIFIÉ
 - **Où** `$SITE/index.html:180`, `$SITE/candidats.html:130`
 - **Problème** Le CV est vendu comme fonction Pro alors que le code le donne gratuitement (`cvBtn: "📄 CV pa konpetans — GRATIS"`, 3/jour). Séquelle de la bascule « CV gratuit, entretien payant ».
 - **À faire** Ligne CV en colonne Gratuit avec sa limite ; la ligne Pro décrit ce qui est réellement réservé (le CV **adapté à chaque annonce**). Supprimer aussi la chaîne morte `cvNeedPro` des 4 dictionnaires.
@@ -184,7 +184,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 # VAGUE 2 — Sécurité restante
 
 ### V2-01 · `action:"solde"`, `proUse`, `proValide` → compter les échecs
-- **Gravité** ÉLEVÉ — **Effort** S — **Statut** À FAIRE
+- **Gravité** ÉLEVÉ — **Effort** S — **Statut** VÉRIFIÉ
 - **Où** `worker.js:2668-2683`, `1396-1417`, `1423-1435`
 - **Problème** Contournent `pro90Autorise` en lisant le KV directement. `solde` est un oracle riche (`{type, exp, restantJour}` ou 403), interrogeable sans limite.
 - **Note** `proValide`/`proUse` reçoivent `env` mais pas `request` — 3 signatures à élargir.
@@ -239,7 +239,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **Problème** Le front appelle `atmart-chat.atmartllc.workers.dev`. Un `workers.dev` n'appartient à aucune zone : **aucune règle WAF ou Rate Limiting de zone ne peut s'y appliquer**. Tant que ce n'est pas fait, tout plafonnement doit être applicatif.
 
 ### V2-11 · Jeton admin hors de `localStorage`
-- **Gravité** MOYEN — **Effort** S — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** S — **Statut** VÉRIFIÉ
 - **Où** `$SITE/admin.html:152,190` ; `$SITE/estatistik.html:81`
 - **Problème** Persistant, sans expiration côté client, sous une CSP en `unsafe-inline` qui n'offre aucun confinement. `estatistik.html` écrit le `STATS_TOKEN` brut **avant** validation et ne le retire pas en cas de refus.
 - **À faire** `sessionStorage` au minimum ; idéalement cookie `HttpOnly; Secure; SameSite=Strict` posé par le Worker.
@@ -314,7 +314,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **Problème** Sert dans un attribut avec une valeur venue du formulaire public. Non exploitable aujourd'hui **uniquement** parce que la regex d'e-mail interdit les espaces — sécurité par accident.
 
 ### V3-12 · Chemins absolus dans la page 404
-- **Gravité** MOYEN — **Effort** XS — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** XS — **Statut** VÉRIFIÉ
 - **Où** `$SITE/404.html`
 - **Problème** Sur `/blog/xxx` : feuille de style en 404 → page sans style, logo cassé, liens produits en 404. Seul « Accueil » marche. La page qui doit rattraper un visiteur perdu est elle-même perdue.
 - **À faire** `/assets/…`, `/entevyou.html`, `/karye.html`. Ajouter aussi les sélecteurs de langue et de thème.
@@ -335,7 +335,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **À faire** `minmax(min(280px, 100%), 1fr)`.
 
 ### V3-16 · `theme-color` figé en sombre
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** XS — **Statut** VÉRIFIÉ
 - En thème clair sur mobile, la barre du navigateur reste bleu nuit au-dessus d'une page blanche. Ajouter l'attribut `media`.
 
 ### V3-17 · Supprimer `estatistik.html`
@@ -359,7 +359,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - Les panneaux n'ont pas `role="tabpanel"`, pas de navigation aux flèches, pas de déplacement du focus. **Un tablist sans tab est annoncé de travers — moins bon que pas de rôle du tout.**
 
 ### V4-03 · Anneau de focus global
-- **Gravité** MOYEN — **Effort** XS — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** XS — **Statut** VÉRIFIÉ
 - `:focus-visible` n'existe que sur une page. Le jeton `--focus` est défini dans `style.css` et utilisé **zéro fois**. Trois `outline:none` sans remplacement.
 
 ### V4-04 · `<main>` et lien d'évitement
@@ -373,7 +373,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 ---
 
 ### V4-06 · Blanc sur le vert d'envoi : 4,31:1
-- **Gravité** MOYEN — **Effort** XS — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** XS — **Statut** VÉRIFIÉ
 - **Où** `$SRC` puis `$SITE/entevyou.html` : `.vw-btn.send`
 - **Problème** `color:#fff` sur `background:#128c4a`. Contraste mesuré : **4,31:1**, sous le seuil AA de 4,5:1 — et `.vw-btn` est à `font-size:0.88rem` (≈ 14 px), donc du texte NORMAL, pas du grand texte.
 - **Pourquoi le banc ne l'a pas vu** `tests/theme.js` exempte `#128c4a` en tant que couleur de marque. L'exemption est légitime pour le THÈME (ce n'est pas un jeton de thème), mais elle dispense aussi de MESURER. Deux bancs distincts : la cohérence de thème, et le contraste.

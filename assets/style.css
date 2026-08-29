@@ -318,7 +318,7 @@ section { padding: 3.5rem 0; }
   background: var(--navy); border: 1px solid var(--border); border-radius: 999px;
   padding: 0.65rem 1.2rem; color: var(--ink); min-width: 280px; font-family: var(--font-body);
 }
-.newsletter-form input:focus { outline: none; border-color: var(--teal); }
+.newsletter-form input:focus { border-color: var(--teal); }
 
 /* ===== Footer ===== */
 footer { border-top: 1px solid var(--border); padding: 2.5rem 0; margin-top: 2rem; }
@@ -340,7 +340,7 @@ footer a, footer p { color: var(--ink-dim); font-size: 0.88rem; }
   flex: 1; background: transparent; border: none; padding: 0.9rem 1.4rem;
   color: var(--ink); font-size: 1rem; font-family: var(--font-body);
 }
-.search-form input:focus { outline: none; }
+.search-form input:focus { border-color: var(--teal); }
 .search-form button {
   background: var(--teal); color: var(--navy); border: none; padding: 0 1.6rem;
   font-weight: 700; font-size: 1rem; cursor: pointer; font-family: var(--font-body);
@@ -679,7 +679,7 @@ figure.tuto-fig figcaption { padding: 0.7rem 1rem; font-size: 0.85rem; color: va
 .acp-typing{opacity:.6;font-size:1.2rem;letter-spacing:.15em}
 .acp-form{display:flex;gap:.5rem;padding:.7rem;border-top:1px solid var(--border)}
 .acp-input{flex:1;background:var(--navy);border:1px solid var(--border);border-radius:10px;color:var(--ink);padding:.55rem .7rem;font-size:.92rem;font-family:inherit}
-.acp-input:focus{outline:none;border-color:var(--teal)}
+.acp-input:focus{border-color:var(--teal)}
 .acp-send{background:var(--teal);color:var(--navy);border:none;border-radius:10px;padding:0 1rem;font-weight:600;cursor:pointer}
 .acp-send:hover{background:var(--amber)}
 .acp-disc{padding:.4rem 1rem .7rem;color:var(--ink-dim);font-size:.7rem;text-align:center}
@@ -717,4 +717,26 @@ figure.tuto-fig figcaption { padding: 0.7rem 1rem; font-size: 0.85rem; color: va
   html.chat-open .tuto-shell,
   html.chat-open .container{margin-right:412px;max-width:calc(100vw - 448px)}
   html.chat-open .atmart-chat-panel{top:78px;bottom:20px;height:auto;max-height:none}
+}
+
+/* --------------------------------------------------------------- focus visible
+   AUCUNE regle globale n'existait, et trois `outline:none` effacaient meme
+   l'anneau du navigateur : quelqu'un qui navigue au clavier ne savait pas ou il
+   se trouvait. C'est bloquant pour qui ne peut pas se servir d'une souris.
+
+   :focus-visible et NON :focus — l'anneau n'apparait qu'a la navigation
+   clavier. Avec :focus, chaque clic de souris en dessinerait un, ce qui pousse
+   invariablement quelqu'un a le supprimer, et on revient au point de depart. */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+/* Repli pour les navigateurs sans :focus-visible : mieux vaut un anneau de trop
+   qu'aucun. Les moteurs qui le connaissent ignorent ce bloc. */
+@supports not selector(:focus-visible) {
+  a:focus, button:focus, input:focus, select:focus, textarea:focus, [tabindex]:focus {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
 }

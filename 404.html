@@ -18,7 +18,8 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   <link rel="icon" href="/assets/brand/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="/assets/brand/logo-360-32.png" />
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
-  <meta name="theme-color" content="#0e2240" />
+  <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0a1a2f" media="(prefers-color-scheme: dark)" />
   <meta name="robots" content="noindex" />
   <title>Paj la pa la — Suite 360</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,6 +53,16 @@ d.lang=l||"ht";})();
 <header>
   <nav class="nav" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem">
     <a href="/" class="logo"><img src="/assets/brand/logo-360-96.png" alt="Suite 360" class="logo-img" />Suite<span>360</span><small id="s360-by">pa Atmart</small></a>
+    <!-- La page lisait deja la langue memorisee, mais n'offrait aucun moyen d'en
+         changer : quelqu'un qui arrive ICI en premier, sans preference enregistree,
+         restait enferme dans la langue par defaut. Le selecteur de theme, lui, est
+         pose par theme.js — mais seulement s'il trouve #s360-lang, d'ou son absence. -->
+    <select id="s360-lang" aria-label="Lang" style="background:var(--surface-2);color:var(--ink);border:1px solid var(--voile-25);border-radius:8px;padding:0.3rem 0.5rem;font:inherit;font-size:0.85rem;min-height:36px">
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+      <option value="ht">Kreyòl</option>
+    </select>
   </nav>
 </header>
 
@@ -76,13 +87,25 @@ d.lang=l||"ht";})();
     en: { t: "This page does not exist", p: "The address may have a typo, or the page was renamed. Here is where to go:", c: "Home", by: "by Atmart" },
     es: { t: "Esta página no existe", p: "Puede que la dirección tenga un error, o que la página haya cambiado de nombre. Aquí puedes ir:", c: "Inicio", by: "por Atmart" },
   };
-  var l = document.documentElement.lang;
-  var t = L[l] || L.ht;
-  document.getElementById("nf-t").textContent = t.t;
-  document.getElementById("nf-p").textContent = t.p;
-  document.getElementById("nf-c").textContent = t.c;
-  document.getElementById("s360-by").textContent = t.by;
-  document.title = t.t + " — Suite 360";
+  function poser() {
+    var t = L[document.documentElement.lang] || L.ht;
+    document.getElementById("nf-t").textContent = t.t;
+    document.getElementById("nf-p").textContent = t.p;
+    document.getElementById("nf-c").textContent = t.c;
+    document.getElementById("s360-by").textContent = t.by;
+    document.title = t.t + " — Suite 360";
+  }
+  poser();
+
+  var sel = document.getElementById("s360-lang");
+  sel.value = document.documentElement.lang || "ht";
+  sel.addEventListener("change", function () {
+    try { localStorage.setItem("atmart_lang", sel.value); } catch (e) {}
+    // On change l'attribut `lang` et on repose : c'est la meme mecanique que
+    // sur les autres pages, pour qu'il n'y ait qu'un seul comportement a retenir.
+    document.documentElement.lang = sel.value;
+    poser();
+  });
 })();
 </script>
 
