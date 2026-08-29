@@ -23,8 +23,13 @@ const RACINE = path.join(__dirname, "..");
 // c'est Atmart_chat_worker/tests/pages-admin.js qui les controle. Exiger un
 // <main> et un lien d'evitement sur une redirection n'aiderait personne.
 const REDIRECTIONS = ["admin.html", "estatistik.html"];
+// `googleXXXX.html` est le jeton de validation Google Search Console : une
+// ligne de texte brut deposee a la racine, pas une page. Exiger un <main> et un
+// lien d'evitement dessus n'aiderait personne — et le modifier casserait la
+// validation de la propriete.
+const JETON_GOOGLE = /^google[0-9a-f]+\.html$/;
 const PAGES = fs.readdirSync(RACINE)
-  .filter((f) => f.endsWith(".html") && !REDIRECTIONS.includes(f));
+  .filter((f) => f.endsWith(".html") && !REDIRECTIONS.includes(f) && !JETON_GOOGLE.test(f));
 
 let ko = 0;
 const ok = (nom, cond, detail) => {
