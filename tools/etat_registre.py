@@ -495,7 +495,15 @@ def main():
             ok, preuve = CONTROLES[i]()
             (faits if ok else restants).append((i, preuve))
         elif i in HUMAIN:
-            a_verifier.append((i, HUMAIN[i]))
+            # Un humain a pu trancher depuis : on relit le statut ecrit dans le
+            # registre au lieu de le presenter indefiniment comme « a verifier ».
+            # Sans ca, l'outil redemanderait chaque mois un controle deja fait,
+            # et la preuve inscrite a cote ne servirait a rien.
+            m = re.search(r"### " + re.escape(i) + r" [^\n]*\n- \*\*Gravité\*\*[^\n]*?\*\*Statut\*\* ([A-ZÀÉÈÊ ]+)", s)
+            if m and m.group(1).strip() == "VÉRIFIÉ":
+                faits.append((i, "tranché par un humain — voir « Preuve » dans le registre"))
+            else:
+                a_verifier.append((i, HUMAIN[i]))
         else:
             sans_controle.append(i)
 

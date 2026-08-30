@@ -119,14 +119,16 @@ qu'après **vérification exécutée**, jamais sur déclaration.
   ```
 
 ### V1-02 · Ne mémoriser qu'un code validé par le serveur
-- **Gravité** ÉLEVÉ — **Effort** S — **Statut** À VÉRIFIER
+- **Gravité** ÉLEVÉ — **Effort** S — **Statut** VÉRIFIÉ
+- **Preuve** Vérifié au navigateur le 29/08/2026 : un code refusé (PRO90-ZZZZZZZZ) n'apparaît dans AUCUNE clé de localStorage ni de sessionStorage, et la page annonce « cette génération sera gratuite ».
 - **Où** `$SRC` — écriture de `localStorage.entevyou_pro`
 - **Problème** Un code rejeté en 403 est enregistré quand même, re-rempli au rechargement, et le site affirme « Ce code est enregistré sur cet appareil ». Combiné à V1-01 (message invisible), la faute de frappe d'un client payant devient permanente et inexplicable.
 - **À faire** N'écrire qu'après réponse serveur positive.
 - **Vérification** Navigateur : saisir un code au bon format mais faux → recharger → le champ doit être **vide** et `localStorage.entevyou_pro` absent.
 
 ### V1-03 · Cibles tactiles de paiement
-- **Gravité** ÉLEVÉ — **Effort** S — **Statut** À VÉRIFIER
+- **Gravité** ÉLEVÉ — **Effort** S — **Statut** VÉRIFIÉ
+- **Preuve** Mesuré au navigateur le 29/08/2026, fenêtre de 375 px : 10 cibles de paiement examinées, **0 sous 44 px**.
 - **Où** `$SITE/index.html` (`#e-buy`, `#e-buy90`, `#k-buy`), `$SRC` (`#ep-3`)
 - **Problème** Mesuré à 375 px : `#e-buy` 147×**16**, `#k-buy` 184×**16**, `#ep-3` 80×**15**. Tous en `display:inline; padding:0`. Minimum WCAG 24×24, recommandation Apple/Google 44×44. Les CTA **gratuits** font 335×49.
 - **Aggravation** `#e-buy` (9,99 $) et `#e-buy90` (19,99 $) sont **sur la même ligne**, séparés d'un point médian : deux tarifs différents à toucher côte à côte en 16 px.
@@ -329,7 +331,8 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **Où** `$SITE/index.html:26` — `demo-entevyou360.mp4` n'existe pas (les fichiers sont `demo-{ht,fr,en,es}.mp4`). Tout partage de l'accueil renvoie une vidéo morte.
 
 ### V3-15 · Débordement horizontal à 320 px
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À VÉRIFIER
+- **Gravité** FAIBLE — **Effort** XS — **Statut** VÉRIFIÉ
+- **Preuve** Mesuré au navigateur le 29/08/2026, fenêtre de 320 px : largeur de page = 320, **aucun débordement**, aucun élément plus large que la fenêtre.
 - **Où** `$SITE/index.html:47`, `:144`
 - **Mesuré** `scrollWidth 327` pour `clientWidth 320`. `minmax(280px,1fr)` + 40 px de padding = 320 sans marge.
 - **À faire** `minmax(min(280px, 100%), 1fr)`.
