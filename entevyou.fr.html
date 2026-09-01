@@ -3713,23 +3713,7 @@ by();})();
       + ".foot{color:#666;font-size:9pt;margin-top:18pt;border-top:1px solid #ccc;padding-top:6pt}";
     var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">'
       + '<head><meta charset="utf-8" /><title>' + esc(titre) + "</title><style>" + css + "</style></head><body>"
-      + corps + "<script>/* Adresse par langue : le selecteur change d'ADRESSE, pas seulement
-   d'affichage — sinon l'URL dirait une langue et la page en montrerait une autre. */
-(function () {
-  var sel = document.getElementById("s360-lang");
-  if (!sel) return;
-  var base = "entevyou", racine = "entevyou.html", ici = "fr";
-  sel.value = ici;
-  sel.addEventListener("change", function () {
-    var l = sel.value;
-    try { localStorage.setItem("atmart_lang", l); } catch (e) {}
-    location.href = l === ici ? location.href : (base + "." + l + ".html");
-  }, true);
-  var r = document.getElementById("s360-vers-auto");
-  if (r) r.setAttribute("href", racine);
-})();
-</script>
-</body></html>";
+      + corps + "</body></html>";
     var a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob(["\ufeff" + html], { type: "application/msword" }));
     a.download = nom + ".doc";
@@ -3763,5 +3747,21 @@ by();})();
 
 <script defer src="assets/theme.js?v=2"></script>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script>
+<script>/* Adresse par langue : le selecteur change d'ADRESSE, pas seulement
+   d'affichage — sinon l'URL dirait une langue et la page en montrerait une autre. */
+(function () {
+  var sel = document.getElementById("s360-lang");
+  if (!sel) return;
+  var base = "entevyou", racine = "entevyou.html", ici = "fr";
+  sel.value = ici;
+  sel.addEventListener("change", function () {
+    var l = sel.value;
+    try { localStorage.setItem("atmart_lang", l); } catch (e) {}
+    location.href = l === ici ? location.href : (base + "." + l + ".html");
+  }, true);
+  var r = document.getElementById("s360-vers-auto");
+  if (r) r.setAttribute("href", racine);
+})();
+</script>
 </body>
 </html>

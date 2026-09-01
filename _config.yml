@@ -1,0 +1,19 @@
+# GitHub Pages — ce qui NE DOIT PAS être servi.
+#
+# `docs/SUIVI_CORRECTIONS.md` répondait HTTP 200 sur 360.atmart.ltd : la liste
+# complète des faiblesses connues du produit, publiquement lisible. Elle avait
+# été poussée avec le reste du site les 28 et 29/08/2026, sans que personne se
+# demande si le dossier `docs/` serait servi. Il l'était.
+#
+# `tools/` et `tests/` répondaient déjà 404, mais par hasard, pas par décision :
+# on les déclare ici pour que ça reste vrai.
+#
+# Vérification (tests/prive.js la rejoue) :
+#   curl -o /dev/null -w "%{http_code}" https://360.atmart.ltd/docs/SUIVI_CORRECTIONS.md
+#   attendu : 404
+exclude:
+  - docs
+  - tools
+  - tests
+  - .wrangler
+  - README.md

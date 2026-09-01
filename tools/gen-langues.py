@@ -97,7 +97,21 @@ def variante(nom_page, lg, source):
 
     # 4) le selecteur de langue NAVIGUE : sur une adresse qui declare sa langue,
     #    changer de langue doit changer d'adresse.
-    s = s.replace("</body>", NAVIGATION % (base_nom, nom_page, lg) + "</body>", 1)
+    #
+    # SUR LE DERNIER `</body>`, JAMAIS LE PREMIER. Le JavaScript de la page
+    # contient lui-meme la chaine "</body>" — le generateur de fichier .doc
+    # assemble un document HTML complet dans une chaine. Un `replace(..., 1)`
+    # injectait donc le script AU MILIEU D'UNE CHAINE JAVASCRIPT : le grand
+    # script ne se parsait plus, et les quatre pages par langue d'Entevyou360
+    # sont restees mortes en production du 27 au 31/08/2026, sans autre symptome
+    # qu'une erreur de console que personne ne lisait.
+    #
+    # `regen-entevyou.py` porte deja cette regle et ce commentaire pour le
+    # service worker. Je ne l'ai pas reportee ici en ecrivant ce fichier.
+    i = s.rfind("</body>")
+    if i < 0:
+        raise SystemExit("!! %s : aucun </body>" % nom_page)
+    s = s[:i] + NAVIGATION % (base_nom, nom_page, lg) + s[i:]
     return s
 
 

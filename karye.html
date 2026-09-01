@@ -36,11 +36,11 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   <meta name="theme-color" content="#0a1a2f" media="(prefers-color-scheme: dark)" />
   <link rel="stylesheet" href="assets/style.css?v=3" />
 <script>/* langue auto : avant le 1er affichage, evite le clignotement */
-(function(){var S={fr:1,ht:1,en:1,es:1},d=document.documentElement,
+(function(){var S={fr:1,ht:1,en:1,es:1},d=document.documentElement,s=null;
 /* Une page servie a une adresse par langue DECLARE sa langue : la detection
    ne doit pas passer par-dessus. */
 if(d.hasAttribute("data-lang-fixe"))return;
-s=null;try{s=localStorage.getItem("atmart_lang")}catch(e){}
+try{s=localStorage.getItem("atmart_lang")}catch(e){}
 var l=s&&S[s]?s:null;
 if(!l){var n=navigator.languages||[navigator.language||""];
 for(var i=0;i<n.length;i++){var c=String(n[i]).toLowerCase().split("-")[0];
