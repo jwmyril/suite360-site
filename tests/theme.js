@@ -120,14 +120,19 @@ console.log("\n— les pages —");
 //                       (4,53:1) le 28/08/2026. Deux contrôles distincts :
 //                       la cohérence de thème ici, le contraste dans acces.js ;
 //   #fff3cd / #2b1a06 : le surligneur d'egzanp — jaune pâle à encre foncée
-//                       dans les deux thèmes, comme le papier.
+//                       dans les deux thèmes, comme le papier ;
+//   #000              : le fond des deux <video> de la simulation caméra. Même
+//                       raisonnement que le papier blanc du CV : c'est la
+//                       MATIÈRE autour de l'image, pas une couleur de thème.
+//                       Une vidéo cadrée sur du blanc en thème clair se lit
+//                       moins bien, pas mieux. Aucun texte ne repose dessus.
 // #fff N'EST PLUS EXEMPTÉ GLOBALEMENT : cette exemption a laissé passer du
 // blanc sur blanc sur 8 pages — les titres, les noms de forfait et LES PRIX
 // invisibles en thème clair, du 21 au 26 août 2026. Le papier (aperçu du CV)
 // et l'encre sur aplat plein sont désormais reconnus par la RÈGLE qui les
 // porte, pas par la couleur.
 // Un #fff en FOND, c'est le papier (apercu du CV, impression) : legitime.
-const EXEMPTS = /#118848|#fff3cd|#2b1a06|#fff|#ffffff/i;
+const EXEMPTS = /#000\b|#118848|#fff3cd|#2b1a06|#fff|#ffffff/i;
 let sansTete = [], apresStyle = [], figees = [];
 PAGES.forEach((p) => {
   const s = fs.readFileSync(path.join(RACINE, p), "utf8");

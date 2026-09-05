@@ -432,6 +432,33 @@ d.lang=l||"ht";})();
             <audio id="vw-player" controls style="width:100%"></audio>
             <p id="vw-audionote" style="color:var(--ink-dim);font-size:0.78rem;margin:0.3rem 0 0;line-height:1.5"></p>
           </div>
+          <!-- Simulation camera. La video ne quitte jamais l'appareil : elle
+               sert a la personne, pas a nous. -->
+          <div id="cam-box" style="margin:0 0 0.7rem;padding:0.8rem;border:1px solid var(--voile-15);border-radius:10px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:0.6rem;flex-wrap:wrap">
+              <p id="cam-titre" style="margin:0;font-weight:600;font-size:0.92rem">Simulation camera</p>
+              <button type="button" class="vw-btn" id="cam-toggle">Aktive kamera a</button>
+            </div>
+            <p id="cam-note" style="color:var(--ink-dim);font-size:0.78rem;margin:0.4rem 0 0;line-height:1.55"></p>
+            <div id="cam-scene" style="display:none;margin-top:0.7rem">
+              <video id="cam-live" playsinline muted autoplay
+                     style="width:100%;max-height:46vh;border-radius:10px;background:#000;transform:scaleX(-1)"></video>
+              <div class="vw-row" style="margin-top:0.6rem">
+                <button type="button" class="vw-btn" id="cam-go">Kòmanse anrejistre</button>
+                <button type="button" class="vw-btn" id="cam-eteindre">Etenn kamera a</button>
+              </div>
+              <p id="cam-chrono" style="margin:0.4rem 0 0;font-size:0.82rem;color:var(--ink-dim)"></p>
+            </div>
+            <div id="cam-apres" style="display:none;margin-top:0.7rem">
+              <video id="cam-play" controls playsinline style="width:100%;max-height:46vh;border-radius:10px;background:#000"></video>
+              <div id="cam-mesures" style="margin-top:0.6rem"></div>
+              <div class="vw-row" style="margin-top:0.6rem">
+                <button type="button" class="vw-btn" id="cam-dl">Telechaje videyo a</button>
+                <button type="button" class="vw-btn" id="cam-refaire">Refè l</button>
+                <button type="button" class="vw-btn" id="cam-effacer">Efase videyo a</button>
+              </div>
+            </div>
+          </div>
           <div class="vw-row">
             <button type="button" class="vw-btn send" id="vw-send">📨 Voye repons mwen an</button>
             <button type="button" class="vw-btn" id="vw-next" style="display:none">➜ Lòt kesyon an</button>
@@ -749,6 +776,34 @@ by();})();
       vwaBtn: "🎙 Pratike ak vwa ou", vwaProg: "Kesyon {i} sou {n}",
       vwaListen: "🔊 Tande kesyon an ankò", vwaMic: "🎙 Peze pou reponn", vwaStop: "⏹ Mwen fini pale",
       vwaRecing: "N ap koute w… pale lib, epi peze « ⏹ Mwen fini pale » lè ou fini.",
+      camTitre: "Antrene w devan kamera a",
+      camNote: "Videyo a rete SOU APAREY OU. Li pa janm voye ba nou. Se pou ou wè tèt ou — se sa ki fè travay la.",
+      camOn: "📷 Limen kamera a",
+      camOff: "Etenn kamera a",
+      camGo: "⏺ Kòmanse anrejistre",
+      camStop: "⏹ Mwen fini",
+      camChrono: "N ap anrejistre… {s}",
+      camNon: "Navigatè sa a pa ka anrejistre videyo.",
+      camDemande: "N ap mande otorizasyon pou kamera a…",
+      camPrete: "Kamera a pare. Gade tèt ou, epi peze « Kòmanse anrejistre ».",
+      camRefus: "Ou pa bay otorizasyon an — pa gen pwoblèm, mòd vwa a mache san kamera.",
+      camTitreMes: "Sa nou mezire",
+      camDuree: "Konbyen tan repons lan pran",
+      "camDuree_court": "Kout anpil. Yon repons ki poko rive 20 segond souvan pa gen tan bay yon egzanp.",
+      "camDuree_long": "Long. Apre 2 minit 30, moun k ap koute w la kòmanse pèdi fil la.",
+      "camDuree_bon": "Bon longè pou yon repons nan yon entèvyou.",
+      camRythme: "Vitès ou pale",
+      camWpm: "{n} mo pa minit",
+      "camRythme_lent": "Ou pale dousman. Sa ka vle di w ap chèche mo w yo.",
+      "camRythme_vite": "Ou pale vit. Ralanti — moun nan bezwen tan pou konprann.",
+      "camRythme_bon": "Bon vitès : moun nan ka swiv ou.",
+      camBequilles: "Ti mo ou repete san ou pa konnen",
+      camAucune: "Nou pa jwenn okenn — sa bèl.",
+      camSansTexte: "Nou pa t ka tande tèks la; longè a rete valab.",
+      camPasDeNote: "Nou PA bay nòt sou figi w, rad ou, jès ou, ni sou « konfyans » ou. Bagay sa yo chanje ant yon peyi ak yon lòt, epi yo pa di anyen sou kalite travay ou. Nou mezire kat bagay ou ka tande nan pwòp anrejistreman w — epi ou ka korije yo.",
+      camDl: "⬇ Telechaje videyo a",
+      camRefaire: "↺ Refè l",
+      camEffacer: "🧹 Efase videyo a",
       vwaTrans: "N ap ekri sa ou di a…", vwaHint: "Ou ka korije tèks la anvan ou voye l.",
       vwaSend: "📨 Voye repons mwen an", vwaThink: "Koach la ap gade repons ou a…",
       vwaNext: "➜ Lòt kesyon an", vwaFinish: "✅ Mwen fini pratike",
@@ -821,6 +876,34 @@ by();})();
       vwaBtn: "🎙 M'entraîner à voix haute", vwaProg: "Question {i} sur {n}",
       vwaListen: "🔊 Réécouter la question", vwaMic: "🎙 Appuyer pour répondre", vwaStop: "⏹ J'ai fini de parler",
       vwaRecing: "On vous écoute… parlez librement, puis appuyez sur « ⏹ J'ai fini de parler ».",
+      camTitre: "S'entraîner devant la caméra",
+      camNote: "La vidéo RESTE SUR VOTRE APPAREIL. Elle ne nous est jamais envoyée. Elle sert à vous voir — c'est ça qui fait le travail.",
+      camOn: "📷 Allumer la caméra",
+      camOff: "Éteindre la caméra",
+      camGo: "⏺ Commencer l'enregistrement",
+      camStop: "⏹ J'ai fini",
+      camChrono: "Enregistrement… {s}",
+      camNon: "Ce navigateur ne sait pas enregistrer de vidéo.",
+      camDemande: "Demande d'autorisation caméra…",
+      camPrete: "Caméra prête. Regardez-vous, puis appuyez sur « Commencer l'enregistrement ».",
+      camRefus: "Autorisation refusée — aucun problème, le mode vocal fonctionne sans caméra.",
+      camTitreMes: "Ce que nous mesurons",
+      camDuree: "Durée de la réponse",
+      "camDuree_court": "Très court. Sous 20 secondes, une réponse n'a pas le temps de donner un exemple.",
+      "camDuree_long": "Long. Passé 2 min 30, votre interlocuteur décroche.",
+      "camDuree_bon": "Bonne longueur pour une réponse d'entretien.",
+      camRythme: "Rythme de parole",
+      camWpm: "{n} mots par minute",
+      "camRythme_lent": "Vous parlez lentement. Souvent le signe qu'on cherche ses mots.",
+      "camRythme_vite": "Vous parlez vite. Ralentissez : on a besoin de temps pour vous suivre.",
+      "camRythme_bon": "Bon rythme : on vous suit sans effort.",
+      camBequilles: "Mots béquilles",
+      camAucune: "Aucun repéré — c'est rare et c'est bien.",
+      camSansTexte: "La parole n'a pas pu être transcrite ; la durée reste valable.",
+      camPasDeNote: "Nous ne notons NI votre visage, NI votre tenue, NI vos gestes, NI votre « confiance ». Ces signaux varient d'une culture à l'autre et ne disent rien de votre travail. Nous mesurons quatre choses que vous pouvez entendre vous-même dans votre enregistrement — et corriger.",
+      camDl: "⬇ Télécharger la vidéo",
+      camRefaire: "↺ Recommencer",
+      camEffacer: "🧹 Effacer la vidéo",
       vwaTrans: "Transcription de votre réponse…", vwaHint: "Vous pouvez corriger le texte avant de l'envoyer.",
       vwaSend: "📨 Envoyer ma réponse", vwaThink: "Le coach lit votre réponse…",
       vwaNext: "➜ Question suivante", vwaFinish: "✅ Terminer l'entraînement",
@@ -893,6 +976,34 @@ by();})();
       vwaBtn: "🎙 Practice out loud", vwaProg: "Question {i} of {n}",
       vwaListen: "🔊 Hear the question again", vwaMic: "🎙 Press to answer", vwaStop: "⏹ I'm done talking",
       vwaRecing: "We're listening… speak freely, then press “⏹ I'm done talking”.",
+      camTitre: "Practise on camera",
+      camNote: "The video STAYS ON YOUR DEVICE. It is never sent to us. It's there so you can watch yourself — that's what does the work.",
+      camOn: "📷 Turn on the camera",
+      camOff: "Turn off the camera",
+      camGo: "⏺ Start recording",
+      camStop: "⏹ I'm done",
+      camChrono: "Recording… {s}",
+      camNon: "This browser cannot record video.",
+      camDemande: "Asking for camera permission…",
+      camPrete: "Camera ready. Look at yourself, then press « Start recording ».",
+      camRefus: "Permission declined — no problem, voice practice works without a camera.",
+      camTitreMes: "What we measure",
+      camDuree: "Length of your answer",
+      "camDuree_court": "Very short. Under 20 seconds, an answer has no room for an example.",
+      "camDuree_long": "Long. Past 2 min 30, your listener drifts.",
+      "camDuree_bon": "Good length for an interview answer.",
+      camRythme: "Speaking pace",
+      camWpm: "{n} words per minute",
+      "camRythme_lent": "You're speaking slowly. Often a sign of searching for words.",
+      "camRythme_vite": "You're speaking fast. Slow down — people need time to follow you.",
+      "camRythme_bon": "Good pace: easy to follow.",
+      camBequilles: "Filler words",
+      camAucune: "None found — that's rare, and good.",
+      camSansTexte: "Speech could not be transcribed; the timing still stands.",
+      camPasDeNote: "We do NOT score your face, your clothes, your gestures, or your « confidence ». Those signals differ from one culture to another and say nothing about your work. We measure four things you can hear for yourself in your own recording — and fix.",
+      camDl: "⬇ Download the video",
+      camRefaire: "↺ Try again",
+      camEffacer: "🧹 Erase the video",
       vwaTrans: "Transcribing your answer…", vwaHint: "You can fix the text before sending it.",
       vwaSend: "📨 Send my answer", vwaThink: "The coach is reading your answer…",
       vwaNext: "➜ Next question", vwaFinish: "✅ Finish practice",
@@ -965,6 +1076,34 @@ by();})();
       vwaBtn: "🎙 Practicar en voz alta", vwaProg: "Pregunta {i} de {n}",
       vwaListen: "🔊 Escuchar la pregunta otra vez", vwaMic: "🎙 Pulsa para responder", vwaStop: "⏹ Terminé de hablar",
       vwaRecing: "Te escuchamos… habla libremente y pulsa «⏹ Terminé de hablar» al terminar.",
+      camTitre: "Practicar ante la cámara",
+      camNote: "El video SE QUEDA EN TU DISPOSITIVO. Nunca nos llega. Está ahí para que te veas — eso es lo que funciona.",
+      camOn: "📷 Encender la cámara",
+      camOff: "Apagar la cámara",
+      camGo: "⏺ Empezar a grabar",
+      camStop: "⏹ Terminé",
+      camChrono: "Grabando… {s}",
+      camNon: "Este navegador no puede grabar video.",
+      camDemande: "Pidiendo permiso de cámara…",
+      camPrete: "Cámara lista. Mírate y pulsa « Empezar a grabar ».",
+      camRefus: "Permiso denegado — no pasa nada, el modo de voz funciona sin cámara.",
+      camTitreMes: "Lo que medimos",
+      camDuree: "Duración de tu respuesta",
+      "camDuree_court": "Muy corta. Por debajo de 20 segundos no da tiempo a poner un ejemplo.",
+      "camDuree_long": "Larga. Pasados 2 min 30, quien te escucha se desconecta.",
+      "camDuree_bon": "Buena duración para una respuesta de entrevista.",
+      camRythme: "Ritmo al hablar",
+      camWpm: "{n} palabras por minuto",
+      "camRythme_lent": "Hablas despacio. Suele indicar que buscas las palabras.",
+      "camRythme_vite": "Hablas rápido. Baja el ritmo: hace falta tiempo para seguirte.",
+      "camRythme_bon": "Buen ritmo: se te sigue sin esfuerzo.",
+      camBequilles: "Muletillas",
+      camAucune: "Ninguna encontrada — es raro, y es bueno.",
+      camSansTexte: "No se pudo transcribir el audio; la duración sigue siendo válida.",
+      camPasDeNote: "NO puntuamos tu cara, tu ropa, tus gestos ni tu « confianza ». Esas señales cambian de una cultura a otra y no dicen nada de tu trabajo. Medimos cuatro cosas que puedes oír tú mismo en tu propia grabación — y corregir.",
+      camDl: "⬇ Descargar el video",
+      camRefaire: "↺ Repetir",
+      camEffacer: "🧹 Borrar el video",
       vwaTrans: "Transcribiendo tu respuesta…", vwaHint: "Puedes corregir el texto antes de enviarlo.",
       vwaSend: "📨 Enviar mi respuesta", vwaThink: "El coach está leyendo tu respuesta…",
       vwaNext: "➜ Siguiente pregunta", vwaFinish: "✅ Terminar la práctica",
@@ -2800,6 +2939,18 @@ by();})();
     if (T.askHint) $("vw-askhint").textContent = T.askHint;
     if (T.askPh) $("vw-mq").placeholder = T.askPh;
     if (T.askSend) $("vw-mqsend").textContent = T.askSend;
+    // Simulation camera : memes libelles statiques, meme piege. Ils doivent
+    // suivre la langue meme quand la camera n'a jamais ete allumee.
+    if (T.camTitre && $("cam-titre")) {
+      $("cam-titre").textContent = T.camTitre;
+      $("cam-note").textContent = T.camNote;
+      $("cam-toggle").textContent = camStream ? T.camOff : T.camOn;
+      $("cam-go").textContent = camEnCours ? T.camStop : T.camGo;
+      $("cam-eteindre").textContent = T.camOff;
+      $("cam-dl").textContent = T.camDl;
+      $("cam-refaire").textContent = T.camRefaire;
+      $("cam-effacer").textContent = T.camEffacer;
+    }
     if (vwOn) {
       $("vw-prog").textContent = T.vwaProg.replace("{i}", vwIdx + 1).replace("{n}", vwTotal);
       $("vw-note").textContent = T.vwaNote || "";
@@ -2937,6 +3088,10 @@ by();})();
     } catch (e) {}
     clearTimeout(f5MicTimer);
     clearTimeout(pnMicTimer);
+    // La camera est le QUATRIEME peripherique que cette fonction doit rendre.
+    // Un flux video laisse ouvert garde le temoin allume sur le telephone —
+    // et sur ce produit-la, un voyant qui reste allume est une promesse rompue.
+    camRendre();
   }
   function vwStopRec(silent) {
     if (vwSR) { try { vwSR.stop(); } catch (e) {} vwSR = null; }
@@ -3734,6 +3889,241 @@ by();})();
       render(lastMd) + '<p class="foot">' + esc(MSG.rapFoot) + "</p>");
     status.textContent = MSG.dlOk;
   });
+
+
+  /* ================================================================= camera
+     SIMULATION CAMERA — un miroir, pas un jury.
+
+     On ne note ni le visage, ni la tenue, ni la gestuelle, ni « la confiance ».
+     Ces signaux varient d'une culture a l'autre : les noter reviendrait a
+     mesurer l'ecart a une norme, et ce produit s'adresse precisement a des gens
+     que cette norme dessert deja. On mesure quatre choses factuelles, que la
+     personne peut verifier elle-meme dans son propre enregistrement.
+
+     LA VIDEO NE PART PAS. MediaRecorder -> Blob -> URL locale. Seule une piste
+     AUDIO clonee va vers /vwa pour la transcription, par le chemin deja declare
+     aux conditions d'utilisation. */
+  var camStream = null, camRec = null, camAudioRec = null;
+  var camMorceaux = [], camAudio = [], camUrl = null, camBlob = null;
+  var camT0 = 0, camChrono = null, camEnCours = false;
+
+  var CAM_MAX_S = 180;          // au-dela, on arrete : c'est un entretien, pas un film
+  var CAM_COURT_S = 20;         // en dessous, la reponse n'a pas eu le temps d'exister
+  var CAM_LONG_S = 150;         // au-dela, un recruteur decroche
+
+  function camDispo() {
+    return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+  }
+  function camEl(id) { return document.getElementById(id); }
+
+  function camRendre() {
+    // Le seul endroit qui coupe les pistes. Appele par vwEndRecUi.
+    try { if (camRec && camRec.state !== "inactive") camRec.stop(); } catch (e) {}
+    try { if (camAudioRec && camAudioRec.state !== "inactive") camAudioRec.stop(); } catch (e) {}
+    try {
+      if (camStream) camStream.getTracks().forEach(function (t) { t.stop(); });
+    } catch (e) {}
+    camStream = null; camRec = null; camAudioRec = null; camEnCours = false;
+    if (camChrono) { clearInterval(camChrono); camChrono = null; }
+    var live = camEl("cam-live");
+    if (live) { try { live.srcObject = null; } catch (e) {} }
+    var sc = camEl("cam-scene"); if (sc) sc.style.display = "none";
+    var tg = camEl("cam-toggle"); if (tg && MSG) tg.textContent = MSG.camOn;
+    var ch = camEl("cam-chrono"); if (ch) ch.textContent = "";
+  }
+
+  function camEffacer() {
+    // Une video de soi en train de chercher ses mots est une chose intime. Elle
+    // s'efface sur commande, et elle ne survit pas au rechargement de la page.
+    try { if (camUrl) { URL.revokeObjectURL(camUrl); camUrl = null; } } catch (e) {}
+    camBlob = null; camMorceaux = []; camAudio = [];
+    var p = camEl("cam-play"); if (p) p.removeAttribute("src");
+    var a = camEl("cam-apres"); if (a) a.style.display = "none";
+    var m = camEl("cam-mesures"); if (m) m.innerHTML = "";
+  }
+
+  function camAllumer() {
+    if (!camDispo()) { vwStatus(MSG.camNon); return; }
+    // On rend le micro d'abord : deux flux concurrents sur le meme appareil,
+    // c'est le temoin qui reste allume et l'enregistrement qui se vide.
+    try { vwStopRec(true); } catch (e) {}
+    vwStatus(MSG.camDemande);
+    navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 } },
+      audio: true,
+    }).then(function (st) {
+      camStream = st;
+      var live = camEl("cam-live");
+      live.srcObject = st;
+      camEl("cam-scene").style.display = "";
+      camEl("cam-toggle").textContent = MSG.camOff;
+      vwStatus(MSG.camPrete);
+    }).catch(function () {
+      // Un refus de camera n'est pas une panne : c'est un choix, et il se respecte.
+      vwStatus(MSG.camRefus);
+    });
+  }
+
+  function camDemarrer() {
+    if (!camStream) return;
+    camEffacer();
+    camMorceaux = []; camAudio = [];
+    try {
+      camRec = new MediaRecorder(camStream);
+    } catch (e) { vwStatus(MSG.camNon); return; }
+    camRec.ondataavailable = function (e) { if (e.data && e.data.size) camMorceaux.push(e.data); };
+    camRec.onstop = camFinir;
+
+    // Piste audio CLONEE : c'est elle, et elle seule, qui peut partir.
+    try {
+      var pistes = camStream.getAudioTracks();
+      if (pistes.length) {
+        camAudioRec = new MediaRecorder(new MediaStream([pistes[0]]));
+        camAudioRec.ondataavailable = function (e) { if (e.data && e.data.size) camAudio.push(e.data); };
+      }
+    } catch (e) { camAudioRec = null; }
+
+    camRec.start();
+    if (camAudioRec) camAudioRec.start();
+    camEnCours = true; camT0 = Date.now();
+    camEl("cam-go").textContent = MSG.camStop;
+    camChrono = setInterval(function () {
+      var s = Math.round((Date.now() - camT0) / 1000);
+      camEl("cam-chrono").textContent = MSG.camChrono.replace("{s}", camMmSs(s));
+      if (s >= CAM_MAX_S) camArreter();
+    }, 500);
+  }
+
+  function camArreter() {
+    if (!camEnCours) return;
+    camEnCours = false;
+    if (camChrono) { clearInterval(camChrono); camChrono = null; }
+    try { if (camRec && camRec.state !== "inactive") camRec.stop(); } catch (e) {}
+    try { if (camAudioRec && camAudioRec.state !== "inactive") camAudioRec.stop(); } catch (e) {}
+    camEl("cam-go").textContent = MSG.camGo;
+  }
+
+  function camFinir() {
+    var secondes = Math.max(1, Math.round((Date.now() - camT0) / 1000));
+    try {
+      camBlob = new Blob(camMorceaux, { type: (camRec && camRec.mimeType) || "video/webm" });
+      camUrl = URL.createObjectURL(camBlob);
+      camEl("cam-play").src = camUrl;
+      camEl("cam-apres").style.display = "";
+    } catch (e) { return; }
+    camEl("cam-chrono").textContent = "";
+    // Mesures immediates, sans reseau. La transcription, si elle arrive,
+    // ajoutera le rythme et les mots bequilles.
+    camMesures(secondes, "");
+    if (camAudio.length) camTranscrire(secondes);
+  }
+
+  function camTranscrire(secondes) {
+    var b = new Blob(camAudio, { type: "audio/webm" });
+    var fr = new FileReader();
+    fr.onloadend = function () {
+      var b64 = String(fr.result).split(",")[1] || "";
+      fetch(VWA_EP, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ audio: b64, language: siteLang() }),
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (b2) {
+          var t = (b2 && b2.text) || "";
+          if (t) {
+            camMesures(secondes, t);
+            // Le texte remplit la reponse : la personne n'a pas a la retaper.
+            if (vwAns && !vwAns.value.trim()) vwAns.value = t;
+          }
+        })
+        .catch(function () { /* la mesure de duree reste valable sans transcription */ });
+    };
+    fr.readAsDataURL(b);
+  }
+
+  function camMmSs(s) {
+    var m = Math.floor(s / 60), r = s % 60;
+    return m + ":" + (r < 10 ? "0" : "") + r;
+  }
+
+  /* Les mots bequilles, par langue. Ce ne sont pas des fautes : tout le monde
+     en dit. En compter DIX dans une reponse d'une minute, en revanche, s'entend
+     — et se corrige en une seance. */
+  var CAM_BEQUILLES = {
+    ht: ["ee", "eee", "enben", "kidonk", "bon", "ok"],
+    fr: ["euh", "heu", "hein", "en fait", "du coup", "genre", "voila", "voilà"],
+    en: ["um", "uh", "like", "you know", "sort of", "kind of", "basically", "actually"],
+    es: ["eh", "este", "o sea", "bueno", "digamos", "pues"],
+  };
+
+  function camMesures(secondes, texte) {
+    var L = [];
+    var lg = siteLang();
+
+    // 1. la duree — le seul chiffre qui compte vraiment
+    var etat = secondes < CAM_COURT_S ? "court" : (secondes > CAM_LONG_S ? "long" : "bon");
+    L.push({ k: MSG.camDuree, v: camMmSs(secondes), n: MSG["camDuree_" + etat], t: etat });
+
+    if (texte) {
+      var mots = texte.trim().split(/\s+/).filter(Boolean).length;
+      // 2. le rythme
+      var wpm = Math.round(mots / (secondes / 60));
+      var er = wpm < 90 ? "lent" : (wpm > 180 ? "vite" : "bon");
+      L.push({ k: MSG.camRythme, v: MSG.camWpm.replace("{n}", wpm), n: MSG["camRythme_" + er], t: er });
+
+      // 3. les mots bequilles
+      var liste = CAM_BEQUILLES[lg] || CAM_BEQUILLES.fr, n = 0, vus = [];
+      var bas = " " + texte.toLowerCase().replace(/[.,;:!?]/g, " ") + " ";
+      liste.forEach(function (m) {
+        var c = bas.split(" " + m + " ").length - 1;
+        if (c > 0) { n += c; vus.push(m + " ×" + c); }
+      });
+      var eb = n === 0 ? "bon" : (n > Math.max(3, mots / 40) ? "trop" : "peu");
+      L.push({ k: MSG.camBequilles, v: String(n), n: vus.length ? vus.join(", ") : MSG.camAucune, t: eb });
+    } else {
+      L.push({ k: MSG.camRythme, v: "—", n: MSG.camSansTexte, t: "bon" });
+    }
+
+    var couleur = { bon: "var(--accent)", peu: "var(--attention)", court: "var(--attention)",
+                    long: "var(--attention)", lent: "var(--attention)", vite: "var(--attention)",
+                    trop: "var(--danger)" };
+    var html = '<p style="margin:0 0 0.4rem;font-weight:600;font-size:0.88rem">' + esc(MSG.camTitreMes) + "</p>";
+    html += '<table style="width:100%;border-collapse:collapse;font-size:0.85rem">';
+    L.forEach(function (x) {
+      html += '<tr><td style="padding:0.3rem 0;color:var(--ink-2)">' + esc(x.k) + "</td>"
+        + '<td style="padding:0.3rem 0;text-align:right;font-weight:700;color:' + (couleur[x.t] || "var(--ink)") + '">'
+        + esc(x.v) + "</td></tr>"
+        + '<tr><td colspan="2" style="padding:0 0 0.5rem;color:var(--ink-dim);font-size:0.8rem">' + esc(x.n) + "</td></tr>";
+    });
+    html += "</table>";
+    html += '<p style="margin:0.5rem 0 0;color:var(--ink-dim);font-size:0.78rem;line-height:1.55">'
+      + esc(MSG.camPasDeNote) + "</p>";
+    camEl("cam-mesures").innerHTML = html;
+  }
+
+  function camBrancher() {
+    if (!camEl("cam-box")) return;
+    if (!camDispo()) { camEl("cam-box").style.display = "none"; return; }
+    camEl("cam-toggle").addEventListener("click", function () {
+      if (camStream) { camRendre(); } else { camAllumer(); }
+    });
+    camEl("cam-go").addEventListener("click", function () {
+      if (camEnCours) camArreter(); else camDemarrer();
+    });
+    camEl("cam-eteindre").addEventListener("click", camRendre);
+    camEl("cam-refaire").addEventListener("click", function () {
+      camEffacer();
+      if (camStream) camDemarrer(); else camAllumer();
+    });
+    camEl("cam-effacer").addEventListener("click", camEffacer);
+    camEl("cam-dl").addEventListener("click", function () {
+      if (!camBlob) return;
+      var a = document.createElement("a");
+      a.href = camUrl; a.download = "entevyou360-" + Date.now() + ".webm";
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+  }
+  camBrancher();
 
   document.getElementById("sw-print").addEventListener("click", function () { window.print(); });
   document.getElementById("sw-copy").addEventListener("click", function () {
