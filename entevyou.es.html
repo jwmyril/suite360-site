@@ -2544,7 +2544,7 @@ by();})();
     try {
       fetch(EV_EP, {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: nom, lang: siteLang() }),
+        body: JSON.stringify({ app: "s360", name: nom, lang: siteLang(), page: location.pathname }),
         keepalive: true, credentials: "omit",
       }).catch(function () {});
     } catch (e) {}

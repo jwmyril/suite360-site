@@ -39,7 +39,9 @@ window.ATM = (function () {
       fetch(EP + "/ev", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name, lang: lang(), src: source() }),
+        // « app » : la dimension qui manquait. Sans elle, « view_home » de
+        // Suite 360 et celui de Driver360 tombaient dans le meme compteur.
+        body: JSON.stringify({ app: "s360", name: name, lang: lang(), src: source(), page: location.pathname }),
         keepalive: true,
         credentials: "omit",
       }).catch(function () {});
