@@ -646,6 +646,15 @@ def main():
             n = re.sub(r"(?m)^(### %s .*\n- \*\*Gravité\*\* [^\n]*?\*\*Statut\*\* )À FAIRE" % re.escape(i),
                        r"\1VÉRIFIÉ", n)
         for i, _ in a_verifier:
+            # UN STATUT ADOSSE A UNE PREUVE NE SE DEGRADE JAMAIS. La passe du
+            # 31/08 a MESURE une partie de ces items et les a marques « A FAIRE »
+            # avec une preuve datee : code, ligne, mesure au navigateur. Les
+            # repasser a « a verifier » remplacerait « defaut constate » par « on
+            # ne sait pas » — l'adoucissement exact que ce registre existe pour
+            # empecher. Seul un nouveau CONTROLE peut changer un tel statut,
+            # jamais l'ABSENCE de controle.
+            if re.search(r"### " + re.escape(i) + r"[^\n]*\n- \*\*Gravité\*\*[^\n]*\n- \*\*Preuve\*\*", n):
+                continue
             n = re.sub(r"(?m)^(### %s .*\n- \*\*Gravité\*\* [^\n]*?\*\*Statut\*\* )À FAIRE" % re.escape(i),
                        r"\1À VÉRIFIER", n)
         io.open(REGISTRE, "w", encoding="utf-8", newline="").write(n)
