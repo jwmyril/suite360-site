@@ -284,6 +284,132 @@ humain("V3-19", "CSP contre Cloudflare Insights : reglage de ZONE, pas de code �
 humain("V7-11", "obfuscation e-mail de Cloudflare : reglage de zone, a trancher")
 
 
+# ------------------------------------------------- corriges le 09/09/2026
+@controle("V3-10")
+def _():
+    # `navigator.clipboard` refuse dans plusieurs cas ordinaires — contexte non
+    # securise, permission, appel juge detache d'un geste. Le rejet partait en
+    # « Uncaught (in promise) » : rien ne se copiait, et rien ne le disait.
+    e = page("entevyou.html")
+    m = page("mesi.html")
+    nus = []
+    for f, t in [("entevyou.html", e), ("mesi.html", m)]:
+        # Fenetre de caracteres, PAS jusqu'au premier « ; » : le point-virgule
+        # d'un callback tronquait la fenetre avant le filet, et trois appels
+        # parfaitement proteges etaient declares nus.
+        # `occ`, pas `m` : `m` porte deja la page mesi.html juste au-dessus, et
+        # la boucle l'ecrasait par un objet Match.
+        for occ in re.finditer(r"navigator\.clipboard\.writeText\(", t):
+            fenetre = t[occ.start():occ.start() + 300]
+            if not re.search(r"\.catch|function \(ok\)|repli|s360CopieRepli|, *repli", fenetre):
+                nus.append(f)
+    ok_cles = compte(e, r"copyKo:") == 4 and compte(m, r"copyKo:") == 4
+    return c(not nus and ok_cles,
+             "appels nus : %s | copyKo dans les 4 langues : %s" % (set(nus) or "aucun", ok_cles))
+
+
+@controle("V3-14")
+def _():
+    # La balise pointait `demo-entevyou360.mp4`, qui n'a jamais existe. Les
+    # fichiers reels sont `demo-{ht,fr,en,es}.mp4`.
+    import glob
+    reels = {os.path.basename(x) for x in glob.glob(os.path.join(SITE, "assets", "video", "demo-*.mp4"))}
+    manquants = []
+    for f in ["index.html", "index.fr.html", "index.en.html", "index.es.html", "index.ht.html"]:
+        s2 = page(f)
+        m = re.search(r'og:video" content="[^"]*/(demo-[a-z-]+\.mp4)"', s2)
+        if m and m.group(1) not in reels:
+            manquants.append(f + " -> " + m.group(1))
+    return c(not manquants, "og:video pointe un fichier absent : " + (", ".join(manquants) or "aucun"))
+
+
+@controle("V3-15")
+def _():
+    # Sans `min()`, la grille impose sa largeur et la page deborde a 320 px.
+    nues = compte(page("index.html"), r"minmax\(\d+px,\s*1fr\)")
+    return c(nues == 0, "grilles sans min() : %d" % nues)
+
+
+@controle("V5-03")
+def _():
+    # Le site DECLARE lang="ht". Replier sur `fr` faisait mentir la page.
+    mauvais = [f for f, s2 in toutes_pages().items() if re.search(r'd\.lang\s*=\s*l\s*\|\|\s*"fr"', s2)]
+    if re.search(r'lang \|\| memoire\("atmart_lang"\) \|\| "fr"', page("karye.html")):
+        mauvais.append("karye.html")
+    return c(not mauvais, "replis sur fr : " + (", ".join(mauvais) or "aucun"))
+
+
+@controle("V5-04")
+def _():
+    # La classe etait POSEE puis retiree apres 1,5 s, mais aucune regle ne lui
+    # correspondait : elle ne masquait rien, et le gabarit basculait sous les yeux.
+    css = lire(os.path.join(SITE, "assets", "style.css"))
+    return c(dans(css, r"\.i18n-wait") and dans(css, r"scripting: none"),
+             "regle .i18n-wait presente, avec repli sans JavaScript")
+
+
+@controle("V5-06")
+def _():
+    # Le dictionnaire espagnol ecrivait « 9,99 $ » a cote de « $9.99 ».
+    e = page("entevyou.html")
+    m = re.search(r"\n    es: \{", e)
+    corps = e[m.end():e.index("\n    ", m.end() + 40000)] if m else ""
+    melange = compte(corps, r"\d,\d\d \$")
+    return c(melange == 0, "montants au format francais dans le dictionnaire espagnol : %d" % melange)
+
+
+@controle("V6-04")
+def _():
+    k = page("kondisyon.html")
+    besoins = {
+        "reconduction": r"se reconduit|kontinye pou kont li|renews on its own|se renueva sola",
+        "resiliation": r"Comment arr[eê]ter|Kijan pou w sispann|How to stop|C[oó]mo parar",
+    }
+    absents = [n for n, mo in besoins.items() if not dans(k, mo)]
+    return c(not absents, "absent des conditions : " + (", ".join(absents) or "rien"))
+
+
+@controle("V6-05")
+def _():
+    k = page("kondisyon.html")
+    n = compte(k, r"7 jours gratuits|7 jou gratis|7 free days|7 d[ií]as gratis")
+    return c(n >= 4, "essai de 7 jours nomme dans %d langue(s) sur 4" % n)
+
+
+@controle("V6-08")
+def _():
+    # Une phrase generique ne permet a personne de verifier. Nommer les cles
+    # rend la promesse controlable : on ouvre les outils du navigateur et on compte.
+    k = page("kondisyon.html")
+    n = compte(k, r"<code>atmart_lang</code>")
+    return c(n >= 4, "cles de stockage nommees dans %d langue(s) sur 4" % n)
+
+
+@controle("V2-03")
+def _():
+    w = worker()
+    format_ok = dans(w, r"license && !/\^\[A-Z0-9-\]\{8,40\}\$/")
+    compte_ok = dans(w, r'echecDeCode\(env, request, "license_invalid"\)')
+    donnee_ok = compte(w, r"NOT INSTRUCTIONS") >= 9
+    return c(format_ok and compte_ok and donnee_ok,
+             "format=%s, echecs comptes=%s, customContent declare=%s" % (format_ok, compte_ok, donnee_ok))
+
+
+@controle("V3-11")
+def _():
+    # Cet item est REMPLACE par V0-09 : le defaut a demenage chez le Worker
+    # quand l'administration a quitte GitHub Pages. On verifie donc la ou il vit.
+    manque = []
+    for f in ["admin.html", "estatistik.html"]:
+        t = lire(os.path.join(WORKER, "pages", f))
+        i = t.find("function esc(t)")
+        corps = t[i:t.find("\n  }", i) + 4] if i >= 0 else ""
+        if not ("&quot;" in corps and "&#39;" in corps):
+            manque.append(f)
+    return c(not manque, "remplace par V0-09 — esc() echappe les guillemets : "
+             + (", ".join(manque) or "oui, dans les deux pages"))
+
+
 # ------------------------------------------------------------------ VAGUE 1
 @controle("V1-01")
 def _():

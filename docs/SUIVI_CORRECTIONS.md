@@ -199,7 +199,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **À faire** Regex de format + `echecDeCode` + allonger à 8 caractères.
 
 ### V2-03 · `/studio` — clés de licence énumérables + `customContent` non déclaré
-- **Gravité** MOYEN — **Effort** S — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** S — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : aucun des deux volets. `license` accepté sans regex ni borne (worker.js:4476), `echecDeCode` jamais appelé sur le 403 (4528). `customContent` toujours injecté sans « NOT INSTRUCTIONS » (curriculumBlock:195-203, rpSystem:3090).
 - **Où** `worker.js:4046-4047`, `curriculumBlock:176-184`
 - **Problème** Pas de format, pas de comptage. Une licence valide = 20 générations/jour à 16 000 jetons — la génération la plus chère. Et `customContent` (9 000 caractères) entre dans le prompt système **sans le `NOT INSTRUCTIONS`** présent dans les 8 autres prompts.
@@ -313,13 +313,13 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **Problème** Cas réel d'un abonné Pro 90 atteignant son plafond en pleine séance : « le recruteur prépare sa question… » reste à l'écran indéfiniment, `vw-send` reste actif et envoie `question: undefined`.
 
 ### V3-10 · Boutons « Copier » sans filet
-- **Gravité** MOYEN — **Effort** XS — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** XS — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : 3 boutons nus (entevyou 3575 et 3740, mesi 243). Rejet simulé en direct → aucun message, `Uncaught (in promise) NotAllowedError`. Seul `partagerApp()` est protégé.
 - **Où** `$SRC` (copier CV, copier rapport) · `$SITE/mesi.html:232` (copier le code payant)
 - **Problème** Ni détection, ni `.catch`. Le bouton ne fait rien et n'affiche rien. Sur `mesi.html`, c'est par ce bouton qu'un client qui vient de payer récupère son code. Le motif correct existe déjà dans `partagerApp`.
 
 ### V3-11 · `esc()` doit échapper les guillemets
-- **Gravité** MOYEN — **Effort** XS — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** XS — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : **le défaut a déménagé et s'est aggravé** — voir V0-09. Le fichier visé au registre n'est plus qu'une redirection.
 - **Où** `$SRC` · `$SITE/estatistik.html:141`
 - **Problème** Sert dans un attribut avec une valeur venue du formulaire public. Non exploitable aujourd'hui **uniquement** parce que la regex d'e-mail interdit les espaces — sécurité par accident.
@@ -337,12 +337,12 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **Problème** Une réponse en vol peut peindre le solde du code A sous le code B. Couleurs figées en dur, dont `#2ec4b6` — dont `style.css:7` dit lui-même « 2,17:1 sur blanc, illisible ».
 
 ### V3-14 · `og:video` pointe un fichier inexistant
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** XS — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : `demo-entevyou360.mp4` n'existe pas ; le dossier ne contient que `demo-{ht,fr,en,es}.mp4`. Balise identique dans les 5 variantes d'index.
 - **Où** `$SITE/index.html:26` — `demo-entevyou360.mp4` n'existe pas (les fichiers sont `demo-{ht,fr,en,es}.mp4`). Tout partage de l'accueil renvoie une vidéo morte.
 
 ### V3-15 · Débordement horizontal à 320 px
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** XS — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : **le registre disait VÉRIFIÉ, c'était faux.** Mesuré à 320 px : `scrollWidth 327` pour `clientWidth 320`. `minmax(min(280px,100%),1fr)` n'a jamais été appliqué (index.html:57, 128, 162). La mesure précédente avait été faite à 375 px, où il n'y a effectivement aucun débordement.
 - **Où** `$SITE/index.html:47`, `:144`
 - **Mesuré** `scrollWidth 327` pour `clientWidth 320`. `minmax(280px,1fr)` + 40 px de padding = 320 sans marge.
@@ -416,12 +416,12 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - 14 occurrences `coach` contre 3 `koach` dans le seul `karye.html` ht ; idem `index.html` et `entevyou`. L'utilisateur lit les deux formes sur le même écran. **Ne pas toucher aux clés** (`docCoach`) ni aux valeurs fr/en/es.
 
 ### V5-03 · Repli sur `ht`, pas `fr`
-- **Gravité** MOYEN — **Effort** XS — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** XS — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : `candidats.html:48`, `egzanp.html:48`, `organisations.html:50` replient encore sur `"fr"`. Résidu voisin : `karye.html:363` retombe aussi sur `fr`.
 - `candidats.html:39`, `organisations.html:41`, `egzanp.html:39` replient sur `"fr"` quand les 6 autres pages replient sur `"ht"`. Un visiteur lusophone change de langue en changeant de page.
 
 ### V5-04 · `.i18n-wait` n'existe pas
-- **Gravité** MOYEN — **Effort** XS — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** XS — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : **toujours aucune règle CSS** `.i18n-wait` dans le dépôt. La classe est posée puis retirée après 1 500 ms, sans rien masquer. Les 3 pages visées n'ont toujours pas le garde-fou.
 - `karye.html:40` ajoute la classe pour masquer le rendu avant réécriture — **la règle CSS n'existe nulle part**, la classe ne masque rien. Et 3 pages n'ont même pas le garde-fou.
 - **À faire** `html.i18n-wait body{visibility:hidden}` dans `style.css` + porter la ligne sur `candidats`, `organisations`, `egzanp`.
@@ -432,7 +432,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - Les montants sont des nœuds texte sans `id`, absents de la MAP. En anglais la carte affiche `9,99 $` pendant que le bouton dessous affiche `$9.99`. Idem `19,99 $`, `14,99 $`, `0 $`.
 
 ### V5-06 · Format de prix espagnol dans `proP`
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** XS — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : `swot360.html:936`, `proP` du dictionnaire `es`, écrit toujours `9,99 $` / `19,99 $` alors que les lignes 914 et 919 du même dictionnaire écrivent `$9.99` / `$19.99`.
 - Toutes les autres chaînes es écrivent `$9.99` ; celle-ci écrit `9,99 $`.
 
@@ -492,12 +492,12 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - Vos conditions renvoient explicitement à « la page de vente », mais 3 SWOT/jour, 3 CV/jour et **30 messages/jour pour Career360 à 14,99 $** n'y figurent nulle part. Un abonné payant découvre son plafond en le heurtant.
 
 ### V6-04 · Reconduction automatique et résiliation de Career360
-- **Gravité** MOYEN — **Effort** S — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** S — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : le renouvellement est réel (`invoice.paid` repousse `st.exp` de 34 jours, worker.js:878) mais n'est écrit nulle part. **Aucune procédure d'annulation n'existe** : pas de portail Stripe, pas de `cancel_at_period_end`, aucun `customer.subscription.deleted`.
 - Nulle part le site n'écrit que le prélèvement se renouvelle chaque mois jusqu'à résiliation, ni **comment annuler**. Contraste frappant avec Entèvyou360 qui précise correctement « pa gen renouvèlman otomatik ».
 
 ### V6-05 · L'essai gratuit de 7 jours dans les conditions
-- **Gravité** MOYEN — **Effort** XS — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** XS — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : `grep -i "essai|trial|esè|prueba|7 jou"` sur kondisyon.html → **0 résultat**, dans les 4 langues.
 - Annoncé sur 2 pages, implémenté, **absent des conditions** : ni durée, ni échéance, ni règle « un seul par personne ». Point positif à écrire : il ne demande pas de carte, donc pas de piège.
 
@@ -512,7 +512,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - `/ev` envoie `{name, lang, src}`. C'est sobre et sans identifiant — mais le §4 laisse entendre qu'aucune mesure n'a lieu. Une ligne suffit.
 
 ### V6-08 · Déclarer le stockage navigateur
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** XS — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : une phrase générique, **aucune clé nommée**. Huit clés persistantes réellement écrites, plus `sessionStorage.s360_form`, plus le service worker.
 - Sept clés persistantes + un service worker, aucune notice. Signaler en particulier `entevyou_pro` et `karye360_code` (le code d'accès reste sur l'appareil).
 
