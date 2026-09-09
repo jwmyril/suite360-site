@@ -33,9 +33,9 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
   <meta name="theme-color" content="#0a1a2f" media="(prefers-color-scheme: dark)" />
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
   <title>Suite 360 — prepara tu entrevista y sal con un CV que encaja con la oferta</title>
-  <meta name="description" content="Suite 360 de Atmart: Entèvyou360 te prepara para tu entrevista de trabajo (gratis · Pro 9,99 $), Career360 es tu coach de carrera (14,99 $/mes). En criollo, francés, inglés y español." />
+  <meta name="description" content="Suite 360 de Atmart: Entèvyou360 te prepara para tu entrevista de trabajo (gratis · Pro $9.99), Career360 es tu coach de carrera ($14.99/mes). En criollo, francés, inglés y español." />
   <meta property="og:title" content="Suite 360 — prepara tu entrevista y sal con un CV que encaja con la oferta" />
-  <meta property="og:description" content="Suite 360 de Atmart: Entèvyou360 te prepara para tu entrevista de trabajo (gratis · Pro 9,99 $), Career360 es tu coach de carrera (14,99 $/mes). En criollo, francés, inglés y español." />
+  <meta property="og:description" content="Suite 360 de Atmart: Entèvyou360 te prepara para tu entrevista de trabajo (gratis · Pro $9.99), Career360 es tu coach de carrera ($14.99/mes). En criollo, francés, inglés y español." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style.css?v=3" />
@@ -147,8 +147,15 @@ d.lang=l||"ht";})();
   <div class="container">
     <div style="max-width:400px;margin:0 auto;text-align:center">
       <p id="vid-t" style="font-size:0.86rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 0.7rem">🎥 Gade kijan sa mache — 75 segonn</p>
+      <!-- `poster`, `width` et `height` ne sont pas decoratifs : sans eux le
+           navigateur ne reserve aucune place, la video apparait d'un coup et
+           pousse tout le contenu vers le bas — 558 px mesures. L'affiche donne
+           aussi quelque chose a VOIR quand le JavaScript ne tourne pas. -->
       <video id="vid" controls playsinline preload="none"
-             style="width:100%;display:block;border-radius:18px;border:1px solid rgba(46,196,182,0.45);background:var(--fond)"></video>
+             poster="assets/video/poster-ht.jpg" width="1280" height="720"
+             style="width:100%;height:auto;aspect-ratio:16/9;display:block;border-radius:18px;border:1px solid rgba(46,196,182,0.45);background:var(--fond)">
+        <source src="assets/video/demo-ht.mp4" type="video/mp4" />
+      </video>
       <p id="vid-note" style="color:var(--ink-dim);font-size:0.8rem;margin:0.6rem 0 0;line-height:1.5">Videyo a an kreyòl — vèsyon FR / EN / ES ap vini.</p>
     </div>
   </div>
@@ -195,7 +202,7 @@ d.lang=l||"ht";})();
           <ul>
             <li id="e-p1">8-12 kesyon AK repons ki bati sou prèv PA OU</li>
             <li id="e-p2">Deck « Prezante tèt ou » + plan 90 jou</li>
-            <li id="e-p3">CV pa konpetans, pare pou sistèm ATS yo</li>
+            <li id="e-p3">CV pa konpetans, pare pou lojisyèl rekritman yo (ATS)</li>
           </ul>
           <p class="price">19,99 $ <small id="e-mo90">· Pro 90 jou</small></p>
           <ul>
@@ -249,7 +256,7 @@ d.lang=l||"ht";})();
       eFree: "Gratis",
       eG1: "6 kesyon, 2 minit — SWOT ou fas ak IA", eG2: "3 kesyon entèvyou ki fèt pou OU", eG3: "🎙 Pratik ak vwa ou : 1 kesyon gratis, ak sa koach la di w",
       eOnce: "· Pro Kit — yon sèl peman", eMo90: "· Pro 90 jou", e91: "Yon CV adapte pou CHAK anons — voye foto/PDF anons lan", e92: "8 jenerasyon pa jou pandan 90 jou",
-      eP1: "8-12 kesyon AK repons ki bati sou prèv PA OU", eP2: "Deck « Prezante tèt ou » + plan 90 jou", eP3: "CV pa konpetans, pare pou sistèm ATS yo",
+      eP1: "8-12 kesyon AK repons ki bati sou prèv PA OU", eP2: "Deck « Prezante tèt ou » + plan 90 jou", eP3: "CV pa konpetans, pare pou lojisyèl rekritman yo (ATS)",
       eCta: "🧭 Kòmanse gratis", eBuy: "Achte Pro Kit — 9,99 $", eBuy90: "Pro 90 jou — 19,99 $",
       kTag: "Grandi nan karyè ou",
       kDesc: "Yon koach karyè ki sonje w, semèn apre semèn — nouvo djòb, rechèch travay, pwogrè. Ou ka pale ak li ak vwa ou, li ka li repons li yo fò.",
@@ -269,7 +276,7 @@ d.lang=l||"ht";})();
       eFree: "Gratuit",
       eG1: "6 questions, 2 minutes — votre SWOT face à l'IA", eG2: "3 questions d'entretien faites pour VOUS", eG3: "🎙 Entraînement à voix haute + feedback du coach",
       eOnce: "· Pro Kit — paiement unique", eMo90: "· Pro 90 jours", e91: "Un CV adapté à CHAQUE annonce — photo/PDF de l’annonce accepté", e92: "8 générations par jour pendant 90 jours",
-      eP1: "8-12 questions AVEC réponses bâties sur VOS preuves", eP2: "Deck « Présentez-vous » + plan 90 jours", eP3: "CV par compétences, prêt pour les ATS",
+      eP1: "8-12 questions AVEC réponses bâties sur VOS preuves", eP2: "Deck « Présentez-vous » + plan 90 jours", eP3: "CV par compétences, prêt pour les logiciels de recrutement (ATS)",
       eCta: "🧭 Commencer gratuitement", eBuy: "Acheter Pro Kit — 9,99 $", eBuy90: "Pro 90 jours — 19,99 $",
       kTag: "Grandir dans votre carrière",
       kDesc: "Un coach de carrière qui se souvient de vous, semaine après semaine — nouveau poste, recherche d'emploi, progression. Parlez-lui à voix haute, il peut lire ses réponses.",
@@ -299,7 +306,7 @@ d.lang=l||"ht";})();
       kCta: "🎁 Try free for 7 days", kBuy: "Get Solo — $14.99/month",
       pay: 'Payment: 💳 card directly through the links — or MonCash, Zelle, transfer: write to <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a>. Your code appears on screen as soon as payment completes — no account needed.',
     },
-    es: { __title: "Suite 360 — prepara tu entrevista y sal con un CV que encaja con la oferta", __desc: "Suite 360 de Atmart: Entèvyou360 te prepara para tu entrevista de trabajo (gratis · Pro 9,99 $), Career360 es tu coach de carrera (14,99 $/mes). En criollo, francés, inglés y español.",
+    es: { __title: "Suite 360 — prepara tu entrevista y sal con un CV que encaja con la oferta", __desc: "Suite 360 de Atmart: Entèvyou360 te prepara para tu entrevista de trabajo (gratis · Pro $9.99), Career360 es tu coach de carrera ($14.99/mes). En criollo, francés, inglés y español.",
       kicker: "Suite 360 — por Atmart", byline: "por Atmart", navCand: "Candidatos", navOrg: "Organizaciones", d1t: "Busco empleo", d1d: "Prepara tu entrevista y obtén tu CV — gratis para empezar.", d1c: "Empezar →", d2t: "Acompaño a personas que buscan empleo", d2d: "Agencias de empleo, asociaciones, colegios: piloto de 4 semanas para 50 participantes.", d2c: "Ver la oferta para organizaciones →", pvMore: "Ver el informe completo y el CV entero →", vidT: "🎥 Mira cómo funciona — 90 segundos", vidNote: "El informe y el CV del vídeo son salidas reales de la herramienta.<br /><span style=\"opacity:0.8\">♪ Música : « Double O » — Kevin MacLeod (<a href=\"https://incompetech.com\" rel=\"nofollow noopener\" target=\"_blank\" style=\"color:var(--ink-dim)\">incompetech.com</a>), <a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"license nofollow noopener\" target=\"_blank\" style=\"color:var(--ink-dim)\">CC BY 4.0</a></span>", pvTag: "👀 Antes / Después — lo que la herramienta hace con una frase vacía", pvBT: "ANTES — el CV antiguo", pvAT: "DESPUÉS — Entèvyou360", pvNote: "Extractos de un CV realmente generado por la herramienta con un perfil de demostración (enfermera → CNA en Boston). No es un cliente — los primeros testimonios reales llegan con el lanzamiento.", legal: "Términos · Privacidad · Reembolsos",
       title: "Prepara tu próxima entrevista — y sal con un CV adaptado al anuncio",
       lead: "En menos de 15 minutos, en criollo, francés, inglés o español. Sin cuenta, sin correo — simplemente empiezas.",
@@ -309,7 +316,7 @@ d.lang=l||"ht";})();
       eFree: "Gratis",
       eG1: "6 preguntas, 2 minutos — tu FODA frente a la IA", eG2: "3 preguntas de entrevista hechas para TI", eG3: "🎙 Práctica en voz alta + feedback del coach",
       eOnce: "· Pro Kit — pago único", eMo90: "· Pro 90 días", e91: "Un CV adaptado a CADA anuncio — envía foto/PDF del anuncio", e92: "8 generaciones al día durante 90 días",
-      eP1: "8-12 preguntas CON respuestas basadas en TUS pruebas", eP2: "Deck «Preséntate» + plan de 90 días", eP3: "CV por competencias, listo para los ATS",
+      eP1: "8-12 preguntas CON respuestas basadas en TUS pruebas", eP2: "Deck «Preséntate» + plan de 90 días", eP3: "CV por competencias, listo para los programas de reclutamiento (ATS)",
       eCta: "🧭 Empezar gratis", eBuy: "Comprar Pro Kit — $9.99", eBuy90: "Pro 90 días — $19.99",
       kTag: "Crecer en tu carrera",
       kDesc: "Un coach de carrera que te recuerda, semana tras semana — nuevo puesto, búsqueda de empleo, progreso. Háblale en voz alta; puede leerte sus respuestas.",

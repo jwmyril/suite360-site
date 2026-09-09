@@ -410,6 +410,86 @@ def _():
              + (", ".join(manque) or "oui, dans les deux pages"))
 
 
+@controle("V3-09")
+def _():
+    # La branche `else` n'ecrivait qu'un statut : la question PRECEDENTE restait
+    # a l'ecran et « Envoyer » restait actif. Quelqu'un pouvait repondre
+    # longuement a une question deja traitee et recevoir un retour incoherent.
+    e = page("entevyou.html")
+    ferme = dans(e, r'vwSendB\.setAttribute\("disabled"')
+    rouvre = dans(e, r"function vwFiniRouvrir")
+    suite = dans(e, r'z\.id = "vw-fini"')
+    return c(ferme and rouvre and suite,
+             "envoi ferme=%s, panneau rouvrable=%s, suite proposee=%s" % (ferme, rouvre, suite))
+
+
+@controle("V3-13")
+def _():
+    # `color:var(--accent)` en ligne ecrasait les quatre classes : un code
+    # REFUSE s'affichait en vert de succes. Entre le mot et la couleur, on croit
+    # la couleur.
+    e = page("entevyou.html")
+    m = re.search(r'id="sw-solde"[^>]*', e)
+    return c(bool(m) and "color:" not in m.group(0),
+             "style en ligne : " + (m.group(0)[:90] if m else "champ introuvable"))
+
+
+@controle("V3-18")
+def _():
+    # Sans `poster`, `width` ni `height`, le navigateur ne reserve aucune place :
+    # 558 px de saut mesures. Et sans JavaScript, il n'y avait rien a voir.
+    i = page("index.html")
+    m = re.search(r"<video[^>]*id=\"vid\"[^>]*>", i)
+    if not m:
+        return c(False, "balise video introuvable")
+    b = m.group(0)
+    manque = [a for a in ["poster=", "width=", "height="] if a not in b]
+    src = dans(i, r"<source src=\"assets/video/demo-")
+    return c(not manque and src,
+             "attributs manquants : " + (", ".join(manque) or "aucun") + " | <source> : %s" % src)
+
+
+@controle("V5-05")
+def _():
+    # Sur le meme ecran, une carte annoncait « 9,99 $ » et un bouton « $9.99 ».
+    melanges = []
+    for f in ["index.html", "candidats.html"]:
+        s2 = page(f)
+        for lg in ["en", "es"]:
+            m = re.search(r"\n\s{2,6}" + lg + r": \{", s2)
+            if not m:
+                continue
+            suite = s2[m.end():]
+            fin = re.search(r"\n\s{2,6}(ht|fr|en|es): \{", suite)
+            corps = suite[:fin.start()] if fin else suite
+            if re.search(r"\d+,\d\d ?\$", corps):
+                melanges.append(f + "/" + lg)
+    return c(not melanges, "format francais dans un dictionnaire en/es : " + (", ".join(melanges) or "aucun"))
+
+
+@controle("V5-07")
+def _():
+    # La lecon n'existe QU'EN francais et en anglais — verifie en production.
+    # Inserer son titre francais dans une phrase kreyol sans le dire promet une
+    # lecture qui n'arrivera pas.
+    e = page("entevyou.html")
+    ht_ok = dans(e, r"li leson gratis la \(an fransè\)")
+    es_ok = dans(e, r"lección gratuita \(en inglés\)")
+    return c(ht_ok and es_ok, "kreyol nomme la langue=%s, espagnol=%s" % (ht_ok, es_ok))
+
+
+@controle("V5-10")
+def _():
+    # Le meme livrable portait deux noms sur le meme site.
+    mauvais = []
+    for f, s2 in toutes_pages().items():
+        if re.search(r"pr[eê]t pour les ATS\b", s2):
+            mauvais.append(f + " (ATS seul)")
+        if re.search(r"repons yo, deck,|answers, deck,", s2):
+            mauvais.append(f + " (deck nu)")
+    return c(not mauvais, "termes divergents : " + (", ".join(mauvais) or "aucun"))
+
+
 # ------------------------------------------------------------------ VAGUE 1
 @controle("V1-01")
 def _():

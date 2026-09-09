@@ -307,7 +307,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **À faire** Ajouter `return` ; action `efase` dédiée n'envoyant que le code.
 
 ### V3-09 · Sortie propre quand la réserve de questions est épuisée
-- **Gravité** MOYEN — **Effort** S — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** S — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : la branche `else` n'écrit que dans `#vw-status` ; `#vw-q` n'est jamais vidé, `vw-send` jamais désactivé, aucun bouton de reprise. L'envoi part avec `question: undefined`.
 - **Où** `$SRC` — `vwSecours()`
 - **Problème** Cas réel d'un abonné Pro 90 atteignant son plafond en pleine séance : « le recruteur prépare sa question… » reste à l'écran indéfiniment, `vw-send` reste actif et envoie `question: undefined`.
@@ -332,7 +332,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **Vérification** `grep -c 'href="assets\|href="entevyou\|src="assets' $SITE/404.html` → 0.
 
 ### V3-13 · Solde du code Pro : rapprocher la réponse du code courant
-- **Gravité** FAIBLE — **Effort** S — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** S — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : les 4 classes utilisent bien des variables de thème, mais un `style` en ligne (entevyou.html:372) fixe `color:var(--accent)` et les écrase toutes — le message d'erreur s'affiche **en vert de succès**. Le verrou anti-course reste sans jeton de requête.
 - **Problème** Une réponse en vol peut peindre le solde du code A sous le code B. Couleurs figées en dur, dont `#2ec4b6` — dont `style.css:7` dit lui-même « 2,17:1 sur blanc, illisible ».
 
@@ -357,7 +357,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - 153 lignes, référencée par aucune page, et **authentification plus faible** que `admin.html` pour les mêmes données. Une seconde porte, moins solide, sans usage.
 
 ### V3-18 · La démo ne doit pas dépendre entièrement du JS
-- **Gravité** FAIBLE — **Effort** S — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** S — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : le `<video>` servi n'a ni `src`, ni `poster`, ni `width`, ni `height` (5 variantes). Saut de mise en page mesuré : **+558 px**.
 - Le `<video>` n'a ni `src`, ni `poster`, ni dimensions dans le HTML : si `atm360.js` ne charge pas, lecteur vide **et** texte figé dans un mélange kreyòl/français. Ajouter `width`/`height` supprime aussi le saut de mise en page.
 
@@ -427,7 +427,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **À faire** `html.i18n-wait body{visibility:hidden}` dans `style.css` + porter la ligne sur `candidats`, `organisations`, `egzanp`.
 
 ### V5-05 · Localiser les montants
-- **Gravité** MOYEN — **Effort** S — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** S — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : mesuré sur 4 écrans (index et candidats, en et es) — carte `9,99 $` contre bouton `$9.99`, à 478 px l'un de l'autre. Bonus : `candidats.en/es` affichent `0 $` là où index affiche « Free » / « Gratis ».
 - Les montants sont des nœuds texte sans `id`, absents de la MAP. En anglais la carte affiche `9,99 $` pendant que le bouton dessous affiche `$9.99`. Idem `19,99 $`, `14,99 $`, `0 $`.
 
@@ -437,7 +437,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - Toutes les autres chaînes es écrivent `$9.99` ; celle-ci écrit `9,99 $`.
 
 ### V5-07 · Lien « leçon gratuite » cohérent
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** XS — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : inchangé. La chaîne **ht** insère toujours le titre français « Management & carrière à l'ère de l'IA » dans une phrase kreyòl (swot360.html:774), et la chaîne **es** pointe vers `management-ia.en.html` (:918) en affichant le titre anglais.
 - ht insère un titre français brut dans une phrase kreyòl ; es pointe vers la version `.en.html` et affiche le titre en anglais.
 
@@ -451,7 +451,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - Dont : `jamè` → `Non, li pa fè sa` (calque de *jamais*) · `pilòt` → `esè` (en kreyòl c'est le pilote d'avion) · `feedback` → `di w sa k bon ak sa pou w ranfòse` (formule déjà employée ailleurs chez vous) · `bay ou` → `ba ou` · `demonstrasyon` → `egzanp` · `vireman` → `transfè labank`.
 
 ### V5-10 · Terminologie : un livrable, un nom
-- **Gravité** FAIBLE — **Effort** S — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** S — **Statut** VÉRIFIÉ
 - **Preuve** 31/08 : inchangé, et symétrique dans les 4 langues — `ATS` contre `logiciels de recrutement`, `carte SWOT` contre `Carte WhatsApp`, et « Deck » en dur partout.
 - Le CV : `lojisyèl rekritman` vs `sistèm ATS`. Le livrable : `Kat WhatsApp` vs `Deck`, et « Deck » en dur dans les 4 langues alors que c'est opaque pour le public visé.
 
