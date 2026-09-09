@@ -23,7 +23,35 @@ import sys
 
 SITE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 WORKER = os.path.join(SITE, "..", "Atmart_chat_worker")
-SRC = os.path.join(SITE, "..", "Lojik360_site", "swot360.html")
+# La SOURCE d'Entevyou360. Elle a demenage le 08/09/2026 : `swot360.html` est
+# devenu une redirection sur Lojik360, et `entevyou.html` est devenu l'original.
+#
+# Ce controleur a continue de lire l'ancien chemin pendant neuf jours et rendait
+# TROIS faux « a faire » — le micro, la purge, le bouton d'effacement — parce
+# qu'il ne trouvait plus le code dans une redirection de 1 Ko. C'est exactement
+# ce que la fiche V0-09 notait deja : « un critere de verification ancre sur un
+# chemin de fichier devient aveugle des que le code demenage ».
+#
+# Le garde-fou ci-dessous fait qu'un registre ne peut plus MENTIR en silence :
+# si la source ne ressemble pas au produit, on s'arrete au lieu de rendre des
+# verdicts sur du vide.
+SRC = os.path.join(SITE, "entevyou.html")
+
+
+def _verifier_source():
+    try:
+        taille = os.path.getsize(SRC)
+    except OSError:
+        raise SystemExit("!! source introuvable : %s" % SRC)
+    with io.open(SRC, encoding="utf-8") as f:
+        tete = f.read(200000)
+    if "sw-work" not in tete or taille < 50000:
+        raise SystemExit(
+            "\n!! ARRET — la source ne ressemble pas au produit.\n"
+            "   %s (%d octets)\n"
+            "   Un controleur qui lit le mauvais fichier rend des verdicts sur\n"
+            "   du vide, et le registre ment sans que personne ne le voie.\n"
+            % (SRC, taille))
 REGISTRE = os.path.join(SITE, "docs", "SUIVI_CORRECTIONS.md")
 
 _cache = {}
@@ -165,6 +193,95 @@ def _():
     corps = corps_fonction(worker(), "hashId")
     return c(("subtle.digest" in corps) or ("HMAC" in corps and "SHA-256" in corps),
              "hashId : HMAC-SHA256, sel en cle, tronque")
+
+
+# ------------------------------------------------- VAGUE 0 bis (31/08/2026)
+@controle("V0-07")
+def _():
+    # Le script de langue de karye.html ne se parsait pas : la liste `var` etait
+    # fermee par une VIRGULE OUVERTE, suivie d'un commentaire puis d'un `if`.
+    # Le script entier mourait, la langue memorisee n'etait jamais appliquee, et
+    # un anglophone venant de l'accueil anglais atterrissait en francais.
+    #
+    # Ce controle-ci ne fait qu'un constat de forme ; la VRAIE garantie est
+    # `tests/syntaxe.js`, qui COMPILE les 165 blocs de toutes les pages. Ici on
+    # verifie que la liste est refermee, sur toutes les pages qui portent ce
+    # script de tete — c'est le defaut precis qu'on ne veut pas revoir.
+    ouvertes = []
+    for f, s in toutes_pages().items():
+        if "atmart_lang" not in s:
+            continue
+        if re.search(r"d\s*=\s*document\.documentElement,\s*\n", s):
+            ouvertes.append(f)
+    return c(not ouvertes, "liste `var` laissee ouverte : " + (", ".join(ouvertes) or "aucune"))
+
+
+@controle("V0-08")
+def _():
+    # `'...' + + '<h2>12...'` applique le PLUS UNAIRE a une chaine : NaN.
+    # Syntaxiquement valide, donc aucun compilateur ne s'en plaint — seule la
+    # page l'affichait, sur la section Remboursements, en quatre langues.
+    n = compte(page("kondisyon.html"), r"\+\s+\+\s*['\"`]")
+    return c(n == 0, "concatenations « + + » : %d" % n)
+
+
+@controle("V0-09")
+def _():
+    # `esc()` passait par textContent -> innerHTML : cela echappe & < > mais PAS
+    # les guillemets, et le resultat atterrissait dans un attribut a guillemets
+    # simples, alimente par le formulaire PUBLIC d'organisations.
+    manque = []
+    for f in ["admin.html", "estatistik.html"]:
+        t = lire(os.path.join(WORKER, "pages", f))
+        i = t.find("function esc(t)")
+        corps = t[i:t.find("\n  }", i) + 4] if i >= 0 else ""
+        if not ("&quot;" in corps and "&#39;" in corps):
+            manque.append(f)
+    return c(not manque, "esc() n'echappe pas les guillemets : " + (", ".join(manque) or "aucune"))
+
+
+# ------------------------------------------------- complements (31/08/2026)
+@controle("V5-14")
+def _():
+    # V4-01 etait tenu — chaque controle a un nom accessible. Mais il etait
+    # FIGE : un lecteur d'ecran anglophone entendait du kreyol.
+    e = page("entevyou.html")
+    k = page("karye.html")
+    ok_e = dans(e, r'vwaAria: "') and dans(e, r'setAttribute\("aria-label", T\.vwaAria\)')
+    ok_k = dans(k, r'inAria: "') and dans(k, r'setAttribute\("aria-label", t\.inAria\)')
+    manque = [n for n, v in [("entevyou/vw-ans", ok_e), ("karye/ky-input", ok_k)] if not v]
+    return c(not manque, "nom accessible fige : " + (", ".join(manque) or "aucun"))
+
+
+@controle("V6-10")
+def _():
+    # Les conditions disent « aucune adresse IP conservee ». Le plafond de /ev
+    # ecrivait `evip:<IP>:<jour>` en clair avec un TTL de 400 jours.
+    w = worker()
+    condense = dans(w, r"const empreinte = await hashId\(env, request\.headers\.get")
+    clair = dans(w, r'evip:\$\{request\.headers\.get\("CF-Connecting-IP"\)')
+    court = dans(w, r"EVIP_TTL = 172800")
+    return c(condense and not clair and court,
+             "IP condensee=%s, en clair=%s, TTL 2 jours=%s" % (condense, clair, court))
+
+
+@controle("V6-11")
+def _():
+    # Le plafond vit a DEUX endroits sans lien : la page l'annonce, le Worker
+    # l'applique. Ils avaient diverge — 30 annonces contre 20 appliques, sur un
+    # abonnement payant.
+    m = re.search(r"KOACH_DAILY_MSGS = (\d+)", worker())
+    if not m:
+        return c(False, "KOACH_DAILY_MSGS introuvable dans le Worker")
+    reel = m.group(1)
+    annonces = set(re.findall(r"\((\d+) (?:mesaj|messages|mensajes)", page("karye.html")))
+    return c(annonces == {reel},
+             "le Worker applique %s, la page annonce %s" % (reel, ", ".join(sorted(annonces)) or "rien"))
+
+
+humain("V3-19", "CSP contre Cloudflare Insights : reglage de ZONE, pas de code — "
+                "autoriser l'hote ou desactiver Web Analytics (vous avez /tablo)")
+humain("V7-11", "obfuscation e-mail de Cloudflare : reglage de zone, a trancher")
 
 
 # ------------------------------------------------------------------ VAGUE 1
@@ -485,6 +602,9 @@ humain("V7-10", "appeler les 90 prospects du Massachusetts — action commercial
 
 
 # ---------------------------------------------------------------------------
+_verifier_source()
+
+
 def main():
     s = lire(REGISTRE)
     ids = re.findall(r"^### (V\d+-\d+)", s, re.M)

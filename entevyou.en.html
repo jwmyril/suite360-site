@@ -779,6 +779,7 @@ by();})();
       vwaBtn: "🎙 Pratike ak vwa ou", vwaProg: "Kesyon {i} sou {n}",
       vwaListen: "🔊 Tande kesyon an ankò", vwaMic: "🎙 Peze pou reponn", vwaStop: "⏹ Mwen fini pale",
       vwaRecing: "N ap koute w… pale lib, epi peze « ⏹ Mwen fini pale » lè ou fini.",
+      vwaAria: "Repons ou pou kesyon rekritè a",
       stBtn: "🎬 Estidyo", stTitre: "Estidyo",
       camTitre: "Antrene w devan kamera a",
       camNote: "Videyo a rete SOU APAREY OU. Li pa janm voye ba nou. Se pou ou wè tèt ou — se sa ki fè travay la.",
@@ -880,6 +881,7 @@ by();})();
       vwaBtn: "🎙 M'entraîner à voix haute", vwaProg: "Question {i} sur {n}",
       vwaListen: "🔊 Réécouter la question", vwaMic: "🎙 Appuyer pour répondre", vwaStop: "⏹ J'ai fini de parler",
       vwaRecing: "On vous écoute… parlez librement, puis appuyez sur « ⏹ J'ai fini de parler ».",
+      vwaAria: "Votre réponse à la question du recruteur",
       stBtn: "🎬 Studio", stTitre: "Studio",
       camTitre: "S'entraîner devant la caméra",
       camNote: "La vidéo RESTE SUR VOTRE APPAREIL. Elle ne nous est jamais envoyée. Elle sert à vous voir — c'est ça qui fait le travail.",
@@ -981,6 +983,7 @@ by();})();
       vwaBtn: "🎙 Practice out loud", vwaProg: "Question {i} of {n}",
       vwaListen: "🔊 Hear the question again", vwaMic: "🎙 Press to answer", vwaStop: "⏹ I'm done talking",
       vwaRecing: "We're listening… speak freely, then press “⏹ I'm done talking”.",
+      vwaAria: "Your answer to the recruiter's question",
       stBtn: "🎬 Studio", stTitre: "Studio",
       camTitre: "Practise on camera",
       camNote: "The video STAYS ON YOUR DEVICE. It is never sent to us. It's there so you can watch yourself — that's what does the work.",
@@ -1082,6 +1085,7 @@ by();})();
       vwaBtn: "🎙 Practicar en voz alta", vwaProg: "Pregunta {i} de {n}",
       vwaListen: "🔊 Escuchar la pregunta otra vez", vwaMic: "🎙 Pulsa para responder", vwaStop: "⏹ Terminé de hablar",
       vwaRecing: "Te escuchamos… habla libremente y pulsa «⏹ Terminé de hablar» al terminar.",
+      vwaAria: "Tu respuesta a la pregunta del reclutador",
       stBtn: "🎬 Estudio", stTitre: "Estudio",
       camTitre: "Practicar ante la cámara",
       camNote: "El video SE QUEDA EN TU DISPOSITIVO. Nunca nos llega. Está ahí para que te veas — eso es lo que funciona.",
@@ -2948,6 +2952,10 @@ by();})();
     if (T.askPh) $("vw-mq").placeholder = T.askPh;
     if (T.askSend) $("vw-mqsend").textContent = T.askSend;
     if (T.stBtn && $("vw-studio")) $("vw-studio").textContent = T.stBtn;
+    // Le NOM ACCESSIBLE suit la langue, comme le texte visible. Fige, il
+    // faisait entendre du kreyol a un lecteur d'ecran anglophone — et le
+    // champ ou l'on tape sa reponse devenait inutilisable sans la vue.
+    if (T.vwaAria) $("vw-ans").setAttribute("aria-label", T.vwaAria);
     // Simulation camera : memes libelles statiques, meme piege. Ils doivent
     // suivre la langue meme quand la camera n'a jamais ete allumee.
     if (T.camTitre && $("cam-titre")) {

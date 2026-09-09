@@ -199,7 +199,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **À faire** Regex de format + `echecDeCode` + allonger à 8 caractères.
 
 ### V2-03 · `/studio` — clés de licence énumérables + `customContent` non déclaré
-- **Gravité** MOYEN — **Effort** S — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** S — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : aucun des deux volets. `license` accepté sans regex ni borne (worker.js:4476), `echecDeCode` jamais appelé sur le 403 (4528). `customContent` toujours injecté sans « NOT INSTRUCTIONS » (curriculumBlock:195-203, rpSystem:3090).
 - **Où** `worker.js:4046-4047`, `curriculumBlock:176-184`
 - **Problème** Pas de format, pas de comptage. Une licence valide = 20 générations/jour à 16 000 jetons — la génération la plus chère. Et `customContent` (9 000 caractères) entre dans le prompt système **sans le `NOT INSTRUCTIONS`** présent dans les 8 autres prompts.
@@ -307,19 +307,19 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **À faire** Ajouter `return` ; action `efase` dédiée n'envoyant que le code.
 
 ### V3-09 · Sortie propre quand la réserve de questions est épuisée
-- **Gravité** MOYEN — **Effort** S — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** S — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : la branche `else` n'écrit que dans `#vw-status` ; `#vw-q` n'est jamais vidé, `vw-send` jamais désactivé, aucun bouton de reprise. L'envoi part avec `question: undefined`.
 - **Où** `$SRC` — `vwSecours()`
 - **Problème** Cas réel d'un abonné Pro 90 atteignant son plafond en pleine séance : « le recruteur prépare sa question… » reste à l'écran indéfiniment, `vw-send` reste actif et envoie `question: undefined`.
 
 ### V3-10 · Boutons « Copier » sans filet
-- **Gravité** MOYEN — **Effort** XS — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** XS — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : 3 boutons nus (entevyou 3575 et 3740, mesi 243). Rejet simulé en direct → aucun message, `Uncaught (in promise) NotAllowedError`. Seul `partagerApp()` est protégé.
 - **Où** `$SRC` (copier CV, copier rapport) · `$SITE/mesi.html:232` (copier le code payant)
 - **Problème** Ni détection, ni `.catch`. Le bouton ne fait rien et n'affiche rien. Sur `mesi.html`, c'est par ce bouton qu'un client qui vient de payer récupère son code. Le motif correct existe déjà dans `partagerApp`.
 
 ### V3-11 · `esc()` doit échapper les guillemets
-- **Gravité** MOYEN — **Effort** XS — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** XS — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : **le défaut a déménagé et s'est aggravé** — voir V0-09. Le fichier visé au registre n'est plus qu'une redirection.
 - **Où** `$SRC` · `$SITE/estatistik.html:141`
 - **Problème** Sert dans un attribut avec une valeur venue du formulaire public. Non exploitable aujourd'hui **uniquement** parce que la regex d'e-mail interdit les espaces — sécurité par accident.
@@ -332,17 +332,17 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **Vérification** `grep -c 'href="assets\|href="entevyou\|src="assets' $SITE/404.html` → 0.
 
 ### V3-13 · Solde du code Pro : rapprocher la réponse du code courant
-- **Gravité** FAIBLE — **Effort** S — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** S — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : les 4 classes utilisent bien des variables de thème, mais un `style` en ligne (entevyou.html:372) fixe `color:var(--accent)` et les écrase toutes — le message d'erreur s'affiche **en vert de succès**. Le verrou anti-course reste sans jeton de requête.
 - **Problème** Une réponse en vol peut peindre le solde du code A sous le code B. Couleurs figées en dur, dont `#2ec4b6` — dont `style.css:7` dit lui-même « 2,17:1 sur blanc, illisible ».
 
 ### V3-14 · `og:video` pointe un fichier inexistant
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** XS — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : `demo-entevyou360.mp4` n'existe pas ; le dossier ne contient que `demo-{ht,fr,en,es}.mp4`. Balise identique dans les 5 variantes d'index.
 - **Où** `$SITE/index.html:26` — `demo-entevyou360.mp4` n'existe pas (les fichiers sont `demo-{ht,fr,en,es}.mp4`). Tout partage de l'accueil renvoie une vidéo morte.
 
 ### V3-15 · Débordement horizontal à 320 px
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** XS — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : **le registre disait VÉRIFIÉ, c'était faux.** Mesuré à 320 px : `scrollWidth 327` pour `clientWidth 320`. `minmax(min(280px,100%),1fr)` n'a jamais été appliqué (index.html:57, 128, 162). La mesure précédente avait été faite à 375 px, où il n'y a effectivement aucun débordement.
 - **Où** `$SITE/index.html:47`, `:144`
 - **Mesuré** `scrollWidth 327` pour `clientWidth 320`. `minmax(280px,1fr)` + 40 px de padding = 320 sans marge.
@@ -357,7 +357,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - 153 lignes, référencée par aucune page, et **authentification plus faible** que `admin.html` pour les mêmes données. Une seconde porte, moins solide, sans usage.
 
 ### V3-18 · La démo ne doit pas dépendre entièrement du JS
-- **Gravité** FAIBLE — **Effort** S — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** S — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : le `<video>` servi n'a ni `src`, ni `poster`, ni `width`, ni `height` (5 variantes). Saut de mise en page mesuré : **+558 px**.
 - Le `<video>` n'a ni `src`, ni `poster`, ni dimensions dans le HTML : si `atm360.js` ne charge pas, lecteur vide **et** texte figé dans un mélange kreyòl/français. Ajouter `width`/`height` supprime aussi le saut de mise en page.
 
@@ -416,28 +416,28 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - 14 occurrences `coach` contre 3 `koach` dans le seul `karye.html` ht ; idem `index.html` et `entevyou`. L'utilisateur lit les deux formes sur le même écran. **Ne pas toucher aux clés** (`docCoach`) ni aux valeurs fr/en/es.
 
 ### V5-03 · Repli sur `ht`, pas `fr`
-- **Gravité** MOYEN — **Effort** XS — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** XS — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : `candidats.html:48`, `egzanp.html:48`, `organisations.html:50` replient encore sur `"fr"`. Résidu voisin : `karye.html:363` retombe aussi sur `fr`.
 - `candidats.html:39`, `organisations.html:41`, `egzanp.html:39` replient sur `"fr"` quand les 6 autres pages replient sur `"ht"`. Un visiteur lusophone change de langue en changeant de page.
 
 ### V5-04 · `.i18n-wait` n'existe pas
-- **Gravité** MOYEN — **Effort** XS — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** XS — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : **toujours aucune règle CSS** `.i18n-wait` dans le dépôt. La classe est posée puis retirée après 1 500 ms, sans rien masquer. Les 3 pages visées n'ont toujours pas le garde-fou.
 - `karye.html:40` ajoute la classe pour masquer le rendu avant réécriture — **la règle CSS n'existe nulle part**, la classe ne masque rien. Et 3 pages n'ont même pas le garde-fou.
 - **À faire** `html.i18n-wait body{visibility:hidden}` dans `style.css` + porter la ligne sur `candidats`, `organisations`, `egzanp`.
 
 ### V5-05 · Localiser les montants
-- **Gravité** MOYEN — **Effort** S — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** S — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : mesuré sur 4 écrans (index et candidats, en et es) — carte `9,99 $` contre bouton `$9.99`, à 478 px l'un de l'autre. Bonus : `candidats.en/es` affichent `0 $` là où index affiche « Free » / « Gratis ».
 - Les montants sont des nœuds texte sans `id`, absents de la MAP. En anglais la carte affiche `9,99 $` pendant que le bouton dessous affiche `$9.99`. Idem `19,99 $`, `14,99 $`, `0 $`.
 
 ### V5-06 · Format de prix espagnol dans `proP`
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** XS — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : `swot360.html:936`, `proP` du dictionnaire `es`, écrit toujours `9,99 $` / `19,99 $` alors que les lignes 914 et 919 du même dictionnaire écrivent `$9.99` / `$19.99`.
 - Toutes les autres chaînes es écrivent `$9.99` ; celle-ci écrit `9,99 $`.
 
 ### V5-07 · Lien « leçon gratuite » cohérent
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** XS — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : inchangé. La chaîne **ht** insère toujours le titre français « Management & carrière à l'ère de l'IA » dans une phrase kreyòl (swot360.html:774), et la chaîne **es** pointe vers `management-ia.en.html` (:918) en affichant le titre anglais.
 - ht insère un titre français brut dans une phrase kreyòl ; es pointe vers la version `.en.html` et affiche le titre en anglais.
 
@@ -451,7 +451,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - Dont : `jamè` → `Non, li pa fè sa` (calque de *jamais*) · `pilòt` → `esè` (en kreyòl c'est le pilote d'avion) · `feedback` → `di w sa k bon ak sa pou w ranfòse` (formule déjà employée ailleurs chez vous) · `bay ou` → `ba ou` · `demonstrasyon` → `egzanp` · `vireman` → `transfè labank`.
 
 ### V5-10 · Terminologie : un livrable, un nom
-- **Gravité** FAIBLE — **Effort** S — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** S — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : inchangé, et symétrique dans les 4 langues — `ATS` contre `logiciels de recrutement`, `carte SWOT` contre `Carte WhatsApp`, et « Deck » en dur partout.
 - Le CV : `lojisyèl rekritman` vs `sistèm ATS`. Le livrable : `Kat WhatsApp` vs `Deck`, et « Deck » en dur dans les 4 langues alors que c'est opaque pour le public visé.
 
@@ -492,12 +492,12 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - Vos conditions renvoient explicitement à « la page de vente », mais 3 SWOT/jour, 3 CV/jour et **30 messages/jour pour Career360 à 14,99 $** n'y figurent nulle part. Un abonné payant découvre son plafond en le heurtant.
 
 ### V6-04 · Reconduction automatique et résiliation de Career360
-- **Gravité** MOYEN — **Effort** S — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** S — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : le renouvellement est réel (`invoice.paid` repousse `st.exp` de 34 jours, worker.js:878) mais n'est écrit nulle part. **Aucune procédure d'annulation n'existe** : pas de portail Stripe, pas de `cancel_at_period_end`, aucun `customer.subscription.deleted`.
 - Nulle part le site n'écrit que le prélèvement se renouvelle chaque mois jusqu'à résiliation, ni **comment annuler**. Contraste frappant avec Entèvyou360 qui précise correctement « pa gen renouvèlman otomatik ».
 
 ### V6-05 · L'essai gratuit de 7 jours dans les conditions
-- **Gravité** MOYEN — **Effort** XS — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** XS — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : `grep -i "essai|trial|esè|prueba|7 jou"` sur kondisyon.html → **0 résultat**, dans les 4 langues.
 - Annoncé sur 2 pages, implémenté, **absent des conditions** : ni durée, ni échéance, ni règle « un seul par personne ». Point positif à écrire : il ne demande pas de carte, donc pas de piège.
 
@@ -512,7 +512,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - `/ev` envoie `{name, lang, src}`. C'est sobre et sans identifiant — mais le §4 laisse entendre qu'aucune mesure n'a lieu. Une ligne suffit.
 
 ### V6-08 · Déclarer le stockage navigateur
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** XS — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : une phrase générique, **aucune clé nommée**. Huit clés persistantes réellement écrites, plus `sessionStorage.s360_form`, plus le service worker.
 - Sept clés persistantes + un service worker, aucune notice. Signaler en particulier `entevyou_pro` et `karye360_code` (le code d'accès reste sur l'appareil).
 
@@ -534,7 +534,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - **Note** Votre `STRATEGIE_B2B.md` a identifié ce trou le 29/07, mot pour mot.
 
 ### V7-02 · Les quatre documents d'achat
-- **Gravité** ÉLEVÉ — **Effort** M — **Statut** À FAIRE
+- **Gravité** ÉLEVÉ — **Effort** M — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : `find` → **0 PDF** dans tout le site. Le seul fichier contenant « facture » ou « W-9 » est le registre lui-même.
 - Devis type, facture type, W-9 d'Atmart LLC, accord de traitement des données signable (une demi-page suffit).
 
@@ -559,7 +559,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 - Le Worker les tient déjà (`ev:swot_done:*`) et `estatistik.html` les affiche en privé. **Un vrai nombre bat une page vide** face à un acheteur sceptique — et vous n'avez aujourd'hui ni client nommé, ni témoignage, ni chiffre public.
 
 ### V7-07 · Une seule marque
-- **Gravité** MOYEN — **Effort** M — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** M — **Statut** À VÉRIFIER
 - **Preuve** 31/08 : **5 marques** encore présentes sur le sous-domaine (Suite 360, Atmart, Entèvyou360, Career360, Lojik360), plus « SWOT360 Deep » qui ne correspond à aucune marque annoncée. Point positif : Driver360, Arpentaj, Atelier ATM et l'Explorateur ont disparu du sous-domaine.
 - Le visiteur rencontre 4 marques et 4 SKU sur un seul sous-domaine, et l'outil signe ses partages « Lojik360 » (voir V5-01). Un directeur qui vérifie le fournisseur voit la même société vendre de la préparation d'entretien, des permis de conduire, des jeux de données **et des affiches d'art**.
 
@@ -587,7 +587,7 @@ qu'après **vérification exécutée**, jamais sur déclaration.
 après l'audit, un parce que le code avait déménagé sous son critère.*
 
 ### V0-07 · `karye.html` : erreur de syntaxe bloquante en production
-- **Gravité** CRITIQUE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** CRITIQUE — **Effort** XS — **Statut** VÉRIFIÉ
 - **Où** `$SITE/karye.html:39-43` — et les 4 variantes `karye.{fr,en,es,ht}.html`
 - **Problème** La liste `var` du script de langue se termine par une **virgule ouverte**, suivie d'un commentaire puis d'un `if` :
   ```js
@@ -606,7 +606,7 @@ après l'audit, un parce que le code avait déménagé sous son critère.*
   ```
 
 ### V0-08 · Les conditions affichent `NaN` à la place de la section Remboursements
-- **Gravité** CRITIQUE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** CRITIQUE — **Effort** XS — **Statut** VÉRIFIÉ
 - **Où** `$SITE/kondisyon.html` lignes **130, 174, 218, 262** — une par langue
 - **Problème** `+ + '<h2>12. Ranbousman</h2>'` — le double `+` applique le **plus unaire** à une chaîne, ce qui donne `NaN`. Vérifié sous node, puis **vérifié sur le site en ligne** : la page saute de la section 11 à la section 13, et le visiteur lit le mot `NaN` là où devrait figurer le titre, suivi de la politique de remboursement devenue orpheline.
 - **Pourquoi c'est grave** C'est la page légale, en production, dans les 4 langues, et c'est précisément la section qui porte l'annulation et le remboursement.
@@ -618,7 +618,7 @@ après l'audit, un parce que le code avait déménagé sous son critère.*
   ```
 
 ### V0-09 · XSS stocké dans le tableau de bord, injectable par le formulaire public
-- **Gravité** CRITIQUE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** CRITIQUE — **Effort** XS — **Statut** VÉRIFIÉ
 - **Où** `$WORKER/../pages/estatistik.html:92` (la fonction) et `:188` (l'usage). Même `esc()` dans `pages/admin.html:164`.
 - **Problème** `esc()` passe par `textContent → innerHTML` : cela échappe `&`, `<`, `>` mais **jamais les guillemets**. Ligne 188, le résultat est écrit **dans un attribut à guillemets simples** :
   ```js
@@ -646,29 +646,29 @@ après l'audit, un parce que le code avait déménagé sous son critère.*
 # Compléments du 31/08/2026
 
 ### V5-14 · Les noms accessibles ne suivent pas la langue
-- **Gravité** MOYEN — **Effort** S — **Statut** À FAIRE
+- **Gravité** MOYEN — **Effort** S — **Statut** VÉRIFIÉ
 - **Où** `vw-ans` (entevyou, `aria-label` en kreyòl) · `ky-input` (karye, `aria-label` en kreyòl et `placeholder` en français) — **dans les 5 variantes de chaque page**
 - **Problème** V4-01 est tenu au sens strict : chaque contrôle a un nom accessible. Mais ce nom est figé, identique dans les 4 langues. Un lecteur d'écran anglophone sur la page anglaise entend du kreyòl. Même famille que V5-08.
 
 ### V6-10 · Les conditions affirment ne conserver aucune adresse IP — c'est inexact
-- **Gravité** ÉLEVÉ — **Effort** XS — **Statut** À FAIRE
+- **Gravité** ÉLEVÉ — **Effort** XS — **Statut** VÉRIFIÉ
 - **Où** `$SITE/kondisyon.html:162` contre `$WORKER/src/worker.js:452`
 - **Problème** La clause dit « sans conserver aucune adresse IP ». Le code écrit la clé `evip:${CF-Connecting-IP}:${jour}` avec `EV_TTL = 34 560 000`, soit **400 jours**. L'adresse est donc conservée en clair, comme clé, pendant plus d'un an.
 - **À faire** Le compteur est **journalier** : un TTL de 400 jours n'a aucune utilité. Hacher l'IP (HMAC salé) ou ramener le TTL à 2 jours — l'un ou l'autre règle à la fois l'inexactitude et un stockage inutile. Sinon, corriger la phrase.
 
 ### V6-11 · Career360 promet 30 messages par jour, le code en applique 20
-- **Gravité** ÉLEVÉ — **Effort** XS — **Statut** À FAIRE
+- **Gravité** ÉLEVÉ — **Effort** XS — **Statut** VÉRIFIÉ
 - **Où** `$SITE/karye.html` lignes 250, 281, 312, 343 (les 4 langues) contre `$WORKER/src/worker.js:3203`
 - **Problème** `KOACH_DAILY_MSGS` est passé à **20** — c'était exactement la demande de V7-08, ramener le garde-fou sous le point mort. **La page n'a pas suivi.** Un abonné à 14,99 $/mois est coupé à 20 par un message qui lui annonce 30.
 - **Leçon** Le chiffre vit à deux endroits sans lien entre eux. Toute correction d'un plafond doit balayer les pages qui l'annoncent.
 
 ### V3-19 · La CSP bloque la mesure d'audience Cloudflare sur chaque page
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** XS — **Statut** À VÉRIFIER
 - **Problème** 9 chargements propres → 9 erreurs identiques : `beacon.min.js` de Cloudflare Insights est injecté par la zone et refusé par `script-src 'self' 'unsafe-inline'`. Sans effet fonctionnel, mais la mesure ne remonte rien **et le bruit masque les vraies erreurs de console** — c'est ce qui a permis à V0-07 de passer inaperçu.
 - **À faire** Autoriser l'hôte dans la CSP, ou désactiver Web Analytics dans la zone. Ne pas laisser une erreur permanente dans la console.
 
 ### V7-11 · L'adresse de vente dépend de JavaScript
-- **Gravité** FAIBLE — **Effort** XS — **Statut** À FAIRE
+- **Gravité** FAIBLE — **Effort** XS — **Statut** À VÉRIFIER
 - **Problème** Cloudflare masque les adresses e-mail sur 6 pages (10 adresses) : sans JavaScript, `sales@atmart.ltd` s'affiche `[email protected]`. Bénin en soi — sauf que cette adresse est aujourd'hui **le seul chemin par lequel une organisation peut acheter**, tant que V7-01 et V7-02 sont ouverts.
 - **À faire** Décider : désactiver l'obfuscation dans la zone, ou afficher l'adresse aussi en texte non cliquable.
 
