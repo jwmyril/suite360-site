@@ -46,6 +46,8 @@ window.Studio = (function () {
   var morceaux = [], audio = [], url = null, blob = null;
   var t0 = 0, tic = null, enCours = false;
   var ctxAudio = null, analyseur = null, sondeLum = null;
+  // La serie de mouvement : une valeur toutes les 200 ms pendant la reponse.
+  var mouv = [], sondeMouv = null, cadreCentre = 0;
   var cfg = null, scene = null, etat = "prep";
 
   /* Le studio porte SES PROPRES MOTS, comme le contrôle d'apparence. Les pages
@@ -77,6 +79,14 @@ window.Studio = (function () {
       mRythmeBon: "Bon vitès : moun nan ka swiv ou.",
       mBequilles: "Ti mo ou repete san ou pa konnen", mAucune: "Nou pa jwenn okenn — sa bèl.",
       mSansTexte: "Nou pa t ka tande tèks la; longè a rete valab.",
+      gRepet: "Yon mouvman ki repete",
+      gRepetV: "chak {s} segond",
+      gRepetD: "Gade anrejistreman w nan {t}. Se ou ki deside si sa jenan — men si w wè l, souvan li sispann pou kont li.",
+      gRepetAucun: "Nou pa jwenn okenn mouvman ki repete.",
+      gFige: "Ou rete san bouje",
+      gFigeD: "Yon moman ou pa t bouje ditou, apati {t}. Rete kalm bon, men rete fè wòch fè moun nan mal alèz.",
+      gCadre: "Ou sòti nan kad la",
+      gCadreD: "Premye fwa a nan {t}. Rekale telefòn nan pou tèt ou rete nan mitan an.",
       pasDeNote: "Nou PA bay nòt sou figi w, rad ou, jès ou, ni sou « konfyans » ou. Bagay sa yo chanje ant yon kilti ak yon lòt epi yo pa di anyen sou travay ou.",
     },
     fr: {
@@ -102,6 +112,14 @@ window.Studio = (function () {
       mRythmeBon: "Bon rythme : on vous suit sans effort.",
       mBequilles: "Mots béquilles", mAucune: "Aucun repéré — c'est rare et c'est bien.",
       mSansTexte: "La parole n'a pas pu être transcrite ; la durée reste valable.",
+      gRepet: "Un mouvement qui revient",
+      gRepetV: "toutes les {s} s",
+      gRepetD: "Regardez votre enregistrement à {t}. C'est vous qui jugez si cela gêne — mais un geste qu'on se voit faire s'arrête souvent tout seul.",
+      gRepetAucun: "Aucun mouvement répété repéré.",
+      gFige: "Un moment sans bouger",
+      gFigeD: "Vous êtes resté immobile à partir de {t}. Le calme est bon ; l'immobilité complète met mal à l'aise.",
+      gCadre: "Sorties du cadre",
+      gCadreD: "La première à {t}. Recalez le téléphone pour rester au centre.",
       pasDeNote: "Nous ne notons NI votre visage, NI votre tenue, NI vos gestes, NI votre « confiance ». Ces signaux varient d'une culture à l'autre et ne disent rien de votre travail.",
     },
     en: {
@@ -127,6 +145,14 @@ window.Studio = (function () {
       mRythmeBon: "Good pace: easy to follow.",
       mBequilles: "Filler words", mAucune: "None found — that's rare, and good.",
       mSansTexte: "Speech could not be transcribed; the timing still stands.",
+      gRepet: "A movement that comes back",
+      gRepetV: "every {s} s",
+      gRepetD: "Watch your recording at {t}. You decide whether it bothers you — but a gesture you catch yourself making often stops on its own.",
+      gRepetAucun: "No repeated movement found.",
+      gFige: "A stretch without moving",
+      gFigeD: "You stayed still from {t}. Calm is good; going completely rigid is uncomfortable to watch.",
+      gCadre: "Times you left the frame",
+      gCadreD: "The first at {t}. Reposition the phone so you stay centred.",
       pasDeNote: "We do NOT score your face, your clothes, your gestures or your « confidence ». Those signals differ from one culture to another and say nothing about your work.",
     },
     es: {
@@ -152,6 +178,14 @@ window.Studio = (function () {
       mRythmeBon: "Buen ritmo: se te sigue sin esfuerzo.",
       mBequilles: "Muletillas", mAucune: "Ninguna encontrada — es raro, y es bueno.",
       mSansTexte: "No se pudo transcribir el audio; la duración sigue siendo válida.",
+      gRepet: "Un movimiento que vuelve",
+      gRepetV: "cada {s} s",
+      gRepetD: "Mira tu grabación en {t}. Tú decides si te molesta — pero un gesto que uno se ve hacer suele detenerse solo.",
+      gRepetAucun: "Ningún movimiento repetido detectado.",
+      gFige: "Un rato sin moverte",
+      gFigeD: "Te quedaste inmóvil desde {t}. La calma está bien; la rigidez total incomoda.",
+      gCadre: "Veces que saliste del encuadre",
+      gCadreD: "La primera en {t}. Recoloca el teléfono para quedarte centrado.",
       pasDeNote: "NO puntuamos tu cara, tu ropa, tus gestos ni tu « confianza ». Esas señales cambian de una cultura a otra y no dicen nada de tu trabajo.",
     },
   };
@@ -389,6 +423,7 @@ window.Studio = (function () {
 
     if (recVideo) recVideo.start();
     if (recAudio) recAudio.start();
+    if (!sansCam) suivreMouvement();
     enCours = true; t0 = Date.now();
     boutons([{ texte: M("btnStop"), fort: true, action: arreter }]);
     tic = setInterval(function () {
@@ -403,6 +438,7 @@ window.Studio = (function () {
   function arreter() {
     if (!enCours) return;
     enCours = false;
+    if (sondeMouv) { clearInterval(sondeMouv); sondeMouv = null; }
     if (tic) { clearInterval(tic); tic = null; }
     orbe("");
     try { if (recVideo && recVideo.state !== "inactive") recVideo.stop(); } catch (e) {}
@@ -439,6 +475,144 @@ window.Studio = (function () {
     }
   }
 
+
+  /* =================================================== mouvement et repetitions
+     On mesure LE MOUVEMENT, jamais son sens. Une difference d'image a l'autre,
+     32x24 pixels, toutes les 200 ms — de cette seule serie de nombres on tire
+     l'agitation, les moments d'immobilite, les repetitions et les sorties de
+     cadre.
+
+     ON NE NOMME PAS LE GESTE. Ce qui passe pour de l'assurance ici passe pour de
+     l'insolence ailleurs ; regarder dans les yeux est poli dans un pays et
+     effronte dans un autre. Sur un produit fait pour des immigrants, noter
+     l'ecart a une norme leur apprendrait a etre juges avant d'etre entendus.
+
+     A LA PLACE, on rend le miroir INDEXABLE : « un mouvement revient toutes les
+     6 secondes — regardez a 0:12, 0:18, 0:24 ». La personne ouvre son propre
+     enregistrement et voit ce qu'elle fait. C'est elle qui juge, dans SON
+     contexte. Un tic qu'on se voit faire disparait souvent tout seul. */
+  var MOUV_MS = 200;              // un echantillon toutes les 200 ms
+  var MOUV_SEUIL = 6;             // en dessous, c'est du bruit de capteur
+  var IMMOBILE_S = 6;             // au-dela, une immobilite se remarque
+
+  function suivreMouvement() {
+    mouv = [];
+    var v = $("st-live");
+    var c = document.createElement("canvas");
+    c.width = 32; c.height = 24;
+    var g = c.getContext("2d", { willReadFrequently: true });
+    var precedent = null;
+    sondeMouv = setInterval(function () {
+      if (!v.videoWidth) return;
+      try {
+        g.drawImage(v, 0, 0, c.width, c.height);
+        var d = g.getImageData(0, 0, c.width, c.height).data;
+        var gris = new Uint8Array(c.width * c.height);
+        for (var i = 0, k = 0; i < d.length; i += 4, k++) {
+          gris[k] = (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) | 0;
+        }
+        if (precedent) {
+          var somme = 0, centre = 0, nCentre = 0;
+          for (var y = 0; y < c.height; y++) {
+            for (var x = 0; x < c.width; x++) {
+              var j = y * c.width + x;
+              var dif = Math.abs(gris[j] - precedent[j]);
+              somme += dif;
+              // Le tiers central : c'est la que se tient quelqu'un qui se cadre.
+              if (x > c.width / 3 && x < 2 * c.width / 3 && y > c.height / 4) {
+                centre += gris[j]; nCentre++;
+              }
+            }
+          }
+          mouv.push({
+            t: (mouv.length * MOUV_MS) / 1000,
+            m: somme / gris.length,
+            c: nCentre ? centre / nCentre : 0,
+          });
+        }
+        precedent = gris;
+      } catch (e) { clearInterval(sondeMouv); sondeMouv = null; }
+    }, MOUV_MS);
+  }
+
+  function mmssCourt(s) { return Math.floor(s / 60) + ":" + (s % 60 < 10 ? "0" : "") + (s % 60 | 0); }
+
+  /* Autocorrelation : un tic, c'est un mouvement qui REVIENT a intervalle
+     regulier. On cherche le decalage qui fait le mieux coincider la serie avec
+     elle-meme, entre 1 et 12 secondes. En dessous d'une seconde on mesurerait
+     le rythme respiratoire, au-dela de douze on mesurerait le hasard. */
+  function repetition(serie) {
+    var n = serie.length;
+    if (n < 40) return null;
+    var moy = serie.reduce(function (a, x) { return a + x; }, 0) / n;
+    var centre = serie.map(function (x) { return x - moy; });
+    var v0 = centre.reduce(function (a, x) { return a + x * x; }, 0);
+    if (v0 <= 0) return null;
+    var min = Math.round(1000 / MOUV_MS), max = Math.min(Math.round(12000 / MOUV_MS), Math.floor(n / 2));
+    var meilleur = null;
+    for (var d = min; d <= max; d++) {
+      var s2 = 0;
+      for (var i = 0; i + d < n; i++) s2 += centre[i] * centre[i + d];
+      var r = s2 / v0;
+      if (!meilleur || r > meilleur.r) meilleur = { d: d, r: r };
+    }
+    // 0,30 : en dessous, la « periode » trouvee n'est que du bruit. Seuil pose
+    // volontairement haut — annoncer un tic qui n'existe pas serait pire que
+    // n'en annoncer aucun.
+    if (!meilleur || meilleur.r < 0.30) return null;
+    return { periode: (meilleur.d * MOUV_MS) / 1000, force: meilleur.r };
+  }
+
+  function analyseMouvement() {
+    if (!mouv.length) return null;
+    var vals = mouv.map(function (p) { return p.m; });
+    var moy = vals.reduce(function (a, x) { return a + x; }, 0) / vals.length;
+
+    // Immobilite : la plus longue suite sous le seuil de bruit.
+    var courant = 0, plusLong = 0, debutLong = 0, debut = 0;
+    vals.forEach(function (x, i) {
+      if (x < MOUV_SEUIL) {
+        if (courant === 0) debut = i;
+        courant++;
+        if (courant > plusLong) { plusLong = courant; debutLong = debut; }
+      } else { courant = 0; }
+    });
+
+    // Hors cadre : le tiers central se vide (plus personne devant l'objectif).
+    var cs = mouv.map(function (p) { return p.c; });
+    var cMoy = cs.reduce(function (a, x) { return a + x; }, 0) / cs.length;
+    var sorties = [];
+    var dedans = true;
+    cs.forEach(function (x, i) {
+      var vide = x < cMoy * 0.55;
+      if (vide && dedans) { sorties.push((i * MOUV_MS) / 1000); dedans = false; }
+      if (!vide) dedans = true;
+    });
+
+    var rep = repetition(vals);
+    var moments = [];
+    if (rep) {
+      // Les horodatages ou le mouvement culmine : c'est LA qu'il faut regarder.
+      var pas = Math.round((rep.periode * 1000) / MOUV_MS);
+      for (var i = pas; i < vals.length && moments.length < 4; i += pas) {
+        var haut = i, best = vals[i];
+        for (var j = Math.max(0, i - 3); j <= Math.min(vals.length - 1, i + 3); j++) {
+          if (vals[j] > best) { best = vals[j]; haut = j; }
+        }
+        moments.push(mmssCourt((haut * MOUV_MS) / 1000));
+      }
+    }
+    return {
+      agitation: moy,
+      immobile: (plusLong * MOUV_MS) / 1000,
+      immobileA: mmssCourt((debutLong * MOUV_MS) / 1000),
+      sorties: sorties.length,
+      sortieA: sorties.length ? mmssCourt(sorties[0]) : "",
+      repetition: rep,
+      moments: moments,
+    };
+  }
+
   /* ------------------------------------------------------------ mesures */
   var BEQUILLES = {
     ht: ["ee", "eee", "enben", "kidonk", "bon", "ok"],
@@ -468,6 +642,25 @@ window.Studio = (function () {
       L.push([M("mBequilles"), String(n), vus.length ? vus.join(", ") : M("mAucune")]);
     } else {
       L.push([M("mRythme"), "—", M("mSansTexte")]);
+    }
+
+    // Le mouvement. On donne des HORODATAGES, pas des notes : la personne va
+    // regarder son propre enregistrement a ces moments-la et juge elle-meme.
+    var g = analyseMouvement();
+    if (g) {
+      if (g.repetition) {
+        L.push([M("gRepet"),
+                M("gRepetV").replace("{s}", g.repetition.periode.toFixed(1)),
+                M("gRepetD").replace("{t}", g.moments.join(", "))]);
+      } else {
+        L.push([M("gRepet"), "—", M("gRepetAucun")]);
+      }
+      if (g.immobile >= IMMOBILE_S) {
+        L.push([M("gFige"), Math.round(g.immobile) + " s", M("gFigeD").replace("{t}", g.immobileA)]);
+      }
+      if (g.sorties) {
+        L.push([M("gCadre"), String(g.sorties), M("gCadreD").replace("{t}", g.sortieA)]);
+      }
     }
 
     $("st-mesures").innerHTML =
@@ -521,5 +714,8 @@ window.Studio = (function () {
     return true;
   }
 
-  return { ouvrir: ouvrir, fermer: fermer, dispo: dispo, _mesures: mesures, _cfg: function (c) { cfg = c; } };
+  return { ouvrir: ouvrir, fermer: fermer, dispo: dispo,
+           // exposes pour tests/studio.js : la detection de repetition doit
+           // etre eprouvee sur du bruit, pas seulement en situation.
+           _mesures: mesures, _repetition: repetition, _cfg: function (c) { cfg = c; } };
 })();

@@ -94,6 +94,12 @@ def variante(nom_page, lg, source):
         s = s.replace("</head>", bloc + "</head>", 1)
     s = re.sub(r'<meta property="og:url" content="[^"]*"',
                '<meta property="og:url" content="%s"' % moi, s, count=1)
+    # La demo existe en QUATRE fichiers, un par langue. La balise pointait un
+    # nom qui n'a jamais existe (`demo-entevyou360.mp4`) : un reseau social qui
+    # suit ce lien ne trouve rien, et une variante espagnole annoncait de toute
+    # facon la video kreyol.
+    s = re.sub(r'(<meta property="og:video" content="[^"]*/demo-)[a-z-]+(\.mp4")',
+               lambda m: m.group(1) + lg + m.group(2), s, count=1)
 
     # 4) le selecteur de langue NAVIGUE : sur une adresse qui declare sa langue,
     #    changer de langue doit changer d'adresse.

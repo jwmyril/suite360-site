@@ -106,7 +106,7 @@ d.lang=l||"ht";})();
 (function () {
   var EP = "https://atmart-chat.atmartllc.workers.dev/stripe-code";
   var L = {
-    ht: { __title: "Mèsi ! Men kòd ou — Suite 360",
+    ht: { copyKo: "Nou pa ka kopye. Seleksyone kòd la epi kopye l ou menm.", __title: "Mèsi ! Men kòd ou — Suite 360",
       wait: "N ap prepare kòd ou…",
       waitSub: "Peman ou pase — tann yon ti moman, kòd ou ap parèt isit la (mwens pase yon minit an jeneral).",
       done: "Mèsi ! Men kòd ou 🎉",
@@ -118,7 +118,7 @@ d.lang=l||"ht";})();
       help: 'Yon pwoblèm ? Ekri <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a> ak resi Stripe ou a — n ap voye kòd la pou ou.',
       noSid: "Paj sa a louvri apre yon peman. Si ou fèk peye, tounen sou lyen Stripe la voye w la a.",
     },
-    fr: { __title: "Merci ! Voici votre code — Suite 360",
+    fr: { copyKo: "Copie refusée. Sélectionnez le code et copiez-le vous-même.", __title: "Merci ! Voici votre code — Suite 360",
       wait: "Préparation de votre code…",
       waitSub: "Paiement reçu — un instant, votre code apparaît ici (moins d'une minute en général).",
       done: "Merci ! Voici votre code 🎉",
@@ -130,7 +130,7 @@ d.lang=l||"ht";})();
       help: 'Un souci ? Écrivez à <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a> avec votre reçu Stripe — nous vous enverrons le code.',
       noSid: "Cette page s'ouvre après un paiement. Si vous venez de payer, revenez par le lien où Stripe vous a envoyé.",
     },
-    en: { __title: "Thank you! Here is your code — Suite 360",
+    en: { copyKo: "Copying was blocked. Select the code and copy it yourself.", __title: "Thank you! Here is your code — Suite 360",
       wait: "Preparing your code…",
       waitSub: "Payment received — one moment, your code will appear here (usually under a minute).",
       done: "Thank you! Here is your code 🎉",
@@ -142,7 +142,7 @@ d.lang=l||"ht";})();
       help: 'A problem? Write to <a href="mailto:sales@atmart.ltd">sales@atmart.ltd</a> with your Stripe receipt — we will send you the code.',
       noSid: "This page opens after a payment. If you just paid, come back through the link Stripe sent you to.",
     },
-    es: { __title: "¡Gracias! Aquí está tu código — Suite 360",
+    es: { copyKo: "Copia bloqueada. Selecciona el código y cópialo tú mismo.", __title: "¡Gracias! Aquí está tu código — Suite 360",
       wait: "Preparando tu código…",
       waitSub: "Pago recibido — un momento, tu código aparecerá aquí (menos de un minuto normalmente).",
       done: "¡Gracias! Aquí está tu código 🎉",
@@ -240,10 +240,28 @@ d.lang=l||"ht";})();
 
   document.getElementById("ms-copy").addEventListener("click", function () {
     if (!rec) return;
-    navigator.clipboard.writeText(rec.code).then(function () {
-      document.getElementById("ms-copy").textContent = T().copied;
-      setTimeout(paint, 1600);
-    });
+    // Copier le code payant est le geste le plus important de la page. Un refus
+    // du presse-papier — contexte non securise, permission, geste juge detache —
+    // ne laissait AUCUNE trace : l'achat etait fait, l'outil restait ferme.
+    var fini = function (ok) {
+      var b = document.getElementById("ms-copy");
+      b.textContent = ok ? T().copied : T().copyKo;
+      setTimeout(paint, ok ? 1600 : 4000);
+    };
+    var repli = function () {
+      try {
+        var z = document.createElement("textarea");
+        z.value = rec.code; z.setAttribute("readonly", "");
+        z.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+        document.body.appendChild(z); z.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        z.remove(); fini(ok);
+      } catch (e) { fini(false); }
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(rec.code).then(function () { fini(true); }, repli);
+    } else { repli(); }
   });
 
   var sid = new URLSearchParams(location.search).get("sid") || "";

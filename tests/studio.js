@@ -164,6 +164,36 @@ if (S && S._mesures) {
   ok("le studio expose ses mesures pour être testé", false, "Studio._mesures introuvable");
 }
 
+// ------------------------------------------------- la détection de répétition
+// LE RISQUE N'EST PAS DE RATER UN TIC, C'EST D'EN INVENTER UN. Annoncer à
+// quelqu'un « vous avez un geste toutes les 6 secondes » quand il n'en a pas,
+// c'est lui coller une inquiétude avant son entretien. Le seuil est donc posé
+// haut, et on le VÉRIFIE sur du bruit.
+console.log("\n— répétition : trouver un vrai tic, n'en inventer aucun —");
+if (S && S._repetition) {
+  // 5 échantillons/s. Une bosse toutes les 30 mesures = toutes les 6 secondes.
+  const periodique = [];
+  for (let i = 0; i < 300; i++) periodique.push(i % 30 === 0 ? 40 : 4);
+  const trouve = S._repetition(periodique);
+  ok("un geste toutes les 6 s est trouvé",
+    trouve && Math.abs(trouve.periode - 6) < 0.5, JSON.stringify(trouve));
+
+  // Bruit reproductible : un générateur à graine, pour que le banc ne dépende
+  // pas du hasard d'une exécution.
+  let g = 42;
+  const bruit = [];
+  for (let i = 0; i < 300; i++) { g = (g * 1103515245 + 12345) % 2147483648; bruit.push((g % 100) / 5); }
+  ok("du bruit ne produit AUCUN tic", S._repetition(bruit) === null,
+    JSON.stringify(S._repetition(bruit)) + " — un faux tic inquiète pour rien");
+
+  ok("une série trop courte ne conclut pas",
+    S._repetition([1, 2, 3, 4, 5]) === null, "40 échantillons minimum");
+  ok("une série immobile ne conclut pas",
+    S._repetition(new Array(200).fill(3)) === null, "variance nulle");
+} else {
+  ok("la détection de répétition est testable", false, "Studio._repetition introuvable");
+}
+
 console.log(ko ? "\n❌ " + ko + " vérification(s) en échec\n"
   : "\n✅ studio : un seul module, la vidéo reste sur l'appareil, les mesures tiennent\n");
 process.exit(ko ? 1 : 0);

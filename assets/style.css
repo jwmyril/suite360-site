@@ -740,3 +740,16 @@ figure.tuto-fig figcaption { padding: 0.7rem 1rem; font-size: 0.85rem; color: va
     outline-offset: 2px;
   }
 }
+
+/* ------------------------------------------------------ attente de traduction
+   La classe `.i18n-wait` etait POSEE par le script de tete puis retiree apres
+   1,5 s — mais aucune regle ne lui correspondait : elle ne masquait rien. Le
+   visiteur voyait donc le gabarit kreyol s'afficher, puis basculer sous ses
+   yeux. On masque le contenu traduisible, pas la page entiere : un ecran blanc
+   d'une seconde et demie serait pire que le clignotement qu'on corrige. */
+:root.i18n-wait main { visibility: hidden; }
+/* Sans JavaScript, la classe n'est jamais retiree : le contenu doit rester
+   visible quoi qu'il arrive. */
+@media (scripting: none) {
+  :root.i18n-wait main { visibility: visible; }
+}
