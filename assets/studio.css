@@ -84,6 +84,10 @@ body.st-fige { overflow: hidden; }
   object-fit: cover;
   display: block;
 }
+/* `display: block` l'emporte sur le `display: none` que le navigateur applique
+   à [hidden] : sans cette ligne, la vidéo de relecture reste visible pendant la
+   préparation, en rectangle noir sous le miroir. Vu à l'écran, pas déduit. */
+.st-video[hidden] { display: none; }
 /* On se voit comme dans un miroir : sans cela, on lève la mauvaise main. */
 .st-video.miroir { transform: scaleX(-1); }
 

@@ -56,6 +56,7 @@ window.Studio = (function () {
   var MOTS = {
     ht: {
       prepTitre: "Gade tèt ou anvan ou kòmanse",
+      deroule: "Men sa k pral pase : koach la ap li kesyon an byen fò, epi mikwo a ap louvri. Reponn tankou ou ta reponn yon moun. Vize ant 45 segond ak 2 minit.",
       prepNote: "Se pou ou wè tèt ou. Videyo a rete sou aparèy ou.",
       ckCam: "Kamera a ap mache", ckCamKo: "Nou pa jwenn kamera a",
       ckMic: "Nou tande w", ckMicKo: "Nou pa tande anyen — pale yon ti kras",
@@ -80,6 +81,7 @@ window.Studio = (function () {
     },
     fr: {
       prepTitre: "Regardez-vous avant de commencer",
+      deroule: "Voici ce qui va se passer : le coach lit la question à voix haute, puis le micro s'ouvre. Répondez comme vous répondriez à quelqu'un. Visez entre 45 secondes et 2 minutes.",
       prepNote: "C'est pour vous voir. La vidéo reste sur votre appareil.",
       ckCam: "La caméra fonctionne", ckCamKo: "Caméra introuvable",
       ckMic: "On vous entend", ckMicKo: "On n'entend rien — parlez un peu",
@@ -104,6 +106,7 @@ window.Studio = (function () {
     },
     en: {
       prepTitre: "Look at yourself before you start",
+      deroule: "Here is what happens: the coach reads the question out loud, then the microphone opens. Answer as you would answer a person. Aim for 45 seconds to 2 minutes.",
       prepNote: "This is for you to see yourself. The video stays on your device.",
       ckCam: "The camera works", ckCamKo: "No camera found",
       ckMic: "We can hear you", ckMicKo: "We hear nothing — say a few words",
@@ -128,6 +131,7 @@ window.Studio = (function () {
     },
     es: {
       prepTitre: "Mírate antes de empezar",
+      deroule: "Esto es lo que va a pasar: el coach lee la pregunta en voz alta y luego se abre el micrófono. Responde como le responderías a alguien. Apunta a entre 45 segundos y 2 minutos.",
       prepNote: "Es para que te veas. El video se queda en tu dispositivo.",
       ckCam: "La cámara funciona", ckCamKo: "No se encuentra la cámara",
       ckMic: "Te oímos", ckMicKo: "No oímos nada — di unas palabras",
@@ -293,7 +297,10 @@ window.Studio = (function () {
     $("st-g-titre").textContent = M("prepTitre");
     $("st-g-note").textContent = M("prepNote");
     $("st-d-titre").textContent = M("pretTitre");
-    $("st-q").textContent = "";
+    // Le panneau droit ne reste pas vide : on annonce ce qui va se passer AVANT
+    // que la personne appuie sur « Je suis pret ».
+    $("st-q").textContent = M("deroule");
+    $("st-q").style.fontWeight = "400";
     $("st-chrono").textContent = "";
     $("st-mesures").innerHTML = "";
     $("st-note").textContent = M("videoReste");
@@ -337,6 +344,7 @@ window.Studio = (function () {
     etat = "pret";
     $("st-d-titre").textContent = M("pretTitre");
     $("st-q").textContent = cfg.question || "";
+    $("st-q").style.fontWeight = "600";
     $("st-note").textContent = sansCam ? M("camRefus") : M("videoReste");
     orbe("");
     boutons([
