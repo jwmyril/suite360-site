@@ -74,6 +74,28 @@ def cut(s, start, end, repl):
     return s[:i] + repl + s[j:]
 
 s = io.open(SRC, encoding="utf-8").read()
+
+# ---------------------------------------------------------------- GARDE-FOU
+# Le 08/09/2026, swot360.html est devenu une REDIRECTION : Lojik360 est une
+# marque d'education, elle n'a pas a heberger un produit commercial. La decision
+# est bonne, mais ce script a continue de pointer dessus — et il ecrase
+# entevyou.html avec ce qu'il lit. Le lancer aurait remplace 298 Ko de produit
+# par 1 Ko de redirection, en silence, et le prochain push l'aurait publie.
+#
+# Depuis cette bascule, `entevyou.html` EST la source. Un generateur qui n'a
+# plus d'amont doit REFUSER, pas deviner : on MESURE la source au lieu de la
+# supposer valide.
+if "sw-work" not in s or len(s) < 50000:
+    raise SystemExit(
+        "\n!! ARRET — la source n'est plus le produit.\n"
+        "   %s\n"
+        "   fait %d octets et ne contient pas le formulaire SWOT.\n\n"
+        "   Depuis le 08/09/2026, swot360.html est une redirection et\n"
+        "   entevyou.html est devenu LA SOURCE. Ce script aurait ecrase\n"
+        "   tout le produit. Editez entevyou.html directement, puis\n"
+        "   relancez seulement `python tools/gen-langues.py`.\n"
+        % (SRC, len(s))
+    )
 s = s.replace("<title>Entèvyou360 — vin pare pou entèvyou travay ou | Lojik360</title>",
               "<title>Entèvyou360 — vin pare pou entèvyou travay ou | Suite 360</title>")
 s = cut(s, "<header>", "</header>", header("entevyou"))

@@ -1,0 +1,182 @@
+/* ===========================================================================
+   Suite 360 — Studio d'entretien
+
+   Une scène plein écran, en trois temps : on se prépare, on se met en
+   condition, on parle. La mise en scène n'est pas décorative — c'est elle qui
+   fait la différence entre « taper une réponse dans un champ » et « répondre à
+   quelqu'un ». L'exercice ne vaut que si le corps y croit un peu.
+
+   Tout passe par les jetons de rôle : le studio suit le thème comme le reste.
+   Seul le noir derrière les deux <video> est en dur — c'est la matière autour
+   de l'image, comme le papier blanc du CV.
+   =========================================================================== */
+
+.st-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: var(--fond);
+  display: none;
+  overflow-y: auto;
+  padding: 0 0 2rem;
+}
+.st-scene[data-ouvert="1"] { display: block; }
+/* Pendant une séance, le reste de la page ne doit pas défiler derrière. */
+body.st-fige { overflow: hidden; }
+
+.st-tete {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--fond);
+  border-bottom: 1px solid var(--voile-12);
+}
+.st-num {
+  flex: 0 0 auto;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--sur-accent);
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 0.9rem;
+}
+.st-tete h2 { margin: 0; font-size: 1.02rem; font-weight: 600; color: var(--ink); }
+.st-fermer {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--voile-25);
+  color: var(--ink);
+  border-radius: 8px;
+  min-height: 40px; min-width: 40px;
+  font: inherit; cursor: pointer;
+}
+.st-fermer:hover { border-color: var(--border-fort); }
+
+.st-corps {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 1.2rem 1.1rem 0;
+  display: grid;
+  gap: 1.1rem;
+  /* min() : sans lui, la grille impose 320 px et la page déborde sur un petit
+     téléphone. Défaut déjà rencontré ailleurs sur ce site. */
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  align-items: start;
+}
+.st-carte {
+  background: var(--surface-2);
+  border: 1px solid var(--voile-12);
+  border-radius: 14px;
+  padding: 1.1rem;
+}
+.st-carte h3 { margin: 0 0 0.4rem; font-size: 1rem; color: var(--ink); }
+.st-carte p { margin: 0 0 0.7rem; color: var(--ink-2); font-size: 0.9rem; line-height: 1.6; }
+
+.st-video {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  background: #000;
+  object-fit: cover;
+  display: block;
+}
+/* On se voit comme dans un miroir : sans cela, on lève la mauvaise main. */
+.st-video.miroir { transform: scaleX(-1); }
+
+/* --------------------------------------------------------- les contrôles */
+.st-checks { list-style: none; margin: 0.8rem 0 0; padding: 0; }
+.st-checks li {
+  display: flex; align-items: flex-start; gap: 0.6rem;
+  padding: 0.45rem 0;
+  font-size: 0.88rem; color: var(--ink-2); line-height: 1.5;
+}
+.st-pastille {
+  flex: 0 0 auto;
+  width: 20px; height: 20px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 0.72rem; font-weight: 700;
+  background: var(--voile-12); color: var(--ink-dim);
+}
+.st-checks li[data-etat="ok"] .st-pastille { background: var(--accent); color: var(--sur-accent); }
+.st-checks li[data-etat="ko"] .st-pastille { background: var(--attention); color: var(--sur-accent); }
+
+/* ------------------------------------------------- la présence du coach */
+.st-presence {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  background: var(--voile-04);
+  border: 1px solid var(--voile-12);
+  display: grid;
+  place-items: center;
+}
+.st-orbe {
+  width: 116px; height: 116px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, var(--accent), transparent 68%);
+  border: 2px solid var(--accent);
+  opacity: 0.85;
+}
+/* Trois états, trois comportements. Le mouvement dit ce que fait le coach —
+   c'est plus lisible qu'une phrase, et ça marche dans les quatre langues. */
+.st-orbe[data-etat="parle"] { animation: st-parle 1.1s ease-in-out infinite; }
+.st-orbe[data-etat="ecoute"] { animation: st-ecoute 1.8s ease-out infinite; }
+@keyframes st-parle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.09); }
+}
+@keyframes st-ecoute {
+  0% { box-shadow: 0 0 0 0 var(--accent); opacity: 0.85; }
+  100% { box-shadow: 0 0 0 26px transparent; opacity: 0.85; }
+}
+/* Quelqu'un qui a demandé moins d'animation ne doit pas subir une pulsation
+   permanente en plein écran. */
+@media (prefers-reduced-motion: reduce) {
+  .st-orbe[data-etat] { animation: none; }
+}
+
+.st-question {
+  margin: 0.9rem 0 0;
+  font-size: 1.06rem;
+  line-height: 1.55;
+  color: var(--ink);
+  font-weight: 600;
+}
+.st-chrono {
+  font-variant-numeric: tabular-nums;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0.5rem 0 0;
+}
+.st-chrono[data-alerte="1"] { color: var(--attention); }
+
+.st-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.9rem; }
+.st-btn {
+  background: transparent;
+  border: 1px solid var(--border-fort);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 0.62rem 1rem;
+  min-height: 44px;          /* cible tactile : mesurée, pas supposée */
+  font: inherit; font-size: 0.92rem;
+  cursor: pointer;
+}
+.st-btn.fort { background: var(--accent); border-color: var(--accent); color: var(--sur-accent); font-weight: 600; }
+.st-btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+.st-note {
+  margin: 0.8rem 0 0;
+  color: var(--ink-dim);
+  font-size: 0.79rem;
+  line-height: 1.6;
+}
+.st-mesures { margin-top: 0.9rem; }
+.st-mesures table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
+.st-mesures td { padding: 0.3rem 0; color: var(--ink-2); vertical-align: top; }
+.st-mesures td.v { text-align: right; font-weight: 700; white-space: nowrap; }
+.st-mesures tr.d td { padding: 0 0 0.55rem; color: var(--ink-dim); font-size: 0.81rem; }

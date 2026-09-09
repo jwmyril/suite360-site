@@ -34,6 +34,8 @@ if(v==="clair"||d)document.documentElement.setAttribute("data-theme",d?"dark":"l
 }catch(e){}})();
 </script>
   <link rel="stylesheet" href="assets/style.css?v=3" />
+  <link rel="stylesheet" href="assets/studio.css?v=1" />
+  <script defer src="assets/studio.js?v=1"></script>
 <script>/* lang otomatik */
 (function(){var S={fr:1,ht:1,en:1,es:1},d=document.documentElement,s=null;
 /* Une page servie a une adresse par langue DECLARE sa langue : la detection
@@ -424,6 +426,7 @@ d.lang=l||"ht";})();
           <div class="vw-row">
             <button type="button" class="vw-btn mic" id="vw-mic">🎙 Peze pou reponn</button>
             <button type="button" class="vw-btn" id="vw-listen">🔊 Tande kesyon an ankò</button>
+            <button type="button" class="vw-btn" id="vw-studio" style="display:none">🎬 Estidyo</button>
             <button type="button" class="vw-btn" id="vw-close">✖ Fèmen</button>
           </div>
           <textarea id="vw-ans" aria-label="Repons ou pou kesyon rekritè a"></textarea>
@@ -776,6 +779,7 @@ by();})();
       vwaBtn: "🎙 Pratike ak vwa ou", vwaProg: "Kesyon {i} sou {n}",
       vwaListen: "🔊 Tande kesyon an ankò", vwaMic: "🎙 Peze pou reponn", vwaStop: "⏹ Mwen fini pale",
       vwaRecing: "N ap koute w… pale lib, epi peze « ⏹ Mwen fini pale » lè ou fini.",
+      stBtn: "🎬 Estidyo", stTitre: "Estidyo",
       camTitre: "Antrene w devan kamera a",
       camNote: "Videyo a rete SOU APAREY OU. Li pa janm voye ba nou. Se pou ou wè tèt ou — se sa ki fè travay la.",
       camOn: "📷 Limen kamera a",
@@ -876,6 +880,7 @@ by();})();
       vwaBtn: "🎙 M'entraîner à voix haute", vwaProg: "Question {i} sur {n}",
       vwaListen: "🔊 Réécouter la question", vwaMic: "🎙 Appuyer pour répondre", vwaStop: "⏹ J'ai fini de parler",
       vwaRecing: "On vous écoute… parlez librement, puis appuyez sur « ⏹ J'ai fini de parler ».",
+      stBtn: "🎬 Studio", stTitre: "Studio",
       camTitre: "S'entraîner devant la caméra",
       camNote: "La vidéo RESTE SUR VOTRE APPAREIL. Elle ne nous est jamais envoyée. Elle sert à vous voir — c'est ça qui fait le travail.",
       camOn: "📷 Allumer la caméra",
@@ -976,6 +981,7 @@ by();})();
       vwaBtn: "🎙 Practice out loud", vwaProg: "Question {i} of {n}",
       vwaListen: "🔊 Hear the question again", vwaMic: "🎙 Press to answer", vwaStop: "⏹ I'm done talking",
       vwaRecing: "We're listening… speak freely, then press “⏹ I'm done talking”.",
+      stBtn: "🎬 Studio", stTitre: "Studio",
       camTitre: "Practise on camera",
       camNote: "The video STAYS ON YOUR DEVICE. It is never sent to us. It's there so you can watch yourself — that's what does the work.",
       camOn: "📷 Turn on the camera",
@@ -1076,6 +1082,7 @@ by();})();
       vwaBtn: "🎙 Practicar en voz alta", vwaProg: "Pregunta {i} de {n}",
       vwaListen: "🔊 Escuchar la pregunta otra vez", vwaMic: "🎙 Pulsa para responder", vwaStop: "⏹ Terminé de hablar",
       vwaRecing: "Te escuchamos… habla libremente y pulsa «⏹ Terminé de hablar» al terminar.",
+      stBtn: "🎬 Estudio", stTitre: "Estudio",
       camTitre: "Practicar ante la cámara",
       camNote: "El video SE QUEDA EN TU DISPOSITIVO. Nunca nos llega. Está ahí para que te veas — eso es lo que funciona.",
       camOn: "📷 Encender la cámara",
@@ -2704,6 +2711,7 @@ by();})();
     if (!o || !o.swot) return;
     lastMd = o.swot;
     dernierEtaitPro = !!o.pro;
+    try { stMaj(); } catch (e) {}
     out.innerHTML = renderCards(lastMd);
     ph.style.display = "none"; bar.style.display = "flex"; cta.style.display = "";
     ["sw-succes", "sw-suivant", "sw-aks", "sw-avi", "sw-mail"].forEach(function (id) {
@@ -2939,6 +2947,7 @@ by();})();
     if (T.askHint) $("vw-askhint").textContent = T.askHint;
     if (T.askPh) $("vw-mq").placeholder = T.askPh;
     if (T.askSend) $("vw-mqsend").textContent = T.askSend;
+    if (T.stBtn && $("vw-studio")) $("vw-studio").textContent = T.stBtn;
     // Simulation camera : memes libelles statiques, meme piege. Ils doivent
     // suivre la langue meme quand la camera n'a jamais ete allumee.
     if (T.camTitre && $("cam-titre")) {
@@ -2978,13 +2987,17 @@ by();})();
   function vwStripSpoken(t) {
     return stripMd(t).replace(/[✅🔧💬🎤🔊🎙⏹➜✖📨🎉]/g, "").replace(/\s+/g, " ").trim();
   }
-  function vwSpeak(txt) {
-    if (!canTTS() || !txt) return;
+  function vwSpeak(txt, apres) {
+    // `apres` est appele quand la lecture est FINIE. Le studio ouvre le
+    // micro a ce moment-la, pas avant : sinon on s'enregistre par-dessus
+    // la voix du coach.
+    if (!canTTS() || !txt) { if (apres) apres(); return; }
     try {
       speechSynthesis.cancel();
       var u = new SpeechSynthesisUtterance(vwStripSpoken(sansNivo(txt)));
       var lg = SPEECH_LANG[siteLang()] || "fr-FR";
       u.lang = lg; u.rate = 0.95;
+      if (apres) { u.onend = apres; u.onerror = apres; }
       var vs = (speechSynthesis.getVoices() || []).filter(function (v) {
         return (v.lang || "").replace("_", "-").slice(0, 2) === lg.slice(0, 2);
       });
@@ -4124,6 +4137,57 @@ by();})();
     });
   }
   camBrancher();
+
+
+  /* ------------------------------------------------------------- studio Pro
+     Le studio est une fonction Pro : la mise en scene, la camera et les mesures
+     viennent avec le Kit ou les 90 jours. Le verrou vient du SERVEUR
+     (`dernierEtaitPro` est pose depuis la reponse), jamais d'une case cochee
+     dans la page. */
+  function stMaj() {
+    var b = document.getElementById("vw-studio");
+    if (!b) return;
+    b.style.display = (dernierEtaitPro && window.Studio && Studio.dispo()) ? "" : "none";
+    b.textContent = MSG.stBtn || "🎬 Studio";
+  }
+
+  (function () {
+    var b = document.getElementById("vw-studio");
+    if (!b) return;
+    b.addEventListener("click", function () {
+      if (!window.Studio) return;
+      // On rend le micro du mode vocal AVANT d'ouvrir : deux flux concurrents
+      // sur le meme appareil, c'est le temoin qui reste allume.
+      try { vwStopRec(true); } catch (e) {}
+      Studio.ouvrir({
+        etape: String(vwIdx + 1),
+        titre: (MSG.stTitre || "Studio") + " · " + MSG.vwaProg.replace("{i}", vwIdx + 1).replace("{n}", vwTotal),
+        question: vwQs[vwIdx] || "",
+        langue: siteLang(),
+        parler: function (txt, apres) { vwSpeak(txt, apres); },
+        transcrire: function (blobAudio) {
+          return new Promise(function (res, rej) {
+            var fr = new FileReader();
+            fr.onloadend = function () {
+              fetch(VWA_EP, {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ audio: String(fr.result).split(",")[1] || "", language: siteLang() }),
+              }).then(function (r) { return r.json(); })
+                .then(function (b2) { res((b2 && b2.text) || ""); })
+                .catch(rej);
+            };
+            fr.readAsDataURL(blobAudio);
+          });
+        },
+        onFini: function (r) {
+          // La reponse remplit le champ : la personne n'a pas a la retaper, et
+          // c'est elle qui decide de l'envoyer au coach.
+          if (r.texte && vwAns && !vwAns.value.trim()) vwAns.value = r.texte;
+        },
+      });
+    });
+    stMaj();
+  })();
 
   document.getElementById("sw-print").addEventListener("click", function () { window.print(); });
   document.getElementById("sw-copy").addEventListener("click", function () {
